@@ -2770,3 +2770,12 @@ body {
   background-position: center;
   background-size: cover;
 }
+.header-inner {
+  opacity: 0.75;
+}
+.sidebar {
+  opacity: 0.75;
+}
+.main-inner {
+  opacity: 0.75;
+}
