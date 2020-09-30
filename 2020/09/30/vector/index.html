@@ -22,16 +22,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="DDOSvoid&#39;s Blog">
-<meta property="og:url" content="http://example.com/archives/2020/09/page/2/index.html">
+  <meta name="description" content="简介vector也就是动态数组，我又不知道该说什么了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vector">
+<meta property="og:url" content="http://example.com/2020/09/30/vector/index.html">
 <meta property="og:site_name" content="DDOSvoid&#39;s Blog">
+<meta property="og:description" content="简介vector也就是动态数组，我又不知道该说什么了">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-30T12:40:48.000Z">
+<meta property="article:modified_time" content="2020-09-30T12:40:48.000Z">
 <meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="STL">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/archives/2020/09/page/2/">
+<link rel="canonical" href="http://example.com/2020/09/30/vector/">
 
 
 <script class="page-configurations">
@@ -39,12 +44,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | DDOSvoid's Blog</title>
+  <title>vector | DDOSvoid's Blog</title>
   
 
 
@@ -164,7 +169,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -176,6 +181,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#insert"><span class="nav-number">2.1.</span> <span class="nav-text">insert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#erase"><span class="nav-number">2.2.</span> <span class="nav-text">erase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lower-bound"><span class="nav-number">2.3.</span> <span class="nav-text">lower_bound</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#upper-bound"><span class="nav-number">2.4.</span> <span class="nav-text">upper_bound</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1-Luogu-P3939-%E6%95%B0%E9%A2%9C%E8%89%B2"><span class="nav-number">3.1.</span> <span class="nav-text">T1 Luogu P3939 数颜色</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -259,236 +265,132 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
       
 
       
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/30/vector/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vector
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-30 20:40:48" itemprop="dateCreated datePublished" datetime="2020-09-30T20:40:48+08:00">2020-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 20 篇日志。 继续努力。</span>
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
       </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>209</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>vector</code>也就是动态数组，<del>我又不知道该说什么了</del></p>
+<a id="more"></a>
+
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h3><p>$O(n)$ 向<code>vector</code>中插入一个元素</p>
+<h3 id="erase"><a href="#erase" class="headerlink" title="erase"></a>erase</h3><p>$O(n)$ 删除<code>vector</code>中的一个元素</p>
+<h3 id="lower-bound"><a href="#lower-bound" class="headerlink" title="lower_bound"></a>lower_bound</h3><p>在保证<code>vector</code>有序的情况下，$O(nlogn)$ 找到第一个大于等于<code>v</code>的元素的下标</p>
+<h3 id="upper-bound"><a href="#upper-bound" class="headerlink" title="upper_bound"></a>upper_bound</h3><p>在保证<code>vector</code>有序的情况下，$O(nlogn)$ 找到第一个大于<code>v</code>的元素的下标</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="T1-Luogu-P3939-数颜色"><a href="#T1-Luogu-P3939-数颜色" class="headerlink" title="T1 Luogu P3939 数颜色"></a>T1 Luogu P3939 数颜色</h3><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/09/30/Luogu-P3939-%E6%95%B0%E9%A2%9C%E8%89%B2/"><code>vector</code>经典题</a></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-09-28T23:23:22+08:00"
-              content="2020-09-28">
-          09-28
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/28/Luogu-P2893-USACO08FEB-Making-the-Grade-G/" itemprop="url">
-            <span itemprop="name">Luogu P2893 [USACO08FEB]Making the Grade G</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-flag"></i>　感谢阅读　　　　-------------</div>
+    
+</div>
 
-      
-    </header>
+          <div class="post-tags">
+              <a href="/tags/STL/" rel="tag"># STL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/30/%E4%BA%8C%E5%88%86/" rel="prev" title="二分">
+                  <i class="fa fa-chevron-left"></i> 二分
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/09/30/Luogu-P3939-%E6%95%B0%E9%A2%9C%E8%89%B2/" rel="next" title="Luogu P3939 数颜色">
+                  Luogu P3939 数颜色 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-09-28T22:37:30+08:00"
-              content="2020-09-28">
-          09-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/28/Luogu-P2801-%E6%95%99%E4%B8%BB%E7%9A%84%E9%AD%94%E6%B3%95/" itemprop="url">
-            <span itemprop="name">Luogu P2801 教主的魔法</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-09-27T23:18:07+08:00"
-              content="2020-09-27">
-          09-27
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/27/Luogu-P3865-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91ST%E8%A1%A8/" itemprop="url">
-            <span itemprop="name">Luogu P3865 【模板】ST表</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-09-27T23:12:54+08:00"
-              content="2020-09-27">
-          09-27
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/27/st%E8%A1%A8/" itemprop="url">
-            <span itemprop="name">st表</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-09-26T21:43:31+08:00"
-              content="2020-09-26">
-          09-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/26/Luogu-P1438-%E6%97%A0%E8%81%8A%E7%9A%84%E6%95%B0%E5%88%97/" itemprop="url">
-            <span itemprop="name">Luogu P1438 无聊的数列</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-09-26T21:04:48+08:00"
-              content="2020-09-26">
-          09-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/26/Luogu-P3372-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91-1-%E6%A0%87%E8%AE%B0%E6%B0%B8%E4%B9%85%E5%8C%96/" itemprop="url">
-            <span itemprop="name">Luogu P3372 【模板】线段树 1 (标记永久化)</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-09-26T20:56:54+08:00"
-              content="2020-09-26">
-          09-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/26/%E6%A0%87%E8%AE%B0%E6%B0%B8%E4%B9%85%E5%8C%96/" itemprop="url">
-            <span itemprop="name">标记永久化</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-09-26T19:30:31+08:00"
-              content="2020-09-26">
-          09-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/26/%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%A8%A1%E6%9D%BF2/" itemprop="url">
-            <span itemprop="name">线段树模板2</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-09-26T17:55:19+08:00"
-              content="2020-09-26">
-          09-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/26/%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%A8%A1%E6%9D%BF1/" itemprop="url">
-            <span itemprop="name">线段树模板1</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-09-26T16:21:26+08:00"
-              content="2020-09-26">
-          09-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/26/Hello,%20World!/" itemprop="url">
-            <span itemprop="name">Hello, World!</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-
-    </div>
-  </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2020/09/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/2020/09/">1</a><span class="page-number current">2</span>
-  </nav>
 
 
 
@@ -608,6 +510,50 @@
   
 
   
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
