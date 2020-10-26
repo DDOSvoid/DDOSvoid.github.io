@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介线段树大概是 $Oier$ 中最常用的数据结构了（大概">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-25T07:08:24.000Z">
-<meta property="article:modified_time" content="2020-10-25T10:58:09.296Z">
+<meta property="article:modified_time" content="2020-10-26T14:04:17.144Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="线段树">
 <meta property="article:tag" content="Tech">
@@ -301,10 +301,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-10-25 15:08:24 / 修改时间：18:58:09" itemprop="dateCreated datePublished" datetime="2020-10-25T15:08:24+08:00">2020-10-25</time>
+      <time title="创建时间：2020-10-25 15:08:24" itemprop="dateCreated datePublished" datetime="2020-10-25T15:08:24+08:00">2020-10-25</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-10-26 22:04:17" itemprop="dateModified" datetime="2020-10-26T22:04:17+08:00">2020-10-26</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -330,7 +336,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>579</span>
+      <span>616</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -366,6 +372,8 @@
 <h3 id="操作的种类"><a href="#操作的种类" class="headerlink" title="操作的种类"></a>操作的种类</h3><p>以下为了方便记录，我在操作的后面加上了我在写线段树时对应的操作的函数名</p>
 <p>叠加标记、应用标记：$pushdown$</p>
 <p>合并区间：$maintain$</p>
+<p>区间修改(单点修改)：$update$</p>
+<p>区间查询(单点查询)：$query$</p>
 <h3 id="标记的种类"><a href="#标记的种类" class="headerlink" title="标记的种类"></a>标记的种类</h3><ol>
 <li><p>覆盖标记</p>
 <p>当区间打上这类标记时，会将该区间的所有数值和标记全部回归一个初始量，且这个初始量与之前区间内的数值和标记无光</p>
