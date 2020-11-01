@@ -32,8 +32,8 @@
 <meta property="article:published_time" content="2020-09-27T15:12:54.000Z">
 <meta property="article:modified_time" content="2020-09-27T15:12:54.000Z">
 <meta property="article:author" content="DDOSvoid">
-<meta property="article:tag" content="st表">
 <meta property="article:tag" content="Tech">
+<meta property="article:tag" content="st表">
 <meta name="twitter:card" content="summary">
 
 
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-count">119</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -211,7 +211,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -350,11 +350,9 @@
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>用来解决<code>RMQ</code>问题，<code>O(nlogn)</code>预处理，<code>O(1)</code>查询 <a id="more"></a></p>
 <p>唯一的缺点是只支持静态查询</p>
 <h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> Log[maxn], st[maxn][<span class="number">21</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_st</span><span class="params">()</span> </span>&#123; Log[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) Log[i] = Log[i &gt;&gt; <span class="number">1</span>] + <span class="number">1</span>, st[i][<span class="number">0</span>] = a[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">20</span>; ++j)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i + (<span class="number">1</span> &lt;&lt; j) - <span class="number">1</span> &lt;= n; ++i)</span><br><span class="line">            st[i][j] = max(st[i][j - <span class="number">1</span>], st[i + (<span class="number">1</span> &lt;&lt; j - <span class="number">1</span>)][j - <span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> k = Log[r - l + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> max(st[l][k], st[r - (<span class="number">1</span> &lt;&lt; k) + <span class="number">1</span>][k]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>此外还有二维<code>st</code>表，可惜的是只能处理正方形 </p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c, <span class="keyword">int</span> d)</span> </span>&#123; <span class="keyword">return</span> min(a, min(b, min(c, d))); &#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Log[maxn], st[maxn][maxn][maxm];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_st</span><span class="params">()</span> </span>&#123; Log[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) Log[i] = Log[i &gt;&gt; <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) st[i][j][<span class="number">0</span>] = a[i][j];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= m; ++k)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i + (<span class="number">1</span> &lt;&lt; k) - <span class="number">1</span> &lt;= n; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j + (<span class="number">1</span> &lt;&lt; k) - <span class="number">1</span> &lt;= n; ++j) &#123;</span><br><span class="line">                st[i][j][k] = min(st[i][j][k - <span class="number">1</span>], st[i][j + (<span class="number">1</span> &lt;&lt; k - <span class="number">1</span>)][k - <span class="number">1</span>],</span><br><span class="line">                                  st[i + (<span class="number">1</span> &lt;&lt; k - <span class="number">1</span>)][j][k - <span class="number">1</span>],</span><br><span class="line">                                  st[i + (<span class="number">1</span> &lt;&lt; k - <span class="number">1</span>)][j + (<span class="number">1</span> &lt;&lt; k - <span class="number">1</span>)][k - <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> k = Log[x2 - x1 + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> min(st[x1][y1][k], st[x1][y2 - (<span class="number">1</span> &lt;&lt; k) + <span class="number">1</span>][k],</span><br><span class="line">               st[x2 - (<span class="number">1</span> &lt;&lt; k) + <span class="number">1</span>][y1][k],</span><br><span class="line">               st[x2 - (<span class="number">1</span> &lt;&lt; k) + <span class="number">1</span>][y2 - (<span class="number">1</span> &lt;&lt; k) + <span class="number">1</span>][k]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="静态区间最大值"><a href="#静态区间最大值" class="headerlink" title="静态区间最大值"></a>静态区间最大值</h3><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/09/27/Luogu-P3865-[%E6%A8%A1%E6%9D%BF]ST%E8%A1%A8/">Luogu P3865 【模板】ST表</a></p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="静态区间最大值"><a href="#静态区间最大值" class="headerlink" title="静态区间最大值"></a>静态区间最大值</h3><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/09/27/Luogu-P3865-[模板]ST表/">Luogu P3865 【模板】ST表</a></p>
 <h3 id="利用二维st表建图"><a href="#利用二维st表建图" class="headerlink" title="利用二维st表建图"></a>利用二维st表建图</h3><p>bzoj 3577: 玩手机</p>
 
     </div>
@@ -371,8 +369,8 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/st%E8%A1%A8/" rel="tag"># st表</a>
               <a href="/tags/Tech/" rel="tag"># Tech</a>
+              <a href="/tags/st%E8%A1%A8/" rel="tag"># st表</a>
           </div>
 
         
@@ -444,13 +442,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">156k</span>
+    <span title="站点总字数">166k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:22</span>
+    <span title="站点阅读时长">2:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

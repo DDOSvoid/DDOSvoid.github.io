@@ -32,8 +32,8 @@
 <meta property="article:published_time" content="2020-10-02T09:39:22.000Z">
 <meta property="article:modified_time" content="2020-10-22T10:41:20.526Z">
 <meta property="article:author" content="DDOSvoid">
-<meta property="article:tag" content="树">
 <meta property="article:tag" content="Tech">
+<meta property="article:tag" content="树">
 <meta name="twitter:card" content="summary">
 
 
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-count">119</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -211,7 +211,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -356,17 +356,13 @@
     <div class="post-body" itemprop="articleBody">
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>大概就是跟树有关的东西吧 = = </p>
 <a id="more"></a>
-
 <h2 id="LCA"><a href="#LCA" class="headerlink" title="LCA"></a>LCA</h2><h3 id="倍增"><a href="#倍增" class="headerlink" title="倍增"></a>倍增</h3><p>$O(nlogn)$ 预处理，$O(logn)$ 查询</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> f[maxn][<span class="number">21</span>], dep[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        dep[v] = dep[u] + <span class="number">1</span>; f[v][<span class="number">0</span>] = u;</span><br><span class="line">        dfs(v, u);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_lca</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">20</span>; ++j)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) f[i][j] = f[f[i][j - <span class="number">1</span>]][j - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_lca</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (dep[x] &lt; dep[y]) swap(x, y);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">20</span>; ~i; --i)</span><br><span class="line">        <span class="keyword">if</span> (dep[f[x][i]] &gt;= dep[y]) x = f[x][i];</span><br><span class="line">    <span class="keyword">if</span> (x == y) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">20</span>; ~i; --i)</span><br><span class="line">        <span class="keyword">if</span> (f[x][i] != f[y][i]) x = f[x][i], y = f[y][i];</span><br><span class="line">    <span class="keyword">return</span> f[x][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="树剖"><a href="#树剖" class="headerlink" title="树剖"></a>树剖</h3><p>$O(n)$ 预处理，$O(logn)$ 查询</p>
 <p><del>据说常数小</del></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dep[maxn], son[maxn], sz[maxn], f[maxn]; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> Max = <span class="number">0</span>; sz[u] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        f[v] = u; dep[v] = dep[u] + <span class="number">1</span>;</span><br><span class="line">        dfs(v, u); sz[u] += sz[v];</span><br><span class="line">        <span class="keyword">if</span> (sz[v] &gt; Max) Max = sz[v], son[u] = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> top[maxn], id[maxn], c2, bl[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa, <span class="keyword">int</span> topf)</span> </span>&#123;</span><br><span class="line">    top[u] = topf; id[u] = ++c2; bl[c2] = u;</span><br><span class="line">    <span class="keyword">if</span> (son[u]) dfs(son[u], u, topf); </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; <span class="keyword">if</span> (v == fa || v == son[u]) <span class="keyword">continue</span>;</span><br><span class="line">        dfs(v, u, v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_lca</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (top[x] != top[y]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (dep[top[x]] &lt; dep[top[y]]) swap(x, y);</span><br><span class="line">        x = f[top[x]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dep[x] &lt; dep[y] ? x : y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="tarjan-离线"><a href="#tarjan-离线" class="headerlink" title="tarjan 离线"></a>tarjan 离线</h3><p>$O(n)$ </p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ans[maxn]; <span class="keyword">bool</span> vis[maxn]; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    vis[u] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        dfs(v, u); Uset.fa[v] = u;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = Head[u]; ~i; i = E[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = E[i].to, id = E[i].id; <span class="keyword">if</span> (!vis[v]) <span class="keyword">continue</span>;</span><br><span class="line">        ans[id] = Uset.find(v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="树的重心"><a href="#树的重心" class="headerlink" title="树的重心"></a>树的重心</h2><h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><ol>
 <li>树上所有点到某点的距离和中，到重心的距离和最小，如果有两个重心，他们的距离和相等</li>
 <li>一棵树添加或者删除一个节点，树的重心最多最多只移动一条边的位置</li>
@@ -390,8 +386,8 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E6%A0%91/" rel="tag"># 树</a>
               <a href="/tags/Tech/" rel="tag"># Tech</a>
+              <a href="/tags/%E6%A0%91/" rel="tag"># 树</a>
           </div>
 
         
@@ -463,13 +459,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">156k</span>
+    <span title="站点总字数">166k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:22</span>
+    <span title="站点阅读时长">2:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

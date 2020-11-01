@@ -2438,6 +2438,13 @@ ul.breadcrumb li:last-child {
   border-bottom-color: #111;
   color: #111;
 }
+mjx-container[jax="CHTML"][display="true"],
+.has-jax {
+  overflow: auto hidden;
+}
+mjx-container[display="true"] + br {
+  display: none;
+}
 .use-motion .animated {
   animation-fill-mode: none;
   visibility: inherit;
@@ -2771,11 +2778,11 @@ body {
   background-size: cover;
 }
 .header-inner {
-  opacity: 0.75;
+  opacity: 0.8;
 }
 .sidebar {
-  opacity: 0.75;
+  opacity: 0.8;
 }
 .main-inner {
-  opacity: 0.75;
+  opacity: 0.8;
 }

@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-count">119</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -211,7 +211,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -356,23 +356,19 @@
     <div class="post-body" itemprop="articleBody">
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>$RT$</p>
 <a id="more"></a>
-
 <h2 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h2><h3 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h3><p>有 $n$ 个物品和一个容量为 $v$ 的背包，放入第 $i$ 件物品耗费的容量为 $w_i$，得到的价值是 $c_i$，求将哪些物品放入背包使得价值最大</p>
 <h3 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h3><p>我们令 $f[i][j]$ 表示放了前 $i$ 种物品，占了小于等于 $i$ 体积的最大价值</p>
 <p>$dp$ 时可以优化掉第一维，需要注意第二维并不是精确的值，而是”继承”了前面的值</p>
 <p>复杂度 $O(nm)$</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = m; j &gt;= w[i]; --j)</span><br><span class="line">        f[j] = max(f[j], f[j - w[i]] + c[i]); </span><br></pre></td></tr></table></figure>
-
 <h2 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h2><h3 id="题目概述-1"><a href="#题目概述-1" class="headerlink" title="题目概述"></a>题目概述</h3><p>每个物品可以用无限次</p>
 <h3 id="solution-1"><a href="#solution-1" class="headerlink" title="solution"></a>solution</h3><p>只需要改变第二层循环的顺序即可</p>
 <p>复杂度 $O(nm)$</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = w[i]; j &lt;= m; ++j)</span><br><span class="line">        f[j] = max(f[j], f[j - w[i]] + c[i]); </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <h2 id="多重背包"><a href="#多重背包" class="headerlink" title="多重背包"></a>多重背包</h2><h3 id="题目概述-2"><a href="#题目概述-2" class="headerlink" title="题目概述"></a>题目概述</h3><p>第 $i$ 种物品可以用 $p[i]$ 次</p>
 <h3 id="solution-2"><a href="#solution-2" class="headerlink" title="solution"></a>solution</h3><p>朴素的做法是多循环 $p[i]$ 次，复杂度多乘一个 $p[i]$</p>
 <p>优化是将 $p[i]$ 二进制拆分成多个物品，复杂度 $O(nmlogp)$</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> p, _w, _c; <span class="built_in">cin</span> &gt;&gt; _c &gt;&gt; _w &gt;&gt; p; </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= p; j &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            w[++c1] = _w * j;</span><br><span class="line">            c[c1] = _c * j;</span><br><span class="line">            p -= j; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (p) w[++c1] = _w * p, c[c1] = _c * p;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= c1; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = m; j &gt;= w[i]; --j)</span><br><span class="line">            f[j] = max(f[j], f[j - w[i]] + c[i]);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; f[m] &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-
 <p>还可以进一步优化，利用单调队列，复杂度为 $O()$</p>
 
     </div>
@@ -462,13 +458,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">156k</span>
+    <span title="站点总字数">166k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:22</span>
+    <span title="站点阅读时长">2:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

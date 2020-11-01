@@ -32,8 +32,8 @@
 <meta property="article:published_time" content="2020-10-18T10:50:03.000Z">
 <meta property="article:modified_time" content="2020-10-20T10:36:06.775Z">
 <meta property="article:author" content="DDOSvoid">
-<meta property="article:tag" content="分块">
 <meta property="article:tag" content="Tech">
+<meta property="article:tag" content="分块">
 <meta name="twitter:card" content="summary">
 
 
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-count">119</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -211,7 +211,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -356,9 +356,8 @@
     <div class="post-body" itemprop="articleBody">
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>大概是对根号算法的总结吧，大概</p>
 <a id="more"></a>
-
 <h3 id="强制在线，只有询问"><a href="#强制在线，只有询问" class="headerlink" title="强制在线，只有询问"></a>强制在线，只有询问</h3><p>对于这种题目，分块算法一般的思想是预处理出块 $i$ 到块 $j$ 的答案，边角中间的块对边角的影响用其它数据结构来存储</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/10/17/Luogu-P4168-Violet-%E8%92%B2%E5%85%AC%E8%8B%B1/">Luogu P4168 [Violet]蒲公英(区间众数)</a>，<a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/10/18/bzoj-3744-Gty%E7%9A%84%E5%A6%B9%E5%AD%90%E5%BA%8F%E5%88%97/">bzoj 3744 Gty的妹子序列(区间逆序对)</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/10/17/Luogu-P4168-Violet-%E8%92%B2%E5%85%AC%E8%8B%B1/">Luogu P4168 [Violet]蒲公英(区间众数)</a>，<a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/10/18/bzoj-3744-Gty的妹子序列/">bzoj 3744 Gty的妹子序列(区间逆序对)</a></p>
 <h3 id="由只有询问的题目拓展到包含修改"><a href="#由只有询问的题目拓展到包含修改" class="headerlink" title="由只有询问的题目拓展到包含修改"></a>由只有询问的题目拓展到包含修改</h3><p>这类题目一般在只有询问时可以做到提前处理好答案数组，这时候分块的作用就是使得在修改的时候可以在块内进行重构</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/10/17/Luogu-P3203-HNOI2010-%E5%BC%B9%E9%A3%9E%E7%BB%B5%E7%BE%8A/">Luogu P3203 [HNOI2010]弹飞绵羊</a>，<a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/10/17/Luogu-P3396-%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81/">Luogu P3396 哈希冲突</a></p>
 <h3 id="更加一般的数据结构题目"><a href="#更加一般的数据结构题目" class="headerlink" title="更加一般的数据结构题目"></a>更加一般的数据结构题目</h3><p>这类题目的思想类似于线段树，只不过有些东西线段树没法维护，所以只能用分块来操作</p>
@@ -374,7 +373,6 @@
 <p>如果使用树状数组的话，复杂度是 $O(n\sqrt n\log n)$ 的，显然不优</p>
 <p>这时候我们考虑分块维护前缀和</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = x; i &lt;= r[bl[x]]; ++i) a[i] += v;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = bl[x] + <span class="number">1</span>; i &lt;= num; ++i) d[i] += v;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">get_sum</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a[x] + d[bl[x]]; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>那么如果修改 $O(n\sqrt n)$ ，查询 $O(n)$ 呢</p>
 <p>同样是分块，直接维护单点和即可</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    a[x] += v; d[bl[x]] += v; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">if</span> (bl[L] == bl[R]) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = L; i &lt;= R; ++i) s += a[i];</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = L; i &lt;= r[bl[L]]; ++i) s += a[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = l[bl[R]]; i &lt;= R; ++i) s += a[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = bl[L] + <span class="number">1</span>; i &lt; bl[R]; ++i) s += d[i];</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -403,8 +401,8 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E5%88%86%E5%9D%97/" rel="tag"># 分块</a>
               <a href="/tags/Tech/" rel="tag"># Tech</a>
+              <a href="/tags/%E5%88%86%E5%9D%97/" rel="tag"># 分块</a>
           </div>
 
         
@@ -476,13 +474,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">156k</span>
+    <span title="站点总字数">166k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:22</span>
+    <span title="站点阅读时长">2:31</span>
   </span>
 </div>
 <div class="busuanzi-count">
