@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介总之就是很 $STL$">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-04T13:30:23.000Z">
-<meta property="article:modified_time" content="2020-11-04T13:51:07.615Z">
+<meta property="article:modified_time" content="2020-11-07T03:42:22.506Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="STL">
@@ -182,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#insert"><span class="nav-number">2.1.</span> <span class="nav-text">insert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#erase"><span class="nav-number">2.2.</span> <span class="nav-text">erase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lower-bound"><span class="nav-number">2.3.</span> <span class="nav-text">lower_bound</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#upper-bound"><span class="nav-number">2.4.</span> <span class="nav-text">upper_bound</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multiset"><span class="nav-number">3.</span> <span class="nav-text">multiset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">例题</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#insert"><span class="nav-number">2.1.</span> <span class="nav-text">insert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#erase"><span class="nav-number">2.2.</span> <span class="nav-text">erase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lower-bound"><span class="nav-number">2.3.</span> <span class="nav-text">lower_bound</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#upper-bound"><span class="nav-number">2.4.</span> <span class="nav-text">upper_bound</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E6%9C%AB%E5%B0%BE%E5%85%83%E7%B4%A0"><span class="nav-number">2.5.</span> <span class="nav-text">求末尾元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multiset"><span class="nav-number">3.</span> <span class="nav-text">multiset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">例题</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">138</span>
+          <span class="site-state-item-count">140</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -301,10 +301,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-11-04 21:30:23 / 修改时间：21:51:07" itemprop="dateCreated datePublished" datetime="2020-11-04T21:30:23+08:00">2020-11-04</time>
+      <time title="创建时间：2020-11-04 21:30:23" itemprop="dateCreated datePublished" datetime="2020-11-04T21:30:23+08:00">2020-11-04</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-07 11:42:22" itemprop="dateModified" datetime="2020-11-07T11:42:22+08:00">2020-11-07</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -330,7 +336,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>198</span>
+      <span>216</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -354,6 +360,7 @@
 <h3 id="erase"><a href="#erase" class="headerlink" title="erase"></a>erase</h3><p>$O(\log n)$ 删除一个元素，这里可以用迭代器</p>
 <h3 id="lower-bound"><a href="#lower-bound" class="headerlink" title="lower_bound"></a>lower_bound</h3><p>$O(\log n)$</p>
 <h3 id="upper-bound"><a href="#upper-bound" class="headerlink" title="upper_bound"></a>upper_bound</h3><p>$O(\log n)$</p>
+<h3 id="求末尾元素"><a href="#求末尾元素" class="headerlink" title="求末尾元素"></a>求末尾元素</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*--S.begin()</span><br></pre></td></tr></table></figure>
 <h2 id="multiset"><a href="#multiset" class="headerlink" title="multiset"></a>multiset</h2><p>这玩意可以存相同的数据</p>
 <p>但是在 $erase$ 的时候，如果不适用迭代器而是用数值的话，会将这个数值都删掉</p>
 <h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/04/校内模拟赛-T1-合影/">校内模拟赛 T1 合影</a></p>
@@ -445,13 +452,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">195k</span>
+    <span title="站点总字数">199k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:57</span>
+    <span title="站点阅读时长">3:01</span>
   </span>
 </div>
 <div class="busuanzi-count">
