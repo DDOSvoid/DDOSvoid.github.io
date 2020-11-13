@@ -30,8 +30,9 @@
 <meta property="og:description" content="简介毒瘤">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-10T12:22:06.000Z">
-<meta property="article:modified_time" content="2020-11-10T13:03:44.780Z">
+<meta property="article:modified_time" content="2020-11-11T11:18:01.290Z">
 <meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="Tech">
 <meta property="article:tag" content="Splay">
 <meta name="twitter:card" content="summary">
 
@@ -181,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">例题</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -197,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">153</span>
+          <span class="site-state-item-count">160</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,7 +211,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">45</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -300,10 +301,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-11-10 20:22:06 / 修改时间：21:03:44" itemprop="dateCreated datePublished" datetime="2020-11-10T20:22:06+08:00">2020-11-10</time>
+      <time title="创建时间：2020-11-10 20:22:06" itemprop="dateCreated datePublished" datetime="2020-11-10T20:22:06+08:00">2020-11-10</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-11 19:18:01" itemprop="dateModified" datetime="2020-11-11T19:18:01+08:00">2020-11-11</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -329,7 +336,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
+      <span>1.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -351,6 +358,8 @@
 <a id="more"></a>
 <p>我觉得还是贴个板子</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lc T[i].ch[0]</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rc T[i].ch[1]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Splay</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v, sz, ch[<span class="number">2</span>], cnt;</span><br><span class="line">&#125; T[maxn]; <span class="keyword">int</span> top, rt, f[maxn]; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123; <span class="keyword">return</span> i == T[f[i]].ch[<span class="number">1</span>]; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    T[i].sz = T[i].v = lc = rc = T[i].cnt = f[i] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">newnode</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = ++top;</span><br><span class="line">    T[i].cnt = T[i].sz = <span class="number">1</span>; T[i].v = v;</span><br><span class="line">    <span class="keyword">return</span> i; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123; T[i].sz = T[i].cnt + T[lc].sz + T[rc].sz; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fa = f[x], ffa = f[f[x]], wx = get(x);</span><br><span class="line">    f[x] = ffa; f[T[x].ch[wx ^ <span class="number">1</span>]] = fa; f[fa] = x;</span><br><span class="line">    <span class="keyword">if</span> (ffa) T[ffa].ch[T[ffa].ch[<span class="number">1</span>] == fa] = x;</span><br><span class="line">    T[fa].ch[wx] = T[x].ch[wx ^ <span class="number">1</span>]; T[x].ch[wx ^ <span class="number">1</span>] = fa;</span><br><span class="line">    update(fa); update(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Splay</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> k = <span class="number">0</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> fa = f[i]; fa != k; rotate(i), fa = f[i])</span><br><span class="line">        <span class="keyword">if</span> (f[fa] != k) rotate(get(i) == get(fa) ? fa : i);</span><br><span class="line">    <span class="keyword">if</span> (!k) rt = i; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = rt, d;</span><br><span class="line">    <span class="keyword">if</span> (!i) <span class="keyword">return</span> (<span class="keyword">void</span>) (rt = newnode(v));</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        d = v &gt; T[i].v;</span><br><span class="line">        <span class="keyword">if</span> (T[i].v == v) <span class="keyword">return</span> ++T[i].cnt, Splay(i);</span><br><span class="line">        <span class="keyword">if</span> (!T[i].ch[d]) &#123;</span><br><span class="line">            T[i].ch[d] = newnode(v); f[T[i].ch[d]] = i;</span><br><span class="line">            Splay(T[i].ch[d]); <span class="keyword">return</span> ; </span><br><span class="line">        &#125; i = T[i].ch[d];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findk</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = rt; </span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (k &lt;= T[lc].sz) &#123; i = lc; <span class="keyword">continue</span>; &#125;</span><br><span class="line">        k -= T[lc].sz;</span><br><span class="line">        <span class="keyword">if</span> (k &lt;= T[i].cnt) <span class="keyword">return</span> Splay(i), i;</span><br><span class="line">        k -= T[i].cnt; i = rc;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123; <span class="comment">// 如果 v 存在，可以找到 v，否则找到大于 v 最小 或者 小于 v 最大</span></span><br><span class="line">    <span class="keyword">int</span> i = rt;</span><br><span class="line">    <span class="keyword">while</span> (T[i].ch[v &gt; T[i].v] &amp;&amp; v != T[i].v) i = T[i].ch[v &gt; T[i].v];</span><br><span class="line">    Splay(i); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findp</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    find(v); <span class="keyword">int</span> i = T[rt].ch[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">if</span> (T[rt].v &lt; v) <span class="keyword">return</span> rt; </span><br><span class="line">    <span class="keyword">while</span> (rc) i = rc; Splay(i); <span class="keyword">return</span> i; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findn</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    find(v); <span class="keyword">int</span> i = T[rt].ch[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (T[rt].v &gt; v) <span class="keyword">return</span> rt; </span><br><span class="line">    <span class="keyword">while</span> (lc) i = lc; Splay(i); <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">del</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pre = findp(v), nxt = findn(v), i; </span><br><span class="line">    Splay(pre); Splay(nxt, pre); i = T[nxt].ch[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">if</span> (T[i].cnt &gt; <span class="number">1</span>) <span class="keyword">return</span> --T[i].cnt, Splay(i);</span><br><span class="line">    T[nxt].ch[<span class="number">0</span>] = <span class="number">0</span>; clear(i); update(nxt); update(pre); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/10/Luogu-P3391-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%96%87%E8%89%BA%E5%B9%B3%E8%A1%A1%E6%A0%91/">Luogu P3391 【模板】文艺平衡树</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/10/Luogu-P3369-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%99%AE%E9%80%9A%E5%B9%B3%E8%A1%A1%E6%A0%91/">Luogu P3369 【模板】普通平衡树</a></p>
 
     </div>
 
@@ -366,6 +375,7 @@
 </div>
 
           <div class="post-tags">
+              <a href="/tags/Tech/" rel="tag"># Tech</a>
               <a href="/tags/Splay/" rel="tag"># Splay</a>
           </div>
 
@@ -438,13 +448,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">225k</span>
+    <span title="站点总字数">233k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:24</span>
+    <span title="站点阅读时长">3:32</span>
   </span>
 </div>
 <div class="busuanzi-count">
