@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">326</span>
+          <span class="site-state-item-count">331</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -211,7 +211,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -329,7 +329,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>462</span>
+      <span>480</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -352,7 +352,8 @@
 <h3 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h3><p><strong>路径压缩</strong> </p>
 <p>复杂度待证</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123; <span class="keyword">return</span> fa[x] == x; &#125; </span><br></pre></td></tr></table></figure>
-<p><strong>按深度合并</strong></p>
+<p><strong>按秩合并</strong></p>
+<p>复杂度 $O(n\log n)$，不是均摊</p>
 <p>复杂度待证</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (dep[x] &gt; dep[y]) swap(x, y);</span><br><span class="line">fa[x] = y; <span class="keyword">if</span> (dep[x] == dep[y]) ++dep[y];</span><br></pre></td></tr></table></figure>
 <p><strong>按大小合并</strong></p>
@@ -451,13 +452,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">517k</span>
+    <span title="站点总字数">531k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:50</span>
+    <span title="站点阅读时长">8:03</span>
   </span>
 </div>
 <div class="busuanzi-count">
