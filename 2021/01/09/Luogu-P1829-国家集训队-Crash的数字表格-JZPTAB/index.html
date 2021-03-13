@@ -30,8 +30,9 @@
 <meta property="og:description" content="题目描述https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P1829">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-09T11:31:48.000Z">
-<meta property="article:modified_time" content="2021-01-09T11:40:52.255Z">
+<meta property="article:modified_time" content="2021-03-13T08:09:47.714Z">
 <meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="积性函数">
 <meta name="twitter:card" content="summary">
 
 
@@ -196,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">404</span>
+          <span class="site-state-item-count">405</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -299,10 +300,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-01-09 19:31:48 / 修改时间：19:40:52" itemprop="dateCreated datePublished" datetime="2021-01-09T19:31:48+08:00">2021-01-09</time>
+      <time title="创建时间：2021-01-09 19:31:48" itemprop="dateCreated datePublished" datetime="2021-01-09T19:31:48+08:00">2021-01-09</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-13 16:09:47" itemprop="dateModified" datetime="2021-03-13T16:09:47+08:00">2021-03-13</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -353,8 +360,8 @@
 ans&=\sum_{i=1}^n\sum_{j=1}^m[i,j]\\
 &=\sum_{i=1}^n\sum_{j=1}^m\frac{ij}{(i,j)}\\
 &=\sum_{t=1}^n\frac{1}{t}\sum_{i=1}^n\sum_{j=1}^mij[(i,j)=t]\\
-&=\sum_{t=1}^n\frac{1}{t}\sum_{d=1}^{\lfloor\frac{n}{t}\rfloor}\mu(d)\sum_{d|i}i\sum_{d|j}j\\
-&=\sum_{t=1}^n\frac{1}{t}\sum_{d=1}^{\lfloor\frac{n}{t}\rfloor}\mu(d)\frac{\lfloor\frac{n}{dt}\rfloor(\lfloor\frac{n}{dt}\rfloor+1)}{2}\frac{\lfloor\frac{m}{dt}\rfloor(\lfloor\frac{m}{dt}\rfloor+1)}{2}\\
+&=\sum_{t=1}^nt\sum_{d=1}^{\lfloor\frac{n}{t}\rfloor}\mu(d)\sum_{d|i}^{\lfloor\frac{n}{t}\rfloor}i\sum_{d|j}^{\lfloor\frac{m}{t}\rfloor}j\\
+&=\sum_{t=1}^nt\sum_{d=1}^{\lfloor\frac{n}{t}\rfloor}\mu(d)\frac{\lfloor\frac{n}{dt}\rfloor(\lfloor\frac{n}{dt}\rfloor+1)}{2}\frac{\lfloor\frac{m}{dt}\rfloor(\lfloor\frac{m}{dt}\rfloor+1)}{2}\\
 &=\sum_{T=1}^n\frac{\lfloor\frac{n}{T}\rfloor(\lfloor\frac{n}{T}\rfloor+1)}{2}\frac{\lfloor\frac{m}{T}\rfloor(\lfloor\frac{m}{T}\rfloor+1)}{2}T\sum_{d|T}d\mu(d)
 \end{aligned}</script><p>令 $f(n)=n\sum_{d|n}d\mu(d)$，这东西依然可以 $O(n)$ 预处理前缀和</p>
 <p>所以我们依然能够做到 $O(n)$ 预处理，$O(\sqrt n)$ 单次查询</p>
@@ -373,6 +380,9 @@ ans&=\sum_{i=1}^n\sum_{j=1}^m[i,j]\\
     
 </div>
 
+          <div class="post-tags">
+              <a href="/tags/%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0/" rel="tag"># 积性函数</a>
+          </div>
 
         
 
@@ -443,13 +453,13 @@ ans&=\sum_{i=1}^n\sum_{j=1}^m[i,j]\\
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">670k</span>
+    <span title="站点总字数">672k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">10:09</span>
+    <span title="站点阅读时长">10:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -512,6 +522,50 @@ ans&=\sum_{i=1}^n\sum_{j=1}^m[i,j]\\
   
 
   
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
