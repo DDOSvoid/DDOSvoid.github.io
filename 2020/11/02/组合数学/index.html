@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-02T07:11:06.000Z">
-<meta property="article:modified_time" content="2021-01-01T08:53:03.555Z">
+<meta property="article:modified_time" content="2021-03-23T13:58:54.898Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="组合数学">
@@ -182,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E5%88%97%E5%92%8C%E7%BB%84%E5%90%88"><span class="nav-number">2.</span> <span class="nav-text">排列和组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E9%A1%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">二项式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%95%B0%E6%81%92%E7%AD%89%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">组合数恒等式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E7%BB%84%E5%90%88%E6%95%B0"><span class="nav-number">3.3.</span> <span class="nav-text">求组合数</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E5%88%97%E5%92%8C%E7%BB%84%E5%90%88"><span class="nav-number">2.</span> <span class="nav-text">排列和组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%83%E7%9B%92%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">球盒问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E9%A1%B9%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">二项式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86"><span class="nav-number">4.2.</span> <span class="nav-text">二项式定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86"><span class="nav-number">4.3.</span> <span class="nav-text">广义二项式定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%95%B0%E6%81%92%E7%AD%89%E5%BC%8F"><span class="nav-number">4.4.</span> <span class="nav-text">组合数恒等式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E7%BB%84%E5%90%88%E6%95%B0"><span class="nav-number">4.5.</span> <span class="nav-text">求组合数</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -309,7 +309,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-01-01 16:53:03" itemprop="dateModified" datetime="2021-01-01T16:53:03+08:00">2021-01-01</time>
+        <time title="修改时间：2021-03-23 21:58:54" itemprop="dateModified" datetime="2021-03-23T21:58:54+08:00">2021-03-23</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -336,14 +336,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.6k</span>
+      <span>2.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -366,13 +366,34 @@
 <li><p>设 $S$ 是多重集合 $=\{n_1\cdot a_1,n_2\cdot a_2,\cdots ,n_k\cdot a_k\}$，$n_1,n_2,\cdots,n_k$ 是非负整数，设 $h_n$ 是 $S$ 的 $n$ 排列数，则 $h$ 的指数型生成函数 $g(x)=f_{n_1}(x)f_{n_2(x)}\cdots f_{n_k}(x)$，其中 $f_{n_i}(x)={1+x+\frac{x^2}{2!}+\cdots+\frac{x^{n_i}}{n_i!}}$</p>
 </li>
 </ol>
+<h2 id="球盒问题"><a href="#球盒问题" class="headerlink" title="球盒问题"></a>球盒问题</h2><ol>
+<li><p>球不同，盒子不同，可以有空盒</p>
+<p>方案数 $m^n$</p>
+</li>
+<li><p>球相同，盒子不同，不能有空盒</p>
+<p>相当于在 $n$ 个小球的 $n-1$ 个空隙中插入 $m-1$ 个板子</p>
+<p>方案数为 $\binom {n-1} {m-1}$</p>
+</li>
+<li><p>球相同，盒子不同，可以有空盒</p>
+<p>可以看做有 $n+m$ 个相同小球，盒子不同，不能有空盒的方案</p>
+<p>方案数为 $\binom{n+m-1}{m-1}$</p>
+</li>
+<li></li>
+</ol>
 <h2 id="二项式"><a href="#二项式" class="headerlink" title="二项式"></a>二项式</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>$\binom{n}{m}=\frac{n!}{m!(n-m)!},n,m\in N$，当 $m&gt;n$ 时，$\binom{n}{m}=0$</p>
 <p>我们尝试拓宽组合数的定义域，我们定义 $n^{\underline{k}}$ 为 $n$ 的 $k$ 次下降幂，$n^{\underline{k}}=n\times (n-1)\times\cdots \times (n-k+1)$，那么</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 \binom{n}{m}=\frac{n^{\underline{m}}}{m!}
 \end{aligned}</script><p>这时候我们可以使组合数的上指标 $n$ 为任意实数</p>
-<h3 id="组合数恒等式"><a href="#组合数恒等式" class="headerlink" title="组合数恒等式"></a>组合数恒等式</h3><ol>
+<h3 id="二项式定理"><a href="#二项式定理" class="headerlink" title="二项式定理"></a>二项式定理</h3><p>$(a+b)^n=\sum_{i=0}^n\binom{n}{i}a^ib^{n-i},n\in N$</p>
+<p>几个性质：</p>
+<ol>
+<li><p>从 $n$ 个数里选奇数个数的方案等于从 $n$ 个数中选偶数个数的方案等于 $2^{n-1}$</p>
+<p>证明：$(1-1)^n=\sum_{i=0}^n(-1)^i\binom{n}{i}$</p>
+</li>
+</ol>
+<h3 id="广义二项式定理"><a href="#广义二项式定理" class="headerlink" title="广义二项式定理"></a>广义二项式定理</h3><h3 id="组合数恒等式"><a href="#组合数恒等式" class="headerlink" title="组合数恒等式"></a>组合数恒等式</h3><ol>
 <li><p>$\binom{n}{m}=\binom{n}{n-m},n,m\in N$</p>
 </li>
 <li><p>$\binom{n}{m}=\binom{n-1}{m}+\binom{n-1}{m-1},n\in R,m\in N$</p>
@@ -522,7 +543,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">10:26</span>
+    <span title="站点阅读时长">10:27</span>
   </span>
 </div>
 <div class="busuanzi-count">
