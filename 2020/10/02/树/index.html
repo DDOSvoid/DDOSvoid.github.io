@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介大概就是跟树有关的东西吧 &#x3D; &#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-02T09:39:22.000Z">
-<meta property="article:modified_time" content="2021-02-24T06:26:55.035Z">
+<meta property="article:modified_time" content="2021-04-06T13:39:24.026Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="树">
@@ -182,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCA"><span class="nav-number">2.</span> <span class="nav-text">LCA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%8D%E5%A2%9E"><span class="nav-number">2.1.</span> <span class="nav-text">倍增</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E5%89%96"><span class="nav-number">2.2.</span> <span class="nav-text">树剖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RMQ-%E6%B1%82-lca"><span class="nav-number">2.3.</span> <span class="nav-text">RMQ 求 lca</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tarjan-%E7%A6%BB%E7%BA%BF"><span class="nav-number">2.4.</span> <span class="nav-text">tarjan 离线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E9%87%8D%E5%BF%83"><span class="nav-number">3.</span> <span class="nav-text">树的重心</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">3.1.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">3.3.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84"><span class="nav-number">4.</span> <span class="nav-text">树的直径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8-1"><span class="nav-number">4.1.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95-1"><span class="nav-number">4.2.</span> <span class="nav-text">算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91-hash"><span class="nav-number">5.</span> <span class="nav-text">树 hash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E5%AD%90%E6%A0%91%E5%90%8C%E6%9E%84"><span class="nav-number">5.1.</span> <span class="nav-text">判断子树同构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%9C%89%E6%A0%B9%E6%A0%91%E5%90%8C%E6%9E%84"><span class="nav-number">5.2.</span> <span class="nav-text">判断有根树同构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%97%A0%E6%A0%B9%E6%A0%91%E5%90%8C%E6%9E%84"><span class="nav-number">5.3.</span> <span class="nav-text">判断无根树同构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-number">5.4.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98"><span class="nav-number">6.</span> <span class="nav-text">树上的一些经典问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E5%B1%80%E7%BB%B4%E6%8A%A4%E6%96%B9%E6%B3%95"><span class="nav-number">7.</span> <span class="nav-text">树上的一些全局维护方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%A7%E8%B4%A8"><span class="nav-number">8.</span> <span class="nav-text">树上的一些性质</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCA"><span class="nav-number">2.</span> <span class="nav-text">LCA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%8D%E5%A2%9E"><span class="nav-number">2.1.</span> <span class="nav-text">倍增</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E5%89%96"><span class="nav-number">2.2.</span> <span class="nav-text">树剖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RMQ-%E6%B1%82-lca"><span class="nav-number">2.3.</span> <span class="nav-text">RMQ 求 lca</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tarjan-%E7%A6%BB%E7%BA%BF"><span class="nav-number">2.4.</span> <span class="nav-text">tarjan 离线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E9%87%8D%E5%BF%83"><span class="nav-number">3.</span> <span class="nav-text">树的重心</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">3.1.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">3.3.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84"><span class="nav-number">4.</span> <span class="nav-text">树的直径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8-1"><span class="nav-number">4.1.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95-1"><span class="nav-number">4.2.</span> <span class="nav-text">算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91-hash"><span class="nav-number">5.</span> <span class="nav-text">树 hash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E5%AD%90%E6%A0%91%E5%90%8C%E6%9E%84"><span class="nav-number">5.1.</span> <span class="nav-text">判断子树同构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%9C%89%E6%A0%B9%E6%A0%91%E5%90%8C%E6%9E%84"><span class="nav-number">5.2.</span> <span class="nav-text">判断有根树同构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%97%A0%E6%A0%B9%E6%A0%91%E5%90%8C%E6%9E%84"><span class="nav-number">5.3.</span> <span class="nav-text">判断无根树同构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-number">5.4.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E5%B1%80%E7%BB%B4%E6%8A%A4%E6%96%B9%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">树上的一些全局维护方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98"><span class="nav-number">7.</span> <span class="nav-text">树上的一些经典问题</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">426</span>
+          <span class="site-state-item-count">432</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -309,7 +309,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-02-24 14:26:55" itemprop="dateModified" datetime="2021-02-24T14:26:55+08:00">2021-02-24</time>
+        <time title="修改时间：2021-04-06 21:39:24" itemprop="dateModified" datetime="2021-04-06T21:39:24+08:00">2021-04-06</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -336,7 +336,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.7k</span>
+      <span>4.8k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -392,15 +392,6 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ull <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    ull s = <span class="number">1</span>; sz[u] = I; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        s ^= dfs(v, u) * B + sz[v];</span><br><span class="line">        sz[u] += sz[v]; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="判断无根树同构"><a href="#判断无根树同构" class="headerlink" title="判断无根树同构"></a>判断无根树同构</h3><p>我们以重心为根进行 $hash$，注意因为重心可能有两个</p>
 <h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/06/Luogu-P4323-JSOI2016-%E7%8B%AC%E7%89%B9%E7%9A%84%E6%A0%91%E5%8F%B6/">Luogu P4323 [JSOI2016]独特的树叶</a></p>
-<h2 id="树上的一些经典问题"><a href="#树上的一些经典问题" class="headerlink" title="树上的一些经典问题"></a>树上的一些经典问题</h2><ol>
-<li><p>求从所有点出发的最长路</p>
-<p>我们利用 $up\underline{}down$，但需要注意最值不能减，所以我们额外记录一个次大值，需要注意对于一个点只从每个儿子中取一个最大值</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> f[maxn], g[maxn], fr[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    f[u] = g[u] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to, w = <span class="number">1</span>; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>; </span><br><span class="line">        dfs(v, u);</span><br><span class="line">        <span class="keyword">if</span> (f[u] &lt; f[v] + w) g[u] = f[u], f[u] = f[v] + w, fr[u] = v; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (g[u] &lt; f[v] + w) g[u] = f[v] + w; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (f[u] &lt; <span class="number">0</span>) f[u] = <span class="number">0</span>, fr[u] = u;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (g[u] &lt; <span class="number">0</span>) g[u] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to, w = <span class="number">1</span>, t; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (fr[u] == v) t = g[u] + w;</span><br><span class="line">        <span class="keyword">else</span> t = f[u] + w;</span><br><span class="line">        <span class="keyword">if</span> (f[v] &lt; t) g[v] = f[v], f[v] = t, fr[v] = u;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (g[v] &lt; t) g[v] = t; </span><br><span class="line">        Dfs(v, u); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>求从所有点出发到其它所有点的路径和</p>
-<p>同样我们使用 $up\underline{}down$</p>
-</li>
-</ol>
 <h2 id="树上的一些全局维护方法"><a href="#树上的一些全局维护方法" class="headerlink" title="树上的一些全局维护方法"></a>树上的一些全局维护方法</h2><ol>
 <li><p>在 $dfs$ 的同时维护每个点的子树内的信息</p>
 <p>这个有两种方法，第一种是 $dsu~on~tree$</p>
@@ -410,7 +401,7 @@
 <p>这个比较简单，进入一个点加入，离开一个点删除即可</p>
 </li>
 </ol>
-<h2 id="树上的一些性质"><a href="#树上的一些性质" class="headerlink" title="树上的一些性质"></a>树上的一些性质</h2><ol>
+<h2 id="树上的一些经典问题"><a href="#树上的一些经典问题" class="headerlink" title="树上的一些经典问题"></a>树上的一些经典问题</h2><ol>
 <li><p>给出 $n$ 个点的树和 $k$，将树划分成 $\frac{n}{k}$ 个连通块，且每个连通块的点数都是 $k$ 的方案数是唯一的</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/07/Luogu-P3915-%E6%A0%91%E7%9A%84%E5%88%86%E8%A7%A3/">Luogu P3915 树的分解</a></p>
 </li>
@@ -433,7 +424,17 @@
 <p>结论：需要的最少操作次数为 $\lceil\frac{d}{2}\rceil$，其中 $d$ 是这棵树的直径</p>
 <p><a href="">CF 734E Anton and Tree</a></p>
 </li>
-<li></li>
+<li><p>求从所有点出发的最长路</p>
+<p>我们利用 $up\underline{}down$，但需要注意最值不能减，所以我们额外记录一个次大值，需要注意对于一个点只从每个儿子中取一个最大值</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> f[maxn], g[maxn], fr[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    f[u] = g[u] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to, w = <span class="number">1</span>; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>; </span><br><span class="line">        dfs(v, u);</span><br><span class="line">        <span class="keyword">if</span> (f[u] &lt; f[v] + w) g[u] = f[u], f[u] = f[v] + w, fr[u] = v; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (g[u] &lt; f[v] + w) g[u] = f[v] + w; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (f[u] &lt; <span class="number">0</span>) f[u] = <span class="number">0</span>, fr[u] = u;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (g[u] &lt; <span class="number">0</span>) g[u] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to, w = <span class="number">1</span>, t; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (fr[u] == v) t = g[u] + w;</span><br><span class="line">        <span class="keyword">else</span> t = f[u] + w;</span><br><span class="line">        <span class="keyword">if</span> (f[v] &lt; t) g[v] = f[v], f[v] = t, fr[v] = u;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (g[v] &lt; t) g[v] = t; </span><br><span class="line">        Dfs(v, u); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>求从所有点出发到其它所有点的路径和</p>
+<p>同样我们使用 $up\underline{}down$</p>
+</li>
+<li><p>在树上选取若干条边，需要保证加入这些边后没有一个点的度超过 $k$，求最大边权和</p>
+<p>对于儿子，我们只需要知道儿子还能不能选一次，所以我们令 $f[u]$ 表示还能选，$g[u]$ 表示不能选</p>
+<p>然后做树形 $dp$，细节详见代码</p>
+<p><a href="">CF 1223E Paint the Tree</a></p>
+</li>
 </ol>
 
     </div>
@@ -523,13 +524,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">702k</span>
+    <span title="站点总字数">708k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">10:38</span>
+    <span title="站点阅读时长">10:43</span>
   </span>
 </div>
 <div class="busuanzi-count">
