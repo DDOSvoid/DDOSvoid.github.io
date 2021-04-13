@@ -22,22 +22,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="简介">
+  <meta name="description" content="简介字符串补完计划">
 <meta property="og:type" content="article">
 <meta property="og:title" content="后缀自动机">
 <meta property="og:url" content="http://example.com/2021/01/03/%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA/index.html">
 <meta property="og:site_name" content="DDOSvoid&#39;s Blog">
-<meta property="og:description" content="简介">
+<meta property="og:description" content="简介字符串补完计划">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.loli.net/2019/02/27/5c75dbb8ef8e9.gif">
-<meta property="og:image" content="https://i.loli.net/2019/02/27/5c75dbcc1b92a.gif">
 <meta property="article:published_time" content="2021-01-03T12:47:10.000Z">
-<meta property="article:modified_time" content="2021-01-03T12:48:03.878Z">
+<meta property="article:modified_time" content="2021-04-10T12:17:19.674Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="后缀自动机">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2019/02/27/5c75dbb8ef8e9.gif">
 
 
 <link rel="canonical" href="http://example.com/2021/01/03/%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA/">
@@ -185,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E5%BA%94%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">经典应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">4.</span> <span class="nav-text">广义后缀自动机</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">2.</span> <span class="nav-text">后缀自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%BA%A6%E5%AE%9A%E5%92%8C%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">一些约定和定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SAM-%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.</span> <span class="nav-text">SAM 的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#right-%E9%9B%86%E5%90%88"><span class="nav-number">2.3.</span> <span class="nav-text">right 集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parent-%E6%A0%91"><span class="nav-number">2.4.</span> <span class="nav-text">parent 树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E7%AE%97%E6%B3%95"><span class="nav-number">2.5.</span> <span class="nav-text">构造算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">2.6.</span> <span class="nav-text">性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">应用</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -201,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">435</span>
+          <span class="site-state-item-count">438</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -304,10 +301,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-01-03 20:47:10 / 修改时间：20:48:03" itemprop="dateCreated datePublished" datetime="2021-01-03T20:47:10+08:00">2021-01-03</time>
+      <time title="创建时间：2021-01-03 20:47:10" itemprop="dateCreated datePublished" datetime="2021-01-03T20:47:10+08:00">2021-01-03</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-10 20:17:19" itemprop="dateModified" datetime="2021-04-10T20:17:19+08:00">2021-04-10</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -333,14 +336,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>8.9k</span>
+      <span>3.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>8 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -351,125 +354,51 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><a id="more"></a>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>$|S|=n$ 表示串 $S$ 的长度，$\sigma=|\sum|$ 表示字符集大小</p>
-<p>$S[i..j]$ 表示由串 $S$ 的第 $i$ 到第 $j$ 个字符形成的字符串</p>
-<p>$Sc$ 表示在串 $S$ 后加一个字符 $c$ 得到的字符串</p>
-<p>$Sw$ 表示在串 $S$ 后加一个字符串得到的字符串</p>
-<p>$pre[i]$ 表示前缀 $S[1..i]$   $suf[i]$ 表示后缀 $S[i..n]$</p>
-<p>$S[i_1..j_1]$ 和 $S[i_2..j_2]$ 本质不同表示他们对应的字符串不同，即 $S[i_1..j_1]\neq S[i_2..j_2]$</p>
-<p>$len(S)$ 表示串 $S$ 的长度</p>
-<p>以上几个定义在其他的关于字符串的 blog 中也适用</p>
-<p>$DFA$ 确定性有限状态自动机，由五部分组成 $M=(\sum,Q,q_s,F,tr)$</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>字符串补完计划</p>
+<a id="more"></a>
+<h2 id="后缀自动机"><a href="#后缀自动机" class="headerlink" title="后缀自动机"></a>后缀自动机</h2><h3 id="一些约定和定义"><a href="#一些约定和定义" class="headerlink" title="一些约定和定义"></a>一些约定和定义</h3><p>$DFA$ 即确定性有限状态自动机，由五部分组成 $M=(\sum,Q,q_s,q_t,tr)$</p>
 <p>$\sum$ 表示有限字符集，其中每个字符 $c$ 表示一个输入符号</p>
 <p>$Q$ 表示一个有限状态集合</p>
 <p>$q_s\in Q$ 称为初始集合</p>
-<p>$F\in Q$ 称为终结状态集合</p>
+<p>$q_t\in Q$ 称为终结状态集合</p>
 <p>$tr(q,c)$ 称为状态转移函数</p>
 <p>$L(q)$ 表示状态 $q$ 能识别的串的集合</p>
 <p>$L(M)$ 表示自动机 $M$ 能识别的串的集合</p>
-<p>称自动机 $M$ 识别一个串当且仅当 $tr(q_s,S)\in F$ </p>
-<p>首先我们要把 $SAM$ 定义出来</p>
-<p>对于任意 $p,q\in Q$，称 $p$ 和 $q$ 等价状态当且仅当 $tr(p,S)\in F\Longleftrightarrow tr(p,S)\in F$</p>
+<p>称自动机 $M$ 识别一个串当且仅当 $tr(q_s,S)\in q_t$ </p>
+<p>对于任意 $p,q\in Q$，称 $p$ 和 $q$ 为等价状态当且仅当 $tr(p,S)\in q_t\Longleftrightarrow tr(p,S)\in q_t$</p>
 <p>即 $L(p)=L(q)$ 成立，此时记作 $p\sim q$</p>
-<p>若存在一个自动机 $M’$，使得 $L(M’)=L(M)$ 且 $M’$ 的状态数 $|Q’|$ 最少，则称 $M’$ 是 $M$ 的最小状态自动机</p>
-<p>可以证明最小状态自动机一定存在，并且在同构意义下唯一</p>
-<p>等价状态判定定理：</p>
-<p>设 $p$ 和 $q$ 是两个不同的状态，则 $p\sim q$ 的充分必要条件是：</p>
-<ol>
-<li>一致性条件：$p$ 和 $q$ 必须同为终结状态或同为非终结状态</li>
-<li>蔓延性条件：$p$ 和 $q$ 输入同一个符号 $c$ 后的状态等价，即 $tr(p,c)\sim tr(q,c)$</li>
-</ol>
-<p>现在可以定义 $SAM$ 了</p>
-<p>定义：称一个串 $S$ 的后缀自动机为能够识别 $S$ 的所有后缀的最小状态自动机</p>
-<p>那么我们就可以开始分析 $SAM$ 应该有的性质了</p>
-<p>定理 1：<strong>对于任意 $T\in\sum*,tr(q_s,T)\neq q_{\empty}$ 当且仅当 $T$ 是 $S$ 的一个子串</strong></p>
-<p>定义 1：$right$ 集合</p>
-<p>设 $T\in\sum*$，定义 $T$ 在母串 $S$ 的所有结束位置的右端点的集合如下：</p>
-<p>$right(T)=\{r|\exist 1\le l\le r,T=S[l..r]\}$</p>
-<p>定理 2：<strong>对于任意串 $T\in \sum*$，有 $L(tr(q_s,T))=\{suf_{r+1}|r\in right(T)\}$ </strong></p>
-<p>定理 3：设 $T_1,T_2\in \sum*$ 是任意两个串，则 $tr(q_s,T_1)\sim tr(q_s,T_2)$ 充分必要条件是 $right(T_1)=right(T_2)$，此时称这两个串等价，记作 $T_1 \sim^S T_2$  </p>
-<p>令 $p=tr(q_s,T_1),q=tr(q_s,T_2)$，由于 $p\sim q$ 以及 $SAM$ 的最小性，我们知道 $p$ 和 $q$ 是同一个状态</p>
-<p>也就是说每个状态都对应一个 $right$ 集合，记作 $R_p$，并且不同的状态的 $right$ 集合不同</p>
-<p>同时由定理 3，我们还能发现对于 $p=tr(q_s,T)$ 中的所有 $T$ 的 $right$ 集合是相同的，那么我们称一个状态所对应的串为这个状态所对应的 $right$ 集合所对应的串，记作 $S_p$ </p>
+<h3 id="SAM-的定义"><a href="#SAM-的定义" class="headerlink" title="SAM 的定义"></a>SAM 的定义</h3><p>字符串 $S$ 的 $SAM$ 是一个接受 $S$ 的所有后缀的最小 $DFA$ </p>
+<p>换句话说</p>
+<ul>
+<li>$SAM$ 是一张有向无环图，结点被称作 <strong>状态</strong>，边被称作状态间的 <strong>转移</strong></li>
+<li>图存在一个源点 $q_s$，称作 <strong>初始状态</strong>，其它各结点均可从 $q_s$ 出发到达</li>
+<li>每个 <strong>转移</strong> 都标有一些字母，从一个结点出发的所有转移均 <strong>不同</strong></li>
+<li>存在一个或多个 <strong>终止状态</strong>，如果我们从初始状态 $q_s$ 出发，最终转移到了一个终止状态，则路径上的所有转移连接起来一定是字符串 $S$ 的一个后缀，$S$ 的每个后缀均可用一条从 $q_s$ 到某个终止状态的路径构成</li>
+<li>在所有满足上述条件的自动机中，$SAM$ 的结点数是最少的</li>
+</ul>
+<h3 id="right-集合"><a href="#right-集合" class="headerlink" title="right 集合"></a>right 集合</h3><p>定义：设 $T\in\sum*$，定义 $T$ 在母串 $S$ 的所有结束位置的右端点的集合如下：$right(T)=\lbrace r|\exist 1\le l\le r,T=S[l\cdots r]\rbrace$</p>
+<p>引理 1：对于任意串 $T\in \sum*$，有 $L(tr(q_s,T))=\lbrace suf_{r+1}|r\in right(T)\rbrace$ </p>
+<p>引理 2：设 $T_1,T_2\in \sum*$ 是任意两个串，则 $tr(q_s,T_1)\sim tr(q_s,T_2)$ 充分必要条件是 $right(T_1)=right(T_2)$，此时称这两个串等价，记作 $T_1 \sim^S T_2$  </p>
+<p>由于 $SAM$ 的最小性，我们能够知道一个状态 $q$ 对应一个 $right$ 集合，我们不妨令其为 $R_q$</p>
+<p>同时我们知道一个状态 $q$ 也对应多个串 $T$，且 $tr(q_s,T)=q$，$right(T)=R_q$，我们不妨称这样的 $T$ 构成的集合为 $S_q$</p>
 <p>注意到如果两个串等价，不妨设 $len(T_1)&lt;len(T_2)$，那么我们知道 $T_1$ 必然是 $T_2$ 的后缀</p>
 <p>那么我们注意到对于一个 $right$ 集合，不妨设其为 $R$，它所对应的串有什么性质呢</p>
 <p>不难发现，$R$ 所对应的串的长度应该是一个区间，设其为 $[minl_R,maxl_R]$</p>
 <p>这里我们还能够想到一个问题，一个串的子串的个数是 $O(n^2)$ 的，但是其中有很多子串是等价的</p>
-<p>定理 4：<strong>任取两个不同的状态 $p,q\in  Q$，我们一定有下面三式之一成立</strong></p>
+<p>或者换句话说，这 $O(n^2)$ 个子串按照 $right$ 集合分成若干个等价类</p>
+<p>引理3：任取两个不同的状态 $p,q\in  Q$，我们一定有下面三式之一成立</p>
 <ol>
 <li>$R_p\cap R_q=\empty$</li>
 <li>$R_p\subset R_q$ </li>
 <li>$R_q\subset R_p$</li>
 </ol>
-<p>这个东西其实很显然，其实简单来说就是两个状态对应的 $right$ 集合不可能在没有包含关系的情况下有交</p>
-<p>其实也很好理解，如果至少有一个位置同属于两个集合，那么一定有包含关系</p>
-<p>这又给了我们启示，对于任意 $p,q\in Q$，我们称 $p$ 是 $q$ 的 $parent$ 状态当且仅当 $R_p$ 是最小的真包含 $R_q$ 的集合</p>
+<h3 id="parent-树"><a href="#parent-树" class="headerlink" title="parent 树"></a>parent 树</h3><p>定义：对于任意 $p,q\in Q$，我们称 $p$ 是 $q$ 的 $parent$ 状态当且仅当 $R_p$ 是最小的真包含 $R_q$ 的集合</p>
 <p>另外定义 $R_{q_s}=\{0,1,2,\cdots,n\}$</p>
-<p>定理 5：<strong>任何状态的 $parent$ 状态存在且唯一</strong></p>
+<p>引理 3：任何状态的 $parent$ 状态存在且唯一</p>
 <p>也就是说，我们可以用根据 $parent$ 状态连出来一棵树 </p>
-<p>定理 6：<strong>若 $p$ 是 $q$ 的 $parent$ 状态，则 $maxl_p=minl_q-1$</strong></p>
-<p>这又说明了我们对于每个状态可以只存储 $maxl$</p>
-<p>现在我们来讲一下构造后缀自动机的方法，增量法</p>
-<p>这是一个动态的算法，即每次添加一个字符 $c$，动态的维护后缀自动机</p>
-<p>在这里定义加入之前的长度为 $n$，加入字符 $ c$ 之前的 $right$ 集合中有 $n$ 的状态称为后缀状态 </p>
-<p>定理 7：<strong>对于任意两个串 $T_1,T_2$，若 $T_1\nsim^S T_2$，则 $T_1\nsim^{Sc}T_2$</strong></p>
-<p>这也就说明了新添加字符 $c$ 之后，不会合并状态，只会分裂和新添加状态</p>
-<p>注意到加入字符 $c$ 之后，新出现的子串一定是 $Sc$ 的后缀</p>
-<p>那么新出现的子串的结束位置一定为 $n+1$，也就是说 $right$ 集合会改变的状态只能是后缀状态的关于字符 $c$ 的后继状态</p>
-<p>这其实很好理解（不过还是解释一下吧 = =</p>
-<p>注意到新的串一定形如 $S[i..n+1]$，考虑它去掉最后一位 $S[i..n]$，这个串一定是包含在某个后缀状态中，同样也说明了 $right$ 集合中可能会出现 $n+1$ 的状态一定是后缀状态的关于字符 $c$ 的后继状态</p>
-<p>记 $p=tr(q_s,S)$，则有 $R_p=\{n\}$，注意到其他的后缀状态一定是 $p$ 在 $parent$ 树上的祖先，将这些状态依次排列为 $v_1=p,v_2,\cdots,v_k=q_s$</p>
-<p>首先新建一个状态 $np=tr(q_s,Sc)$，$R_{np}=\{n+1\}$</p>
-<p>依次考虑每一个后缀状态 $v$，如果都有 $tr(v,c)=\empty$，那么我们知道之前一定没有出现过 $c$ 这个字符（要不然起码 $q_s$ 是有这个转移的，那么我们只需要让所有 $tr(v,c)=np$ 即可，同时 $np$ 的 $parent$ 状态为 $q_s$</p>
-<p>令 $v_i$ 表示第一个 $tr(v_i,c)\ne \empty$ 的后缀状态，令 $q=tr(v_i,c)$ </p>
-<p>定理 8：<strong>令 $q=tr(p,c)$，那么 $maxl_q\ge maxl_p+1\ge  minl_q $</strong> </p>
-<p>定理 9：<strong>令 $q=tr(p,c)$，那么 $R _q=\{r+1|r\in R_p\land S[r+1]=c\}$</strong></p>
-<p>定理 10：<strong>设 $T_1$ 和 $T_2$ 是 $S$ 的两个子串，则 $T_1c\sim^ST_2c\land T_1c\nsim^{Sc}T_2c$ 的充要条件是 $n \in right(T_1)\bigoplus right(T_2)$ </strong></p>
-<p>其中 $\bigoplus$ 表示对称差</p>
-<p>取 $r\in R_q$，将所有以 $r$ 为结束位置的非空子串按长度分别记为 $Q_1,Q_2,Q_i=S[r-i+1..r],Q_n=S[1..r]$</p>
-<p>显然 $S[r]=c$，因此不妨设 $Q_1=P_0c,Q_2=P_1c,\cdots,Q_r=P_{r-1}c$ </p>
-<p>注意到状态 $v_i$ 所对应的串为 $P_{minl_{v_i}},\cdots,P_{maxl_{v_i}}$, 而状态 $q$ 对应的串为 $Q_{minl_q},\cdots,Q_{maxl_q}$</p>
-<p>由定理 10，我们只需要分析 $P_{minl_q-1},\cdots,P_{maxl_q-1}$ 中的哪些是后缀串即可</p>
-<p>如果 $P_{j}$ 为后缀串的话，$P_{j-1}$ 一定也为后缀串，而这当中最长的后缀串就是 $P_{maxl_{v_i}}$</p>
-<p>这里解释一下为什么更长的串不行，不妨设其为 $P_{j}$</p>
-<p>首先，$P_j$ 不属于 $S_{v_i}$，但一定属于 $S_{v_k},k&lt;i$，即一定属于 $v_i$ 的子节点，但事实上 $v_i$ 是第一个有 $c$ 这条边的</p>
-<p>那么我们只需要判断 $maxl_q$ 和 $maxl_{v_i}$ 的关系即可</p>
-<ol>
-<li><p>$maxl_{q}-1=maxl_{v_i}$</p>
-<p>也就是说，$P_{minl_{q}-1},\cdots,P_{maxl_q-1}$ 都是后缀串，所以 $q$ 不会分裂</p>
-<p>而对于 $v_{k},k&gt;i$，它们所对应的 $q_k=tr(v_k,c)$ 也不会分裂</p>
-<p>因为 $q_k$ 肯定也以 $r$ 为结束位置，且 $maxl_{q_k}&lt;maxl_{q}$，所以一定也都是后缀状态</p>
-<p>注意这种情况 $np$ 的 $parent$ 为 $q$ </p>
-</li>
-<li><p>$maxl_{q}-1&gt;maxl_{v_i}$</p>
-<p>我们知道后缀串是最大是 $P_{maxl_q-1}$，所以 $q$ 必须分裂成 2 个状态，$[minl_q,maxl_{v_i}+1]$ 与 $[maxl_{v_i}+2，maxl_q]$ </p>
-<p>我们令新建状态 $nq$ 表示 $[minl_q,maxl_{v_i}+1]$，$q$ 转而表示 $[maxl_{v_i}+2,maxl_q]$</p>
-<p>首先我们知道 $nq$ 的所有转换边应该和 $q$ 一致，因为 $R_{nq}$ 中新增的 $n+1$ 对状态转换没有任何作用，并且 $nq$ 的 $parent$ 状态应该为 $q$ 的 $parent$ 状态，而 $q$ 和 $np$ 的 $parent$ 状态应为 $nq$</p>
-<p>对于 $v_k,k&gt;i$，如果 $tr(v_k,c)=q$，则应该将 $tr(v_k,c)$ 变成 $nq$ </p>
-<p>如果 $tr(v_k,c)\neq q$，那么就不用修改了，设 $q_k=tr(v_k,c)$，因为 $maxl_{q_k}+1=minl_{q}\le maxl_{v_i}$</p>
-</li>
-</ol>
-<p>至此，$SAM$ 的构造就讲完了 = =</p>
-<p>关于 $right$ 集合的几个性质</p>
-<ol>
-<li>令 $q=tr(p,c)$，那么 $R_q=\{r+1|r\in R_p\land S[r+1]=c\}$</li>
-</ol>
-<p><del>这里在说一些有用的性质，当然是跟这个构造算法有关系</del></p>
-<p>这里来讨论一下后缀自动机和后缀树的关系</p>
-<p>首先讲一下后缀树的定义</p>
-<p>实际上后缀树就是将所有后缀依次插入 $Trie$ 里，然后把没有分叉的边都压缩一下，实际上就是一个压缩 $Trie$</p>
-<p><img src="https://i.loli.net/2019/02/27/5c75dbb8ef8e9.gif" alt="1"></p>
-<p><img src="https://i.loli.net/2019/02/27/5c75dbcc1b92a.gif" alt="2"></p>
-<p>(图片来自网络)</p>
-<p>那么我们考虑一下后缀自动机和后缀树有什么关系</p>
-<p>这里有一个结论，反串的 $SAM$ 的 $parent$ 树是原串的后缀树</p>
-<p>其实这个结论还是很好的理解的 XD，我们就当它是正确的了</p>
-<p>那么现在的问题是 $SAM$ 建出 $parent$ 树的转移边上是没有字母（单词 的</p>
-<p>实际上这一串字母就是 $S_{rev}[T[u].pos-T[u].l+1]$ 到 $S_{rev}[T[u].pos-T[u].L+1]$，假设是 $f[u]$ 连到 $u$</p>
-<p>有了后缀树之后，我们就可以用后缀树构造后缀数组了</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1000010</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Maxn 2000010</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> s[maxn];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> sa[maxn], rk[maxn], c1;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SAM</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">        <span class="keyword">int</span> l, L, pos; <span class="keyword">bool</span> ext;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; nxt, Nxt;</span><br><span class="line">    &#125; T[Maxn]; <span class="keyword">int</span> top, rt, last, f[Maxn];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> s[maxn];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        rt = last = ++top;</span><br><span class="line">        T[rt].L = T[rt].l = T[rt].pos = f[rt] = <span class="number">0</span>; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">extend</span><span class="params">(<span class="keyword">int</span> ch)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> np = ++top, p = last; last = np;</span><br><span class="line">        T[np].pos = T[np].L = T[p].L + <span class="number">1</span>; T[np].ext = <span class="number">1</span>; </span><br><span class="line">        <span class="keyword">while</span> (p &amp;&amp; !T[p].nxt[ch]) T[p].nxt[ch] = np, p = f[p];</span><br><span class="line">        <span class="keyword">if</span> (!p) <span class="keyword">return</span> (<span class="keyword">void</span>) (f[np] = rt);</span><br><span class="line">        <span class="keyword">int</span> q = T[p].nxt[ch];</span><br><span class="line">        <span class="keyword">if</span> (T[q].L - <span class="number">1</span> == T[p].L) f[np] = q;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> nq = ++top; T[nq].L = T[p].L + <span class="number">1</span>; T[nq].pos = T[q].pos;</span><br><span class="line">            f[nq] = f[q]; T[nq].nxt = T[q].nxt; </span><br><span class="line">            <span class="keyword">while</span> (p &amp;&amp; T[p].nxt[ch] == q) T[p].nxt[ch] = nq, p = f[p];</span><br><span class="line">            f[np] = f[q] = nq; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> tax[maxn], tp[Maxn];</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">rsort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= top; ++i) ++tax[T[i].L];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) tax[i] += tax[i - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= top; ++i) tp[tax[T[i].L]--] = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = top, u = tp[i]; i &gt; <span class="number">1</span>; u = tp[--i]) &#123;</span><br><span class="line">            T[u].l = T[f[u]].L + <span class="number">1</span>;</span><br><span class="line">            T[f[u]].Nxt[s[T[u].pos - T[u].l + <span class="number">1</span>]] = u;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (T[u].ext) sa[rk[n - T[u].pos + <span class="number">1</span>] = ++c1] = n - T[u].pos + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> it : T[u].Nxt) dfs(it.se); </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125; Sam;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, s + <span class="number">1</span>); n = <span class="built_in">strlen</span>(s + <span class="number">1</span>); Sam.init();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i; --i) Sam.s[n - i + <span class="number">1</span>] = s[i], Sam.extend(s[i]); </span><br><span class="line">    Sam.rsort(); Sam.dfs(Sam.rt);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, sa[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>定义：将 $extend$ 过程中新建的 $np$ 节点所构成的链叫做主链</p>
+<p>引理 4：若 $p$ 是 $q$ 的 $parent$ 状态，则 $maxl_p=minl_q-1$</p>
+<h3 id="构造算法"><a href="#构造算法" class="headerlink" title="构造算法"></a>构造算法</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SAM</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> sz, L, l, nxt[<span class="number">26</span>]; </span><br><span class="line">&#125; T[Maxn]; <span class="keyword">int</span> f[Maxn], top, last, rt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_SAM</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    rt = last = top = <span class="number">1</span>; </span><br><span class="line">    T[rt].L = T[rt].l = f[rt] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extend</span><span class="params">(<span class="keyword">int</span> ch)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> np = ++top, p = last; last = np;</span><br><span class="line">    T[np].L = T[p].L + <span class="number">1</span>; T[np].sz = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (p &amp;&amp; !T[p].nxt[ch]) T[p].nxt[ch] = np, p = f[p];</span><br><span class="line">    <span class="keyword">if</span> (!p) <span class="keyword">return</span> f[np] = rt, <span class="keyword">void</span>();</span><br><span class="line">    <span class="keyword">int</span> q = T[p].nxt[ch];</span><br><span class="line">    <span class="keyword">if</span> (T[q].L - <span class="number">1</span> == T[p].L) f[np] = q;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> nq = ++top; T[nq].L = T[p].L + <span class="number">1</span>; f[nq] = f[q];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i) T[nq].nxt[i] = T[q].nxt[i];</span><br><span class="line">        <span class="keyword">while</span> (p &amp;&amp; T[p].nxt[ch] == q) T[p].nxt[ch] = nq, p = f[p];</span><br><span class="line">        f[np] = f[q] = nq;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p>将 $extend$ 过程中新建的 $np$ 节点所构成的链叫做主链</p>
 <ol>
 <li><p>$right$ 集合的大小等于其在 $parent$ 树上的子树中在主链上的点的状态数</p>
 <p>证明：</p>
@@ -477,62 +406,29 @@
 <p>$nq$ 节点相对于 $q$，$right$ 集合只是多了 $\{L+1\}$，而 $R_{np}=\{L+1\}$，并且 $np$ 的 $parent$ 的状态是 $nq$</p>
 <p>所以 $nq$ 的 $right$ 集合多出来的 $\{L+1\}$ 实际上是 $np$ 的</p>
 </li>
-<li><p>从根节点到状态 $q$ 的每一条路径都对应原串的一个子串，同时这个串 $\in S_q$ </p>
-</li>
-<li><p>前缀 $i$ 和前缀 $j$ 的最长公共后缀的长度为 $i$ 和 $j$ 的 $lca$ 的长度，如果将串反过来建 $SAM$，就能求得两个后缀的最长公共前缀</p>
+<li><p>$pre_i$ 和 $pre_j$ 的最长公共后缀的长度为 $pre_i$ 和 $pre_j$ 所对应的状态在 $parent$ 树上的 $lca$ 的长度，如果将串反过来建 $SAM$，就能求得两个后缀的最长公共前缀</p>
 </li>
 </ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SAM</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> sz, L, l, nxt[<span class="number">26</span>];  </span><br><span class="line">&#125;T[Maxn]; <span class="keyword">int</span> f[Maxn], top, last, rt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SAM_init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    rt = last = ++top;</span><br><span class="line">    T[rt].L = T[rt].l = f[rt] = <span class="number">0</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extend</span><span class="params">(<span class="keyword">int</span> ch)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> np = ++top, p = last; last = np;</span><br><span class="line">    T[np].L = T[p].L + <span class="number">1</span>; T[np].sz = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (p &amp;&amp; !T[p].nxt[ch]) T[p].nxt[ch] = np, p = f[p];</span><br><span class="line">    <span class="keyword">if</span> (!p) &#123; f[np] = rt; <span class="keyword">return</span> ; &#125;</span><br><span class="line">    <span class="keyword">int</span> q = T[p].nxt[ch];</span><br><span class="line">    <span class="keyword">if</span> (T[q].L - <span class="number">1</span> == T[p].L) f[np] = q;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> nq = ++top; T[nq].L = T[p].L + <span class="number">1</span>; f[nq] = f[q];</span><br><span class="line">        <span class="built_in">memcpy</span>(T[nq].nxt, T[q].nxt, <span class="keyword">sizeof</span> T[q].nxt); </span><br><span class="line">        <span class="keyword">while</span> (p &amp;&amp; T[p].nxt[ch] == q) T[p].nxt[ch] = nq, p = f[p];</span><br><span class="line">        f[np] = f[q] = nq; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="经典应用"><a href="#经典应用" class="headerlink" title="经典应用"></a>经典应用</h2><ol>
-<li><p><strong>本质不同的子串个数</strong></p>
-<p>由于本质相同的子串对应的 $right$ 集合也相同，而本质不同的子串对应的 $right$ 集合一定不同，所以只要统计每个 $right$ 集合所对应的串的个数即可</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ol>
+<li><p>本质不同的子串个数</p>
+<p>这个显然就是所有状态所对应的 $right$ 集合的大小的和</p>
 </li>
-<li><p><strong>求两个串的最长公共子串</strong></p>
-<p>设两个串为 $S_1,S_2$，我们首先对 $S_1$ 建 $SAM$</p>
-<p>然后对于 $S_2$ 的每位开始匹配，我们记录两个变量，一个是长度，另一个是当前在哪个节点</p>
-<p>一开始我们位于 $p=rt$，$l=0$</p>
-<p>如果 $p$ 有 $S_2[i]$ 的转移，则 $p=T[p].nxt[ch]$，$++l$</p>
-<p>如果 $p$ 没有转移，则暴力跳 $parent$ 树，直到有这个转移，这时候 $l=T[p].L+1$，$p=T[p].nxt[ch]$</p>
-<p>如果到根还是没有，那么只能一切重新开始了</p>
-<p>当然这 $3$ 种情况在写的时候是可以简化的 </p>
-<p>考虑这个算法的本质</p>
-<p>实际上就是每次求以 $S_2[i]$ 结尾最长公共子串，其实蛮好理解</p>
+<li><p>求两个串的最长公共子串</p>
+<p>不妨令着两个串为 $S$ 和 $T$</p>
+<p>我们用 $S$ 建 $SAM$</p>
+<p>首先我们知道子串一定是某个前缀的后缀</p>
+<p>所以我们用 $p$ 来表示对于 $T$ 的 $pre_i$ 的匹配 $S$ 最长后缀所对应 $S$ 的 $SAM$ 的状态，$len$ 表示匹配上的长度</p>
+<p>那么从 $pre_i$ 转移到 $pre_{i+1}$，如果存在 $tr(p,T[i+1])$，则 $p=tr(p,T[i+1])$，且 $len$ 加 $1$</p>
+<p>否则我们只需要在 $SAM$ 上对于 $p$ 不断跳 $parent$ 直到 $tr(p,T[i+1])$ 存在</p>
+<p>因为每次 $len$ 最多加 $1$，且跳 $parent$ 会使 $len$ 至少减 $1$，所以总的时间复杂度还是 $O(n)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> p = rt, len = <span class="number">0</span>, ans = <span class="number">0</span>; </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">    <span class="keyword">int</span> ch = t[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span> (T[p].nxt[ch]) p = T[p].nxt[ch], ++len;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (p &amp;&amp; !T[p].nxt[ch]) p = f[p];</span><br><span class="line">        <span class="keyword">if</span> (!p) p = rt, len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> len = T[p].L + <span class="number">1</span>; p = T[p].nxt[ch];</span><br><span class="line">    &#125;</span><br><span class="line">    ans = max(ans, len); </span><br><span class="line"> &#125; <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>求多个串的最长公共子串</strong></p>
-<p>我们知道求两个串的最长公共子串的本质就是每次求以 $S_2[i]$ 结尾的最长公共子串</p>
-<p>那么我们对第一个串建 $SAM$，然后对每个串分别做匹配，把结果记录到 $SAM$ 的节点上</p>
-<p>对于每一个串的匹配，$v[u]$ 取 $max$，因为是所有的串的最长公共子串，所以最终答案是所有节点每次匹配的 $min$ 再取 $max$</p>
-<p>需要注意的是，如果 $v[u]$ 已经不是 0，那么 $v[f[u]]=T[f[u]].L$，必须要更新 $v[f[u]]$ 否则会影响最小值，从而影响答案</p>
-</li>
-<li><p><strong>第 $k$ 小子串</strong></p>
-<p>本质不同的第 $k$ 小，那么我们可以认为每个状态所表示的串出现的次数均为 $1$</p>
-<p>那么我们 $topsort$ 之后，求出每个状态往后能够到达多少子串，然后直接从根节点贪心即可</p>
-<p>如果普通的第 $k$ 小，那么我们只需要多求 $right$ 集合的大小即可 </p>
+<li><p>第 $k$ 小子串</p>
+<p>注意到子串为 $SAM$ 上的一条路径，而 $SAM$ 可以看成有向无环图</p>
+<p>所以第 $k$ 小子串实际上就是第 $k$ 小路径，预处理一下直接做即可</p>
 </li>
 <li></li>
 </ol>
-<h2 id="广义后缀自动机"><a href="#广义后缀自动机" class="headerlink" title="广义后缀自动机"></a>广义后缀自动机</h2><p>实际上我对广义后缀自动机的理解是建在 $Trie$ 上的后缀自动机</p>
-<p>也就是说，广义后缀自动机能识别的后缀是 $Trie$ 上的后缀</p>
-<p>构建广义后缀自动机有两种方法</p>
-<ol>
-<li><p>离线做法</p>
-<p>从 $Trie$ 的根开始 $bfs$，依次将遍历的节点插入 $SAM$，插入时的 $last$ 就等于父节点的 $last$</p>
-<p>这样可以保证插入的前缀的长度非降，所以可以直接套用一般构建 $SAM$ 的方法即可</p>
-<p>可以证明，这样的复杂度为 $O(L*\sum)$</p>
-</li>
-<li><p>在线做法</p>
-<p>或者说是 $dfs$，这样的复杂度为 $O(L*\sum+g(T))$，其中 $g(T)$ 为 $T$ 的所有叶子节点的深度和</p>
-<p>这样无法保证插入的前缀的长度非降，所以可能会导致要插入的新节点要成为之前的某个节点的父亲</p>
-<p>这其实和构建 $SAM $ 分叉的情况一样，特判一下即可</p>
-</li>
-</ol>
-<p>但实际上不需要真正的建出 $Trie $  每次插入一个串从根走即可</p>
-<p>这个是不建出 $Trie$ 的在线做法</p>
-<p>其实建不建 $Trie$ 的在线做法都是一样的</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">extend</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> ch)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (T[p].nxt[ch]) &#123;</span><br><span class="line">        <span class="keyword">int</span> q = T[p].nxt[ch], nq;</span><br><span class="line">        <span class="keyword">if</span> (T[q].L - <span class="number">1</span> == T[p].L) <span class="keyword">return</span> q;</span><br><span class="line">        nq = ++top; T[nq].L = T[p].L + <span class="number">1</span>; f[nq] = f[q];</span><br><span class="line">        <span class="built_in">memcpy</span>(T[nq].nxt, T[q].nxt, <span class="keyword">sizeof</span> T[q].nxt); </span><br><span class="line">        <span class="keyword">while</span> (p &amp;&amp; T[p].nxt[ch] == q) T[p].nxt[ch] = nq, p = f[p];</span><br><span class="line">        f[q] = nq; <span class="keyword">return</span> nq; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> np = ++top; T[np].L = T[p].L + <span class="number">1</span>; </span><br><span class="line">    <span class="keyword">while</span> (p &amp;&amp; !T[p].nxt[ch]) T[p].nxt[ch] = np, p = f[p];</span><br><span class="line">    <span class="keyword">if</span> (!p) <span class="keyword">return</span> (f[np] = rt, np); </span><br><span class="line">    <span class="keyword">int</span> q = T[p].nxt[ch];</span><br><span class="line">    <span class="keyword">if</span> (T[q].L - <span class="number">1</span> == T[p].L) f[np] = q;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> nq = ++top; T[nq].L = T[p].L + <span class="number">1</span>; </span><br><span class="line">        f[nq] = f[q]; <span class="built_in">memcpy</span>(T[nq].nxt, T[q].nxt, <span class="keyword">sizeof</span> T[q].nxt); </span><br><span class="line">        <span class="keyword">while</span> (p &amp;&amp; T[p].nxt[ch] == q) T[p].nxt[ch] = nq, p = f[p];</span><br><span class="line">        f[np] = f[q] = nq; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> np; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span> *s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="built_in">strlen</span>(s), p = rt; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l; ++i) p = extend(p, s[i] - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>这个是不建 $Trie$ 的离线做法</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-<p>建 $Trie$ 的离线做法的 $extend$ 和普通的是一样的</p>
 
     </div>
 
