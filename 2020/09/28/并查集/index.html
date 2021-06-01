@@ -182,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">2.1.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge"><span class="nav-number">2.2.</span> <span class="nav-text">merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undo"><span class="nav-number">2.3.</span> <span class="nav-text">undo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="nav-number">3.</span> <span class="nav-text">带权并查集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#find-1"><span class="nav-number">3.1.</span> <span class="nav-text">find</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">2.1.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge"><span class="nav-number">2.2.</span> <span class="nav-text">merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undo"><span class="nav-number">2.3.</span> <span class="nav-text">undo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="nav-number">3.</span> <span class="nav-text">带权并查集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#find-1"><span class="nav-number">3.1.</span> <span class="nav-text">find</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">应用</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">475</span>
+          <span class="site-state-item-count">479</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -211,7 +211,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-count">103</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -329,7 +329,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>480</span>
+      <span>776</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -364,6 +364,15 @@
 <h2 id="带权并查集"><a href="#带权并查集" class="headerlink" title="带权并查集"></a>带权并查集</h2><p>就是多记录一些东西（大概</p>
 <p>注意一定要满足可加性（我也不知道该怎么称呼这东西</p>
 <h3 id="find-1"><a href="#find-1" class="headerlink" title="find"></a>find</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (fa[x] == x) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">int</span> fx = fa[x]; fa[x] = find(fa[x]);</span><br><span class="line">    d[x] += d[fx];</span><br><span class="line">    <span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ol>
+<li><p>每次将一个区间内的点连起来，用并查集可以做到 $O(n\alpha(n))$，其中 $n$ 的区间大小</p>
+<p>需要注意实数区间和整点区间要区分开</p>
+<p>如果是实数区间就只能这样（即 $[1,4]$ 和 $[5,10]$ 不能合并</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (x == y) vis[x] = <span class="number">1</span>; <span class="comment">//整点特判</span></span><br><span class="line">x = find(x);</span><br><span class="line"><span class="keyword">while</span> (x &lt; y) x = fa[x] = find(x + <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>如果是整点的区间（即 $[1,4]$ 和 $[5,10]$ 可以合并成 $[1, 10]$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n + <span class="number">1</span>; ++i) fa[i] = i;</span><br><span class="line">x = find(x);</span><br><span class="line"><span class="keyword">while</span> (x &lt;= y) x = fa[x] = find(x + <span class="number">1</span>); <span class="comment">//[i, fa[i])</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 
     </div>
 
@@ -452,13 +461,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">794k</span>
+    <span title="站点总字数">799k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12:02</span>
+    <span title="站点阅读时长">12:06</span>
   </span>
 </div>
 <div class="busuanzi-count">
