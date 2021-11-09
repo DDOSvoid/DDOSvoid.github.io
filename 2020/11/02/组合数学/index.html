@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/D_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/D_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="简介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组合数学">
+<meta property="og:url" content="http://example.com/2020/11/02/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/index.html">
+<meta property="og:site_name" content="DDOSvoid&#39;s Blog">
+<meta property="og:description" content="简介">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-02T07:11:06.000Z">
+<meta property="article:modified_time" content="2021-08-26T08:41:46.912Z">
+<meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="Tech">
+<meta property="article:tag" content="组合数学">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/11/02/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>组合数学 | DDOSvoid's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">DDOSvoid's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E5%88%97%E5%92%8C%E7%BB%84%E5%90%88"><span class="nav-number">2.</span> <span class="nav-text">排列和组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%83%E7%9B%92%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">球盒问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E9%A1%B9%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">二项式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86"><span class="nav-number">4.2.</span> <span class="nav-text">二项式定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%9B%E9%A1%BF%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86"><span class="nav-number">4.3.</span> <span class="nav-text">牛顿二项式定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%95%B0%E6%81%92%E7%AD%89%E5%BC%8F"><span class="nav-number">4.4.</span> <span class="nav-text">组合数恒等式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E7%BB%84%E5%90%88%E6%95%B0"><span class="nav-number">4.5.</span> <span class="nav-text">求组合数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E4%B8%AA%E7%BB%84%E5%90%88%E6%95%B0"><span class="nav-number">4.5.1.</span> <span class="nav-text">单个组合数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%95%B0%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-number">4.5.2.</span> <span class="nav-text">组合数前缀和</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0"><span class="nav-number">5.</span> <span class="nav-text">斯特林数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%B1%BB%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0"><span class="nav-number">5.1.</span> <span class="nav-text">第一类斯特林数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-number">5.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E6%8E%A8%E5%BC%8F"><span class="nav-number">5.1.2.</span> <span class="nav-text">递推式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%B1%BB%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0"><span class="nav-number">5.2.</span> <span class="nav-text">第二类斯特林数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="nav-number">5.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E6%8E%A8%E5%BC%8F-1"><span class="nav-number">5.2.2.</span> <span class="nav-text">递推式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E9%A1%B9%E5%85%AC%E5%BC%8F"><span class="nav-number">5.2.3.</span> <span class="nav-text">通项公式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E4%B9%98%E5%B9%82"><span class="nav-number">5.3.</span> <span class="nav-text">阶乘幂</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8A%E5%8D%87%E5%B9%82"><span class="nav-number">5.3.1.</span> <span class="nav-text">上升幂</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E9%99%8D%E5%B9%82"><span class="nav-number">5.3.2.</span> <span class="nav-text">下降幂</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8A%E5%8D%87%E5%B9%82%E5%92%8C%E4%B8%8B%E9%99%8D%E5%B9%82%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">5.3.3.</span> <span class="nav-text">上升幂和下降幂的转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%B6%E4%B9%98%E5%B9%82%E4%B8%8E%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0"><span class="nav-number">5.3.4.</span> <span class="nav-text">阶乘幂与斯特林数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E6%95%B0%E5%B9%82%E5%92%8C"><span class="nav-number">5.4.</span> <span class="nav-text">自然数幂和</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DDOSvoid"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">DDOSvoid</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">647</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DDOSvoid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DDOSvoid" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/34531" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;34531" rel="noopener" target="_blank">Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://codeforces.com/profile/DDOSvoid" title="Codeforces → http:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;DDOSvoid" rel="noopener" target="_blank">Codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://acm.hdu.edu.cn/userstatus.php?user=DDOSvoid" title="Hdu → http:&#x2F;&#x2F;acm.hdu.edu.cn&#x2F;userstatus.php?user&#x3D;DDOSvoid" rel="noopener" target="_blank">Hdu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/manziqi/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;manziqi&#x2F;" rel="noopener" target="_blank">Title1</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jczhang.top/" title="https:&#x2F;&#x2F;jczhang.top&#x2F;" rel="noopener" target="_blank">JC Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/02/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          组合数学
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-02 15:11:06" itemprop="dateCreated datePublished" datetime="2020-11-02T15:11:06+08:00">2020-11-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-26 16:41:46" itemprop="dateModified" datetime="2021-08-26T16:41:46+08:00">2021-08-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><a id="more"></a>
+<h2 id="排列和组合"><a href="#排列和组合" class="headerlink" title="排列和组合"></a>排列和组合</h2><ol>
+<li>设 $S$ 是有 $k$ 种元素的多重集合，每种元素有无限多个，则 $S$ 的 $r$ 排列的个数是 $k^r$ </li>
+<li>设 $S$ 是有 $k$ 种元素的多重集合，每一种元素有有限个，分别是 $n_1,n_2,\cdots,n_k$，设 $|S|=n=n_1+n_2+\cdots+n_k$，则 $S$ 的 $|S|$ 排列数为 $\frac{n!}{n_1!n_2!\cdots n_k!}$，等价于 $\binom{n}{n_1}\binom{n-n_1}{n_2}\cdots\binom{n-n_1-n_2-\cdots-n_{k-1}}{n_k}$</li>
+<li>设 $S$ 是有 $k$ 种元素的多重集合，每一种元素有至少 $r$ 个，则 $S$ 的 $r$ 组合为 $\binom{n+r-1}{r-1}$. 等价于方程$x_1+x_2+\cdots+x_k=r$ 的非负整数解的个数  </li>
+<li>设 $S$​​​​ 是多重集合 $=\{n_1\cdot a_1,n_2\cdot a_2,\cdots ,n_k\cdot a_k\}$​​​​，$n_1,n_2,\cdots,n_k$​​​​ 是非负整数，设 $g_n$​​​​ 是 $S$​​​​ 的 $n$​​​​ 排列数，则 $g$​​​​ 的指数型生成函数 $G(x)=F_{n_1}(x)F_{n_2(x)}\cdots F_{n_k}(x)$​​​​，其中 $F_{n_k}(x)=\sum_{i=0}^{n_k}\frac{x^i}{i!}$</li>
+<li>设 $S$​​ 是多重集合 $=\{n_1\cdot a_1,n_2\cdot a_2,\cdots ,n_k\cdot a_k\}$​​，$n_1,n_2,\cdots,n_k$​​ 是非负整数，设 $g_n$​​ 是 $S$​​ 的 $n$​​ 交错排列数，则 $g$​ 的指数型生成函数 $G(x)=F_{n_1}(x)F_{n_2(x)}\cdots F_{n_k}(x)$​，其中 $F_{n_k}(x)=\sum_{i=1}^{n_k}(-1)^{n_k-i}\binom{n_k-1}{i-1}\frac{x^i}{i!}$​</li>
+</ol>
+<h2 id="球盒问题"><a href="#球盒问题" class="headerlink" title="球盒问题"></a>球盒问题</h2><ol>
+<li><p>球不同，盒子不同，可以有空盒</p>
+<p>方案数 $m^n$</p>
+</li>
+<li><p>球相同，盒子不同，不能有空盒</p>
+<p>相当于在 $n$ 个小球的 $n-1$ 个空隙中插入 $m-1$ 个板子</p>
+<p>方案数为 $\binom {n-1} {m-1}$</p>
+</li>
+<li><p>球相同，盒子不同，可以有空盒</p>
+<p>可以看做有 $n+m$ 个相同小球，盒子不同，不能有空盒的方案</p>
+<p>方案数为 $\binom{n+m-1}{m-1}$</p>
+</li>
+<li></li>
+</ol>
+<h2 id="二项式"><a href="#二项式" class="headerlink" title="二项式"></a>二项式</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>$\binom{n}{m}=\frac{n!}{m!(n-m)!},n,m\in N$，当 $m&gt;n$ 时，$\binom{n}{m}=0$</p>
+<p>我们尝试拓宽组合数的定义域，我们定义 $n^{\underline{k}}$ 为 $n$ 的 $k$ 次下降幂，$n^{\underline{k}}=n\times (n-1)\times\cdots \times (n-k+1)$，那么</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\binom{n}{m}=\frac{n^{\underline{m}}}{m!}
+\end{aligned}</script><p>这时候我们可以使组合数的上指标 $n$ 为任意实数</p>
+<h3 id="二项式定理"><a href="#二项式定理" class="headerlink" title="二项式定理"></a>二项式定理</h3><p>$(a+b)^n=\sum_{i=0}^n\binom{n}{i}a^ib^{n-i},n\in N$</p>
+<p>几个性质：</p>
+<ol>
+<li><p>从 $n$ 个数里选奇数个数的方案等于从 $n$ 个数中选偶数个数的方案等于 $2^{n-1}$</p>
+<p>证明：$(1-1)^n=\sum_{i=0}^n(-1)^i\binom{n}{i}$</p>
+</li>
+</ol>
+<h3 id="牛顿二项式定理"><a href="#牛顿二项式定理" class="headerlink" title="牛顿二项式定理"></a>牛顿二项式定理</h3><p>设 $r$ 是实数，对于所有满足 $0\le |a|&lt;|b|$ 的 $a$ 和 $b$，有 $(a+b)^r=\sum_{i=0}^{\infty}\binom{r}{i}x^iy^{r-i}$</p>
+<h3 id="组合数恒等式"><a href="#组合数恒等式" class="headerlink" title="组合数恒等式"></a>组合数恒等式</h3><ol>
+<li><p>$\binom{n}{m}=\binom{n}{n-m},n,m\in N$</p>
+</li>
+<li><p>$\binom{n}{m}=\binom{n-1}{m}+\binom{n-1}{m-1},n\in R,m\in N$</p>
+</li>
+<li><p>$m\binom{n}{m}=(n-m+1)\binom{n}{m-1},n\in R,m\in N$</p>
+</li>
+<li><p>$m\binom{n}{m}=n\binom{n-1}{m-1},n\in R,m\in N$</p>
+</li>
+<li><p>$(n-m)\binom{n}{m}=n\binom{n-1}{m},n\in R,m\in N$</p>
+</li>
+<li><p>$\sum_{i=k}^n \binom{i}{k}=\binom{n+1}{k+1}, n,k\in N$</p>
+<p>证明：</p>
+<p>设有 $n+1$ 个物                                                                                                                                                                                                                                                                                                                                                                                                                                                                    品，标号为 $0\sim n$，现在从中选取 $k+1$ 个物品，当选取的最大号码为 $i$ 时，方案数为 $\binom{i}{k}$​</p>
+<p>累加方案数即可</p>
+</li>
+<li><p>$\sum_{i=0}^{n} \binom{k+i}{i}=\binom{n+k+1}{n},n,k\in N$</p>
+<p>证明：</p>
+<p>$\sum_{i=0}^{n} \binom{k+i}{i}=\sum_{i=0}^n \binom{k+i}{k}=\binom{k+n+1}{k+1}=\binom{k+n+1}{n}$</p>
+</li>
+<li><p>$\binom{n}{i}\binom{i}{k}=\binom{n-k}{i-k}\binom{n}{k},n\in R,i,k\in N$</p>
+</li>
+<li><p>$\binom{-n}{k}=(-1)^k\binom{n+k-1}{k},n\in R,k\in N$</p>
+<p>证明：</p>
+<p>把 $(-1)^{k}$ 移过去，然后展开就能证明</p>
+</li>
+<li><p>$\sum_{i=0}^n\binom{s}{i}\binom{t}{n-i}=\binom{s+t}{n},s,t\in R,n\in N$</p>
+<p>推论：$\sum_{i=0}^n\binom{n}{i}^2=\binom{2n}{n}$</p>
+<p>证明：</p>
+<p>左边表示从 $s$ 个男生中选 $i$ 个人，从 $t$ 个女生中选 $n-i$ 个人的方案数</p>
+<p>右边表示从 $s+t$ 个人中选 $n$ 个人的方案数</p>
+</li>
+<li><p>$\sum_{i=0}^n i\binom {n}{i}=n2^{n-1}$</p>
+<p>证明：</p>
+<p>$i\binom{n}{i}=n\binom{n-1}{i-1}$</p>
+</li>
+</ol>
+<h3 id="求组合数"><a href="#求组合数" class="headerlink" title="求组合数"></a>求组合数</h3><h4 id="单个组合数"><a href="#单个组合数" class="headerlink" title="单个组合数"></a>单个组合数</h4><ol>
+<li><p>$O(n)$ 预处理阶乘和阶乘的逆元，单次 $O(1)$ 求</p>
+<p>需要注意的是阶乘逆元的处理 $n$ 必须小于 $p$，要不然就全变成 $0$ 了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ll inv[maxn], fac[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_inv</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    fac[<span class="number">0</span>] = <span class="number">1</span>; <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) fac[i] = fac[i - <span class="number">1</span>] * i % p;</span><br><span class="line">    inv[n] = pow_mod(fac[n], p - <span class="number">2</span>); <span class="keyword">for</span> (<span class="keyword">int</span> i = n; ~i; --i) inv[i] = inv[i + <span class="number">1</span>] * (i + <span class="number">1</span>) % p;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">C</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123; <span class="keyword">return</span> n &lt; m ? <span class="number">0</span> : fac[n] * inv[m] % p * inv[n - m] % p; &#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>$O(n^2)$​ 预处理</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> C[maxn][maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_C</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) C[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j) C[i][j] = (C[i - <span class="number">1</span>][j] + C[i - <span class="number">1</span>][j - <span class="number">1</span>]) % p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>$O(n)$ 递推一行</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> C[maxn]; ll inv[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_C</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">    inv[<span class="number">1</span>] = <span class="number">1</span>; <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) inv[i] = -(p / i) * inv[p % i] % p; </span><br><span class="line">    C[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) C[i] = C[i - <span class="number">1</span>] * inv[i] % p * (n - i + <span class="number">1</span>) % p; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用 $lucas$​ 定理，时间复杂度 $O(\log_{p}n+p^2)$</p>
+<p>大概就是将 $n$ 和 $m$ 在 $p$ 进制下的每一位乘起来即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">Lucas</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!m) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> C(n % p, m % p) * Lucas(n / p, m / p) % p; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="组合数前缀和"><a href="#组合数前缀和" class="headerlink" title="组合数前缀和"></a>组合数前缀和</h4><p>令 $S(n,m)=\sum_{i=0}^m\binom{n}{i}$​</p>
+<p>$S(n,m+1)=S(n,m)+\binom{n}{m+1}$，$S(n+1,m)=2S(n,m)-\binom{n}{m}$​</p>
+<ol>
+<li><p>$O(n^2)$ 预处理</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ll C[maxn][maxn], S[maxn][maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_C</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) C[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j) C[i][j] = (C[i - <span class="number">1</span>][j] + C[i - <span class="number">1</span>][j - <span class="number">1</span>]) % p;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) S[i][<span class="number">0</span>] = <span class="number">1</span>; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j) S[i][j] = (S[i][j - <span class="number">1</span>] + C[i][j]) % p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类似莫队做转移</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Csum</span> &#123;</span> </span><br><span class="line">    <span class="keyword">int</span> l, r; ll inv2, sum; </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123; l = r = <span class="number">1</span>; sum = <span class="number">2</span>; inv2 = pow_mod(<span class="number">2</span>, p - <span class="number">2</span>); &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (r &lt; R) sum = (<span class="number">2</span> * sum - C(r++, l)) % p;</span><br><span class="line">        <span class="keyword">while</span> (l &gt; L) sum = (sum - C(r, l--)) % p;</span><br><span class="line">        <span class="keyword">while</span> (r &gt; R) sum = (sum + C(--r, l)) * inv2 % p;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; L) sum = (sum + C(r, ++l)) % p; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">ll <span class="title">get</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> sum; &#125; </span><br><span class="line">&#125; S;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用 $lucas$​ 定理进行递归处理，时间复杂度 $O(\log_{p}^2n+p^2)$​</p>
+<p>通过化简可以得到 $S(n,m)=S(\lfloor\frac{n}{p}\rfloor,\lfloor\frac{m}{p}\rfloor-1)\times S(n\bmod p,p-1)+\binom{\lfloor\frac{n}{p}\rfloor}{\lfloor\frac{m}{p}\rfloor}\times S(n\bmod p,m\bmod p)$</p>
+<p>化简过程如下，令 $m=kp+r$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+S(n,m)&=\sum_{i=0}^{kp-1}\binom{n}{i}+\sum_{i=kp}^{kp+r}\binom{n}{i}\\
+&=\sum_{i=0}^{kp-1}\binom{\lfloor\frac{n}{p}\rfloor}{\lfloor\frac{i}{p}\rfloor}\binom{n\bmod p}{i\bmod p}+\binom{\lfloor\frac{n}{p}\rfloor}{k}\sum_{i=0}^r\binom{n\bmod p}{i}\\
+&=\sum_{i=0}^{k-1}\binom{\lfloor\frac{n}{p}\rfloor}{i}\sum_{i=0}^{p-1}\binom{n\bmod p}{i}+\binom{\lfloor\frac{n}{p}\rfloor}{k}S(n\bmod p,r)\\
+&=S(\lfloor\frac{n}{p}\rfloor,k)\times S(n\bmod p,p-1)+\binom{\lfloor\frac{n}{p}\rfloor}{k}S(n\bmod p,r)
+\end{aligned}</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ll C[maxn][maxn], S[maxn][maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_C</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) C[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j) C[i][j] = (C[i - <span class="number">1</span>][j] + C[i - <span class="number">1</span>][j - <span class="number">1</span>]) % p;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) S[i][<span class="number">0</span>] = <span class="number">1</span>; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; ++j) S[i][j] = (S[i][j - <span class="number">1</span>] + C[i][j]) % p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">Lucas</span><span class="params">(ll n, ll m)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!m) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> C[n % p][m % p] * Lucas(n / p, m / p) % p; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">calcS</span><span class="params">(ll n, ll m)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">if</span> (m &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>; m = min(n, m);</span><br><span class="line">    <span class="keyword">if</span> (n &lt; p &amp;&amp; m &lt; p) <span class="keyword">return</span> S[n][m];</span><br><span class="line">    <span class="keyword">return</span> (calcS(n / p, m / p - <span class="number">1</span>) * calcS(n % p, p - <span class="number">1</span>) + Lucas(n / p, m / p) * calcS(n % p, m % p)) % p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="斯特林数"><a href="#斯特林数" class="headerlink" title="斯特林数"></a>斯特林数</h2><h3 id="第一类斯特林数"><a href="#第一类斯特林数" class="headerlink" title="第一类斯特林数"></a>第一类斯特林数</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><p>$\begin{bmatrix}n\\k\end{bmatrix}$，也可记作 $s(n,k)$，表示将 $n$ 个两两不同的元素，划分为 $k$ 个互不区分的非空轮换的方案数</p>
+<h4 id="递推式"><a href="#递推式" class="headerlink" title="递推式"></a>递推式</h4><p>$\begin{bmatrix}n\\k\end{bmatrix}=\begin{bmatrix}n-1\\k-1\end{bmatrix}+(n-1)\begin{bmatrix}n-1\\k\end{bmatrix}$，边界是 $\begin{bmatrix}n\\k\end{bmatrix}=[n=0]$</p>
+<p>使用组合意义来证明：我们加入一个新元素时，将新元素单独放一个子集，有 $\begin{bmatrix}n-1\\k-1\end{bmatrix}$​​ 方案，将新元素放入一个现有子集，共有 $(n-1)\begin{bmatrix}n-1\\k\end{bmatrix}$​​​ 方案</p>
+<h3 id="第二类斯特林数"><a href="#第二类斯特林数" class="headerlink" title="第二类斯特林数"></a>第二类斯特林数</h3><h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><p>$\begin{Bmatrix} n \\ k \end{Bmatrix}$，也可记作 $S(n,k)$，表示将 $n$ 个两两不同的元素，划分成 $k$ 个互不区分的非空子集的个数</p>
+<h4 id="递推式-1"><a href="#递推式-1" class="headerlink" title="递推式"></a>递推式</h4><p>$\begin{Bmatrix} n \\ k \end{Bmatrix}=\begin{Bmatrix}n-1\\k-1 \end{Bmatrix}+k\begin{Bmatrix}n-1\\k\end{Bmatrix}$，边界是 $\begin{Bmatrix}n\\0\end{Bmatrix}=[n=0]$</p>
+<p>使用组合意义来证明：我们加入一个新元素时，将新元素单独放一个子集，有 $\begin{Bmatrix}n-1\\k-1\end{Bmatrix}$ 方案，将新元素放入一个现有子集，有 $k\begin{Bmatrix}n-1\\k\end{Bmatrix}$ 方案</p>
+<h4 id="通项公式"><a href="#通项公式" class="headerlink" title="通项公式"></a>通项公式</h4><script type="math/tex; mode=display">
+\begin{Bmatrix}n\\k\end{Bmatrix}=\sum_{i=0}^k(-1)^{k-i}\frac{i^n}{i!(k-i)!}</script><p>考虑使用二项式反演来证明这个式子，我们令 $f_k$​​ 表示将 $n$​​ 个两两不同的元素划分为 $k$​​ 个两两不同的集合，允许有空集的方案数，$g_k$​​ 表示将 $n$​​ 个两两不同的元素，划分为 $k$​​ 个两两不同的非空集合的方案数​​</p>
+<p>容易得到 $f_k=\sum_{i=0}^k\binom{k}{i}g_i=k^n$，根据二项式反演，$g_k=\sum_{i=0}^k(-1)^{k-i}\binom{k}{i}f_i$，且 $g_k=k!\begin{Bmatrix} n \\ k \end{Bmatrix}$</p>
+<h3 id="阶乘幂"><a href="#阶乘幂" class="headerlink" title="阶乘幂"></a>阶乘幂</h3><h4 id="上升幂"><a href="#上升幂" class="headerlink" title="上升幂"></a>上升幂</h4><script type="math/tex; mode=display">
+x^{\overline n}=\prod_{i=0}^{n-1}(x+i)=\binom{x+n-1}{n}n!</script><h4 id="下降幂"><a href="#下降幂" class="headerlink" title="下降幂"></a>下降幂</h4><script type="math/tex; mode=display">
+x^{\underline n}=\prod_{i=0}^{n-1}(x-i)=\binom{x}{n}n!</script><h4 id="上升幂和下降幂的转换"><a href="#上升幂和下降幂的转换" class="headerlink" title="上升幂和下降幂的转换"></a>上升幂和下降幂的转换</h4><script type="math/tex; mode=display">
+x^{\underline n}=(-1)^n(-x)^{\overline n}\\
+x^{\overline n}=(-1)^n(-x)^{\underline n}</script><h4 id="阶乘幂与斯特林数"><a href="#阶乘幂与斯特林数" class="headerlink" title="阶乘幂与斯特林数"></a>阶乘幂与斯特林数</h4><script type="math/tex; mode=display">
+\begin{aligned}
+x^{\overline n}&=\sum_{i=0}^n\begin{bmatrix}n\\i\end{bmatrix}x^i\\
+x^n&=\sum_{i=0}^n\begin{Bmatrix}n\\i\end{Bmatrix}x^{\underline i}\\
+x^{\underline n}&=\sum_{i=0}^n(-1)^{n-i}\begin{bmatrix}n\\i\end{bmatrix}x^i
+\end{aligned}</script><h3 id="自然数幂和"><a href="#自然数幂和" class="headerlink" title="自然数幂和"></a>自然数幂和</h3><p>我们令 $F_{k}(n)=\sum_{i=0}^ni^k$</p>
+<p>我们利用 $x^n$ 的与第一类斯特林数的关系，可以得到 $x^n=x^{\underline n}-\sum_{i=0}^{n-1}\begin{bmatrix}n\\i\end{bmatrix}x^i$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+F_k(n)&=\sum_{i=0}^ni^k\\
+&=\sum_{i=0}^n(i^{\underline k}-\sum_{j=0}^{k-1}(-1)^{k-j}\begin{bmatrix}k\\j\end{bmatrix}i^j)\\
+&=\sum_{i=0}^nk!\binom{i}{k}-\sum_{j=0}^{k-1}(-1)^{k-j}\begin{bmatrix}k\\j\end{bmatrix}\sum_{i=0}^ni^j\\
+&=\frac{(i+1)^{\underline{k+1}}}{k+1}-\sum_{i=0}^{k-1}(-1)^{k-i}\begin{bmatrix}k\\i\end{bmatrix}F_i(n)
+\end{aligned}</script><p>可以 $O(n^2)$ 递推，注意到不需要除法，因为连续 $k+1$ 个数中一定有一个数是 $k+1$ 的倍数</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-flag"></i>　感谢阅读　　　　-------------</div>
+    
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tech/" rel="tag"># Tech</a>
+              <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/" rel="tag"># 组合数学</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/01/CF-1422D-Returning-Home/" rel="prev" title="CF 1422D Returning Home">
+                  <i class="fa fa-chevron-left"></i> CF 1422D Returning Home
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/11/02/UVA11987-Almost-Union-Find/" rel="next" title="UVA11987 Almost Union-Find">
+                  UVA11987 Almost Union-Find <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DDOSvoid</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.2m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">18:52</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-use    r"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

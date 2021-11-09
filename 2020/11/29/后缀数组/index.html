@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/D_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/D_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="简介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后缀数组">
+<meta property="og:url" content="http://example.com/2020/11/29/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:site_name" content="DDOSvoid&#39;s Blog">
+<meta property="og:description" content="简介">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-29T02:57:24.000Z">
+<meta property="article:modified_time" content="2021-09-26T12:26:38.214Z">
+<meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="Tech">
+<meta property="article:tag" content="后缀数组">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/11/29/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>后缀数组 | DDOSvoid's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">DDOSvoid's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-number">3.</span> <span class="nav-text">模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">例题</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DDOSvoid"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">DDOSvoid</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">647</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DDOSvoid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DDOSvoid" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/34531" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;34531" rel="noopener" target="_blank">Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://codeforces.com/profile/DDOSvoid" title="Codeforces → http:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;DDOSvoid" rel="noopener" target="_blank">Codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://acm.hdu.edu.cn/userstatus.php?user=DDOSvoid" title="Hdu → http:&#x2F;&#x2F;acm.hdu.edu.cn&#x2F;userstatus.php?user&#x3D;DDOSvoid" rel="noopener" target="_blank">Hdu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/manziqi/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;manziqi&#x2F;" rel="noopener" target="_blank">Title1</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jczhang.top/" title="https:&#x2F;&#x2F;jczhang.top&#x2F;" rel="noopener" target="_blank">JC Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/29/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          后缀数组
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-29 10:57:24" itemprop="dateCreated datePublished" datetime="2020-11-29T10:57:24+08:00">2020-11-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-09-26 20:26:38" itemprop="dateModified" datetime="2021-09-26T20:26:38+08:00">2021-09-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><a id="more"></a>
+<p>后缀数组所做的最直接的就是将一个字符串的所有后缀排了个序</p>
+<p>所以我们得到了两个数组，$sa_i$ 表示排名为 $i$ 的后缀是哪一个，$rk_i$ 表示 $suf_i$ 的排名</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><p>令 $lcp(l,r)$ 为 $sa_l$ 和 $sa_r$ 的最长公共前缀</p>
+<ol>
+<li><p>$lcp(l,r)=min\lbrace lcp(l,i),lcp(i,r)\rbrace$，其中 $i\in[l,r]$，注意到这里只需要枚举任意一个 $i$ 即可</p>
+<p>证明：</p>
+<p>令 $p=min\lbrace lcp(l,i),lcp(i,r)\rbrace ,u=sa_l,v=sa_r,w=sa_i$</p>
+<p>由于 $u$ 和 $w$ 的前 $p$ 位相同，$v$ 和 $w$ 的前 $p$ 位相同</p>
+<p>所以 $u$ 和 $v$ 的 $lcp$ 至少为 $p$</p>
+<p>假设 $u$ 和 $v$ 的 $lcp&gt;p$，不妨设其为 $q=p+1$</p>
+<p>我们知道 $u[q]\neq w[q],v[q] \neq w[q]$，并且 $w[q]\ge u[q],v[q]\ge w[q]$ </p>
+<p>那么 $w[q]$ 只能是 $&gt;u[q]$，且 $v[q]$ 只能是 $&gt;w[q]$，所以 $u[q]$ 不可能等于 $v[q]$</p>
+</li>
+<li><p>$lcp(l,r)=min_{i=l}^{r-1}lcp(i,i+1)$</p>
+<p>证明：</p>
+<p>注意到 $lcp(l,r)=min\lbrace lcp(l,l+1),lcp(l+1,r)\rbrace$</p>
+<p>递归运算即可即证</p>
+</li>
+</ol>
+<p>根据 $sa$ 和 $rk$ 这两个数组，我们还能得到另外一个东西</p>
+<p>我们令 $H_i$ 表示 $sa_i$ 和 $sa_{i-1}$ 的最长公共前缀的长度</p>
+<ol>
+<li><p>$H_{rk_{i}}\ge H_{rk_{i-1}}-1$</p>
+<p>证明：</p>
+<p>令 $suf_k$ 为排名正好在 $suf_{i-1}$ 前一个的后缀，那么它们的公共前缀的长度就是 $H_{rk_{i-1}}$</p>
+<p>注意到 $suf_{k+1}$ 的排名一定在 $suf_i$ 之前，而 $suf_{k+1}$ 和 $suf_i$ 的最长公共前缀至少是 $H_{rk_{i-1}}-1$</p>
+<p>所以 $H_{rk_{i}}\ge H_{rk_{i-1}}-1$ </p>
+</li>
+<li><p>$suf_l$ 和 $suf_r$ 的最长公共前缀为 $\min_{i=rk_x+1}^{rk_y}H_i$ </p>
+</li>
+<li><p>$min_{i=1}^{k-1}lcp(i,k)=H_k$</p>
+<p>也就是固定一个位置之后，另个位置向某一方向移动时最长公共前缀的长度减少</p>
+</li>
+</ol>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> tax[maxn], tp[maxn], sa[maxn], rk[maxn], M = <span class="number">255</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rsort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// tp[i] 表示排序时第二关键字为 i 的后缀是什么</span></span><br><span class="line">    <span class="comment">// rsort 的实际作用就是按照 rk[i] 为第一关键字，tp[i] 为第二关键字从小到大排序</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= M; ++i) tax[i] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) ++tax[rk[i]];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= M; ++i) tax[i] += tax[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i; --i) sa[tax[rk[tp[i]]]--] = tp[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> H[maxn]; <span class="comment">// cnt 表示不同的 rk[i] 有多少个，当 c1 == n 时，排序完毕</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_sa</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> sa[<span class="number">1</span>] = rk[<span class="number">1</span>] = <span class="number">1</span>, <span class="keyword">void</span>(); <span class="keyword">int</span> cnt = <span class="number">1</span>; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) rk[i] = s[i], tp[i] = i; rsort();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt; n; k *= <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cnt == n) <span class="keyword">break</span>; M = cnt; cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n - k + <span class="number">1</span>; i &lt;= n; ++i) tp[++cnt] = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="keyword">if</span> (sa[i] &gt; k) tp[++cnt] = sa[i] - k;</span><br><span class="line">        rsort(); swap(rk, tp); rk[sa[<span class="number">1</span>]] = cnt = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 这时候的 tp 变成了上一轮的 rk，cnt 是计数器同时是不同的 rk[i] 的个数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (tp[sa[i - <span class="number">1</span>]] != tp[sa[i]] || tp[sa[i - <span class="number">1</span>] + k] != tp[sa[i] + k]) ++cnt;</span><br><span class="line">            <span class="comment">// 如果排名为 i - 1 和排名为 i 的串的前 k 位相同，并且前 2k 位也相同，那么这两个串的排名就暂时相同了</span></span><br><span class="line">            rk[sa[i]] = cnt;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">int</span> lcp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (lcp) --lcp;</span><br><span class="line">        <span class="keyword">int</span> j = sa[rk[i] - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">while</span> (s[j + lcp] == s[i + lcp]) ++lcp;</span><br><span class="line">        H[rk[i]] = lcp;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>先给几个定义：</p>
+<p>重复子串：对于一个串，如果它的一个子串在原串中出现出现至少两次，则称这个子串是一个重复子串</p>
+<p>可重叠子串：只这个子串在原串中的出现位置可以重叠</p>
+<ol>
+<li><p><strong>可重叠最长重复子串</strong></p>
+<p>问题：求可重叠最长重复子串的长度</p>
+<p>解法：利用后缀数组将所有后缀按照字典序排序后，我们考虑加入一个后缀的贡献</p>
+<p>容易得到加入 $sa_i$，那么它与前面所有后缀的 $lcp$ 就是 $H_i$，那么它的贡献就是 $H_i$</p>
+<p>所以答案就是 $H$ 的最大值，时间复杂度 $O(n\log n)$</p>
+</li>
+<li><p><strong>可重叠重复子串计数</strong></p>
+<p>问题：求有多少本质不同的子串出现至少两次</p>
+<p>解法：同之前将所有后缀按照字典序排序，考虑加入一个后缀的贡献</p>
+<p>我们知道 $sa_i$ 贡献的重复的子串为 $H_i$，那么我们现在要求的就是 $H_i$ 中只出现过一次的前缀个数</p>
+<p>我们考虑对于 $sa_{i-1}$，它贡献的只出现过一次的串为 $n-sa_{i-1}+1-H_{i-1}$</p>
+<p>而这些与 $H_i$ 有交集的只有 $max\lbrace H_i-H_{i-1},0\rbrace$</p>
+<p>所有答案就是 $\sum_{i=1}^nmax\lbrace H_i-H_{i-1},0\rbrace$，时间复杂度 $O(n\log n)$</p>
+</li>
+<li><p><strong>不可重叠最长重复子串</strong></p>
+<p>问题：求不可重叠最长重复子串的长度</p>
+<p>解法：首先我们考虑二分答案 $x$，然后我们考虑固定一个 $sa_i$，然后去前面找即 $j&lt;i$，如果存在这么一个子串，那一定存在一个 $sa_j$ 满足 $|sa_i-sa_j+1|\ge x\wedge lcp(j,i)\ge x$</p>
+<p>注意到 $lcp$ 的性质，如果存在这么一个 $j$，那么一定有 $min_{k=j+1}^i H_k\ge x$ </p>
+<p>这个东西二分之后可以轻松 $O(n)$ 判断，时间复杂度 $O(n\log n)$</p>
+</li>
+<li><p><strong>可重叠 $k$ 次最长子串</strong></p>
+<p>问题：求可重叠的出现了至少 $k$ 次的最长子串的长度</p>
+<p>解法：我们仍然考虑二分答案 $x$</p>
+<p>我们考虑如果有一个满足条件的子串出现了 $k$ 次，那么我们把这 $k$ 个起始位置拿出来，这些位置的 $lcp$ 显然要大于等于 $x$</p>
+<p>那么我们相当于二分只有需要判断是否存在一个长度为 $k-1$ 的区间满足区间最小值大于等于 $x$</p>
+<p>显然可以单调队列维护，然后我们甚至可以将二分去掉，时间复杂度 $O(n\log n)$</p>
+</li>
+<li><p><strong>本质不同的子串的个数</strong></p>
+<p>问题：求本质不同的子串个数</p>
+<p>解法：将所有后缀按照字典序排序，考虑加入一个后缀的贡献</p>
+<p>每次新加进来的一个后缀的贡献显然是 $n-sa_i+1$，但是与前面的所有后缀重复的前缀有 $H_i$ 个，所以它的总贡献就是 $n-sa_i+1-H_i$</p>
+<p>答案即为 $\sum_{i=1}^nn-sa_i+1-H_i$，时间复杂度 $O(n\log n)$</p>
+</li>
+<li><p><strong>重复出现次数最多的连续重复子串</strong></p>
+<p>我们考虑枚举连续重复子串的长度 $l$，然后我们将串分成 $\lfloor\frac{n}{l}\rfloor$ 块</p>
+<p>求出相邻两块的 $lcp$ 的长度 $k$，那么出现次数为 $k/l+1$</p>
+<p>注意还要检查一下块前面的一部分是否可以加进去</p>
+<p>时间复杂度为 $O(n\log n)$</p>
+</li>
+</ol>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><ol>
+<li><p>简要题意：给定一个长度为 $n$ 的字符串，求其本质不同的子串个数</p>
+<p>$n\le 10^5$</p>
+<p>简要题解：本质不同子串个数</p>
+<p><a href="">Luogu P2408 不同子串个数</a></p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的字符串和 $k$，求长度最长的一个子串，满足这个子串至少出现了 $k$ 次</p>
+<p>$n\le 2\times 10^4$</p>
+<p>简要题解：可重叠 $k$ 次最长子串</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/09/24/Luogu-P2852-USACO06DEC-Milk-Patterns-G/">Luogu P2852 [USACO06DEC]Milk Patterns G</a></p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的字符串 $S$，求 $\sum_{1\le i&lt;j\le n}len(suf(S,i))+len(suf(S,j))-2lcp(suf(S,i),suf(S,j))$</p>
+<p>$n\le 5\times 10^5$</p>
+<p>简要题解：前面那个东西显然是 $\frac{(n-1)n(n+1)}{2}$，后面那个东西就是 $\sum_{1\le i&lt;j\le n}lcp(i,j)$，换句话就是 $H$ 的所有子区间的 $min$ 的和，这个可以用单调栈来求</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/09/24/Luogu-P4248-AHOI2013-%E5%B7%AE%E5%BC%82/">Luogu P4248 [AHOI2013]差异</a></p>
+</li>
+<li><p>简要题意：给定一个字符串和 $m$ 次询问，每次询问给定两个集合 $A$ 和 $B$，求 $\sum_{i\in A,j\in B}lcp(suf(S,i),suf(S,j))$</p>
+<p>$n,m,\sum |A|,\sum |B|\le 2\times 10^5$</p>
+<p>简要题解：首先将 $A$ 和 $B$ 分别按照 $rk$ 排序，将 $lcp$ 的询问转换成区间求 $min$</p>
+<p>下面只考虑 $b_j<a_i$ 的情况，对于 $b_j>a_i$ 的情况可以使用相同的方法处理，相等的单独处理即可</p>
+<p>我们用类似扫描线的东西，用数据结构维护所有左端点对于当前右端点的答案的和</p>
+<p>右端点移动相当于全局取 $min$，单点插入，左端点移动相当于单点插入，所以我们可以使用权值线段树</p>
+<p>时间复杂度 $O(n\log n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/09/24/CF-1073G-Yet-Another-LCP-Problem/">CF 1073G Yet Another LCP Problem</a></p>
+</li>
+<li><p>简要题意：给定三个字符串 $A,B,C$，求对于所有 $l$，有多少个数对 $(a,b,c)$，满足 $A[a\cdots a+l-1]=B[b\cdots b+l-1]=C[c\cdots c+l-1]$</p>
+<p>$|A|+|B|+|C|\le 3\times 10^5$</p>
+<p>简要题解：我们考虑后缀数组，将这三个字符串用特殊字符连起来后，我们枚举 $l$，将 $H_i\ge l$ 的 $i$ 和 $i-1$ 连起来，然后对于一个连续区间，其贡献就是属于第一个字符串的数量乘上第二个字符串的数量乘上第三个字符串的数量，我们发现倒叙枚举 $l$ 只有合并，可以用并查集维护，时间复杂度 $O(n\log n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/09/26/CF-452E-Three-strings/">CF 452E Three strings</a></p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的字符串和 $m$ 次询问，每次询问给定四个参数 $a,b,c,d$，求 $S[a\cdots b]$ 的所有子串和 $S[c\cdots d]$ 的 $lcp$ </p>
+<p>$n,m\le 10^5$</p>
+<p>简要题解：首先考虑二分答案 $x$，然后我们考虑后缀数组，相当于求是否存在 $[a,b-x+1]$ 之间的后缀，满足排序后这个后缀到 $c$ 的区间最小值大于等于 $x$</p>
+<p>我们考虑先二分出 $c$ 周围的最小值大于 $x$ 的区间 $[l,r]$，那么就相当于二维区间查询，主席树显然可以胜任</p>
+<p>时间复杂度 $O(n\log^2n)$ </p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/09/26/Luogu-P4094-HEOI2016-TJOI2016-%E5%AD%97%E7%AC%A6%E4%B8%B2/">Luogu P4094 [HEOI2016/TJOI2016]字符串</a></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-flag"></i>　感谢阅读　　　　-------------</div>
+    
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tech/" rel="tag"># Tech</a>
+              <a href="/tags/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84/" rel="tag"># 后缀数组</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/26/CF-1451D-Circle-Game/" rel="prev" title="CF 1451D Circle Game">
+                  <i class="fa fa-chevron-left"></i> CF 1451D Circle Game
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/11/29/%E8%B7%9D%E7%A6%BB/" rel="next" title="距离">
+                  距离 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DDOSvoid</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.2m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">18:52</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-use    r"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/D_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/D_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="简介字符串补完计划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后缀自动机">
+<meta property="og:url" content="http://example.com/2021/01/03/%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA/index.html">
+<meta property="og:site_name" content="DDOSvoid&#39;s Blog">
+<meta property="og:description" content="简介字符串补完计划">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-03T12:47:10.000Z">
+<meta property="article:modified_time" content="2021-09-20T12:17:28.650Z">
+<meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="Tech">
+<meta property="article:tag" content="后缀自动机">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/01/03/%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>后缀自动机 | DDOSvoid's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">DDOSvoid's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">2.</span> <span class="nav-text">后缀自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%BA%A6%E5%AE%9A%E5%92%8C%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">一些约定和定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SAM-%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.</span> <span class="nav-text">SAM 的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#right-%E9%9B%86%E5%90%88"><span class="nav-number">2.3.</span> <span class="nav-text">right 集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parent-%E6%A0%91"><span class="nav-number">2.4.</span> <span class="nav-text">parent 树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E7%AE%97%E6%B3%95"><span class="nav-number">2.5.</span> <span class="nav-text">构造算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">2.6.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-number">2.7.</span> <span class="nav-text">模板</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">4.</span> <span class="nav-text">广义后缀自动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">例题</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DDOSvoid"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">DDOSvoid</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">647</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DDOSvoid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DDOSvoid" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/34531" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;34531" rel="noopener" target="_blank">Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://codeforces.com/profile/DDOSvoid" title="Codeforces → http:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;DDOSvoid" rel="noopener" target="_blank">Codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://acm.hdu.edu.cn/userstatus.php?user=DDOSvoid" title="Hdu → http:&#x2F;&#x2F;acm.hdu.edu.cn&#x2F;userstatus.php?user&#x3D;DDOSvoid" rel="noopener" target="_blank">Hdu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/manziqi/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;manziqi&#x2F;" rel="noopener" target="_blank">Title1</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jczhang.top/" title="https:&#x2F;&#x2F;jczhang.top&#x2F;" rel="noopener" target="_blank">JC Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/03/%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          后缀自动机
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-03 20:47:10" itemprop="dateCreated datePublished" datetime="2021-01-03T20:47:10+08:00">2021-01-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-09-20 20:17:28" itemprop="dateModified" datetime="2021-09-20T20:17:28+08:00">2021-09-20</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>字符串补完计划</p>
+<a id="more"></a>
+<h2 id="后缀自动机"><a href="#后缀自动机" class="headerlink" title="后缀自动机"></a>后缀自动机</h2><h3 id="一些约定和定义"><a href="#一些约定和定义" class="headerlink" title="一些约定和定义"></a>一些约定和定义</h3><p>$DFA$ 即确定性有限状态自动机，由五部分组成 $M=(\sum,Q,q_s,q_t,tr)$</p>
+<p>$\sum$ 表示有限字符集，其中每个字符 $c$ 表示一个输入符号</p>
+<p>$Q$ 表示一个有限状态集合</p>
+<p>$q_s\in Q$ 称为初始集合</p>
+<p>$q_t\in Q$ 称为终结状态集合</p>
+<p>$tr(q,c)$ 称为状态转移函数</p>
+<p>$L(q)$ 表示状态 $q$ 能识别的串的集合</p>
+<p>$L(M)$ 表示自动机 $M$ 能识别的串的集合</p>
+<p>称自动机 $M$ 识别一个串当且仅当 $tr(q_s,S)\in q_t$ </p>
+<p>对于任意 $p,q\in Q$，称 $p$ 和 $q$ 为等价状态当且仅当 $tr(p,S)\in q_t\Longleftrightarrow tr(p,S)\in q_t$</p>
+<p>即 $L(p)=L(q)$ 成立，此时记作 $p\sim q$</p>
+<h3 id="SAM-的定义"><a href="#SAM-的定义" class="headerlink" title="SAM 的定义"></a>SAM 的定义</h3><p>字符串 $S$ 的 $SAM$ 是一个接受 $S$ 的所有后缀的最小 $DFA$ </p>
+<p>换句话说</p>
+<ul>
+<li>$SAM$ 是一张有向无环图，结点被称作 <strong>状态</strong>，边被称作状态间的 <strong>转移</strong></li>
+<li>图存在一个源点 $q_s$，称作 <strong>初始状态</strong>，其它各结点均可从 $q_s$ 出发到达</li>
+<li>每个 <strong>转移</strong> 都标有一些字母，从一个结点出发的所有转移均 <strong>不同</strong></li>
+<li>存在一个或多个 <strong>终止状态</strong>，如果我们从初始状态 $q_s$ 出发，最终转移到了一个终止状态，则路径上的所有转移连接起来一定是字符串 $S$ 的一个后缀，$S$ 的每个后缀均可用一条从 $q_s$ 到某个终止状态的路径构成</li>
+<li>在所有满足上述条件的自动机中，$SAM$ 的结点数是最少的</li>
+</ul>
+<h3 id="right-集合"><a href="#right-集合" class="headerlink" title="right 集合"></a>right 集合</h3><p>定义：设 $T\in\sum*$，定义 $T$ 在母串 $S$ 的所有结束位置的右端点的集合如下：$right(T)=\lbrace r|\exist 1\le l\le r,T=S[l\cdots r]\rbrace$</p>
+<p>引理 1：对于任意串 $T\in \sum*$，有 $L(tr(q_s,T))=\lbrace suf_{r+1}|r\in right(T)\rbrace$ </p>
+<p>引理 2：设 $T_1,T_2\in \sum*$ 是任意两个串，则 $tr(q_s,T_1)\sim tr(q_s,T_2)$ 充分必要条件是 $right(T_1)=right(T_2)$，此时称这两个串等价，记作 $T_1 \sim^S T_2$  </p>
+<p>由于 $SAM$ 的最小性，我们能够知道一个状态 $q$ 对应一个 $right$ 集合，我们不妨令其为 $R_q$</p>
+<p>同时我们知道一个状态 $q$ 也对应多个串 $T$，且 $tr(q_s,T)=q$，$right(T)=R_q$，我们不妨称这样的 $T$ 构成的集合为 $S_q$</p>
+<p>注意到如果两个串等价，不妨设 $len(T_1)&lt;len(T_2)$，那么我们知道 $T_1$ 必然是 $T_2$ 的后缀</p>
+<p>那么我们注意到对于一个 $right$ 集合，不妨设其为 $R$，它所对应的串有什么性质呢</p>
+<p>不难发现，$R$ 所对应的串的长度应该是一个区间，设其为 $[minl_R,maxl_R]$</p>
+<p>这里我们还能够想到一个问题，一个串的子串的个数是 $O(n^2)$ 的，但是其中有很多子串是等价的</p>
+<p>或者换句话说，这 $O(n^2)$ 个子串按照 $right$ 集合分成若干个等价类</p>
+<p>引理3：任取两个不同的状态 $p,q\in  Q$，我们一定有下面三式之一成立</p>
+<ol>
+<li>$R_p\cap R_q=\empty$</li>
+<li>$R_p\subset R_q$ </li>
+<li>$R_q\subset R_p$</li>
+</ol>
+<h3 id="parent-树"><a href="#parent-树" class="headerlink" title="parent 树"></a>parent 树</h3><p>定义：对于任意 $p,q\in Q$，我们称 $p$ 是 $q$ 的 $parent$ 状态当且仅当 $R_p$ 是最小的真包含 $R_q$ 的集合</p>
+<p>另外定义 $R_{q_s}=\{0,1,2,\cdots,n\}$</p>
+<p>引理 3：任何状态的 $parent$ 状态存在且唯一</p>
+<p>也就是说，我们可以用根据 $parent$ 状态连出来一棵树 </p>
+<p>引理 4：若 $p$ 是 $q$ 的 $parent$ 状态，则 $maxl_p=minl_q-1$</p>
+<h3 id="构造算法"><a href="#构造算法" class="headerlink" title="构造算法"></a>构造算法</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SAM</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> sz, L, l, nxt[<span class="number">26</span>]; </span><br><span class="line">&#125; T[Maxn]; <span class="keyword">int</span> f[Maxn], top, last, rt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_SAM</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= top; ++i) &#123;</span><br><span class="line">        T[i].sz = T[i].L = T[i].l = f[i] = <span class="number">0</span>; </span><br><span class="line">        fill(T[i].nxt, T[i].nxt + <span class="number">26</span>, <span class="number">0</span>); </span><br><span class="line">    &#125;</span><br><span class="line">    rt = last = top = <span class="number">1</span>; </span><br><span class="line">    T[rt].L = T[rt].l = f[rt] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">extend</span><span class="params">(<span class="keyword">int</span> ch)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> np = ++top, p = last; last = np;</span><br><span class="line">    T[np].L = T[p].L + <span class="number">1</span>; T[np].sz = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (p &amp;&amp; !T[p].nxt[ch]) T[p].nxt[ch] = np, p = f[p];</span><br><span class="line">    <span class="keyword">if</span> (!p) <span class="keyword">return</span> f[np] = rt, <span class="keyword">void</span>();</span><br><span class="line">    <span class="keyword">int</span> q = T[p].nxt[ch];</span><br><span class="line">    <span class="keyword">if</span> (T[q].L - <span class="number">1</span> == T[p].L) f[np] = q;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> nq = ++top; T[nq].L = T[p].L + <span class="number">1</span>; f[nq] = f[q];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; ++i) T[nq].nxt[i] = T[q].nxt[i];</span><br><span class="line">        <span class="keyword">while</span> (p &amp;&amp; T[p].nxt[ch] == q) T[p].nxt[ch] = nq, p = f[p];</span><br><span class="line">        f[np] = f[q] = nq;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p>将 $extend$ 过程中新建的 $np$ 节点所构成的链叫做主链</p>
+<ol>
+<li><p>$right$ 集合的大小等于其在 $parent$ 树上的子树中在主链上的点的状态数</p>
+<p>证明：</p>
+<p>换一句话说，就是只有 $np$ 节点会有贡献，那么其实我们只需要证明 $nq$ 节点没有贡献就行了</p>
+<p>$nq$ 节点相对于 $q$，$right$ 集合只是多了 $\{L+1\}$，而 $R_{np}=\{L+1\}$，并且 $np$ 的 $parent$ 的状态是 $nq$</p>
+<p>所以 $nq$ 的 $right$ 集合多出来的 $\{L+1\}$ 实际上是 $np$ 的</p>
+</li>
+<li><p>$pre_i$ 和 $pre_j$ 的最长公共后缀的长度为 $pre_i$ 和 $pre_j$ 所对应的状态在 $parent$ 树上的 $lca$ 的长度，如果将串反过来建 $SAM$，就能求得两个后缀的最长公共前缀</p>
+</li>
+</ol>
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p>基数排序</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> tax[maxn], tp[Maxn]; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rsort</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) tax[i] = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= top; ++i) ++tax[T[i].L];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) tax[i] += tax[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= top; ++i) tp[tax[T[i].L]--] = i;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = top, u = tp[i]; i; u = tp[--i]) T[u].l = T[f[u]].L + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>字符串在 $SAM$ 上匹配</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> p = rt, len = <span class="number">0</span>, ans = <span class="number">0</span>; </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">    <span class="keyword">int</span> ch = t[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span> (T[p].nxt[ch]) p = T[p].nxt[ch], ++len;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (p &amp;&amp; !T[p].nxt[ch]) p = f[p];</span><br><span class="line">        <span class="keyword">if</span> (!p) p = rt, len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> len = T[p].L + <span class="number">1</span>; p = T[p].nxt[ch];</span><br><span class="line">    &#125;</span><br><span class="line">    ans = max(ans, len); </span><br><span class="line"> &#125; <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ol>
+<li><p>本质不同的子串个数</p>
+<p>这个显然就是所有状态所对应的 $right$ 集合的大小的和</p>
+</li>
+<li><p>求两个串的最长公共子串</p>
+<p>不妨令着两个串为 $S$ 和 $T$</p>
+<p>我们用 $S$ 建 $SAM$</p>
+<p>首先我们知道子串一定是某个前缀的后缀</p>
+<p>所以我们用 $p$ 来表示对于 $T$ 的 $pre_i$ 的匹配 $S$ 最长后缀所对应 $S$ 的 $SAM$ 的状态，$len$ 表示匹配上的长度</p>
+<p>那么从 $pre_i$ 转移到 $pre_{i+1}$，如果存在 $tr(p,T[i+1])$，则 $p=tr(p,T[i+1])$，且 $len$ 加 $1$</p>
+<p>否则我们只需要在 $SAM$ 上对于 $p$ 不断跳 $parent$ 直到 $tr(p,T[i+1])$ 存在</p>
+<p>因为每次 $len$ 最多加 $1$，且跳 $parent$ 会使 $len$ 至少减 $1$，所以总的时间复杂度还是 $O(n)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> p = rt, len = <span class="number">0</span>, ans = <span class="number">0</span>; </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) &#123;</span><br><span class="line">    <span class="keyword">int</span> ch = t[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span> (T[p].nxt[ch]) p = T[p].nxt[ch], ++len;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (p &amp;&amp; !T[p].nxt[ch]) p = f[p];</span><br><span class="line">        <span class="keyword">if</span> (!p) p = rt, len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> len = T[p].L + <span class="number">1</span>; p = T[p].nxt[ch];</span><br><span class="line">    &#125;</span><br><span class="line">    ans = max(ans, len); </span><br><span class="line"> &#125; <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第 $k$ 小子串</p>
+<p>注意到子串为 $SAM$ 上的一条路径，而 $SAM$ 可以看成有向无环图</p>
+<p>所以第 $k$ 小子串实际上就是第 $k$ 小路径，预处理一下直接做即可</p>
+</li>
+<li></li>
+</ol>
+<h2 id="广义后缀自动机"><a href="#广义后缀自动机" class="headerlink" title="广义后缀自动机"></a>广义后缀自动机</h2><p>实际上我对广义后缀自动机的理解是建在 $Trie$ 上的后缀自动机</p>
+<p>也就是说，广义后缀自动机能识别的后缀是 $Trie$ 上的后缀</p>
+<p>构建广义后缀自动机有两种方法</p>
+<ol>
+<li><p>离线做法</p>
+<p>从 $Trie$ 的根开始 $bfs$，依次将遍历的节点插入 $SAM$，插入时的 $last$ 就等于父节点的 $last$</p>
+<p>这样可以保证插入的前缀的长度非降，所以可以直接套用一般构建 $SAM$ 的方法即可</p>
+<p>可以证明，这样的复杂度为 $O(L\times \sum)$​</p>
+</li>
+<li><p>在线做法</p>
+<p>或者说是 $dfs$​，这样的复杂度为 $O(L\times \sum+g(T))$​，其中 $g(T)$​ 为 $T$​ 的所有叶子节点的深度和</p>
+<p>这样无法保证插入的前缀的长度非降，所以可能会导致要插入的新节点要成为之前的某个节点的父亲</p>
+<p>这其实和构建 $SAM $ 分叉的情况一样，特判一下即可</p>
+</li>
+</ol>
+<p>但实际上不需要真正的建出 $Trie $  每次插入一个串从根走即可</p>
+<p>这个是不建出 $Trie$ 的在线做法</p>
+<p>其实建不建 $Trie$ 的在线做法都是一样的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">extend</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> ch)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (T[p].nxt[ch]) &#123;</span><br><span class="line">        <span class="keyword">int</span> q = T[p].nxt[ch], nq;</span><br><span class="line">        <span class="keyword">if</span> (T[q].L - <span class="number">1</span> == T[p].L) <span class="keyword">return</span> q;</span><br><span class="line">        nq = ++top; T[nq].L = T[p].L + <span class="number">1</span>; f[nq] = f[q];</span><br><span class="line">        <span class="built_in">memcpy</span>(T[nq].nxt, T[q].nxt, <span class="keyword">sizeof</span> T[q].nxt); </span><br><span class="line">        <span class="keyword">while</span> (p &amp;&amp; T[p].nxt[ch] == q) T[p].nxt[ch] = nq, p = f[p];</span><br><span class="line">        f[q] = nq; <span class="keyword">return</span> nq; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> np = ++top; T[np].L = T[p].L + <span class="number">1</span>; </span><br><span class="line">    <span class="keyword">while</span> (p &amp;&amp; !T[p].nxt[ch]) T[p].nxt[ch] = np, p = f[p];</span><br><span class="line">    <span class="keyword">if</span> (!p) <span class="keyword">return</span> (f[np] = rt, np); </span><br><span class="line">    <span class="keyword">int</span> q = T[p].nxt[ch];</span><br><span class="line">    <span class="keyword">if</span> (T[q].L - <span class="number">1</span> == T[p].L) f[np] = q;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> nq = ++top; T[nq].L = T[p].L + <span class="number">1</span>; </span><br><span class="line">        f[nq] = f[q]; <span class="built_in">memcpy</span>(T[nq].nxt, T[q].nxt, <span class="keyword">sizeof</span> T[q].nxt); </span><br><span class="line">        <span class="keyword">while</span> (p &amp;&amp; T[p].nxt[ch] == q) T[p].nxt[ch] = nq, p = f[p];</span><br><span class="line">        f[np] = f[q] = nq; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> np; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span> *s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="built_in">strlen</span>(s), p = rt; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l; ++i) p = extend(p, s[i] - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这个是不建 $Trie$ 的离线做法</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<p>建 $Trie$ 的离线做法的 $extend$ 和普通的是一样的</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><ol>
+<li><p>简要题意：给定一个字符串 $S$ 和 $k$，求 $S$ 的本质不同/相同的第 $k$ 小子串</p>
+<p>$|S|\le 5\times 10^5$</p>
+<p>简要题解：注意到任何一个子串都是 $SAM$ 上的一条路径，而 $SAM$ 可以看成 $DAG$</p>
+<p>所以第 $k$ 小子串实际上就是第 $k$ 小路径，预处理一下直接做即可</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/10/Luogu-P3975-TJOI2015-%E5%BC%A6%E8%AE%BA/">Luogu P3975 [TJOI2015]弦论</a></p>
+</li>
+<li><p>简要题意：每次添加一个字符，求添加一个字符后有多少新增加的本质不同的子串</p>
+<p>$n\le 10^5$</p>
+<p>简要题解：每次新增的本质不同的子串的个数为 $T[np].L - T[np].l+1$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/16/Luogu-P4070-SDOI2016-%E7%94%9F%E6%88%90%E9%AD%94%E5%92%92/">Luogu P4070 [SDOI2016]生成魔咒</a></p>
+</li>
+<li><p>简要题意：给定 $n$ 个模板串和 $m$ 个查询串，对于每个查询串查询它在几个模板串中作为子串出现</p>
+<p>$len\le 3.6\times 10^5$ </p>
+<p>简要题解：</p>
+<p>我们对于所有模板串建广义 $SAM$，然后用线段树合并求出 $SAM$ 上每个节点是多少个模板串的子串</p>
+<p>然后对于每个询问串，只需要将其放到 $SAM$ 上跑，然后求出最后到达的节点是多少个模板串的子串即可</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/30/SPOJ-8093-JZPGYZ-Sevenk-Love-Oimaster/">SPOJ 8093 JZPGYZ - Sevenk Love Oimaster</a></p>
+</li>
+<li><p>简要题意：给定两个字符串 $S,T$ 和 $q$ 次询问，每次询问 $S[l\cdots r]$ 和 $T$ 的最长公共子串长度</p>
+<p>$|S|,|T|\le 2\times 10^5,q\le 2\times 10^5$</p>
+<p>简要题解：我们考虑对于 $T$ 建 $SAM$，然后对于所有 $pre(S,i)$ 我们求出于 $T$ 的最长公共后缀的长度 $len_i$，这个过程就是拿 $S$ 在 $T$ 的 $SAM$ 上做匹配</p>
+<p>对于一次询问，根据 $len_i$，我们能够得到 $pre(S,i)$ 的与 $T$ 匹配的最长公共后缀的左端点 $L_i=i-len_i+1$，</p>
+<p>我们的答案是 $max\lbrace i-max\lbrace L_i,l\rbrace+1\rbrace,i\in[l,r]$，注意到 $L_i$ 是单增的，所以可以二分出 $L_i$ 比 $l$ 大的位置</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/09/20/Luogu-P6640-BJOI2020-%E5%B0%81%E5%8D%B0/">Luogu P6640 [BJOI2020] 封印</a></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-flag"></i>　感谢阅读　　　　-------------</div>
+    
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tech/" rel="tag"># Tech</a>
+              <a href="/tags/%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA/" rel="tag"># 后缀自动机</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/31/CF-1469E-A-Bit-Similar/" rel="prev" title="CF 1469E A Bit Similar">
+                  <i class="fa fa-chevron-left"></i> CF 1469E A Bit Similar
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/01/05/CF-1400E-Clear-the-Multiset/" rel="next" title="CF 1400E Clear the Multiset">
+                  CF 1400E Clear the Multiset <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DDOSvoid</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.2m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">18:52</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-use    r"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

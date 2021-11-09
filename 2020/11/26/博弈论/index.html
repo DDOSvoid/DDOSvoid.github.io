@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/D_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/D_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="简介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博弈论">
+<meta property="og:url" content="http://example.com/2020/11/26/%E5%8D%9A%E5%BC%88%E8%AE%BA/index.html">
+<meta property="og:site_name" content="DDOSvoid&#39;s Blog">
+<meta property="og:description" content="简介">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-26T12:32:09.000Z">
+<meta property="article:modified_time" content="2021-11-07T10:31:06.814Z">
+<meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="Tech">
+<meta property="article:tag" content="博弈论">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/11/26/%E5%8D%9A%E5%BC%88%E8%AE%BA/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>博弈论 | DDOSvoid's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">DDOSvoid's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ICG%E6%B8%B8%E6%88%8F"><span class="nav-number">1.1.</span> <span class="nav-text">ICG游戏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%90%8D%E8%AF%8D%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.</span> <span class="nav-text">一些名词的定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SG%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">SG函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SG%E5%AE%9A%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">SG定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8SG%E5%87%BD%E6%95%B0%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">如何用SG函数解决问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E5%8D%9A%E5%BC%88%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">经典博弈模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%B4%E4%BB%80%E5%8D%9A%E5%BC%88"><span class="nav-number">3.1.</span> <span class="nav-text">巴什博弈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%B4%E4%BB%80%E5%8D%9A%E5%BC%88%E6%8B%93%E5%B1%95"><span class="nav-number">3.2.</span> <span class="nav-text">巴什博弈拓展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nim%E6%B8%B8%E6%88%8F"><span class="nav-number">3.3.</span> <span class="nav-text">Nim游戏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nim%E6%B8%B8%E6%88%8F%E5%8F%98%E5%BD%A2%E4%B8%80"><span class="nav-number">3.4.</span> <span class="nav-text">Nim游戏变形一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nim%E6%B8%B8%E6%88%8F%E5%8F%98%E5%BD%A2%E4%BA%8C-%E9%98%B6%E6%A2%AFNim"><span class="nav-number">3.5.</span> <span class="nav-text">Nim游戏变形二  阶梯Nim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E5%88%A0%E8%BE%B9%E6%B8%B8%E6%88%8F"><span class="nav-number">3.6.</span> <span class="nav-text">树上删边游戏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BF%BB%E7%A1%AC%E5%B8%81%E6%B8%B8%E6%88%8F"><span class="nav-number">3.7.</span> <span class="nav-text">翻硬币游戏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E6%B8%B8%E6%88%8F"><span class="nav-number">3.8.</span> <span class="nav-text">欧几里得游戏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2018-2019-ACM-ICPC-Asia-Nanjing-Regional-Contest-A-Adrien-and-Austin"><span class="nav-number">3.9.</span> <span class="nav-text">2018-2019 ACM-ICPC, Asia Nanjing Regional Contest A. Adrien and Austin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">3.10.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%B4%E6%8C%81%E7%A8%B3%E6%80%81"><span class="nav-number">3.10.1.</span> <span class="nav-text">维持稳态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anti-Sg"><span class="nav-number">4.</span> <span class="nav-text">Anti-Sg</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-2"><span class="nav-number">4.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SJ%E5%AE%9A%E7%90%86"><span class="nav-number">4.2.</span> <span class="nav-text">SJ定理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-Sg"><span class="nav-number">5.</span> <span class="nav-text">Multi-Sg</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-3"><span class="nav-number">5.1.</span> <span class="nav-text">简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-number">6.</span> <span class="nav-text">例题</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DDOSvoid"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">DDOSvoid</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">647</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DDOSvoid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DDOSvoid" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/34531" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;34531" rel="noopener" target="_blank">Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://codeforces.com/profile/DDOSvoid" title="Codeforces → http:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;DDOSvoid" rel="noopener" target="_blank">Codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://acm.hdu.edu.cn/userstatus.php?user=DDOSvoid" title="Hdu → http:&#x2F;&#x2F;acm.hdu.edu.cn&#x2F;userstatus.php?user&#x3D;DDOSvoid" rel="noopener" target="_blank">Hdu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/manziqi/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;manziqi&#x2F;" rel="noopener" target="_blank">Title1</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jczhang.top/" title="https:&#x2F;&#x2F;jczhang.top&#x2F;" rel="noopener" target="_blank">JC Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/26/%E5%8D%9A%E5%BC%88%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          博弈论
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-26 20:32:09" itemprop="dateCreated datePublished" datetime="2020-11-26T20:32:09+08:00">2020-11-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-07 18:31:06" itemprop="dateModified" datetime="2021-11-07T18:31:06+08:00">2021-11-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><a id="more"></a>
+<h3 id="ICG游戏"><a href="#ICG游戏" class="headerlink" title="ICG游戏"></a>ICG游戏</h3><ol>
+<li>游戏有两个人参与，二者轮流做出决策。且这两个人的决策都对自己最有利</li>
+<li>当有一人无法做出决策时游戏结束，无法做出决策的人输。无论二者如何做出决策，游戏可以在有限步内结束</li>
+<li>游戏中的同一个状态不可能多次抵达。且游戏不会有平局出现。任意一个游戏者在某一确定状态可以作出的决策集合只与当前的状态有关，而与游戏者无关</li>
+</ol>
+<p>一下讨论和出现的游戏非特殊说明均为 $ICG$ 游戏</p>
+<h3 id="一些名词的定义"><a href="#一些名词的定义" class="headerlink" title="一些名词的定义"></a>一些名词的定义</h3><p>必败态：<strong>无法移动到其他状态的状态或所有移动都进入必胜态的状态</strong></p>
+<p>必胜态：<strong>能移动到必败态的状态</strong></p>
+<p>游戏图：<strong>将状态看做点，一个状态能够到达另一个状态则视为两个状态之间有一条有向边</strong></p>
+<p>子游戏：<strong>每位玩家在每个回合只能从若干 $ICG$ 游戏中选择一个进行操作，当所有子游戏都无法进行操作时，当前玩家输掉游戏，不同的子游戏之间没有影响</strong></p>
+<p>局面：<strong>当前所有子游戏的总和</strong></p>
+<h2 id="SG函数"><a href="#SG函数" class="headerlink" title="SG函数"></a>SG函数</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>我们首先定义 $mex$ 运算，$mex(S)$ 表示最小的不属于集合 $S$ 的非负整数</p>
+<p>首先我们定义 $mex$ 运算，$mex(S)$ 表示最小的不属于集合 $S$ 的非负整数</p>
+<p>对于状态 $u$，$sg(u)=mex\lbrace sg(v)| u\rightarrow v\rbrace$</p>
+<p>我们称 $sg(u)=0$ 的状态 $u$ 为必败态</p>
+<p>如果 $u$ 不能到达任何状态，则 $\lbrace sg(v)|u\rightarrow v\rbrace=\emptyset$，则 $sg(u)=0$</p>
+<p>否则说明 $u$ 所能到达的所有状态 $v$，都有 $sg(v)\neq 0$，则表明无论先手如何选择，后手都可以进入一个 $sg$ 为 0 的状态，进过有限次操作，先手必败</p>
+<p>那么如果 $sg(u)\neq 0$，我们称状态 $u$ 为必胜态</p>
+<h3 id="SG定理"><a href="#SG定理" class="headerlink" title="SG定理"></a>SG定理</h3><p>当前局面的 $SG$ 为所有子游戏的 $SG$ 的异或</p>
+<h3 id="如何用SG函数解决问题"><a href="#如何用SG函数解决问题" class="headerlink" title="如何用SG函数解决问题"></a>如何用SG函数解决问题</h3><h2 id="经典博弈模型"><a href="#经典博弈模型" class="headerlink" title="经典博弈模型"></a>经典博弈模型</h2><h3 id="巴什博弈"><a href="#巴什博弈" class="headerlink" title="巴什博弈"></a>巴什博弈</h3><p>规则：两个人在玩游戏，有 $n$ 个石子，每人可以随便拿 $1\sim m$ 个石子，不能拿的人为败者，问先手是否有必胜策略</p>
+<p>分析：</p>
+<p>如果只有 $1\sim m$ 个石子，显然先手可以直接一次拿完，所以先手必胜</p>
+<p>如果有 $m+1$ 个石子，那么不论先手那多少个石子，后手都可以一次拿完</p>
+<p>如果有 $m+2\sim 2m$ 个石子，先手可以第一次拿到剩下 $m+1$，因为 $m+1$ 是一个必败态，所以先手必胜</p>
+<p>不难发现，如果石子数 $s$ 为 $m+1$ 的倍数，先手必败</p>
+<p>否则先手必胜</p>
+<h3 id="巴什博弈拓展"><a href="#巴什博弈拓展" class="headerlink" title="巴什博弈拓展"></a>巴什博弈拓展</h3><p>规则：两个人在玩游戏，有 $n$ 个石子，每人可以随便拿 $l\sim r$ 个石子，不能拿的人为败者，问先手是否有必胜策略</p>
+<p>分析：令 $n\equiv k\bmod (a+b)$</p>
+<p>如果 $k=0$，后手必胜，因为无论先手怎么拿，后手都可以使局面重新变回 $k=0$ 的情况</p>
+<p>如果 $k\in[1,l)$，后手必胜，因为无论先手怎么拿，后手都可以使 $k$ 不会改变</p>
+<p>如果 $k\in[l,r]$，先手必胜，因为先手第一次取 $k$ 个就能来到必败态</p>
+<p>如果 $k\in(r,l+r)$，先手必胜，因为先手可以控制取的石子使得 $k$ 变成 $[1,l)$，这是一个必败态</p>
+<h3 id="Nim游戏"><a href="#Nim游戏" class="headerlink" title="Nim游戏"></a>Nim游戏</h3><p>规则：初始有 $n$ 堆石子，每堆有 $a_i$ 个，两人轮流取石子，第一个不能取的人输，每个人只能在一堆中取至少一个，至多把整堆取完</p>
+<p>分析：</p>
+<p>能够发现每堆石子之间没有影响，所以每堆石子都是一个子游戏</p>
+<p>我们首先考虑分析单个子游戏的 $sg$ 值，不妨令 $sg(x)$ 表示有 $x$ 个石子的 $sg$ 值</p>
+<p>首先能够得到 $sg(0)=0$，那么 $sg(1) = 1$，因为 $1$ 个石子只能到达 $0$ 石子的状态</p>
+<p>然后能够得到 $sg(2)=2$，依次类推可以得到 $sg(x)=x$</p>
+<p>也就是说如果 $\bigoplus_{i=1}^na_i=0$，则先手必败，否则先手必胜 </p>
+<h3 id="Nim游戏变形一"><a href="#Nim游戏变形一" class="headerlink" title="Nim游戏变形一"></a>Nim游戏变形一</h3><p>规则：与 $Nim$ 不同的是，对于一堆石子，如果我们取过 $x$ 个石子，那么就不能再取 $x$</p>
+<p>分析：</p>
+<p>注意到如果我们每次都拿最少的直到不能拿为止，那么我们能够得到一堆石子的最多操作次数</p>
+<p>然后我们能够注意到一到这些步都能做到，那么它的 $sg$ 就是最多操作次数</p>
+<h3 id="Nim游戏变形二-阶梯Nim"><a href="#Nim游戏变形二-阶梯Nim" class="headerlink" title="Nim游戏变形二  阶梯Nim"></a>Nim游戏变形二  阶梯Nim</h3><p>规则：有 $n$ 堆石子依次摆好，每次可以进行以下两种操作中的一种，拿走第一堆的若干个石子，在第 $i$ 堆石子中拿出若干个石子放入第 $i-1$ 堆，注意到某堆石子数变成 $0$ 时并不会移除这堆，这也说明初始局面可能存在某一堆石子的个数为 $0$</p>
+<p>分析：</p>
+<p>如果双方都只动奇数位置的石子，那么就相当于两人在玩 $nim$ 游戏</p>
+<p>那么在 $nim$ 游戏先手必胜的情况下，如果后手动偶数堆的石子，那么先手可以再将其移走继续 $nim$ 游戏，所以此时仍然先手必胜，反之亦然</p>
+<p>所以结论就是奇数堆的石子的异或和为 $0$ 先手必败，反之先手必胜</p>
+<h3 id="树上删边游戏"><a href="#树上删边游戏" class="headerlink" title="树上删边游戏"></a>树上删边游戏</h3><p>规则：给定一棵有根树，每次操作可以选择一条边，将这条边删掉，只保留与根节点相连的部分，不能操作者输</p>
+<p>分析：</p>
+<p>首先给出答案</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        s ^= dfs(v, u) + <span class="number">1</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p>显然一条有 $n+1$ 个点的链的 $sg$ 值为 $n$</p>
+<p>我们考虑一棵 $sg$ 值为 $n$ 的树 $H_1$ 和一条有 $n+1$ 个点的链有什么关系</p>
+<p>不妨猜想将根的某一棵子树 $H$ 转换为一条 $sg$ 值相同的链是不会对这棵树造成影响的</p>
+<p>那么我们考虑从叶子节点开始将所有子树都变成链</p>
+<p>考虑只有一个分叉点的时候，这是一个简单的 $nim$ 游戏，然后我们能够意识到多个分叉点时也是简单的 $nim$ 游戏，只需要将 $sg$ 值异或起来即可</p>
+<p>我们考虑推广一下这种合并方式</p>
+<p>对于任意两棵 $sg$ 值相同的树 $H_1,H_2$，我们考虑将其解到同一棵树的同一个节点上，所得到的新树的 $sg$ 相同</p>
+<p>不妨设这两棵树为 $G_1,G_2$，我们考虑证明 $sg(G_1)~xor~sg(G_2)=0$，如果先手操作 $H_1$ 或 $H_2$ 中的边，那么我们只需要操作另一颗树使得 $sg$ 仍然相同，如果先手操作原图中的点，那么我们做同样的操作即可 </p>
+<h3 id="翻硬币游戏"><a href="#翻硬币游戏" class="headerlink" title="翻硬币游戏"></a>翻硬币游戏</h3><p>规则：$n$ 枚硬币硬币排成一排，有的正面朝上，有的反面朝上，游戏者可以根据某些约束翻转硬币，但他所翻的硬币中，最右边的一定是从正面翻到反面</p>
+<p>结论：局面的 $sg$ 值为局面中每个正面朝上的棋子单一存在时的 $sg$ 值的异或和</p>
+<h3 id="欧几里得游戏"><a href="#欧几里得游戏" class="headerlink" title="欧几里得游戏"></a>欧几里得游戏</h3><p>规则：给出两个数 $a,b$，两人轮流操作，每次操作都可以将较大的数减去较小的数的正整数倍，不能使数小于零，不能操作的人输</p>
+<p>分析：</p>
+<p>可以将其转换为有 $n$ 堆石子，每次只能取第一堆石子</p>
+<p>游戏的 $sg$ 值计算如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sg = a[n];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i; --i)</span><br><span class="line">    sg = a[i] - (sg &gt;= a[i]);</span><br></pre></td></tr></table></figure>
+<p>至于原因，我大概写一下（因为我也是猜的</p>
+<p>首先对于第一堆之后的石子，我们不妨设其 $sg$ 值为 $y$，那么我们就能把后面一大堆石子替换成一堆有 $y$ 个石子，不妨设第一堆石子有 $x$ 个（正确性存疑</p>
+<p>我们考虑暴力计算 $(x,y)$ 的 $sg$ 值，我们有 $sg(x,y)=mex\lbrace sg(x-1,y),sg(x-2,y),\cdots,sg(1,y),sg(y)\rbrace$</p>
+<p>注意到如果 $sg(y)=y$，那么如果 $y&gt;=x$，那么容易得到 $sg(x,y)=x-1$</p>
+<p>如果 $y&lt;x$，那么 $sg(x,y)=x$，那么 $sg$ 值的计算就如上式，我们倒着合并即可</p>
+<p>接下来我们考虑一种特殊情况，$a_i$ 不降</p>
+<p>容易得到 $sg$ 应为 $a_1-((cnt_{a_1}-[a_n=a_1])\bmod 2)$，其中 $cnt_{a_1}$ 表示等于 $a_1$ 的数量</p>
+<h3 id="2018-2019-ACM-ICPC-Asia-Nanjing-Regional-Contest-A-Adrien-and-Austin"><a href="#2018-2019-ACM-ICPC-Asia-Nanjing-Regional-Contest-A-Adrien-and-Austin" class="headerlink" title="2018-2019 ACM-ICPC, Asia Nanjing Regional Contest A. Adrien and Austin"></a>2018-2019 ACM-ICPC, Asia Nanjing Regional Contest A. Adrien and Austin</h3><p>规则：有 $n$ 个石子排成一排，每个人可以取 $[1,k]$ 个石子，要求取出的石子必须连续</p>
+<p>分析：</p>
+<p>能够发现，如果先手能够将石子分成两部分，且这两部分石子相同，那么先手就能模仿后手的操作从而必胜</p>
+<p>所以先手必胜的条件是 $k\ge 2$ ，或者 $k=1$ 且 $n$ 为奇数 </p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="维持稳态"><a href="#维持稳态" class="headerlink" title="维持稳态"></a>维持稳态</h4><ol>
+<li><p>简要题意：给定一个正整数 $n$，每次操作可以减掉 $n$ 的一个不是 $1$ 和 $n$ 的因子，不能操作的人输，求是否先手必胜</p>
+<p>$n\le 10^9$</p>
+<p>简要题解：我们分三种情况讨论：</p>
+<ol>
+<li>$n$ 是奇数</li>
+<li>$n$ 是偶数但不是 $2$ 的幂</li>
+<li>$n$ 是 $2$ 的幂</li>
+</ol>
+<p>第一种情况，$n$ 是奇数，所以 $n$ 的因子 $d$ 也一定是奇数，因为我们一定有 $d|(n-d)$，所以 $n-d$ 一定不是 $2$ 的幂，所以第一种情况只能转化到第二种情况</p>
+<p>第二种情况，由于 $n$ 是偶数且不是 $2$​ 的幂，所以一定存在一个奇因子，所以一定能转化到第一种情况，由于第一种情况最终是必败态，所以第二种情况一定是必胜态</p>
+<p>第三种情况，当 $n$ 是 $2$ 的幂时，我们要么减掉 $\frac n 2$ 维持第三种情况，要么转换到第二种情况，但是第二种情况是必胜态，所以我们只能维持第三种情况，容易得到当 $n$ 是 $2$ 的偶数幂时必胜，奇数幂必败</p>
+<p><a href="">CF 1537D Deleting Divisors</a></p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/31/CF-1397D-Stoned-Game/">CF 1397D Stoned Game</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/09/Luogu-P1290-%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%B7%E7%9A%84%E6%B8%B8%E6%88%8F/">Luogu P1290 欧几里德的游戏</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/02/04/CF-786A-Berzerk/">CF 786A Berzerk</a> 再必胜和必败的基础上添加另一个状态平局</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/05/2018-2019-ACM-ICPC-Asia-Nanjing-Regional-Contest-A-Adrien-and-Austin/">2018-2019 ACM-ICPC, Asia Nanjing Regional Contest A Adrien and Austin</a></p>
+<p><a href="">The 16th Heilongjiang Provincial Collegiate Programming Contest I ICU4C</a> 可以转换成阶梯 $nim$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/23/2021%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A12-C-I-love-playing-games/">2021杭电多校2 C I love playing games</a> 直接 $dp$ 计算先手必胜/必败</p>
+<ol>
+<li><p>简要题意：给 $n$ 堆石子，每次操作可以 $n$ 堆石子中取若干个石子或者将一堆石子数大于等于 $2$ 的石子分成两堆石子</p>
+<p>$n\le 10^6$</p>
+<p>简要题解：最经典的 $multi-sg$，但是并没有什么有用的结论，所以我们直接打表找规律即可，能够得到</p>
+<script type="math/tex; mode=display">
+SG(x)=\left\{\begin{matrix}x-1，x\mod4 = 0
+\\x，x\mod4=1~or~2
+\\ x+1，x\mod4=3 \end{matrix}\right.</script><p><a href="">hdu 3032 Nim or not Nim?</a></p>
+</li>
+</ol>
+<h2 id="Anti-Sg"><a href="#Anti-Sg" class="headerlink" title="Anti-Sg"></a>Anti-Sg</h2><h3 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h3><p>大概就是进行完最后一步操作的人失败</p>
+<h3 id="SJ定理"><a href="#SJ定理" class="headerlink" title="SJ定理"></a>SJ定理</h3><p>先手必胜当且仅当：</p>
+<ol>
+<li>游戏的 $sg$ 值不为 $0$ 且至少一个游戏的 $sg$ 值大于 $1$</li>
+<li>游戏的 $sg$ 值为 0 且没有任何一个游戏的 $sg$ 值大于 1</li>
+</ol>
+<h2 id="Multi-Sg"><a href="#Multi-Sg" class="headerlink" title="Multi-Sg"></a>Multi-Sg</h2><h3 id="简介-3"><a href="#简介-3" class="headerlink" title="简介"></a>简介</h3><p>一个单一游戏的后继可以为多个单一游戏</p>
+<h2 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h2><ol>
+<li><p>直接计算 $sg$ </p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/12/CF-850C-Arpa-and-a-game-with-Mojtaba/">CF 850C Arpa and a game with Mojtaba</a></p>
+</li>
+<li></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-flag"></i>　感谢阅读　　　　-------------</div>
+    
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tech/" rel="tag"># Tech</a>
+              <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag"># 博弈论</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/26/%E4%BA%8C%E5%88%86%E5%9B%BE/" rel="prev" title="二分图">
+                  <i class="fa fa-chevron-left"></i> 二分图
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/11/26/CF-1451D-Circle-Game/" rel="next" title="CF 1451D Circle Game">
+                  CF 1451D Circle Game <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DDOSvoid</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.2m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">18:52</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-use    r"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/D_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/D_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="简介大概会介绍几种常见的优化 $dp$ 的方法 &#x3D; &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DP的优化">
+<meta property="og:url" content="http://example.com/2020/10/23/DP%E7%9A%84%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="DDOSvoid&#39;s Blog">
+<meta property="og:description" content="简介大概会介绍几种常见的优化 $dp$ 的方法 &#x3D; &#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-23T11:09:55.000Z">
+<meta property="article:modified_time" content="2021-11-01T12:10:34.609Z">
+<meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="Tech">
+<meta property="article:tag" content="DP">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/10/23/DP%E7%9A%84%E4%BC%98%E5%8C%96/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>DP的优化 | DDOSvoid's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">DDOSvoid's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%B1%E5%8C%96%E6%9D%A1%E4%BB%B6%E4%BC%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">弱化条件优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E7%AD%94%E6%A1%88%E5%BD%A2%E5%BC%8F%E4%BC%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">观察答案形式优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-number">3.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E4%BC%98%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">观察状态转移优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-2"><span class="nav-number">4.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E5%86%B3%E7%AD%96%E7%82%B9%E4%BC%98%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">观察决策点优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-3"><span class="nav-number">5.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82%E4%BC%98%E5%8C%96"><span class="nav-number">6.</span> <span class="nav-text">矩阵快速幂优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-4"><span class="nav-number">6.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96"><span class="nav-number">7.</span> <span class="nav-text">单调队列优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-5"><span class="nav-number">7.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E5%8D%95%E8%B0%83%E6%80%A7%E4%BC%98%E5%8C%96"><span class="nav-number">8.</span> <span class="nav-text">决策单调性优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E8%BE%B9%E5%BD%A2%E4%B8%8D%E7%AD%89%E5%BC%8F"><span class="nav-number">8.1.</span> <span class="nav-text">四边形不等式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">8.2.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97"><span class="nav-number">8.2.1.</span> <span class="nav-text">单调队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%B2%BB"><span class="nav-number">8.2.2.</span> <span class="nav-text">分治</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-6"><span class="nav-number">8.3.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96"><span class="nav-number">9.</span> <span class="nav-text">斜率优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E6%83%85%E5%86%B5"><span class="nav-number">9.1.</span> <span class="nav-text">适用情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-7"><span class="nav-number">9.2.</span> <span class="nav-text">例题</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DDOSvoid"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">DDOSvoid</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">647</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DDOSvoid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DDOSvoid" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/34531" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;34531" rel="noopener" target="_blank">Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://codeforces.com/profile/DDOSvoid" title="Codeforces → http:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;DDOSvoid" rel="noopener" target="_blank">Codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://acm.hdu.edu.cn/userstatus.php?user=DDOSvoid" title="Hdu → http:&#x2F;&#x2F;acm.hdu.edu.cn&#x2F;userstatus.php?user&#x3D;DDOSvoid" rel="noopener" target="_blank">Hdu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/manziqi/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;manziqi&#x2F;" rel="noopener" target="_blank">Title1</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jczhang.top/" title="https:&#x2F;&#x2F;jczhang.top&#x2F;" rel="noopener" target="_blank">JC Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/23/DP%E7%9A%84%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DP的优化
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-23 19:09:55" itemprop="dateCreated datePublished" datetime="2020-10-23T19:09:55+08:00">2020-10-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-01 20:10:34" itemprop="dateModified" datetime="2021-11-01T20:10:34+08:00">2021-11-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>大概会介绍几种常见的优化 $dp$ 的方法 = =</p>
+<a id="more"></a>
+<h2 id="弱化条件优化"><a href="#弱化条件优化" class="headerlink" title="弱化条件优化"></a>弱化条件优化</h2><p>这个做法只能用于最优化问题，大概我们通过减弱题目的条件来多求得一些更差的状态但是我们仍然能求得最优的状态</p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ol>
+<li><p>简要题意：给定 $n$ 个数轴上的点，以及每个点可以延伸的长度，现在每个点只能向左或者右一个方向延伸，求这 $n$ 个延伸出的线段的并的最大值</p>
+<p>$n\le 100$</p>
+<p>简要题解：</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/08/CF-559E-Gerald-and-Path/">CF 559E Gerald and Path</a></p>
+</li>
+</ol>
+<h2 id="观察答案形式优化"><a href="#观察答案形式优化" class="headerlink" title="观察答案形式优化"></a>观察答案形式优化</h2><p>大概就是最优解的答案一定能转换成某种形式，这种形式可以快速求解</p>
+<h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><ol>
+<li><p>注意到我们一定能将最优解的划分变成只有 $1$ 和 $c$​ 两种 </p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/21/CF-940E-Cashback/">CF 940E Cashback</a></p>
+</li>
+<li><p>简要题意：给定一个长为 $n$ 的序列 $a$，需要将 $a$ 划分成若干段，使得所有段的代价和最小，一段的代价定义为这一段中不同的数字的种数的平方</p>
+<p>简要题解：</p>
+<p>注意到答案的上界为 $n$​，那么一个长度为 $len$​ 的区间的不同数字的种数不能超过 $\sqrt {len}$​，否则一定不优</p>
+<p>另外还能发现 $f$ 一定单调不降，所以我们只需要记录 $O(\sqrt n)$ 最靠左的满足数字种数不超过 $k,k\in[1,\sqrt n]$ 的端点即可</p>
+<p>总的时间复杂度就是 $O(n\sqrt n)$​</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/28/Luogu-P2943-USACO09MAR-Cleaning-Up-G/">Luogu P2943 [USACO09MAR]Cleaning Up G</a></p>
+</li>
+</ol>
+<h2 id="观察状态转移优化"><a href="#观察状态转移优化" class="headerlink" title="观察状态转移优化"></a>观察状态转移优化</h2><p><del>不知道这样说是不是对的</del></p>
+<p>有一类题目的状态转移要求复杂，想要根据状态转移的限制进行优化需要使用大量数据结构</p>
+<p>但有时能通过状态之间的联系找到更简单的优化方式</p>
+<h3 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h3><p>[]</p>
+<h2 id="观察决策点优化"><a href="#观察决策点优化" class="headerlink" title="观察决策点优化"></a>观察决策点优化</h2><p>在某些题目中，决策点和其可以转移到的点之间可能有一些微妙的性质，我们通过对这些性质的分析来进行优化</p>
+<h3 id="例题-3"><a href="#例题-3" class="headerlink" title="例题"></a>例题</h3><ol>
+<li><p>简要题意：给定 $n$​ 和 $m$​ 个素数 $P$​，对于一个数 $x$​，每次可以选择一个 $p_i$​，将 $x$​ 变成 $x-x\bmod p_i$​，令 $f_i$​ 表示将 $i$​ 变成 $0$​ 的最小步数，求 $\sum_{i=1}^nf_i\times 23333^{n-i}\bmod 2^{64}$​</p>
+<p>$n\le 2\times 10^6,|P|\le 10^5,T\le 15$​</p>
+<p>容易发现 $O(n\log n)$ 的算法是不能通过的</p>
+<p>我们考虑对于 $x$​，$x$​ 能够成为决策点的条件是至少存在一个 $p\in P$​，且 $p|x$，另外能够注意到 $x$ 可以转移到的点为 $[x+1,x+p-1]$，其中 $p$ 是最大的整除 $x$，且属于给定素数集的素数</p>
+<p>另外容易发现 $f_i$ 单调不降，能够发现 $dp$ 一定存在决策单调性，且每个决策点能转移到的点是自己后面一段区间，所以我们直接 $dp$​，同时维护当前决策点，当前决策点失效时暴力右移即可，时间复杂度 $O(n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/08/29/2021CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B-L-Remove/">2021CCPC网络赛 L Remove</a></p>
+</li>
+</ol>
+<h2 id="矩阵快速幂优化"><a href="#矩阵快速幂优化" class="headerlink" title="矩阵快速幂优化"></a>矩阵快速幂优化</h2><p>矩阵快速幂一般是用来优化常系数线性递推的，但是某些题的转移也是可以写成矩阵的形式的</p>
+<h3 id="例题-4"><a href="#例题-4" class="headerlink" title="例题"></a>例题</h3><ol>
+<li><p>简要题意：现在有一块长为 $L$ 的巧克力，我们可以将其切成若干段，不妨假设切成了 $m$ 段，每段的长度为 $a_i$，那么这种切法的价值就是 $\sum_{i=1}^ma_i^2$，现在给定 $n$ 个位置，这些位置不能切，求所有切法的价值和，答案对 $1e9+7$ 取模</p>
+<p>$L\le 10^9,n\le 10^5$</p>
+<p>简要题解：我们考虑 $dp$，令 $f_i$ 表示切的位置在 $i$ 的价值和，容易得到 $f_i=\sum_{j=0}^{i-1}f_j(i-j)^2$</p>
+<p>这个东西咋一看没法优化，但其实这个东西可以写成矩阵的形式，我们考虑用矩阵维护 $\sum_{i=0}^nf_i,\sum_{i=0}^n(n+1-i)f_i,\sum_{i=0}^n{(n+1-i)^2f_i}$，然后发现三个东西可以转移的，转移矩阵为</p>
+<script type="math/tex; mode=display">
+\begin{vmatrix}
+1 & 0 & 1\\
+1 & 1 & 1\\
+1 & 2 & 2\\
+\end{vmatrix}</script><p>注意这个转移矩阵是左乘的，然后没法切的转移就是将第三列都减掉一个 $1$，时间复杂度 $O(n\log n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/11/01/%E3%80%90%E4%B8%AA%E4%BA%BA%E8%B5%9B%E7%BB%84%E3%80%912021-2022%E5%B9%B4%E5%BA%A6%E7%AC%AC%E4%B8%89%E5%B1%8A%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%BC%96%E7%A8%8B%E6%8C%91%E6%88%98%E8%B5%9B%EF%BC%88%E7%A7%8B%E5%AD%A3%E8%B5%9B%EF%BC%89-G-%E5%B7%A7%E5%85%8B%E5%8A%9B/">【个人赛组】2021-2022年度第三届全国大学生算法设计与编程挑战赛（秋季赛） G 巧克力</a></p>
+</li>
+</ol>
+<h2 id="单调队列优化"><a href="#单调队列优化" class="headerlink" title="单调队列优化"></a>单调队列优化</h2><p>一句话总结，式子能用单调队列优化的就能用单调队列优化（套娃？</p>
+<p>举个栗子</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n + <span class="number">1</span>; ++i) </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = max(<span class="number">0</span>, i - m - <span class="number">1</span>); j &lt;= i - <span class="number">1</span>; ++j)</span><br><span class="line">        f[i] = max(f[i], f[j] + s[i - <span class="number">1</span>] - s[j]);</span><br></pre></td></tr></table></figure>
+<p>我们稍微转换一下能够得到 $f_i = s_{i-1}+max\{f_j-s_j\}$</p>
+<p>其中 $i-j-1\le m$，后面那一坨与 $i$ 没关系且是一个滑动窗口，所以可以用单调队列进行优化</p>
+<h3 id="例题-5"><a href="#例题-5" class="headerlink" title="例题"></a>例题</h3><p><a target="_blank" rel="noopener" href="https:ddosvoid.github.io/2020/10/23/Luogu-P2034-选择数字/">Luogu P2034 选择数字</a></p>
+<h2 id="决策单调性优化"><a href="#决策单调性优化" class="headerlink" title="决策单调性优化"></a>决策单调性优化</h2><p>决策单调性优化适用于 $1D/1D$ 动态规划</p>
+<p>简单来讲，我们令 $g_i$ 表示 $f_i$ 是由 $f_{g_i}$ 转移而来的，如果我们说 $f$ 的转移满足决策单调性，则意味着 $g_i \ge g_j(i&gt;j)$</p>
+<h3 id="四边形不等式"><a href="#四边形不等式" class="headerlink" title="四边形不等式"></a>四边形不等式</h3><p>定义：对于一个定义在整数集上的二元函数 $w(x,y)$，我们称该不等式为 $\forall a&lt;b&lt;c&lt;d,w(a,c)+w(b,d)\le w(a,d)+w(b,c)$ 四边形不等式</p>
+<p>若二元函数 $w(x,y)$ 满足 $\forall a&lt;b,w(a,b)+w(a+1,b+1)&lt;w(a,b+1)+w(a+1,b)$，则 $w(x,y)$ 满足四边形不等式</p>
+<p>对于一个 $1D/1D$ 动态规划，我们定义 $w(x,y)$ 为将 $x$ 作为 $y$ 的决策点的代价，如果该二元函数满足四边形不等式，则该动态规划一定满足决策单调性</p>
+<p>证明：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/83547/zong-dong-tai-gui-hua-di-ben-zhi-kan-si-bian-xing-fou-deng-shi-you-hua">https://www.luogu.com.cn/blog/83547/zong-dong-tai-gui-hua-di-ben-zhi-kan-si-bian-xing-fou-deng-shi-you-hua</a></p>
+<p>大概讲一下，我们以 <a target="_blank" rel="noopener" href="https:ddosvoid.github.io/2020/10/23/Luogu-P3195-HNOI2008-玩具装箱/">Luogu P3195 [HNOI2008]玩具装箱TOY</a> 为例</p>
+<p>我们使用反证法，假设 $\exists i &lt; j , g_i &gt; g_j$，即 $g_j&lt;g_i&lt;i&lt;j$</p>
+<p>我们令 $w(x,y)=(s_y-s_x-L)^2$，那么我们有 $f_{g_i}+w(g_i, i)&lt;f_{g_j}+w(g_j,i)$ 和 $f_{g_j}+w(g_j,j)&lt;f_{g_i}+w(g_i,j)$</p>
+<p>两式相加，我们能够得到 $w(g_i,i)+w(g_j,j)&lt;w(g_j,i)+w(g_i,j)$</p>
+<p>由于是反证，所以我们只需要证明 $w(g_i,i)+w(g_j,j)\ge w(g_j,i)+w(g_i,j)$，发现这个东西正是四边形不等式</p>
+<p>那么如果要证明该题满足决策单调性，只需要证明 $\forall a&lt;b,w(a,b)+w(a+1,b+1)\le w(a,b+1)+w(a+1,b)$ </p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><h4 id="单调队列"><a href="#单调队列" class="headerlink" title="单调队列"></a>单调队列</h4><p>根据决策单调性，每一个 $x$ 能做的转移是一段区间，且随着 $x$ 的增大，区间逐渐靠右且不相交，大概是这个样子 $1122222333455566$</p>
+<p>我们拿一个单调队列来维护这个东西，考虑一个 $x$ 入栈，如果 $x$ 的转移在栈顶所能转移的区间的左端点更优，则显然可以直接扔掉队尾，否则直接二分</p>
+<p>但是这个东西复杂度正确当且仅当 $w_{x,y}$ 可以 $O(1)$ 计算</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">F</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 用 x 来更新 y</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Queue</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> l, r, k;</span><br><span class="line">&#125; Q[maxn]; <span class="keyword">int</span> h, t;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bs</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = Q[t].l, r = Q[t].r, mid, ans = Q[t].r + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">        mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (F(x, mid) &gt;= F(Q[t].k, mid)) ans = mid, r = mid - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>; </span><br><span class="line">    &#125; <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    Q[h = t = <span class="number">1</span>] = &#123; <span class="number">1</span>, n, <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">while</span> (h &lt; t &amp;&amp; Q[h].r &lt; i) ++h;</span><br><span class="line">        f[i] = F(Q[h].k, i);</span><br><span class="line">        <span class="keyword">while</span> (h &lt; t &amp;&amp; F(i, Q[t].l) &gt;= F(Q[t].k, Q[t].l)) --t;</span><br><span class="line">        <span class="keyword">int</span> p = bs(i); Q[t].r = p - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (p &lt;= n) Q[++t] = &#123; p, n, i &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h4><p>分治的做法类似于整体二分，令 $solve(l, r, L, R)$ 表示 $[l,r]$ 的决策点在 $[L,R]$</p>
+<p>我们每次取 $[l,r]$ 的中点 $m$，然后扫 $[L,R]$ 找 $m$ 的决策点 $p$，然后递归处理</p>
+<p>一共 $\log n$ 层，每层的复杂度都是 $n$</p>
+<p>这样做的优势在于可以用类似莫队的方法累加来求 $w_{x,y}$</p>
+<p>缺点在于转移不按照顺序，必须保证 $f_i$ 和 $f_j$ 之间没有关系</p>
+<h3 id="例题-6"><a href="#例题-6" class="headerlink" title="例题"></a>例题</h3><p><a target="_blank" rel="noopener" href="https:ddosvoid.github.io/2020/10/23/Luogu-P3195-HNOI2008-玩具装箱/">Luogu P3195 [HNOI2008]玩具装箱TOY</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/10/24/Luogu-P3515-POI2011-Lightning-Conductor/">P3515 [POI2011]Lightning Conductor</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/10/24/CF-868F-Yet-Another-Minimization-Problem/">CF 868F Yet Another Minimization Problem</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/03/29/2020-2021-ACM-ICPC-Asia-Seoul-Regional-Contest-L-Two-Buildings/">2020-2021 ACM-ICPC, Asia Seoul Regional Contest L Two Buildings</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/13/%E6%A0%A1%E5%86%85%E8%B5%9B-%E5%90%88%E5%B9%B6%E6%95%B0%E7%BB%84/">校内赛 合并数组</a> 并不是 $dp$ 的决策单调性优化</p>
+<h2 id="斜率优化"><a href="#斜率优化" class="headerlink" title="斜率优化"></a>斜率优化</h2><p>斜率优化适用于 $1D/1D$​ 动态规划</p>
+<p>考虑这样一种转移：$f_i=min(f_j+a_i\times c_j+b_i)$，其中 $j&lt;i$ </p>
+<p>我们将原式展开：$f_i+b_i-a_i\times c_i=f_j$</p>
+<p>我们把上式看成直线解析式，$b=f_i+b_i,k=a_i,x=c_j,y=f_j$</p>
+<p>对于这条直线，我们知道斜率 $k$，并且知道所有点 $(c_j,f_j)$​，求截距最小，那么相当于把这个直线从最下面向上移动，碰到第一个点停止，此时截距就是我们想要的值</p>
+<p>考虑维护这个东西，不妨假设斜率 $k&gt;0$​，那么显然碰到的点都在这些点组成的下凸壳上，我们知道下凸壳的相邻两点组成的直线的斜率是递增的，并且这条直线在上移的时候最先碰到的点是下凸壳上第一个满足 $slope(p_j,p_{j+1})&gt;a_i$ 的点</p>
+<p>所以如果这个时候直线的斜率是递增的，我们可以使用单调队列来维护</p>
+<h3 id="适用情况"><a href="#适用情况" class="headerlink" title="适用情况"></a>适用情况</h3><p>最大值：</p>
+<p>需要维护上凸壳，斜率要求为负</p>
+<p>斜率 $k$ 递减，每次增加的点的横坐标 $x$ 递增，可以使用单调队列维护 </p>
+<p>最小值：</p>
+<p>需要维护下凸壳，斜率要求为正</p>
+<p>斜率 $k$ 和每次增加的点的横坐标 $x$​ 都递增可以使用单调队列维护 </p>
+<p>其它情况直接上 $cdq$ 吧</p>
+<h3 id="例题-7"><a href="#例题-7" class="headerlink" title="例题"></a>例题</h3><ol>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a$ 和 $L$，现在需要将序列分成若干段，如果将 $a_i$ 到 $a_j$ 放到一段，那么它们的代价是 $(j-i+\sum_{k=i}^ja_k-L)^2$，求最小代价</p>
+<p>$n\le 5\times 10^4$​</p>
+<p>简要题解：容易得到 $dp$ 式子，$f_i=min\lbrace f_j+(s_i-s_j+i-j-1-L)^2\rbrace$</p>
+<p>我们令 $a_i=s_i+i$，$b_j=s_j+L+1$，那么 $f_i=min\lbrace f_j+(a_i-b_j)^2\rbrace$</p>
+<p>化简成直线的形式可以得到 $f_i-a^2_i+2a_ib_j=f_j+b_j^2$，其中 $y=f_j+b^2_j,x=b_j,k=2a_i,b=f_i-a_i^2$</p>
+<p>其中 $k$ 和 $x$ 均递增，且 $k&gt;0$​​，所以可以直接使用单调队列来维护下凸壳</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/08/01/Luogu-P3195-HNOI2008-%E7%8E%A9%E5%85%B7%E8%A3%85%E7%AE%B1-%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/">Luogu P3195 [HNOI2008]玩具装箱(斜率优化)</a></p>
+</li>
+<li><p>简要题意：有 $n$ 根柱子，每根柱子高度为 $h_i$，如果要架桥在 $i$ 和 $j$ 两根柱子间，需要花费 $(h_i-h_j)^2$，同时会拆掉 $i$ 到 $j$ 之间所有其它柱子，拆掉第 $i$ 根柱子的代价是 $w_i$，求连通 $1$ 和 $n$ 的最小代价，需要注意任意两座桥不能相交除了端点之外的地方相交</p>
+<p>$n\le 10^5,0\le h_i,|w_i|\le 10^6$​</p>
+<p>简要题解：</p>
+<p>容易得到 $dp$ 方程，$f_i=min\lbrace f_j+(h_i-h_j)^2+s_{i-1}-s_j\rbrace $​</p>
+<p>化成直线的形式，$f_i-s_{i-1}-h_i^2+2h_ih_j=f_j+h_j^2-s_j$​，其中 $y=f_j+h_j^2-s_j,x=h_j,k=2h_i,b=f_i-s_{i-1}-h_i^2$</p>
+<p>注意到 $k&gt;0$，但 $k$ 和 $x$ 都不递增，所以只能使用 $cdq$ 来维护下凸壳进行更新</p>
+<p>注意到 $k$ 和 $x$ 是同一个数组，所以 $cdq$ 可以做到 $O(n\log n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/08/01/Luogu-P4655-CEOI2017-Building-Bridges/">Luogu P4655 [CEOI2017]Building Bridges</a></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-flag"></i>　感谢阅读　　　　-------------</div>
+    
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tech/" rel="tag"># Tech</a>
+              <a href="/tags/DP/" rel="tag"># DP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/10/23/CF-914E-Palindromes-in-a-Tree/" rel="prev" title="CF 914E Palindromes in a Tree">
+                  <i class="fa fa-chevron-left"></i> CF 914E Palindromes in a Tree
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/10/23/Luogu-P2034-%E9%80%89%E6%8B%A9%E6%95%B0%E5%AD%97/" rel="next" title="Luogu P2034 选择数字">
+                  Luogu P2034 选择数字 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DDOSvoid</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.2m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">18:52</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-use    r"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/D_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/D_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="简介总结一些非常经典的套路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="经典套路和技巧">
+<meta property="og:url" content="http://example.com/2020/11/11/%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/index.html">
+<meta property="og:site_name" content="DDOSvoid&#39;s Blog">
+<meta property="og:description" content="简介总结一些非常经典的套路">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-11T12:01:46.000Z">
+<meta property="article:modified_time" content="2021-11-01T11:02:08.717Z">
+<meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="Tech">
+<meta property="article:tag" content="套路">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/11/11/%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>经典套路和技巧 | DDOSvoid's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">DDOSvoid's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.</span> <span class="nav-text">一些注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">3.</span> <span class="nav-text">位运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E5%85%B8%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">字典序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-number">5.</span> <span class="nav-text">前缀和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%AE%E5%88%86"><span class="nav-number">6.</span> <span class="nav-text">差分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E8%B0%83%E6%80%A7"><span class="nav-number">7.</span> <span class="nav-text">单调性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E5%92%8C%E7%BA%A7%E6%95%B0"><span class="nav-number">8.</span> <span class="nav-text">调和级数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%AF%94%E8%BE%83%E6%9D%82%E7%9A%84%E4%B8%9C%E8%A5%BF"><span class="nav-number">9.</span> <span class="nav-text">一些比较杂的东西</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DDOSvoid"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">DDOSvoid</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">647</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DDOSvoid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DDOSvoid" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/34531" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;34531" rel="noopener" target="_blank">Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://codeforces.com/profile/DDOSvoid" title="Codeforces → http:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;DDOSvoid" rel="noopener" target="_blank">Codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://acm.hdu.edu.cn/userstatus.php?user=DDOSvoid" title="Hdu → http:&#x2F;&#x2F;acm.hdu.edu.cn&#x2F;userstatus.php?user&#x3D;DDOSvoid" rel="noopener" target="_blank">Hdu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/manziqi/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;manziqi&#x2F;" rel="noopener" target="_blank">Title1</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jczhang.top/" title="https:&#x2F;&#x2F;jczhang.top&#x2F;" rel="noopener" target="_blank">JC Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/11/%E7%BB%8F%E5%85%B8%E5%A5%97%E8%B7%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          经典套路和技巧
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-11 20:01:46" itemprop="dateCreated datePublished" datetime="2020-11-11T20:01:46+08:00">2020-11-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-01 19:02:08" itemprop="dateModified" datetime="2021-11-01T19:02:08+08:00">2021-11-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>10k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>总结一些非常经典的套路</p>
+<a id="more"></a>
+<h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><ol>
+<li><p>用 $priority\underline{}queue$ 实现的可删除堆比 $multiset$ 要快接近一倍</p>
+</li>
+<li><p>$O(1)$ 计算二进制位的几个内置函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> __builtin_ffs (<span class="keyword">unsigned</span> <span class="keyword">int</span> x)</span><br><span class="line">返回x的最后一位<span class="number">1</span>的是从后向前第几位</span><br><span class="line"><span class="keyword">int</span> __builtin_clz (<span class="keyword">unsigned</span> <span class="keyword">int</span> x)</span><br><span class="line">返回前导 <span class="number">0</span> 的个数</span><br><span class="line"><span class="keyword">int</span> __builtin_ctz (<span class="keyword">unsigned</span> <span class="keyword">int</span> x)</span><br><span class="line">返回后面的 <span class="number">0</span> 的个数，和 __builtin_clz 相对。</span><br><span class="line"><span class="keyword">int</span> __builtin_popcount (<span class="keyword">unsigned</span> <span class="keyword">int</span> x)</span><br><span class="line">返回二进制表示中 <span class="number">1</span> 的个数。</span><br><span class="line"><span class="keyword">int</span> __builtin_parity (<span class="keyword">unsigned</span> <span class="keyword">int</span> x)</span><br><span class="line">返回 x 的奇偶校验位，也就是 x 的 <span class="number">1</span> 的个数模 <span class="number">2</span> 的结果</span><br><span class="line"></span><br><span class="line">注意上面的函数都有对应 <span class="keyword">long</span> <span class="keyword">long</span> 版本</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ol>
+<h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><p>一定要每一位单独考虑</p>
+<ol>
+<li><p>简要题意：给定一个有 $n$ 个点的完全图，无向边 $<u,v>$ 的权值为 $(u~xor~v)\times C$，$C$ 是给定的常数，现再给定 $m$ 条单向边 $(u,v,w)$ 和起点 $s$ 以及终点 $t$，求 $s$ 到 $t$​ 的最短路</p>
+<p>$n\le 10^5,m\le 5\times 10^5$</p>
+<p>简要题解：<strong>我们对于特殊的边按位考虑，也就是把边拆开，对于点 $u$，向 $u~xor~2^i$ 连边，边权为 $C\cdot2^i$</strong>​</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/11/Luogu-P4366-Code-4-%E6%9C%80%E7%9F%AD%E8%B7%AF/">Luogu P4366 [Code+#4]最短路</a> </p>
+</li>
+<li><p>简要题意：给定两个长度为 $n$ 的序列 $a_i$ 和 $b_i$，求 $\forall i\in[1,n],j\in[1,n],a_i+b_j$​ 的异或和</p>
+<p>$n\le 2\times 10^5$​</p>
+<p>简要题解：我们先将 $x$ 和 $y$ 对 $2^{k+1}-1$ 取模</p>
+<p><strong>那么 $x+y$​ 的第 $k$​ 位是 $1$​ 的条件为 $2^k\le a_i+b_j&lt;2^{k+1},2^{k}+2^{k+1}\le a_i+b_j$​​ </strong></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/15/Luogu-T51127-SDSCD6T2-B/">Luogu T51127 SDSCD6T2</a> </p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，将其划分成 $m$ 段连续区间，每段区间的费用为这段区间的异或和，求所有段的费用的或的最小值</p>
+<p>$n\le 5\times 10^5$</p>
+<p>简要题解：<strong>我们考虑分成 $m$​ 段相当于除了 $n$ 以外，再选 $m-1$​​​​ 个右端点</strong></p>
+<p>然后我们考虑按位贪心，注意到如果某一位出现了奇数次那么它一定要算到答案里</p>
+<p>否则我们维护合法的右端点，注意到对于第 $k$ 位，所有前缀异或和为 $0$​ 的点都可以作为一个右端点，而这个时候注意到点 $n$ 的前缀异或和一定是 $0$，所以我们只需要判断右端点的数量是否大于等于 $m$ 即可，然后每次做完将前缀异或和为 $1$ 的点标记为不能选为右端点</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/15/bzoj-4245-ONTAK2015-OR-XOR/">bzoj 4245 [ONTAK2015]OR-XOR</a> </p>
+</li>
+<li><p>简要题意：给定 $n$ 个数，求有多少对数，满足异或有奇数个 $1$</p>
+<p>$n\le 10^7$</p>
+<p>简要题解：<strong>异或不会改变两个数二进制下 $1$ 的个数的奇偶性</strong></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/15/Luogu-P4932-%E6%B5%8F%E8%A7%88%E5%99%A8/">Luogu P4932 浏览器</a> </p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/16/Luogu-P2114-NOI2014-起床困难综合症/">Luogu P2114 [NOI2014]起床困难综合症</a> 从高位到低位贪心</p>
+</li>
+<li><p>简要题意：给定一个边权均为 $1$ 的有向图，如果 $a_i~and~a_j=a_j$，则有一条 $i$ 连向 $j$ 的边，额外再给 $m$ 条有向边，求 $1$ 到其它所有点的最短路</p>
+<p>$n\le 2\times 10^5,m\le 3\times 10^5,1\le a_i &lt; 2^{20}$</p>
+<p>简要题解：一个显然的思路是建 $2^{20}$​ 个点，然后每个点向自己的子集连边，复杂度 $O(3^{20})$​ 爆炸</p>
+<p>考虑优化边的数量，每个点只向自己去掉一个二进制一个 $1$ 的点连边，这样复杂度 $O(20\cdot 2^{20})$，$01~bfs$ 即可</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/16/某场模拟赛-walk/">某场模拟赛 walk</a> </p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，求所有子区间的和的异或和</p>
+<p>$n\le 10^5,\sum a \le 10^6$</p>
+<p>简要题解：将区间和变成前缀和相减，然后按位考虑</p>
+<p>假设现在在考虑第 $k$ 位，我们把包括第 $k$ 位在内的高位都扔掉</p>
+<p>然后我们考虑 $x - y$</p>
+<p><strong>如果 $x$ 的第 $k$ 位是 $1$，那么 $y$ 的 $k$ 位是 $1$ 且 $x&lt;y$ 或 $y$ 的第 $k$ 位是 $0$ 且 $x\ge y$ 才能保证 $x-y$ 的第 $k$ 位是 $1$​ ​</strong></p>
+<p>$x$ 的第 $k$ 位是 $0$ 的情况正好相反</p>
+<p>这个大小关系可以用树状数组维护，时间复杂度 $O(n\log^2 \sum a_i)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/24/Luogu-P3760-TJOI2017-异或和/">Luogu P3760 [TJOI2017]异或和</a> 相减和相加的情况类似</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/30/CF-1457D-XOR-gun/">CF 1457D XOR-gun</a> 有关异或之后比较大小一定要注意最高位</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/30/CF-1438E-Yurii-Can-Do-Everything/">CF 1438E Yurii Can Do Everything</a> 一种全新的枚举方式</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/03/CF-875D-High-Cry/">CF 875D High Cry</a> 满足区间或大于区间最大值的区间个数</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/24/CF-959E-Mahmoud-and-Ehab-and-the-xor-MST/">CF 959E Mahmoud and Ehab and the xor-MST</a> $0$ 到 $n-1$ 的最小生成树，边 $u,v$ 的边权为 $u~xor~v$  </p>
+</li>
+<li><p><a href="">CF 981D Bookshelves</a> 从高位到低位贪心即可，对于之前的局面只需要存储值即可</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/02/24/CF-986C-AND-Graph/">CF 986C AND Graph</a> 当且仅当两点的权值的与为 $0$，两点之间连边，求连通块个数</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/03/21/2020-2021-Winter-Petrozavodsk-Camp-Belarusian-SU-Contest-XXI-Open-Cup-Grand-Prix-of-Belarus-D-Bank-Security-Unification/">2020-2021 Winter Petrozavodsk Camp, Belarusian SU Contest (XXI Open Cup, Grand<br>  Prix of Belarus) D Bank Security Unification</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/03/21/2020-2021-Winter-Petrozavodsk-Camp-Belarusian-SU-Contest-XXI-Open-Cup-Grand-Prix-of-Belarus-C-Brave-Seekers-of-Unicorns/">2020-2021 Winter Petrozavodsk Camp, Belarusian SU Contest (XXI Open Cup, Grand<br>  Prix of Belarus) C Brave Seekers of Unicorns</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/06/CF-766E-Mahmoud-and-a-xor-trip/">CF 766E Mahmoud and a xor trip</a> 拆位啊，拆位</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/25/2021%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A13-I-Kuriyama-Mirai-and-Exclusive-Or/">2021牛客多校3 I Kuriyama Mirai and Exclusive Or</a> 连续数字的 $2^i$​ 这个二进制位是按照 $2^{i+1}$​ 为循环节，且这种情况下的每个二进制位的差分标记是每隔 $2^i$​​​ 打一个</p>
+</li>
+<li><p>简要题意：给定 $n$ 个数 $a_i$ 和 $m$ 次询问，每次询问给定四个参数 $b,x,l,r$，表示从 $a[l]$ 到 $a[r]$ 选择最大的 $b\oplus (a_i+x)$，其中 $\oplus$ 表示异或</p>
+<p>$n,m\le 2\times 10^5,0\le a,b,x\le 10^5$</p>
+<p>简要题解：我们考虑从高位到低位贪心，我们不妨假设现在已经选出的数的大小为 $ans$，那么现在要选第 $i$ 位，根据 $b$ 是否有 $i$ 这个二进制位，$a+x$ 的区间是 $[ans,ans+2^i-1]$ 或 $[ans+2^i,ans+2^{i+1}-1]$​，区间查询是否有一个数的大小属于某个区间可以用主席树维护，时间复杂度 $O(n\log ^2n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/08/08/Luogu-P3293-SCOI2016-%E7%BE%8E%E5%91%B3/">Luogu P3293 [SCOI2016]美味</a></p>
+</li>
+<li><p>简要题意：给定 $n$ 个物品和 $m$ 个属性以及常数 $w$，第 $i$ 个物品有一个价值 $c_i$ 以及其所拥有的属性 $S_i$，现在要依次选择若干个物品，满足相邻两个物品 $i$ 和 $j$ 满足 $i&lt;j\wedge w+c_i\ge c_j\wedge S_i\subseteq S_j$，求最多选择多少个物品</p>
+<p>$n\le 10^5,m\le 18$</p>
+<p>简要题解：首先考虑 $cdq$ 分治解决第一个和第二个限制，对于第三个限制，我们考虑每次 $cdq$ 分治的时候将左部的每个点都贡献到自己的超集，这样可以做到 $O(2^m)$ 预处理，$O(1)$ 查询，或者我们考虑用右部的每个点求子集查询，这样是 $O(1)$ 预处理，$O(2^m)$ 查询，我们可以平衡一下，前 $\frac n 2$ 位贡献到超集，后 $\frac n 2 $ 子集查询，这样做的时间复杂度为 $O(2^{\frac n 2}n\log n+n\log^2 n)$</p>
+<p><strong>二进制平衡</strong></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/09/24/Luogu-P7842-%E3%80%8CC-E-L-U-03%E3%80%8D%E6%8E%A2%E9%99%A9%E8%80%85%E7%AC%94%E8%AE%B0-III/">Luogu P7842 「C.E.L.U-03」探险者笔记 III</a></p>
+</li>
+<li><p>简要题意：给定 $n$ 个点完全图，第 $i$ 个点的权值是 $a_i$，对于连接 $(u,v)$ 边，它的权值是 $a[u]~xor~a[v]$ 求最小生成树</p>
+<p>$n\le 2\times 10^5$</p>
+<p>简要题解：我们考虑 $kruskal$ 按照边的权值加边</p>
+<p>我们考虑利用 $01Trie$ 的分治过程，对于分治的左右部分，因为每个部分内部的边的权值一定小于跨过两边的权值，所以内部肯定已经练好，为了将两边连接，我们只需要找一条最小的边即可，这个可以用 $01Trie$ 来做</p>
+<p>时间复杂度 $O(n\log^2 n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/19/CF-888G-Xor-MST/">CF 888G Xor-MST</a></p>
+</li>
+</ol>
+<h2 id="字典序"><a href="#字典序" class="headerlink" title="字典序"></a>字典序</h2><ol>
+<li><h2 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h2></li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/11/%E6%A0%A1%E5%86%85%E8%B5%9B-T1-%E5%85%83%E7%B4%A0%E5%B9%B3%E8%A1%A1/">校内赛-T1-元素平衡</a> </p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/05/CF-1453B-Suffix-Operations/">CF 1453B Suffix Operations</a> 前后缀操作将数组转换成差分数组之后相当于只操作一个位置</p>
+<h2 id="差分"><a href="#差分" class="headerlink" title="差分"></a>差分</h2><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/11/Luogu-P2882-USACO07MAR-Face-The-Right-Way-G/">Luogu P2882 [USACO07MAR]Face The Right Way G</a> 异或差分</p>
+<h2 id="单调性"><a href="#单调性" class="headerlink" title="单调性"></a>单调性</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/02/2020%E5%B9%B4%E5%B9%BF%E8%A5%BF%E7%9C%81CCPC%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B-A-Landlord/">2020年广西省CCPC大学生程序设计竞赛 A Landlord</a> 求有多少子矩阵的值小于给定数字</p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的字符串 $S$ 和一个整数 $k$，定义两个长度相同的字符串 $k$ 匹配为它们对应位置不同不超过 $k$ 次，求对于所有 $i\in[1,n-1]$，求出 $S$ 的 $pre_i$ 和 $suf_{i+1}$ 的 $k$ 匹配子串有多少个</p>
+<p>$n,k\le 3000$</p>
+<p>简要题解：我们考虑对于起始位置间隔为 $m$ 的两个起点 $s_1$ 和 $s_2$，满足 $s_2-s_1=m$，求最远的延伸长度 $l$，满足 $S[s_1,s_1+l-1]$ 与 $S[s_2,s_2+l-1]$ $k$ 匹配，注意到这个东西是有单调性的，即如果将 $s_1$ 和 $s_2$ 均向后一位，终点也会向后移动</p>
+<p>对于所有 $m\in[1,n-1]$ 都求完答案后，我们会得到 $O(n^2)$ 个三元组 $(s_1,s_2,l)$​ 表示两个起点和延伸长度，一个三元组对答案的贡献可以轻松得到，对于这个贡献，我们可以差分两次来做到 $O(1)$ 累加</p>
+<p>时间复杂度 $O(n^2)$​</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/08/11/2021%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A15-D-Another-String/">2021杭电多校5 D Another String</a></p>
+</li>
+</ol>
+<h2 id="调和级数"><a href="#调和级数" class="headerlink" title="调和级数"></a>调和级数</h2><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/10/Uoj-21-%E3%80%90UR-1%E3%80%91%E7%BC%A9%E8%BF%9B%E4%BC%98%E5%8C%96/">Uoj #21【UR-1】缩进优化</a> 找到一个 $k$ 使得 $\sum_{i=1}^n a_i-(k-1)\sum_{i=1}^n\lfloor \frac{a_i}{k}\rfloor$ 最小，其中 $a_i$ 和 $n$ 同阶</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/29/CF-691-Couple-Cover/">CF 691 Couple Cover</a></p>
+<p><a href="">CF 1398F Controversial Rounds</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/02/18/CF-632D-Longest-Subsequence/">CF 632D Longest Subsequence</a></p>
+<h2 id="一些比较杂的东西"><a href="#一些比较杂的东西" class="headerlink" title="一些比较杂的东西"></a>一些比较杂的东西</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/14/Luogu-P3295-SCOI2016-萌萌哒/">Luogu P3295 [SCOI2016]萌萌哒</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/22/Luogu-P5227-AHOI2013-连通图/">bzoj 3237 [Ahoi2013]连通图</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/17/Luogu-P5631-%E6%9C%80%E5%B0%8Fmex%E7%94%9F%E6%88%90%E6%A0%91/">Luogu P5631 最小mex生成树</a></p>
+</li>
+<li><p>坐标变换，<a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/22/Luogu-P4169-Violet-天使玩偶-SJY摆棋子/">Luogu P4169 [Violet]天使玩偶/SJY摆棋子</a></p>
+</li>
+<li><p>$O(1)$ 乘</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">mul</span><span class="params">(ll a, ll b)</span> </span>&#123;</span><br><span class="line">    ll lf = a * (b &gt;&gt; <span class="number">25l</span>l) % p * (<span class="number">1</span> &lt;&lt; <span class="number">25l</span>l) % p;</span><br><span class="line">    ll rg = a * (b &amp; (<span class="number">1l</span>l &lt;&lt; <span class="number">25</span>) - <span class="number">1</span>) % p;</span><br><span class="line">    <span class="keyword">return</span> (lf + rg) % p; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">mul</span><span class="params">(ll x, ll y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (x * y - (ll) ((ldb) x / p * y) * p + p) % p;</span><br><span class="line">&#125; <span class="comment">// 第一个好像要慢一点，但第二个有可能会出错</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>平方分解</strong></p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/25/%E6%A0%A1%E5%86%85%E8%B5%9B-T1-%E5%AF%BB%E8%B7%AF/">校内赛 T1 寻路</a></p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，求 $\sum_{i=1}^n\sum_{j=1}^n(a_i\oplus a_j)^2$，$\oplus$ 代表异或运算</p>
+<p>$n\le 5\times 10^5$</p>
+<p>简要题解：我们考虑平方分解：$(\sum_{i=1}^na_i)^2=\sum_{i=1}^n\sum_{j=1}^na_ia_j$</p>
+<p>那么对于 $(a_i\oplus a_j)^2$，我们可以看做是若干个二进制的和的平方，那么我们现在只需要枚举两个二进制位进行计算即可，时间复杂度 $O(n\log ^2n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/31/2021-CCPC-%E6%96%B0%E7%96%86%E7%9C%81%E8%B5%9B-H-xor/">2021 CCPC 新疆省赛 H xor</a></p>
+</li>
+</ol>
+</li>
+<li><p>对于两个区间 $[a,b]$ 和一个固定长度的区间 $L$，他们的交的最大值是两个区间中点距离最近的时候</p>
+<p>换句话讲，区间中点的距离和交的值是负相关的，区间中点的距离越小，交的值不降 <a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/25/CF-1452E-Two-Editorials/">CF 1452E Two Editorials</a> </p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/05/CF-1405C-Balanced-Bitstring/">CF 1405C Balanced Bitstring</a> 给定一个 $01$ 串，串中有一些位置可以随便填 $0$ 或 $1$，要求每个长度为 $k$ 的子串均有相等的 $0$ 和 $1$</p>
+</li>
+<li><p>每个物品的重量大于等于小于它的物品的重量的二倍，这个东西类似于二进制</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/07/2020-2021-ACM-ICPC-Brazil-Subregional-Programming-Contest-H-SBC-s-Hangar/">2020-2021 ACM-ICPC Brazil Subregional Programming H SBC’s Hangar</a></p>
+</li>
+<li><p>一棵树上，统计每个点的祖先对其的贡献，可以在 $dfs$ 到一个点的时候，把它的贡献加上，离开的时候再减去 <a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/07/2020-2021-ACM-ICPC-Brazil-Subregional-Programming-Contest-E-Party-Company/">2020-2021 ACM-ICPC Brazil Subregional Programming Contest E Party Company</a></p>
+</li>
+<li><p>$\lfloor \frac{n}{i}\rfloor$ 的 $hash$ 方法，只需要用到两倍的空间</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Div_hash</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> n, sn; </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> _n)</span> </span>&#123; n = _n; sn = <span class="built_in">sqrt</span>(n); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123; <span class="keyword">return</span> x &lt;= sn ? x : sn * <span class="number">2</span> - n / x + <span class="number">1</span>; &#125; </span><br><span class="line">&#125; _;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>有一棵点的颜色为黑色或白色的树，现在有偶数个黑点，每条边选择与否可以翻转连接的两个点的颜色</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/12/CF-840B-Leha-and-another-game-about-graph/">CF 840B Leha and another game about graph</a></p>
+</li>
+<li><p>合法答案是一个区间，二分两边端点</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/20/CF-1463D-Pairs/">CF 1463D Pairs</a></p>
+</li>
+<li><p>求合法数对的另一方法 <a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/20/CF-917A-The-Monster/">CF 917A The Monster</a></p>
+</li>
+<li><p>下面东西看起来像是 $O(n(\sum a_i)^2)$，其实是 $O(n\sum a_i+(\sum a_i)^2)$ 的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= s[i - <span class="number">1</span>]; ++j)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= a[i]; ++k)</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/20/CF-922E-Birds/">CF 922E Birds</a></p>
+</li>
+<li><p>$\sum_{i=0}^kp^i$ 可以递归求解</p>
+<p>当 $k$ 为奇数时，$\sum_{i=0}^k p^i=\sum_{i=0}^{\frac{k-1}{2}}p^i\cdot (1+p^{\frac{k+1}{2}})$</p>
+<p>当 $k$ 为偶数时，$\sum_{i=0}^kp^i=\sum_{i=0}^{\frac{k}{2}-1}p^i\cdot (1+p^{\frac{k}{2}+1})+p^{\frac{k}{2}}$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (n &amp; <span class="number">1</span>) <span class="keyword">return</span> solve(a, n / <span class="number">2</span>) * (<span class="number">1</span> + pow_mod(a, n / <span class="number">2</span> + <span class="number">1</span>)) % p; </span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> (solve(a, n / <span class="number">2</span> - <span class="number">1</span>) * (<span class="number">1</span> + pow_mod(a, n / <span class="number">2</span> + <span class="number">1</span>)) + pow_mod(a, n / <span class="number">2</span>)) % p;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将第 $k$ 位变成 $v+k-1$，可以直接抹平</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/27/%E7%89%9B%E5%AE%A2-contest-9934J-Pass-Through-With-One-Breath/">牛客 contest 9934J Pass Through With One Breath</a></p>
+</li>
+<li><p>统计所有数对 $(l,r)$ 的价值，其中 $(l,r)$ 的价值为 $[l,r]$ 中的最小值乘以最大值</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/28/%E6%A8%A1%E6%8B%9F%E8%B5%9B-sequence-%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E5%80%BC%E5%88%86%E6%B2%BB/">模拟赛-sequence(最大最小值分治)</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/28/CF-gym-102562B-Bitwise-Party/">CF gym 102562B Bitwise Party</a> 最大值或上最小值，求所有区间的价值的异或和</p>
+</li>
+<li><p>给你一串 <code>01</code> 或 <code>?</code> 组成的字符串，询问对于每个 $len$，若有连续 $len$ 个相同的字符组成的子字符串，那么就从中删去，问最多可以删多少次，<code>?</code> 表示这个可以认为是 <code>0</code>，也可以认为是 <code>1</code></p>
+<p>用并查集维护右边第一个合法的起点，随着 $len$ 的增加，并查集只会合并</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/07/CF-1398F-Controversial-Rounds/">CF 1398F Controversial Rounds</a></p>
+</li>
+<li><p>所有区间覆盖的情况都可以通过将相交区间变成一个大区间和一个被大区间包含的小区间，从而使得区间覆盖变成括号序列（存疑</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/09/CF-1400E-Clear-the-Multiset-dp/">CF 1400E Clear the Multiset(dp)</a></p>
+</li>
+<li><p>如果一条路径可逆，那么我们可以通过变换终点和起点来降低复杂度</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/14/CF-1467D-Sum-of-Paths/">CF 1467D Sum of Paths</a></p>
+</li>
+<li><p>倒叙枚举前缀翻转可以不用平衡树</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/17/CF-1382C2-Prefix-Flip-Hard-Version/">CF 1382C2 Prefix Flip (Hard Version)</a></p>
+</li>
+<li><p>求连通块的其它方法，我们从每一个没到过的点开始 $dfs$，每次开始 $dfs$ 就代表有一个新的连通块</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/02/24/CF-986C-AND-Graph/">CF 986C AND Graph</a></p>
+</li>
+<li><p>一种基于笛卡尔树启发式合并的处理带有最值的数对问题</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/03/03/CF-1175F-The-Number-of-Subpermutations/">CF 1175F The Number of Subpermutations</a></p>
+</li>
+<li><p>如果加点均满足 $(l,r),l\le r$ 那么二维树状数组可以用来做矩阵查询</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/03/29/2020-2021-ACM-ICPC-Asia-Seoul-Regional-Contest-I-Stock-Analysis/">2020-2021 ACM-ICPC, Asia Seoul Regional Contest I Stock Analysis</a> </p>
+</li>
+<li><p>连通块的个数等于点的个数减掉边的个数（某些情况下</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/16/Luogu-P3616-%E5%AF%8C%E9%87%91%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD/">Luogu P3616 富金森林公园</a></p>
+</li>
+<li><p>将矩阵看成邻接矩阵从而转化成图论问题</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/05/04/CF-632F-Magic-Matrix/">CF 632F Magic Matrix</a></p>
+</li>
+<li><p>询问在正向操作时很难处理，逆向操作时较为简单</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/05/16/CF-466E-Information-Graph/">CF 466E Information Graph</a></p>
+</li>
+<li><p>每次转移可以看做是从所有点 $s$ 以相同的方法跳 $k$ 次，且我们只需要记录是否可达</p>
+<p>那么显然当我们跳到一个已经到过的点就可以直接停止，因为之后会从这个点接着跳</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/05/30/CF-1498D-Bananas-in-a-Microwave/">CF 1498D Bananas in a Microwave</a></p>
+</li>
+<li><p>通过交换 $a_i$ 最大化 $\sum_{i=1}^n |a_i-b_i|$</p>
+<ol>
+<li><p>首先我们思考如何求可以交换无限次后这个东西的最大值</p>
+<p>我们首先考虑将绝对值拆开，那么相当于在 $a_i$ 和 $b_i$ 上分别加上正号和负号，且只需要总的正号的数量等于负号的数量即可，不要求 $a$ 中的正号等于负号的数量，那么这个时候最大值就是将 $a$ 和 $b$ 中的所有数拿出来排序然后前 $n$ 个取正号，后 $n$ 个取负号</p>
+<p>另外我们需要知道，有可能出现正负号和实际绝对值相反的情况，但是如果交换这一对正负号，只会使得解变优，所以在题目求最优的前提下，正负号是可以随意分配的</p>
+</li>
+<li><p>接下来我们考虑给定 $a$ 和 $b$ 后如何求最小需要交换多少次可以达到最大值</p>
+<p>我们按照之前的想法将符号分配好，那么需要交换的都是 $(+a_i,+b_i)$ 和 $(-a_i,-b_i)$，所以我们每次换一下 $++$ 和 $—$ 即可，注意到 $++$ 的数量一定等于 $—$ 的数量</p>
+</li>
+<li><p>然后我们在思考给定 $a$ 和 $b$ 以及可以交换的次数 $k$ 之后，如何求恰好交换 $k$ 次后的最大值</p>
+<p>首先给出一个结论，在 $n&gt;2$ 的情况下，恰好交换 $k$ 次和至多交换 $k$ 次是一样的</p>
+<p>不妨假设我们交换了 $s(s&lt;k)$ 次就得到了最优答案且已经分配好了符号，那么 $a$ 中至少有两个 $a$ 是同符号的，我们只需要交换这两个 $a$ 即可</p>
+<p>那么在有这个结论之后，我们考虑如何交换，对于 $(a_i,b_i)$ 和 $(a_j,b_j)$，如果交换之后答案更优，需要这两个区间没有交点，且交换之后的价值会增加 $2\times (min\lbrace a_i,b_i\rbrace-max\lbrace a_j,b_j\rbrace)$，通过这个式子我们发现可以将贡献拆开，那么我们直接对于 $min\lbrace a_i,b_i\rbrace $ 和 $-max\lbrace a_i,b_i\rbrace$ 排序取前 $k$ 大相加即可</p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/17/2021%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A11-G-Game-of-Swapping-Numbers/">2021牛客多校1 G Game of Swapping Numbers</a></p>
+</li>
+<li><p>一个经典的拆 $max$ 的做法</p>
+<p>$f_i=max(f_{i-1}+d_i,u_i)$，其中 $f_l=u_l$ 且需要满足 $f_i\le v_i$，问区间 $[l,r]$ 是否满足</p>
+<p>我们拆开这些 $max$，可以得到下面这个式子</p>
+<p>$u_l\le v_l,max(u_l+d_l,u_{l+1})\le v_{l+1},max(u_l+d_l+d_{l+1},u_{l+1}+d_{l+1},u_{l+2})\le v_{l+2},\cdots$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/20/2021%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A11-J-Journey-among-Railway-Stations/">2021牛客多校1 J Journey among Railway Stations</a></p>
+</li>
+<li><p>简要题解：给定长度 $n$​ 和若干个前缀的单调栈的大小，要求构造一个满足条件的排列</p>
+<p>$n\le 10^6$​</p>
+<p><strong>构造排列时，我们可以考虑构造符合大小关系的有向图，然后跑拓扑序</strong></p>
+</li>
+<li><p>简要题意：给定 $n$ 个区间和 $k$，求将所有区间划分成 $k$ 组的最大价值和，每组区间的价值为它们的交，交不能为空，如果无法划分输出 $-1$</p>
+<p>$1\le k\le n\le 5000$​ </p>
+<p>简要题解：将包含其它的区间去掉，然后就可以保证相邻若干个分一组，令 $f[i][j]$ 表示前 $i$ 个分了 $j$ 组，单调队列优化可以做到 $O(nk)$</p>
+<p><strong>将包含其它区间的大区间去掉后，按左端点排序可保证右端点也单调</strong></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/24/2021%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A12-G-League-of-Legends/">2021牛客多校2 G League of Legends</a></p>
+</li>
+<li><p>简要题意：给定一个 $n\times m$ 的矩形，要求在每个位置填 $0$ 或 $1$，要求每一行和每一列的异或和都是 $k$，求方案数</p>
+<p>$1\le n,m\le 10^{18}$</p>
+<p>简要题解：注意到我们前 $n-1$ 行 $m-1$ 列无论怎么填，最后一行和最后一列都能选择对应的数字满足条件</p>
+<p>需要注意的是如果 $|n-m|$ 是奇数且 $k=-1$ 的情况是无解的</p>
+<p>其他情况下答案就是 $2^{(n-1)\times (m-1)}$</p>
+<p><strong>前面乱选，只通过调整最后一部分来满足约束</strong></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/25/CF-894B-Ralph-And-His-Magic-Field/">CF 894B Ralph And His Magic Field</a> </p>
+</li>
+<li><p>简要题意：给定一棵 $n$ 个点的无根树和 $k$，求所有划分成 $k+1$​ 个连通块的方案的价值和，一个划分方案的价值定义为 $k+1$ 的连通块的大小的乘积</p>
+<p>$n\le 5\times 10^4,k\le 100$</p>
+<p>简要题解：</p>
+<p>最朴素的 $dp$ 是 $f[u][m][S]$，表示分成了 $m$ 棵子树，$u$ 所在的子树的大小是 $S$</p>
+<p>但是这样的时间复杂度显然无法通过此题，我们考虑求一个等价的问题，删掉 $k$ 条边，并且在每个连通块里都选恰好一个点的方案数</p>
+<p>我们令 $f[u][m][0/1]$ 表示已经断了 $m$ 条边，$u$​​ 所在的子树是否已经选点，时间复杂度 $O(nk^2)$​</p>
+<p><strong>将一棵树划分成 $k+1$ 个连通块的所有方案数 等价于 删掉 $k$ 条边，并且在每个连通块里都选恰好一个点的方案数</strong></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/28/2021%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A14-D-Rebuild-Tree/">2021牛客多校4 D Rebuild Tree</a></p>
+</li>
+<li><p>简要题意：简要题意：给定两棵大小均为 $n$ 的树，求一个最大的点集满足，这些点在第一棵树上构成一条深度递增的链，即满足所有点之间都存在祖宗关系，在第二棵树上任意两点不存在祖宗关系</p>
+<p>$n\le 3\times 10^5$</p>
+<p>简要题解：我们考虑对于每个点求其作为链的最底端的答案，我们令 $h[u]$ 表示 $u$ 作为最底端时，深度最深的点满足在第二颗树上与 $u$ 存在祖先关系的点的深度</p>
+<p>那么答案显然是 $max\lbrace dep[u]-h[u]\rbrace$</p>
+<p>我们考虑如何求 $h$，注意到两个点 $u$ 和 $v$ 如果存在祖先关系，当且仅当 $u$ 的子树和 $v$ 的子树有交，那么我们在第一棵树上 $dfs$，然后每到一个点 $u$，我们就将线段树上 $in[u]$ 到 $out[u]$ 都与 $dep[u]$ 取 $max$，但是取 $max$ 并不能撤回，所以我们考虑直接用主席树，时间复杂度 $O(n\log n)$</p>
+<p><strong>树上两点 $u$ 和 $v$ 如果存在祖先关系当且仅当 $u$ 的子树和 $v$ 的子树有交</strong> </p>
+<p><strong>给定一个序列 $a$，有 $a_i&gt;i$，求最长的一段子区间 $[l,r]$ 满足 $(max_{i=l}^ra_i)&gt;r$，我们可以枚举每个点作为左端点，右端点就是 $max_{j=i}^na_j-1$​</strong></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/08/08/2021%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A17-F-xay-loves-trees/">2021牛客7 F xay loves trees</a></p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，求有多少子区间存在绝对众数</p>
+<p>$n\le 5\times 10^6$​</p>
+<p>我们考虑数字 $v$ 作为绝对众数出现的区间，我们令 $v$ 所在的位置都是 $1$，其它位置都是 $-1$，那么显然区间和大于 $0$ 的区间都是 $v$ 作为绝对众数出现的区间</p>
+<p><strong>$+1/-1$ 序列的前缀和的逆序对可以 $O(n)$，甚至可以在 1 的个数 或者 $-1$​​ 的个数 的时间复杂度内完成​</strong></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/08/13/Luogu-P4062-Code-1-Yazid-%E7%9A%84%E6%96%B0%E7%94%9F%E8%88%9E%E4%BC%9A/">Luogu P4062 [Code+#1]Yazid 的新生舞会</a></p>
+</li>
+<li><p>简要题意：给定一张 $n$ 个点 $m$ 条边的无向连通图，每个点有一个权值 $a_i$，每次操作可以使一条边相连的两个点同时增加任意一个整数值，求是否能使所有点的权值都为 $0$​</p>
+<p>$n,m\le 2\times 10^5$</p>
+<p>简要题解：首先注意到我们的操作不能改变权值总和的奇偶性，所以如果和为奇数则一定不行</p>
+<p>然后我们注意到我们可以将距离为奇数的两个点同时增加相同的数值，距离为偶数的点一个增加另一个减少相同的数值</p>
+<p>这启示我们考虑二分图的性质，首先我们将这张图分成两种情况考虑，二分图和不是二分图</p>
+<p>如果该图是二分图，那么我们只需要看一下两边点的总和是否相等，相等则一定有解，不相等则一定无解</p>
+<p><strong>如果该图不是二分图，那么就一定存在奇环，对于一个存在奇环的图，任意两个点都存在一条长度为奇数的路径，所以一定有解</strong></p>
+<p><a href="">CF 1537F Figure Fixing</a></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-flag"></i>　感谢阅读　　　　-------------</div>
+    
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tech/" rel="tag"># Tech</a>
+              <a href="/tags/%E5%A5%97%E8%B7%AF/" rel="tag"># 套路</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/11/Luogu-P3521-POI2011-ROT-Tree-Rotations/" rel="prev" title="Luogu P3521 [POI2011]ROT-Tree Rotations">
+                  <i class="fa fa-chevron-left"></i> Luogu P3521 [POI2011]ROT-Tree Rotations
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/11/11/Luogu-P4366-Code-4-%E6%9C%80%E7%9F%AD%E8%B7%AF/" rel="next" title="Luogu P4366 [Code+#4]最短路">
+                  Luogu P4366 [Code+#4]最短路 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DDOSvoid</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.2m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">18:52</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-use    r"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/D_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/D_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="简介大概就是跟树有关的东西吧 &#x3D; &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树">
+<meta property="og:url" content="http://example.com/2020/10/02/%E6%A0%91/index.html">
+<meta property="og:site_name" content="DDOSvoid&#39;s Blog">
+<meta property="og:description" content="简介大概就是跟树有关的东西吧 &#x3D; &#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-02T09:39:22.000Z">
+<meta property="article:modified_time" content="2021-10-15T03:08:16.333Z">
+<meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="Tech">
+<meta property="article:tag" content="树">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/10/02/%E6%A0%91/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>树 | DDOSvoid's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">DDOSvoid's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCA"><span class="nav-number">2.</span> <span class="nav-text">LCA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%8D%E5%A2%9E"><span class="nav-number">2.1.</span> <span class="nav-text">倍增</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E5%89%96"><span class="nav-number">2.2.</span> <span class="nav-text">树剖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RMQ-%E6%B1%82-lca"><span class="nav-number">2.3.</span> <span class="nav-text">RMQ 求 lca</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tarjan-%E7%A6%BB%E7%BA%BF"><span class="nav-number">2.4.</span> <span class="nav-text">tarjan 离线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prufer-%E5%BA%8F%E5%88%97"><span class="nav-number">3.</span> <span class="nav-text">prufer 序列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="nav-number">3.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95"><span class="nav-number">3.2.</span> <span class="nav-text">拓展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">3.3.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E9%87%8D%E5%BF%83"><span class="nav-number">4.</span> <span class="nav-text">树的重心</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">4.1.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">4.2.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-number">4.3.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84"><span class="nav-number">5.</span> <span class="nav-text">树的直径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8-1"><span class="nav-number">5.1.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95-1"><span class="nav-number">5.2.</span> <span class="nav-text">算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91-hash"><span class="nav-number">6.</span> <span class="nav-text">树 hash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E5%AD%90%E6%A0%91%E5%90%8C%E6%9E%84"><span class="nav-number">6.1.</span> <span class="nav-text">判断子树同构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%9C%89%E6%A0%B9%E6%A0%91%E5%90%8C%E6%9E%84"><span class="nav-number">6.2.</span> <span class="nav-text">判断有根树同构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%97%A0%E6%A0%B9%E6%A0%91%E5%90%8C%E6%9E%84"><span class="nav-number">6.3.</span> <span class="nav-text">判断无根树同构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-2"><span class="nav-number">6.4.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%A8%E5%B1%80%E7%BB%B4%E6%8A%A4%E6%96%B9%E6%B3%95"><span class="nav-number">7.</span> <span class="nav-text">树上的一些全局维护方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98"><span class="nav-number">8.</span> <span class="nav-text">树上的一些经典问题</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DDOSvoid"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">DDOSvoid</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">647</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DDOSvoid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DDOSvoid" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/34531" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;34531" rel="noopener" target="_blank">Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://codeforces.com/profile/DDOSvoid" title="Codeforces → http:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;DDOSvoid" rel="noopener" target="_blank">Codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://acm.hdu.edu.cn/userstatus.php?user=DDOSvoid" title="Hdu → http:&#x2F;&#x2F;acm.hdu.edu.cn&#x2F;userstatus.php?user&#x3D;DDOSvoid" rel="noopener" target="_blank">Hdu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/manziqi/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;manziqi&#x2F;" rel="noopener" target="_blank">Title1</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jczhang.top/" title="https:&#x2F;&#x2F;jczhang.top&#x2F;" rel="noopener" target="_blank">JC Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/02/%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          树
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-02 17:39:22" itemprop="dateCreated datePublished" datetime="2020-10-02T17:39:22+08:00">2020-10-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-10-15 11:08:16" itemprop="dateModified" datetime="2021-10-15T11:08:16+08:00">2021-10-15</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>大概就是跟树有关的东西吧 = = </p>
+<a id="more"></a>
+<h2 id="LCA"><a href="#LCA" class="headerlink" title="LCA"></a>LCA</h2><h3 id="倍增"><a href="#倍增" class="headerlink" title="倍增"></a>倍增</h3><p>$O(n\log n)$ 预处理，$O(\log n)$ 查询</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> f[maxn][<span class="number">21</span>], dep[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        dep[v] = dep[u] + <span class="number">1</span>; f[v][<span class="number">0</span>] = u;</span><br><span class="line">        dfs(v, u);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_lca</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">20</span>; ++j)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) f[i][j] = f[f[i][j - <span class="number">1</span>]][j - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_lca</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (dep[x] &lt; dep[y]) swap(x, y);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">20</span>; ~i; --i)</span><br><span class="line">        <span class="keyword">if</span> (dep[f[x][i]] &gt;= dep[y]) x = f[x][i];</span><br><span class="line">    <span class="keyword">if</span> (x == y) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">20</span>; ~i; --i)</span><br><span class="line">        <span class="keyword">if</span> (f[x][i] != f[y][i]) x = f[x][i], y = f[y][i];</span><br><span class="line">    <span class="keyword">return</span> f[x][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="树剖"><a href="#树剖" class="headerlink" title="树剖"></a>树剖</h3><p>$O(n)$ 预处理，$O(\log n)$ 查询</p>
+<p><del>据说常数小</del></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dep[maxn], son[maxn], sz[maxn], f[maxn]; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> Max = <span class="number">0</span>; sz[u] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        f[v] = u; dep[v] = dep[u] + <span class="number">1</span>;</span><br><span class="line">        dfs(v, u); sz[u] += sz[v];</span><br><span class="line">        <span class="keyword">if</span> (sz[v] &gt; Max) Max = sz[v], son[u] = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> top[maxn], id[maxn], c2, bl[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa, <span class="keyword">int</span> topf)</span> </span>&#123;</span><br><span class="line">    top[u] = topf; id[u] = ++c2; bl[c2] = u;</span><br><span class="line">    <span class="keyword">if</span> (son[u]) dfs(son[u], u, topf); </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; <span class="keyword">if</span> (v == fa || v == son[u]) <span class="keyword">continue</span>;</span><br><span class="line">        dfs(v, u, v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_lca</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (top[x] != top[y]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (dep[top[x]] &lt; dep[top[y]]) swap(x, y);</span><br><span class="line">        x = f[top[x]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dep[x] &lt; dep[y] ? x : y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="RMQ-求-lca"><a href="#RMQ-求-lca" class="headerlink" title="RMQ 求 lca"></a>RMQ 求 lca</h3><p>$O(n\log n)$ 预处理，$O(1)$ 查询</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> id[maxn * <span class="number">2</span>], in[maxn], c2; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> cnt = <span class="number">0</span>; </span><br><span class="line">    id[++cnt] = u; in[u] = cnt;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        dfs(v, u); id[++cnt] = u;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">st_min</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123; <span class="keyword">return</span> in[l] &lt; in[r] ? l : r; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> st[maxn * <span class="number">2</span>][<span class="number">21</span>], Log[maxn * <span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_st</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123; Log[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) Log[i] = Log[i &gt;&gt; <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) st[i][<span class="number">0</span>] = id[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">20</span>; ++j)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i + (<span class="number">1</span> &lt;&lt; j) - <span class="number">1</span> &lt;= n; ++i)</span><br><span class="line">            st[i][j] = st_min(st[i][j - <span class="number">1</span>], st[i + (<span class="number">1</span> &lt;&lt; j - <span class="number">1</span>)][j - <span class="number">1</span>]); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">get_lca</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    l = in[l]; r = in[r]; <span class="keyword">if</span> (l &gt; r) swap(l, r);</span><br><span class="line">    <span class="keyword">int</span> k = Log[r - l + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> st_min(st[l][k], st[r - (<span class="number">1</span> &lt;&lt; k) + <span class="number">1</span>][k]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="tarjan-离线"><a href="#tarjan-离线" class="headerlink" title="tarjan 离线"></a>tarjan 离线</h3><p>$O(n)$ </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> ans[maxn]; <span class="keyword">bool</span> vis[maxn]; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    vis[u] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        dfs(v, u); Uset.fa[v] = u;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = Head[u]; ~i; i = E[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = E[i].to, id = E[i].id; <span class="keyword">if</span> (!vis[v]) <span class="keyword">continue</span>;</span><br><span class="line">        ans[id] = Uset.find(v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="prufer-序列"><a href="#prufer-序列" class="headerlink" title="prufer 序列"></a>prufer 序列</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>给定一颗带标号无根树，找出编号最小的叶子节点，写下与它相邻的点的编号，然后删掉这个叶子节点。反复执行这个操作直到只剩两个节点为止</p>
+<p>可以证明这样得到所有长度为 $n-2$ 的序列都唯一对应一棵带标号无根树，且在 $prufer$ 序列中的每个数的出现次数是它在原树中的度数减一</p>
+<p>同时这样我们也得到了 $n$ 个点的所有带标号无根树的个数为 $n^{n-2}$</p>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><ol>
+<li><p>给定每个点的度数 $d_i$，求有多少带标号无根树</p>
+<p>$ans=\frac{(n-2)!}{\prod_{i=1}^n(d_i-1)!}$</p>
+</li>
+</ol>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ol>
+<li><p>简要题意：给定一棵大小为 $n$ 的树和 $k$，要求断掉给定的 $n-1$ 条边的中 $k$ 条边，之后在连 $k$ 条边使得仍然构成一棵大小为 $n$ 的树,求有多少种连边方法</p>
+<p>$n\le 5\times 10^4,k\le 100$​</p>
+<p>简要题解：</p>
+<p>$ans=\sum_{\pi=\lbrace S_1,S_2,\cdots,S_{k+1}\rbrace}\sum_{p\in prufer(k+1)}\prod_{i=1}^{k+1}|S_i|^{p_i+1}$​</p>
+<p>$\pi$​ 表示对于原树切掉 $k$​ 条边后得到的 $k$​ 个子树， $prufer(k+1)$ 表示 $k+1$ 个点所有 $prufer$ 序列，$p_i$ 表示 $i$ 在 $prufer$​ 序列中出现的次数</p>
+<p>化简可以的得到 $ans=n^{k-1}\sum_{\pi=\lbrace S_1,S_2,\cdots,S_{k+1}\rbrace}\prod_{i=1}^{k+1}|S_i|$​</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/28/2021%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A14-D-Rebuild-Tree/">2021牛客多校4 D Rebuild Tree</a></p>
+</li>
+</ol>
+<h2 id="树的重心"><a href="#树的重心" class="headerlink" title="树的重心"></a>树的重心</h2><h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><ol>
+<li>树上所有点到某点的距离和中，到重心的距离和最小，如果有两个重心，他们的距离和相等</li>
+<li>一棵树添加或者删除一个节点，树的重心最多最多只移动一条边的位置</li>
+<li>把两棵树通过某一点相连得到一颗新的树，新的树的重心必然在连接原来两棵树重心的路径上</li>
+<li>一棵树最多有两个重心，且一定相邻，且此时重心的最大子树的大小为 $\frac{n}{2}$</li>
+<li>以重心为根，最大的儿子的子树的大小不超过 $\frac{n}{2}$</li>
+</ol>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>直接 $dfs$ 即可</p>
+<h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/14/CF-1406C-Link-Cut-Centroids/">CF 1406C Link Cut Centroids</a></p>
+<h2 id="树的直径"><a href="#树的直径" class="headerlink" title="树的直径"></a>树的直径</h2><h3 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h3><ol>
+<li>直径的两个端点一是叶子（或者说是在度数为 $1$ 的点</li>
+</ol>
+<h3 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h3><ol>
+<li><p>从任一点 $x$ 开始 $bfs$ 找到距离该点最远的点 $u$，然后从 $u$ 再次进行 $bfs$，找到距离 $u$ 最远的点 $v$，$u$ 到 $v$ 的路径就是直径，该方法不适用于边权不为 $1$ 的情况（指的是 $bfs$，如果还是两次找最远的点的话是没问题的</p>
+</li>
+<li><p>树形 $dp$，同样适用于边权不为 $1$ 的情况</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> f[maxn], ans;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to, w = e[i].w; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span> ;</span><br><span class="line">        dfs(v, u); ans = max(ans, f[u] + f[v] + w);</span><br><span class="line">        f[u] = max(f[u], f[v] + w); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ol>
+<h2 id="树-hash"><a href="#树-hash" class="headerlink" title="树 hash"></a>树 hash</h2><h3 id="判断子树同构"><a href="#判断子树同构" class="headerlink" title="判断子树同构"></a>判断子树同构</h3><p>给出一种保证不会错的方法</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; dfs(v);</span><br><span class="line">        a.push_back(id[v]);</span><br><span class="line">    &#125;</span><br><span class="line">    sort(a.begin(), a.end());</span><br><span class="line">    <span class="keyword">if</span> (mp.find(a) != mp.end()) mp[a] = ++cnt;</span><br><span class="line">    id[u] = mp[a];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度为 $O(n\log n)$</p>
+<h3 id="判断有根树同构"><a href="#判断有根树同构" class="headerlink" title="判断有根树同构"></a>判断有根树同构</h3><p>一种类似集合 $hash$ 的方法</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ull <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    ull s = <span class="number">1</span>; sz[u] = I; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        s ^= dfs(v, u) * B + sz[v];</span><br><span class="line">        sz[u] += sz[v]; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="判断无根树同构"><a href="#判断无根树同构" class="headerlink" title="判断无根树同构"></a>判断无根树同构</h3><p>我们以重心为根进行 $hash$，注意因为重心可能有两个</p>
+<h3 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h3><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/06/Luogu-P4323-JSOI2016-%E7%8B%AC%E7%89%B9%E7%9A%84%E6%A0%91%E5%8F%B6/">Luogu P4323 [JSOI2016]独特的树叶</a></p>
+<h2 id="树上的一些全局维护方法"><a href="#树上的一些全局维护方法" class="headerlink" title="树上的一些全局维护方法"></a>树上的一些全局维护方法</h2><ol>
+<li><p>在 $dfs$ 的同时维护每个点的子树内的信息</p>
+<p>这个有两种方法，第一种是 $dsu~on~tree$</p>
+<p>第二种比较 $trick$，我们在进入这个点的时候减掉需要查询的信息，然后离开的时候再加上</p>
+</li>
+<li><p>在 $dfs$ 的同时维护根到当前点的信息</p>
+<p>这个比较简单，进入一个点加入，离开一个点删除即可</p>
+</li>
+</ol>
+<h2 id="树上的一些经典问题"><a href="#树上的一些经典问题" class="headerlink" title="树上的一些经典问题"></a>树上的一些经典问题</h2><ol>
+<li><p>给出 $n$ 个点的树和 $k$，将树划分成 $\frac{n}{k}$ 个连通块，且每个连通块的点数都是 $k$ 的方案数是唯一的</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/07/Luogu-P3915-%E6%A0%91%E7%9A%84%E5%88%86%E8%A7%A3/">Luogu P3915 树的分解</a></p>
+</li>
+<li><p>树上多点的集合点</p>
+<p>定义：大概就是给你树上的若干个点，求在树上选择一个集合点使得这些点到集合点的距离的和最小</p>
+<p>几个结论和方法：</p>
+<ol>
+<li>两个点的话一定选择 $lca$</li>
+<li>三个点的集合点是三点的三个 $lca$ 中深度最大的那个，另外两个 $lca$ 相同且深度较小</li>
+<li>三个点的总距离为两两之间的距离除以 $2$</li>
+</ol>
+</li>
+<li><p>到树上多点距离相同且最小的点</p>
+<ol>
+<li><p>简要题意：给定一棵 $n$ 个点的树，现在有 $m$ 次询问，每次询问给定 $k$ 个点，求是否存在一个到这 $k$ 点的距离相等的点，如果有多个点求距离最小的那个</p>
+<p>$n\le 10^6,\sum k\le 10^6$</p>
+<p>简要题解：不妨假设存在这么一个点 $x$ 且距离为 $d$，我们以 $x$ 为根，容易在给定点集中一定有两个点的距离为 $2\times d$</p>
+<p>那么我们直接把这个路径中点拿出来判断即可，至于如何求点集中最远点对，显然其中一个点是深度最大的点</p>
+<p>时间复杂度 $O(n\log n )$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/15/Luogu-T197745-%E7%97%85%E6%AF%92/">Luogu T197745 病毒</a></p>
+</li>
+</ol>
+</li>
+<li><p>一棵 $n$ 个节点的树，边有边权。</p>
+<p>每个点可能是关键点，每次操作改变一个点是否是关键点。</p>
+<p>求所有关键点形成的极小连通子树的边权和的两倍</p>
+<p>直接按照 $dfs$ 序排好之后两两求 $lca$ 即可</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/07/Luogu-P3320-SDOI2015-%E5%AF%BB%E5%AE%9D%E6%B8%B8%E6%88%8F/">Luogu P3320 [SDOI2015]寻宝游戏</a></p>
+</li>
+<li><p>一棵树，相邻点异色，每次可以改变同色连通块的颜色，求最少多少次操作将树上的节点都变成一个颜色</p>
+<p>结论：需要的最少操作次数为 $\lceil\frac{d}{2}\rceil$，其中 $d$ 是这棵树的直径</p>
+<p><a href="">CF 734E Anton and Tree</a></p>
+</li>
+<li><p>求从所有点出发的最长路</p>
+<p>我们利用 $up\underline{}down$，但需要注意最值不能减，所以我们额外记录一个次大值，需要注意对于一个点只从每个儿子中取一个最大值</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> f[maxn], g[maxn], fr[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    f[u] = g[u] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to, w = <span class="number">1</span>; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>; </span><br><span class="line">        dfs(v, u);</span><br><span class="line">        <span class="keyword">if</span> (f[u] &lt; f[v] + w) g[u] = f[u], f[u] = f[v] + w, fr[u] = v; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (g[u] &lt; f[v] + w) g[u] = f[v] + w; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (f[u] &lt; <span class="number">0</span>) f[u] = <span class="number">0</span>, fr[u] = u;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (g[u] &lt; <span class="number">0</span>) g[u] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to, w = <span class="number">1</span>, t; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (fr[u] == v) t = g[u] + w;</span><br><span class="line">        <span class="keyword">else</span> t = f[u] + w;</span><br><span class="line">        <span class="keyword">if</span> (f[v] &lt; t) g[v] = f[v], f[v] = t, fr[v] = u;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (g[v] &lt; t) g[v] = t; </span><br><span class="line">        Dfs(v, u); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>求从所有点出发到其它所有点的路径和</p>
+<p>同样我们使用 $up\underline{}down$</p>
+</li>
+<li><p>在树上选取若干条边，需要保证加入这些边后没有一个点的度超过 $k$，求最大边权和</p>
+<p>对于儿子，我们只需要知道儿子还能不能选一次，所以我们令 $f[u]$ 表示还能选，$g[u]$ 表示不能选</p>
+<p>然后做树形 $dp$，细节详见代码</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/06/CF-1223E-Paint-the-Tree/">CF 1223E Paint the Tree</a></p>
+</li>
+<li><p>在树上选一条点个数小于等于k的简单路径，使路径外的点到路径的距离的最大值最小</p>
+<p>能够发现这条路径一定是在直径上，所以我们可以考虑在直径上做一个滑动窗口</p>
+<p>但是这样太麻烦了，我们考虑用类似拓扑排序东西来做一个贪心</p>
+<p>即从叶子开始删点，并更新每个点向子树内拓展的最大距离</p>
+<p>直到删的只剩 $k$ 个点且为一条链</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/05/16/CF-1004E-Sonya-and-Ice-Cream/">CF 1004E Sonya and Ice Cream</a></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-flag"></i>　感谢阅读　　　　-------------</div>
+    
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tech/" rel="tag"># Tech</a>
+              <a href="/tags/%E6%A0%91/" rel="tag"># 树</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/10/01/Luogu-P2889-USACO07NOV-Milking-Time-S/" rel="prev" title="Luogu P2889 [USACO07NOV]Milking Time S">
+                  <i class="fa fa-chevron-left"></i> Luogu P2889 [USACO07NOV]Milking Time S
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/10/02/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/" rel="next" title="树链剖分">
+                  树链剖分 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DDOSvoid</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.2m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">18:52</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-use    r"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

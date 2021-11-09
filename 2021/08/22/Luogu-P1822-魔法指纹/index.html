@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/D_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/D_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="题目描述https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P1822 简要题意：定义 $magic(n)$ 等于将 $n$ 按十进制顺序写下来，依次对相邻两个数写下差的绝对值，得到的新数，例如 $magic(5913)&#x3D;482$，对于一个大于等于 $10$ 的数字，我们不断进行 $magic$ 变换，最后一定可以得到一个小于 $10$ 的数字，如果一个数字 $n$ 可以通过不断进行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Luogu P1822 魔法指纹">
+<meta property="og:url" content="http://example.com/2021/08/22/Luogu-P1822-%E9%AD%94%E6%B3%95%E6%8C%87%E7%BA%B9/index.html">
+<meta property="og:site_name" content="DDOSvoid&#39;s Blog">
+<meta property="og:description" content="题目描述https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P1822 简要题意：定义 $magic(n)$ 等于将 $n$ 按十进制顺序写下来，依次对相邻两个数写下差的绝对值，得到的新数，例如 $magic(5913)&#x3D;482$，对于一个大于等于 $10$ 的数字，我们不断进行 $magic$ 变换，最后一定可以得到一个小于 $10$ 的数字，如果一个数字 $n$ 可以通过不断进行">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-22T07:50:31.000Z">
+<meta property="article:modified_time" content="2021-08-22T07:55:33.044Z">
+<meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="分段打表">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/08/22/Luogu-P1822-%E9%AD%94%E6%B3%95%E6%8C%87%E7%BA%B9/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Luogu P1822 魔法指纹 | DDOSvoid's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">DDOSvoid's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DDOSvoid"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">DDOSvoid</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">647</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DDOSvoid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DDOSvoid" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/34531" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;34531" rel="noopener" target="_blank">Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://codeforces.com/profile/DDOSvoid" title="Codeforces → http:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;DDOSvoid" rel="noopener" target="_blank">Codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://acm.hdu.edu.cn/userstatus.php?user=DDOSvoid" title="Hdu → http:&#x2F;&#x2F;acm.hdu.edu.cn&#x2F;userstatus.php?user&#x3D;DDOSvoid" rel="noopener" target="_blank">Hdu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/manziqi/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;manziqi&#x2F;" rel="noopener" target="_blank">Title1</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jczhang.top/" title="https:&#x2F;&#x2F;jczhang.top&#x2F;" rel="noopener" target="_blank">JC Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/22/Luogu-P1822-%E9%AD%94%E6%B3%95%E6%8C%87%E7%BA%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Luogu P1822 魔法指纹
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-08-22 15:50:31 / 修改时间：15:55:33" itemprop="dateCreated datePublished" datetime="2021-08-22T15:50:31+08:00">2021-08-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1822">https://www.luogu.com.cn/problem/P1822</a></p>
+<p>简要题意：定义 $magic(n)$ 等于将 $n$ 按十进制顺序写下来，依次对相邻两个数写下差的绝对值，得到的新数，例如 $magic(5913)=482$，对于一个大于等于 $10$ 的数字，我们不断进行 $magic$ 变换，最后一定可以得到一个小于 $10$ 的数字，如果一个数字 $n$ 可以通过不断进行 $magic$ 变换得到 $7$，那么我们称它为幸运数字，现在给定 $l,r$，求 $[l,r]$ 范围内有多少幸运数字</p>
+<p>$1\le l\le r\le 10^9$</p>
+<a id="more"></a>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>我们考虑判断一个数字是否是幸运数字大概需要 $O(\log_{10}^2n)$ 的时间，大概 $1s$ 只能做 $10^6$ 次判断</p>
+<p>所以我们考虑分段打表，令块大小为 $10^6$，这样本地打表大概需要 $10min$，且表的大小只有不超过 $10k$ </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> f[] = &#123; <span class="number">0</span>,<span class="number">2045</span>,<span class="number">3089</span>,<span class="number">3839</span>,<span class="number">4196</span>,<span class="number">4512</span>,<span class="number">4828</span>,<span class="number">5186</span>,<span class="number">5935</span>,<span class="number">6979</span>,<span class="number">8453</span>,<span class="number">9319</span>,<span class="number">10363</span>,<span class="number">10666</span>,<span class="number">10886</span>,<span class="number">11040</span>,<span class="number">11155</span>,<span class="number">11239</span>,<span class="number">11364</span>,<span class="number">11710</span>,<span class="number">12637</span>,<span class="number">13015</span>,<span class="number">13573</span>,<span class="number">14323</span>,<span class="number">14544</span>,<span class="number">14748</span>,<span class="number">14902</span>,<span class="number">15020</span>,<span class="number">15154</span>,<span class="number">15300</span>,<span class="number">15682</span>,<span class="number">15792</span>,<span class="number">16062</span>,<span class="number">16365</span>,<span class="number">16722</span>,<span class="number">16898</span>,<span class="number">17102</span>,<span class="number">17270</span>,<span class="number">17398</span>,<span class="number">17487</span>,<span class="number">17562</span>,<span class="number">17647</span>,<span class="number">17773</span>,<span class="number">18071</span>,<span class="number">18292</span>,<span class="number">18608</span>,<span class="number">18784</span>,<span class="number">19004</span>,<span class="number">19172</span>,<span class="number">19260</span>,<span class="number">19329</span>,<span class="number">19398</span>,<span class="number">19486</span>,<span class="number">19654</span>,<span class="number">19874</span>,<span class="number">20050</span>,<span class="number">20366</span>,<span class="number">20587</span>,<span class="number">20885</span>,<span class="number">21011</span>,<span class="number">21096</span>,<span class="number">21171</span>,<span class="number">21260</span>,<span class="number">21388</span>,<span class="number">21556</span>,<span class="number">21760</span>,<span class="number">21936</span>,<span class="number">22293</span>,<span class="number">22596</span>,<span class="number">22866</span>,<span class="number">22977</span>,<span class="number">23359</span>,<span class="number">23504</span>,<span class="number">23638</span>,<span class="number">23756</span>,<span class="number">23910</span>,<span class="number">24114</span>,<span class="number">24336</span>,<span class="number">25085</span>,<span class="number">25643</span>,<span class="number">26021</span>,<span class="number">26948</span>,<span class="number">27295</span>,<span class="number">27419</span>,<span class="number">27503</span>,<span class="number">27618</span>,<span class="number">27772</span>,<span class="number">27992</span>,<span class="number">28295</span>,<span class="number">29339</span>,<span class="number">30205</span>,<span class="number">32227</span>,<span class="number">32981</span>,<span class="number">33205</span>,<span class="number">33276</span>,<span class="number">33362</span>,<span class="number">33477</span>,<span class="number">33645</span>,<span class="number">33943</span>,<span class="number">34501</span>,<span class="number">35975</span>,<span class="number">36601</span>,<span class="number">37159</span>,<span class="number">37277</span>,<span class="number">37358</span>,<span class="number">37409</span>,<span class="number">37442</span>,<span class="number">37461</span>,<span class="number">37491</span>,<span class="number">37807</span>,<span class="number">39268</span>,<span class="number">40134</span>,<span class="number">41178</span>,<span class="number">41481</span>,<span class="number">41701</span>,<span class="number">41855</span>,<span class="number">41970</span>,<span class="number">42054</span>,<span class="number">42179</span>,<span class="number">42525</span>,<span class="number">43452</span>,<span class="number">43562</span>,<span class="number">44120</span>,<span class="number">44214</span>,<span class="number">44435</span>,<span class="number">44531</span>,<span class="number">44608</span>,<span class="number">44656</span>,<span class="number">44688</span>,<span class="number">44714</span>,<span class="number">44774</span>,<span class="number">44848</span>,<span class="number">45118</span>,<span class="number">45234</span>,<span class="number">45300</span>,<span class="number">45395</span>,<span class="number">45599</span>,<span class="number">45717</span>,<span class="number">45800</span>,<span class="number">45855</span>,<span class="number">45884</span>,<span class="number">45934</span>,<span class="number">46060</span>,<span class="number">46178</span>,<span class="number">46255</span>,<span class="number">46305</span>,<span class="number">46381</span>,<span class="number">46494</span>,<span class="number">46662</span>,<span class="number">46719</span>,<span class="number">46762</span>,<span class="number">46806</span>,<span class="number">46894</span>,<span class="number">47002</span>,<span class="number">47081</span>,<span class="number">47121</span>,<span class="number">47162</span>,<span class="number">47206</span>,<span class="number">47297</span>,<span class="number">47395</span>,<span class="number">47480</span>,<span class="number">47521</span>,<span class="number">47610</span>,<span class="number">47679</span>,<span class="number">47760</span>,<span class="number">47794</span>,<span class="number">47817</span>,<span class="number">47847</span>,<span class="number">47868</span>,<span class="number">47948</span>,<span class="number">48015</span>,<span class="number">48151</span>,<span class="number">48296</span>,<span class="number">48370</span>,<span class="number">48434</span>,<span class="number">48485</span>,<span class="number">48506</span>,<span class="number">48528</span>,<span class="number">48552</span>,<span class="number">48587</span>,<span class="number">48640</span>,<span class="number">49129</span>,<span class="number">49476</span>,<span class="number">49551</span>,<span class="number">49612</span>,<span class="number">49663</span>,<span class="number">49687</span>,<span class="number">49700</span>,<span class="number">49728</span>,<span class="number">49900</span>,<span class="number">49979</span>,<span class="number">51122</span>,<span class="number">51876</span>,<span class="number">51923</span>,<span class="number">51968</span>,<span class="number">52019</span>,<span class="number">52055</span>,<span class="number">52070</span>,<span class="number">52090</span>,<span class="number">52319</span>,<span class="number">53243</span>,<span class="number">53483</span>,<span class="number">53723</span>,<span class="number">54021</span>,<span class="number">54139</span>,<span class="number">54208</span>,<span class="number">54259</span>,<span class="number">54287</span>,<span class="number">54330</span>,<span class="number">54393</span>,<span class="number">54978</span>,<span class="number">55844</span>,<span class="number">56172</span>,<span class="number">56475</span>,<span class="number">56588</span>,<span class="number">56665</span>,<span class="number">56716</span>,<span class="number">56751</span>,<span class="number">56776</span>,<span class="number">56838</span>,<span class="number">57213</span>,<span class="number">57591</span>,<span class="number">58149</span>,<span class="number">58899</span>,<span class="number">59120</span>,<span class="number">59324</span>,<span class="number">59478</span>,<span class="number">59596</span>,<span class="number">59730</span>,<span class="number">59876</span>,<span class="number">60258</span>,<span class="number">60325</span>,<span class="number">60519</span>,<span class="number">60822</span>,<span class="number">60906</span>,<span class="number">61082</span>,<span class="number">61178</span>,<span class="number">61259</span>,<span class="number">61308</span>,<span class="number">61340</span>,<span class="number">61365</span>,<span class="number">61412</span>,<span class="number">61510</span>,<span class="number">61808</span>,<span class="number">61934</span>,<span class="number">62003</span>,<span class="number">62098</span>,<span class="number">62318</span>,<span class="number">62426</span>,<span class="number">62478</span>,<span class="number">62516</span>,<span class="number">62559</span>,<span class="number">62616</span>,<span class="number">62784</span>,<span class="number">62897</span>,<span class="number">62973</span>,<span class="number">63023</span>,<span class="number">63100</span>,<span class="number">63218</span>,<span class="number">63344</span>,<span class="number">63394</span>,<span class="number">63442</span>,<span class="number">63511</span>,<span class="number">63639</span>,<span class="number">63757</span>,<span class="number">63817</span>,<span class="number">63857</span>,<span class="number">63891</span>,<span class="number">63920</span>,<span class="number">64016</span>,<span class="number">64090</span>,<span class="number">64246</span>,<span class="number">64343</span>,<span class="number">64477</span>,<span class="number">64553</span>,<span class="number">64630</span>,<span class="number">64664</span>,<span class="number">64691</span>,<span class="number">64714</span>,<span class="number">64740</span>,<span class="number">64795</span>,<span class="number">64957</span>,<span class="number">65150</span>,<span class="number">65274</span>,<span class="number">65328</span>,<span class="number">65397</span>,<span class="number">65448</span>,<span class="number">65471</span>,<span class="number">65494</span>,<span class="number">65529</span>,<span class="number">65566</span>,<span class="number">65877</span>,<span class="number">66192</span>,<span class="number">66416</span>,<span class="number">66451</span>,<span class="number">66509</span>,<span class="number">66560</span>,<span class="number">66582</span>,<span class="number">66610</span>,<span class="number">66682</span>,<span class="number">66959</span>,<span class="number">66984</span>,<span class="number">67062</span>,<span class="number">67180</span>,<span class="number">67348</span>,<span class="number">67413</span>,<span class="number">67471</span>,<span class="number">67506</span>,<span class="number">67533</span>,<span class="number">67547</span>,<span class="number">67561</span>,<span class="number">67943</span>,<span class="number">68035</span>,<span class="number">68151</span>,<span class="number">68371</span>,<span class="number">68472</span>,<span class="number">68541</span>,<span class="number">68594</span>,<span class="number">68627</span>,<span class="number">68666</span>,<span class="number">68698</span>,<span class="number">68808</span>,<span class="number">69366</span>,<span class="number">69460</span>,<span class="number">69681</span>,<span class="number">69777</span>,<span class="number">69854</span>,<span class="number">69902</span>,<span class="number">69934</span>,<span class="number">69960</span>,<span class="number">70020</span>,<span class="number">70130</span>,<span class="number">70400</span>,<span class="number">70703</span>,<span class="number">71060</span>,<span class="number">71236</span>,<span class="number">71440</span>,<span class="number">71608</span>,<span class="number">71736</span>,<span class="number">71825</span>,<span class="number">71900</span>,<span class="number">71934</span>,<span class="number">72017</span>,<span class="number">72135</span>,<span class="number">72356</span>,<span class="number">72420</span>,<span class="number">72596</span>,<span class="number">72709</span>,<span class="number">72818</span>,<span class="number">72860</span>,<span class="number">72887</span>,<span class="number">72925</span>,<span class="number">72977</span>,<span class="number">73085</span>,<span class="number">73305</span>,<span class="number">73400</span>,<span class="number">73469</span>,<span class="number">73595</span>,<span class="number">73893</span>,<span class="number">73991</span>,<span class="number">74038</span>,<span class="number">74073</span>,<span class="number">74127</span>,<span class="number">74196</span>,<span class="number">74364</span>,<span class="number">74460</span>,<span class="number">74536</span>,<span class="number">74595</span>,<span class="number">74660</span>,<span class="number">74854</span>,<span class="number">74964</span>,<span class="number">75015</span>,<span class="number">75081</span>,<span class="number">75155</span>,<span class="number">75273</span>,<span class="number">75374</span>,<span class="number">75434</span>,<span class="number">75478</span>,<span class="number">75508</span>,<span class="number">75555</span>,<span class="number">75693</span>,<span class="number">75725</span>,<span class="number">75785</span>,<span class="number">75860</span>,<span class="number">75944</span>,<span class="number">76009</span>,<span class="number">76086</span>,<span class="number">76138</span>,<span class="number">76159</span>,<span class="number">76184</span>,<span class="number">76217</span>,<span class="number">76241</span>,<span class="number">76282</span>,<span class="number">76329</span>,<span class="number">76400</span>,<span class="number">76452</span>,<span class="number">76521</span>,<span class="number">76577</span>,<span class="number">76611</span>,<span class="number">76646</span>,<span class="number">76662</span>,<span class="number">76685</span>,<span class="number">76732</span>,<span class="number">76823</span>,<span class="number">76941</span>,<span class="number">77056</span>,<span class="number">77108</span>,<span class="number">77153</span>,<span class="number">77188</span>,<span class="number">77204</span>,<span class="number">77219</span>,<span class="number">77389</span>,<span class="number">77453</span>,<span class="number">77518</span>,<span class="number">77631</span>,<span class="number">77785</span>,<span class="number">77850</span>,<span class="number">77911</span>,<span class="number">77943</span>,<span class="number">77975</span>,<span class="number">77995</span>,<span class="number">78373</span>,<span class="number">78613</span>,<span class="number">78692</span>,<span class="number">78818</span>,<span class="number">79022</span>,<span class="number">79123</span>,<span class="number">79187</span>,<span class="number">79233</span>,<span class="number">79260</span>,<span class="number">79314</span>,<span class="number">79381</span>,<span class="number">79575</span>,<span class="number">79878</span>,<span class="number">79962</span>,<span class="number">80138</span>,<span class="number">80234</span>,<span class="number">80315</span>,<span class="number">80364</span>,<span class="number">80396</span>,<span class="number">80421</span>,<span class="number">80506</span>,<span class="number">80632</span>,<span class="number">80930</span>,<span class="number">81151</span>,<span class="number">81467</span>,<span class="number">81643</span>,<span class="number">81863</span>,<span class="number">82031</span>,<span class="number">82119</span>,<span class="number">82188</span>,<span class="number">82215</span>,<span class="number">82257</span>,<span class="number">82366</span>,<span class="number">82479</span>,<span class="number">82655</span>,<span class="number">82719</span>,<span class="number">82940</span>,<span class="number">83058</span>,<span class="number">83141</span>,<span class="number">83175</span>,<span class="number">83204</span>,<span class="number">83259</span>,<span class="number">83342</span>,<span class="number">83460</span>,<span class="number">83664</span>,<span class="number">83759</span>,<span class="number">83825</span>,<span class="number">83941</span>,<span class="number">84211</span>,<span class="number">84285</span>,<span class="number">84326</span>,<span class="number">84375</span>,<span class="number">84453</span>,<span class="number">84529</span>,<span class="number">84683</span>,<span class="number">84779</span>,<span class="number">84856</span>,<span class="number">84889</span>,<span class="number">84967</span>,<span class="number">85077</span>,<span class="number">85100</span>,<span class="number">85146</span>,<span class="number">85195</span>,<span class="number">85249</span>,<span class="number">85364</span>,<span class="number">85465</span>,<span class="number">85544</span>,<span class="number">85573</span>,<span class="number">85596</span>,<span class="number">85648</span>,<span class="number">85663</span>,<span class="number">85685</span>,<span class="number">85738</span>,<span class="number">85773</span>,<span class="number">85859</span>,<span class="number">85924</span>,<span class="number">86005</span>,<span class="number">86057</span>,<span class="number">86083</span>,<span class="number">86095</span>,<span class="number">86107</span>,<span class="number">86133</span>,<span class="number">86185</span>,<span class="number">86266</span>,<span class="number">86331</span>,<span class="number">86417</span>,<span class="number">86452</span>,<span class="number">86505</span>,<span class="number">86527</span>,<span class="number">86542</span>,<span class="number">86594</span>,<span class="number">86617</span>,<span class="number">86646</span>,<span class="number">86725</span>,<span class="number">86826</span>,<span class="number">86941</span>,<span class="number">86995</span>,<span class="number">87044</span>,<span class="number">87090</span>,<span class="number">87113</span>,<span class="number">87223</span>,<span class="number">87301</span>,<span class="number">87334</span>,<span class="number">87411</span>,<span class="number">87507</span>,<span class="number">87661</span>,<span class="number">87737</span>,<span class="number">87815</span>,<span class="number">87864</span>,<span class="number">87905</span>,<span class="number">87979</span>,<span class="number">88249</span>,<span class="number">88365</span>,<span class="number">88431</span>,<span class="number">88526</span>,<span class="number">88730</span>,<span class="number">88848</span>,<span class="number">88931</span>,<span class="number">88986</span>,<span class="number">89015</span>,<span class="number">89049</span>,<span class="number">89132</span>,<span class="number">89250</span>,<span class="number">89471</span>,<span class="number">89535</span>,<span class="number">89711</span>,<span class="number">89824</span>,<span class="number">89933</span>,<span class="number">89975</span>,<span class="number">90002</span>,<span class="number">90071</span>,<span class="number">90159</span>,<span class="number">90327</span>,<span class="number">90547</span>,<span class="number">90723</span>,<span class="number">91039</span>,<span class="number">91260</span>,<span class="number">91558</span>,<span class="number">91684</span>,<span class="number">91769</span>,<span class="number">91794</span>,<span class="number">91826</span>,<span class="number">91875</span>,<span class="number">91956</span>,<span class="number">92052</span>,<span class="number">92228</span>,<span class="number">92312</span>,<span class="number">92615</span>,<span class="number">92809</span>,<span class="number">92876</span>,<span class="number">92930</span>,<span class="number">92957</span>,<span class="number">93003</span>,<span class="number">93067</span>,<span class="number">93168</span>,<span class="number">93372</span>,<span class="number">93498</span>,<span class="number">93577</span>,<span class="number">93817</span>,<span class="number">94195</span>,<span class="number">94215</span>,<span class="number">94247</span>,<span class="number">94279</span>,<span class="number">94340</span>,<span class="number">94405</span>,<span class="number">94559</span>,<span class="number">94672</span>,<span class="number">94737</span>,<span class="number">94801</span>,<span class="number">94971</span>,<span class="number">94986</span>,<span class="number">95002</span>,<span class="number">95037</span>,<span class="number">95082</span>,<span class="number">95134</span>,<span class="number">95249</span>,<span class="number">95367</span>,<span class="number">95458</span>,<span class="number">95505</span>,<span class="number">95528</span>,<span class="number">95544</span>,<span class="number">95579</span>,<span class="number">95613</span>,<span class="number">95669</span>,<span class="number">95738</span>,<span class="number">95790</span>,<span class="number">95861</span>,<span class="number">95908</span>,<span class="number">95949</span>,<span class="number">95973</span>,<span class="number">96006</span>,<span class="number">96031</span>,<span class="number">96052</span>,<span class="number">96104</span>,<span class="number">96181</span>,<span class="number">96246</span>,<span class="number">96330</span>,<span class="number">96405</span>,<span class="number">96465</span>,<span class="number">96497</span>,<span class="number">96635</span>,<span class="number">96682</span>,<span class="number">96712</span>,<span class="number">96756</span>,<span class="number">96816</span>,<span class="number">96917</span>,<span class="number">97035</span>,<span class="number">97109</span>,<span class="number">97175</span>,<span class="number">97226</span>,<span class="number">97336</span>,<span class="number">97530</span>,<span class="number">97595</span>,<span class="number">97654</span>,<span class="number">97730</span>,<span class="number">97826</span>,<span class="number">97994</span>,<span class="number">98063</span>,<span class="number">98117</span>,<span class="number">98152</span>,<span class="number">98199</span>,<span class="number">98297</span>,<span class="number">98595</span>,<span class="number">98721</span>,<span class="number">98790</span>,<span class="number">98885</span>,<span class="number">99105</span>,<span class="number">99213</span>,<span class="number">99265</span>,<span class="number">99303</span>,<span class="number">99330</span>,<span class="number">99372</span>,<span class="number">99481</span>,<span class="number">99594</span>,<span class="number">99770</span>,<span class="number">99834</span>,<span class="number">100055</span>,<span class="number">100173</span>,<span class="number">100256</span>,<span class="number">100290</span>,<span class="number">100365</span>,<span class="number">100454</span>,<span class="number">100582</span>,<span class="number">100750</span>,<span class="number">100954</span>,<span class="number">101130</span>,<span class="number">101487</span>,<span class="number">101790</span>,<span class="number">102060</span>,<span class="number">102170</span>,<span class="number">102230</span>,<span class="number">102256</span>,<span class="number">102288</span>,<span class="number">102336</span>,<span class="number">102413</span>,<span class="number">102509</span>,<span class="number">102730</span>,<span class="number">102824</span>,<span class="number">103382</span>,<span class="number">103492</span>,<span class="number">103524</span>,<span class="number">103563</span>,<span class="number">103596</span>,<span class="number">103649</span>,<span class="number">103718</span>,<span class="number">103819</span>,<span class="number">104039</span>,<span class="number">104155</span>,<span class="number">104247</span>,<span class="number">104629</span>,<span class="number">104643</span>,<span class="number">104657</span>,<span class="number">104684</span>,<span class="number">104719</span>,<span class="number">104777</span>,<span class="number">104842</span>,<span class="number">105010</span>,<span class="number">105128</span>,<span class="number">105206</span>,<span class="number">105232</span>,<span class="number">105508</span>,<span class="number">105580</span>,<span class="number">105608</span>,<span class="number">105630</span>,<span class="number">105681</span>,<span class="number">105739</span>,<span class="number">105775</span>,<span class="number">105999</span>,<span class="number">106314</span>,<span class="number">106624</span>,<span class="number">106661</span>,<span class="number">106696</span>,<span class="number">106719</span>,<span class="number">106742</span>,<span class="number">106793</span>,<span class="number">106862</span>,<span class="number">106916</span>,<span class="number">107041</span>,<span class="number">107234</span>,<span class="number">107395</span>,<span class="number">107450</span>,<span class="number">107476</span>,<span class="number">107499</span>,<span class="number">107526</span>,<span class="number">107560</span>,<span class="number">107637</span>,<span class="number">107713</span>,<span class="number">107847</span>,<span class="number">107945</span>,<span class="number">108100</span>,<span class="number">108174</span>,<span class="number">108270</span>,<span class="number">108299</span>,<span class="number">108333</span>,<span class="number">108373</span>,<span class="number">108433</span>,<span class="number">108551</span>,<span class="number">108679</span>,<span class="number">108748</span>,<span class="number">108796</span>,<span class="number">108846</span>,<span class="number">108972</span>,<span class="number">109090</span>,<span class="number">109167</span>,<span class="number">109217</span>,<span class="number">109293</span>,<span class="number">109406</span>,<span class="number">109574</span>,<span class="number">109631</span>,<span class="number">109674</span>,<span class="number">109712</span>,<span class="number">109764</span>,<span class="number">109872</span>,<span class="number">110092</span>,<span class="number">110187</span>,<span class="number">110256</span>,<span class="number">110382</span>,<span class="number">110680</span>,<span class="number">110778</span>,<span class="number">110825</span>,<span class="number">110850</span>,<span class="number">110882</span>,<span class="number">110931</span>,<span class="number">111012</span>,<span class="number">111108</span>,<span class="number">111284</span>,<span class="number">111368</span>,<span class="number">111671</span>,<span class="number">111865</span>,<span class="number">111933</span>,<span class="number">112315</span>,<span class="number">112460</span>,<span class="number">112594</span>,<span class="number">112712</span>,<span class="number">112866</span>,<span class="number">113070</span>,<span class="number">113292</span>,<span class="number">114041</span>,<span class="number">114599</span>,<span class="number">114978</span>,<span class="number">115352</span>,<span class="number">115414</span>,<span class="number">115439</span>,<span class="number">115474</span>,<span class="number">115525</span>,<span class="number">115602</span>,<span class="number">115715</span>,<span class="number">116019</span>,<span class="number">116346</span>,<span class="number">117213</span>,<span class="number">117797</span>,<span class="number">117860</span>,<span class="number">117903</span>,<span class="number">117931</span>,<span class="number">117982</span>,<span class="number">118051</span>,<span class="number">118169</span>,<span class="number">118467</span>,<span class="number">118708</span>,<span class="number">118947</span>,<span class="number">119871</span>,<span class="number">120100</span>,<span class="number">120120</span>,<span class="number">120135</span>,<span class="number">120171</span>,<span class="number">120222</span>,<span class="number">120267</span>,<span class="number">120314</span>,<span class="number">121068</span>,<span class="number">122211</span>,<span class="number">122290</span>,<span class="number">122462</span>,<span class="number">122490</span>,<span class="number">122503</span>,<span class="number">122527</span>,<span class="number">122578</span>,<span class="number">122639</span>,<span class="number">122715</span>,<span class="number">123061</span>,<span class="number">123550</span>,<span class="number">123603</span>,<span class="number">123638</span>,<span class="number">123662</span>,<span class="number">123684</span>,<span class="number">123705</span>,<span class="number">123756</span>,<span class="number">123820</span>,<span class="number">123894</span>,<span class="number">124039</span>,<span class="number">124175</span>,<span class="number">124242</span>,<span class="number">124322</span>,<span class="number">124343</span>,<span class="number">124373</span>,<span class="number">124396</span>,<span class="number">124430</span>,<span class="number">124511</span>,<span class="number">124580</span>,<span class="number">124669</span>,<span class="number">124710</span>,<span class="number">124795</span>,<span class="number">124893</span>,<span class="number">124984</span>,<span class="number">125028</span>,<span class="number">125069</span>,<span class="number">125109</span>,<span class="number">125188</span>,<span class="number">125296</span>,<span class="number">125384</span>,<span class="number">125428</span>,<span class="number">125471</span>,<span class="number">125528</span>,<span class="number">125696</span>,<span class="number">125809</span>,<span class="number">125885</span>,<span class="number">125935</span>,<span class="number">126012</span>,<span class="number">126130</span>,<span class="number">126256</span>,<span class="number">126306</span>,<span class="number">126335</span>,<span class="number">126390</span>,<span class="number">126473</span>,<span class="number">126591</span>,<span class="number">126795</span>,<span class="number">126890</span>,<span class="number">126956</span>,<span class="number">127072</span>,<span class="number">127342</span>,<span class="number">127416</span>,<span class="number">127476</span>,<span class="number">127502</span>,<span class="number">127534</span>,<span class="number">127582</span>,<span class="number">127659</span>,<span class="number">127755</span>,<span class="number">127976</span>,<span class="number">128070</span>,<span class="number">128628</span>,<span class="number">128738</span>,<span class="number">129665</span>,<span class="number">130012</span>,<span class="number">130136</span>,<span class="number">130220</span>,<span class="number">130335</span>,<span class="number">130489</span>,<span class="number">130709</span>,<span class="number">131012</span>,<span class="number">132056</span>,<span class="number">132922</span>,<span class="number">134383</span>,<span class="number">134699</span>,<span class="number">134729</span>,<span class="number">134748</span>,<span class="number">134781</span>,<span class="number">134832</span>,<span class="number">134913</span>,<span class="number">135031</span>,<span class="number">135589</span>,<span class="number">136215</span>,<span class="number">139782</span>,<span class="number">142039</span>,<span class="number">142127</span>,<span class="number">142133</span>,<span class="number">142153</span>,<span class="number">142186</span>,<span class="number">142221</span>,<span class="number">142275</span>,<span class="number">142589</span>,<span class="number">144611</span>,<span class="number">144982</span>,<span class="number">145988</span>,<span class="number">146122</span>,<span class="number">146131</span>,<span class="number">146140</span>,<span class="number">146176</span>,<span class="number">146229</span>,<span class="number">146279</span>,<span class="number">146471</span>,<span class="number">147398</span>,<span class="number">147455</span>,<span class="number">147527</span>,<span class="number">147611</span>,<span class="number">147625</span>,<span class="number">147636</span>,<span class="number">147660</span>,<span class="number">147708</span>,<span class="number">147786</span>,<span class="number">147884</span>,<span class="number">148266</span>,<span class="number">148312</span>,<span class="number">148353</span>,<span class="number">148376</span>,<span class="number">148394</span>,<span class="number">148403</span>,<span class="number">148424</span>,<span class="number">148480</span>,<span class="number">148563</span>,<span class="number">148632</span>,<span class="number">148707</span>,<span class="number">148757</span>,<span class="number">148840</span>,<span class="number">148892</span>,<span class="number">148919</span>,<span class="number">148940</span>,<span class="number">148963</span>,<span class="number">149015</span>,<span class="number">149124</span>,<span class="number">149181</span>,<span class="number">149250</span>,<span class="number">149294</span>,<span class="number">149382</span>,<span class="number">149490</span>,<span class="number">149569</span>,<span class="number">149609</span>,<span class="number">149650</span>,<span class="number">149694</span>,<span class="number">149785</span>,<span class="number">149883</span>,<span class="number">149968</span>,<span class="number">150003</span>,<span class="number">150057</span>,<span class="number">150126</span>,<span class="number">150294</span>,<span class="number">150390</span>,<span class="number">150466</span>,<span class="number">150525</span>,<span class="number">150590</span>,<span class="number">150784</span>,<span class="number">150894</span>,<span class="number">150948</span>,<span class="number">150975</span>,<span class="number">151021</span>,<span class="number">151085</span>,<span class="number">151186</span>,<span class="number">151390</span>,<span class="number">151516</span>,<span class="number">151595</span>,<span class="number">151835</span>,<span class="number">152214</span>,<span class="number">152588</span>,<span class="number">152650</span>,<span class="number">152675</span>,<span class="number">152710</span>,<span class="number">152761</span>,<span class="number">152838</span>,<span class="number">152951</span>,<span class="number">153255</span>,<span class="number">153582</span>,<span class="number">154448</span>,<span class="number">156470</span>,<span class="number">157224</span>,<span class="number">157448</span>,<span class="number">157519</span>,<span class="number">157605</span>,<span class="number">157720</span>,<span class="number">157888</span>,<span class="number">158186</span>,<span class="number">158744</span>,<span class="number">160218</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1000000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> l, r;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a; <span class="keyword">int</span> res = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">while</span> (x) a.push_back(x % <span class="number">10</span>), x /= <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = a.size() - <span class="number">1</span>; i; --i) res = res * <span class="number">10</span> + <span class="built_in">abs</span>(a[i] - a[i - <span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (x &gt; <span class="number">9</span>) x = solve(x);</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">7</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> k = n / N, r = n % N, res = f[k];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= r; ++i) res += check(k * N + i);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>); <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; l &gt;&gt; r;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; calc(r) - calc(l - <span class="number">1</span>) &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-flag"></i>　感谢阅读　　　　-------------</div>
+    
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%88%86%E6%AE%B5%E6%89%93%E8%A1%A8/" rel="tag"># 分段打表</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/22/%E5%88%86%E6%AE%B5%E6%89%93%E8%A1%A8/" rel="prev" title="分段打表">
+                  <i class="fa fa-chevron-left"></i> 分段打表
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/08/22/Luogu-P4516-JSOI2018-%E6%BD%9C%E5%85%A5%E8%A1%8C%E5%8A%A8/" rel="next" title="Luogu P4516 [JSOI2018]潜入行动">
+                  Luogu P4516 [JSOI2018]潜入行动 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DDOSvoid</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.2m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">18:52</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-use    r"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/D_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/D_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="简介树形 $dp$ 是一类很容易看出来的 $dp$，但是写起来却有很多的细节和技巧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈树形DP">
+<meta property="og:url" content="http://example.com/2021/04/06/%E6%B5%85%E8%B0%88%E6%A0%91%E5%BD%A2DP/index.html">
+<meta property="og:site_name" content="DDOSvoid&#39;s Blog">
+<meta property="og:description" content="简介树形 $dp$ 是一类很容易看出来的 $dp$，但是写起来却有很多的细节和技巧">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-06T13:16:32.000Z">
+<meta property="article:modified_time" content="2021-10-22T12:07:35.303Z">
+<meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="Tech">
+<meta property="article:tag" content="DP">
+<meta property="article:tag" content="树形DP">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/04/06/%E6%B5%85%E8%B0%88%E6%A0%91%E5%BD%A2DP/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>浅谈树形DP | DDOSvoid's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">DDOSvoid's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E9%81%93%E6%A0%91%E5%BD%A2DP%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%90%84%E7%A7%8D%E5%9C%B0%E6%96%B9"><span class="nav-number">2.</span> <span class="nav-text">一道树形DP需要注意的各种地方</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DP%E6%96%B9%E7%A8%8B%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">2.1.</span> <span class="nav-text">DP方程的定义及初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DP%E6%96%B9%E7%A8%8B%E7%9A%84%E8%BD%AC%E7%A7%BB"><span class="nav-number">2.2.</span> <span class="nav-text">DP方程的转移</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%AF%E5%8A%A0%E8%BD%AC%E7%A7%BB"><span class="nav-number">2.2.1.</span> <span class="nav-text">累加转移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%95%E5%BC%80%E8%BD%AC%E7%A7%BB"><span class="nav-number">2.2.2.</span> <span class="nav-text">展开转移</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E5%BD%A2DP%E7%9A%84%E7%A9%BA%E9%97%B4%E4%BC%98%E5%8C%96"><span class="nav-number">2.3.</span> <span class="nav-text">树形DP的空间优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E5%BD%A2%E8%83%8C%E5%8C%85"><span class="nav-number">3.</span> <span class="nav-text">树形背包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E5%BD%A2%E8%83%8C%E5%8C%85%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">3.1.</span> <span class="nav-text">树形背包时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">3.2.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E8%BF%9E%E9%80%9A%E5%9D%97"><span class="nav-number">4.</span> <span class="nav-text">树上连通块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E9%93%BE"><span class="nav-number">5.</span> <span class="nav-text">树链</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DDOSvoid"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">DDOSvoid</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">647</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DDOSvoid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DDOSvoid" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/34531" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;34531" rel="noopener" target="_blank">Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://codeforces.com/profile/DDOSvoid" title="Codeforces → http:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;DDOSvoid" rel="noopener" target="_blank">Codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://acm.hdu.edu.cn/userstatus.php?user=DDOSvoid" title="Hdu → http:&#x2F;&#x2F;acm.hdu.edu.cn&#x2F;userstatus.php?user&#x3D;DDOSvoid" rel="noopener" target="_blank">Hdu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/manziqi/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;manziqi&#x2F;" rel="noopener" target="_blank">Title1</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jczhang.top/" title="https:&#x2F;&#x2F;jczhang.top&#x2F;" rel="noopener" target="_blank">JC Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/06/%E6%B5%85%E8%B0%88%E6%A0%91%E5%BD%A2DP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          浅谈树形DP
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-06 21:16:32" itemprop="dateCreated datePublished" datetime="2021-04-06T21:16:32+08:00">2021-04-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-10-22 20:07:35" itemprop="dateModified" datetime="2021-10-22T20:07:35+08:00">2021-10-22</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>树形 $dp$ 是一类很容易看出来的 $dp$，但是写起来却有很多的细节和技巧</p>
+<a id="more"></a>
+<h2 id="一道树形DP需要注意的各种地方"><a href="#一道树形DP需要注意的各种地方" class="headerlink" title="一道树形DP需要注意的各种地方"></a>一道树形DP需要注意的各种地方</h2><h3 id="DP方程的定义及初始化"><a href="#DP方程的定义及初始化" class="headerlink" title="DP方程的定义及初始化"></a>DP方程的定义及初始化</h3><p>树形 $dp$ 中，$dp$ 方程的定义非常重要，且一道树形 $dp$ 题往往有很多种不同的 $dp$ 的定义</p>
+<p>要注意如果当前的 $dp$ 方程不能涵盖所有情况或者出现某些情况被包含多次一定及时修改</p>
+<p>树形 $dp$ 很可能一个字的差异会造成巨大的区别</p>
+<p>树形 $dp$ 的初始化同样是一个令人头大的问题，因为大部分情况下初始化都不太符合方程的定义，且叶子节点和其它节点的初始化也总是不尽相同，而且只能具体题目具体分析</p>
+<h3 id="DP方程的转移"><a href="#DP方程的转移" class="headerlink" title="DP方程的转移"></a>DP方程的转移</h3><p>树形 $dp$ 中的转移大部分可以分为两类，一类是累加转移，剩下一类是展开转移</p>
+<p>累加转移的意思就是在用 $f[v]$ 更新 $f[u]$ 时，$f[u]$ 已经包含了其它的 $f[v]$ 的值了，可以说大部分树形 $dp$ 都是累加转移</p>
+<p>展开转移不太常见，例如经典的一个问题是求有多少点集，点集中不存在有祖先关系的节点，这里的 $f[u]=\prod (f[v]+1)$</p>
+<p>这里使用展开转移显然更好理解</p>
+<h4 id="累加转移"><a href="#累加转移" class="headerlink" title="累加转移"></a>累加转移</h4><p>需要注意的是，从某种意义上正是累加转移的方式导致了树形 $dp$ 的方程初始化稍微有一点奇怪</p>
+<p>另外一点，当我们有多个 $dp$ 方程时，累加转移可能会对多个转移方程转移的顺序有要求</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/05/07/CF-1146F-Leaf-Partition/">CF 1146F Leaf Partition</a></p>
+<p>简要题意：给定一棵以 $1$ 为根的有根树，设 $L$ 为一个叶子节点的集合，$f(L)$ 就是这些叶子节点的最小连通子图，现在要求将所有叶子节点划分成若干个集合，使得任意两个叶子结合 $S$ 和 $T$ 满足 $f(S)\cap f(T)=\empty$，求方案数 $998244353$​ 取模</p>
+<p>$n\le 2\times 10^5$</p>
+<p>简要题解：我们定义 $f[u]$ 表示 $u$ 向下直连一棵染色的子树，注意 $u$ 本身不属于这棵被染色的子树</p>
+<p>$g[u]$ 表示 $u$ 是一棵染色的子树的根，$h[u]$ 表示 $u$ 没有被染色</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g[u] = (g[u] * (f[v] + <span class="number">2</span> * g[v] + h[v]) + f[u] * (f[v] + g[v])) % p;</span><br><span class="line">f[u] = (f[u] * (h[v] + g[v]) + h[u] * (f[v] + g[v])) % p;</span><br><span class="line">h[u] = h[u] * (h[v] + g[v]) % p; </span><br></pre></td></tr></table></figure>
+<h4 id="展开转移"><a href="#展开转移" class="headerlink" title="展开转移"></a>展开转移</h4><p>展开转移在 $f[u]$ 直接等于某种形式的 $f[v]$​ 时比较好用</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/06/CF-1223E-Paint-the-Tree/">CF 1223E Paint the Tree</a></p>
+<p>简要题意：给定一棵有 $n$ 个点的无根树和 $k$，每个点要染上恰好 $k$ 种颜色，现在有无数种颜色，每种颜色最多用两次，当一条边的两个端点附上的颜色中有至少一种相同颜色时，这条边的贡献就是这条边的权值，否则是 $0$，求一种染色方案，使得这棵树的所有边的贡献之和最大</p>
+<p>简要题解：题目可以转化为在树上选取若干条边，需要保证加入这些边后没有一个点的度超过 $k$，问最大边权和</p>
+<p>对于儿子，我们只需要知道儿子还能不能选一次，所以我们令 $f[u]$ 表示还能选，$g[u]$ 表示不能选</p>
+<p>在转移的时候，我们首先都选 $g[v]$，然后将 $f[v]+w-g[v]$ 排序选前 $k$ 个作为 $g[u]$，前 $k-1$ 个作为 $f[u]$ </p>
+<h3 id="树形DP的空间优化"><a href="#树形DP的空间优化" class="headerlink" title="树形DP的空间优化"></a>树形DP的空间优化</h3><ol>
+<li><p>自下而上，空间复杂度 $O(maxdep\times S)$，其中 $maxdep$ 表示树的最深节点的深度</p>
+</li>
+<li><p>自上而下，空间复杂度 $O(\log n\times S)$，这个 $\log n$ 是指轻边的个数，我们树剖后，先向轻儿子转移，最后向重儿子转移</p>
+<ol>
+<li><p>简要题意：现在有 $n$ 个操作，每个操作要么在最右边添加一堆石子，个数为 $a$，价值为 $b$，要么删除最右边的一堆，在每次操作后，求价值最小的移除方案使得先手必败</p>
+<p>$n\le 4\times 10^4,a&lt;2^{14}$，空间限制 $8M$</p>
+<p>简要题解：首先我们不考虑空间限制，容易得到操作构成一个树形结构，每次相当于查询从点 $u$ 的树链上选价值和最小的若干个点使得它们的以后和等于 $u$ 的树链的异或和</p>
+<p>容易得到一个 $dp$，令 $f[u][S]$ 表示从 $u$ 到根，异或和为 $S$ 的最小价值，我们考虑压缩一下第一维</p>
+<p>实际上第一位我们并不用存 $1$ 到 $n$，我们只需要保证从 $u$ 点到其子树内第一维不会重复即可</p>
+<p>我们考虑轻重链剖分，然后令第一维表示轻边的个数，那么第一维就不会超过 $O(\log n)$，然后我们先 $dfs$ 轻儿子，最后 $dfs$ 重儿子即可</p>
+<p>时间复杂度 $O(nS)$，空间复杂度 $O(S\log n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/22/The-2020-ICPC-Asia-Macau-Regional-Contest-I-Nim-Cheater/">The 2020 ICPC Asia Macau Regional Contest I Nim Cheater</a></p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="树形背包"><a href="#树形背包" class="headerlink" title="树形背包"></a>树形背包</h2><h3 id="树形背包时间复杂度"><a href="#树形背包时间复杂度" class="headerlink" title="树形背包时间复杂度"></a>树形背包时间复杂度</h3><p>$O(n^2)$​</p>
+<p>证明：任意两个点只会在 $lca$ 处有 $1$ 的贡献</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    sz[u] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        dfs(v, u);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> S = <span class="number">0</span>; S &lt;= sz[u]; ++S)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> T = <span class="number">0</span>; T &lt;= sz[v]; ++T) ...</span><br><span class="line">        sz[u] += sz[v];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$O(nk)$​</p>
+<p>证明：容易想到，我们只需要考虑所有兄弟节点对的贡献</p>
+<p>如果两个兄弟节点的子树大小都大于等于 $k$，那么他们合并一次的贡献是 $O(k^2)$ 的，但是他们合并之后会使待合并的大小减少 $k$，所以像这样的合并只会出现 $O(\frac n k )$ 次</p>
+<p>如果一个节点的子树大小大于等于 $k$​，另一个节点的子树大小小于 $k$​，不妨令其为 $t$​，那么他们合并一次的贡献是 $O(tk)$​ 的，但是他们合并之后会使待合并的大小减少 $t$​，所以像这样的合并的总复杂度只有 $O(nk)$</p>
+<p>如果两个兄弟节点的子树大小都小于 $k$​，我们对于每个点单独考虑他们这样合并的贡献，显然一个点对这样合并的总贡献是 $O(k)$ 的，而总点数是 $O(n)$，那么这样的合并的复杂度就是 $O(nk)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> fa)</span> </span>&#123;</span><br><span class="line">    sz[u] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; ~i; i = e[i].next) &#123;</span><br><span class="line">        <span class="keyword">int</span> v = e[i].to; <span class="keyword">if</span> (v == fa) <span class="keyword">continue</span>;</span><br><span class="line">        dfs(v, u);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> S = <span class="number">0</span>; S &lt;= min(k, sz[u]); ++S)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> T = <span class="number">0</span>; T &lt;= min(k, sz[v]); ++T) ...</span><br><span class="line">        sz[u] += sz[v];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ol>
+<li><p>简要题意：给定一棵 $n$ 个点的无根树，现在有 $k$ 个监听装置，每个节点至多安放一个监听装置，一个安放了监听装置的节点可以监听相邻的节点，但不能监听自己，求恰好使用 $k$ 个监听装置且每个节点都至少被一个节点监听的方案数</p>
+<p>$n\le 10^5,k\le 100$</p>
+<p>简要题解：我们令 $f[u][S][0/1][0/1]$ 表示 $u$ 的子树内一共使用了 $S$ 个监听装置，$u$ 点是否使用监听装置，$u$​ 点是否被监听到，时间复杂度 $O(nk)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/08/22/Luogu-P4516-JSOI2018-%E6%BD%9C%E5%85%A5%E8%A1%8C%E5%8A%A8/">Luogu P4516 [JSOI2018]潜入行动</a></p>
+</li>
+</ol>
+<h2 id="树上连通块"><a href="#树上连通块" class="headerlink" title="树上连通块"></a>树上连通块</h2><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/06/CF-486D-Valid-Sets/">CF 486D Valid Sets</a> 对于一个连通块我们可以利用其深度最小的节点来计算贡献</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/06/CF-461B-Appleman-and-Tree/">CF 461B Appleman and Tree</a> </p>
+<h2 id="树链"><a href="#树链" class="headerlink" title="树链"></a>树链</h2><ol>
+<li><p>简要题意：给定一棵 $n$ 个点的树以及 $m$ 条树上的链，每条链有一个价值，要求选择若干条链，使得每个点至多被包含在一个链中，且价值最大</p>
+<p>$n,m\le 2\times 10^5$</p>
+<p>简要题解：我们将每条链扔到 $lca$ 上，然后做树形 $dp$</p>
+<p>我们令 $f[u]$ 表示 $u$ 子树内已经选择完的最大价值，$g[u]=\sum f[v]$，$v$ 是 $u$ 的儿子</p>
+<p>如果 $u$ 没有链，那么 $f[u]=g[u]$；如果 $u$​ 有一条链，那么 $f[u]$​ 应该取 $g[u]+\sum g[v]-f[v]$​，$v$​ 是这条链上的点</p>
+<p>这个东西做一个差分后相当于区间加和单点查询，可以用树状数组实现，时间复杂度 $O(n\log n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/16/CF-856D-Masha-and-Cactus/">CF 856D Masha and Cactus</a></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-flag"></i>　感谢阅读　　　　-------------</div>
+    
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tech/" rel="tag"># Tech</a>
+              <a href="/tags/DP/" rel="tag"># DP</a>
+              <a href="/tags/%E6%A0%91%E5%BD%A2DP/" rel="tag"># 树形DP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/05/2018-2019-ACM-ICPC-Asia-Nanjing-Regional-Contest-E-Eva-and-Euro-coins/" rel="prev" title="2018-2019 ACM-ICPC, Asia Nanjing Regional Contest E Eva and Euro coins">
+                  <i class="fa fa-chevron-left"></i> 2018-2019 ACM-ICPC, Asia Nanjing Regional Contest E Eva and Euro coins
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/04/06/CF-486D-Valid-Sets/" rel="next" title="CF 486D Valid Sets">
+                  CF 486D Valid Sets <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DDOSvoid</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.2m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">18:52</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-use    r"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

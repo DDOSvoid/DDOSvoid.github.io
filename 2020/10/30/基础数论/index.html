@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/D_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/D_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="简介终于要开始数学了吗？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础数论">
+<meta property="og:url" content="http://example.com/2020/10/30/%E5%9F%BA%E7%A1%80%E6%95%B0%E8%AE%BA/index.html">
+<meta property="og:site_name" content="DDOSvoid&#39;s Blog">
+<meta property="og:description" content="简介终于要开始数学了吗？">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-30T05:34:00.000Z">
+<meta property="article:modified_time" content="2021-11-01T11:02:44.011Z">
+<meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="Tech">
+<meta property="article:tag" content="基础数论">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/10/30/%E5%9F%BA%E7%A1%80%E6%95%B0%E8%AE%BA/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>基础数论 | DDOSvoid's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">DDOSvoid's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A0%E6%95%B0%E7%AD%9B"><span class="nav-number">2.</span> <span class="nav-text">素数筛</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E7%AD%9B"><span class="nav-number">2.1.</span> <span class="nav-text">欧拉筛</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">2.1.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Eratosthenes-%E7%AD%9B"><span class="nav-number">2.2.</span> <span class="nav-text">Eratosthenes 筛</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-2"><span class="nav-number">2.2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A0%E6%95%B0%E5%88%A4%E6%96%AD"><span class="nav-number">3.</span> <span class="nav-text">素数判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">最大公约数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-3"><span class="nav-number">4.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8-%E6%88%96%E8%80%85%E5%BA%94%E8%AF%A5%E8%AF%B4%E6%98%AF%E5%AE%9A%E7%90%86%E4%B8%80%E7%B1%BB%E7%9A%84%EF%BC%9F"><span class="nav-number">4.2.</span> <span class="nav-text">性质(或者应该说是定理一类的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95"><span class="nav-number">4.3.</span> <span class="nav-text">欧几里得算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-4"><span class="nav-number">4.3.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="nav-number">4.3.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95"><span class="nav-number">4.4.</span> <span class="nav-text">扩展欧几里得算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-5"><span class="nav-number">4.4.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="nav-number">4.4.2.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E4%BD%99"><span class="nav-number">5.</span> <span class="nav-text">同余</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%A9%E4%BD%99%E7%B3%BB"><span class="nav-number">6.</span> <span class="nav-text">剩余系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%A9%E4%BD%99%E7%B1%BB"><span class="nav-number">6.1.</span> <span class="nav-text">剩余类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E5%89%A9%E4%BD%99%E7%B3%BB"><span class="nav-number">6.2.</span> <span class="nav-text">完全剩余系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8C%96%E5%89%A9%E4%BD%99%E7%B3%BB"><span class="nav-number">6.3.</span> <span class="nav-text">简化剩余系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B6%E5%92%8C%E5%8E%9F%E6%A0%B9"><span class="nav-number">7.</span> <span class="nav-text">阶和原根</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6"><span class="nav-number">7.1.</span> <span class="nav-text">阶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E6%A0%B9"><span class="nav-number">7.2.</span> <span class="nav-text">原根</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BSGS"><span class="nav-number">8.</span> <span class="nav-text">BSGS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%86%E5%85%83"><span class="nav-number">9.</span> <span class="nav-text">逆元</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-6"><span class="nav-number">9.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86"><span class="nav-number">9.2.</span> <span class="nav-text">费马小定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95-1"><span class="nav-number">9.3.</span> <span class="nav-text">扩展欧几里得算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%B1%82%E9%80%86%E5%85%83"><span class="nav-number">9.4.</span> <span class="nav-text">线性求逆元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">9.5.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86"><span class="nav-number">10.</span> <span class="nav-text">拓展欧拉定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">11.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%80%A7%E8%B4%A8"><span class="nav-number">12.</span> <span class="nav-text">一些性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-number">13.</span> <span class="nav-text">例题</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DDOSvoid"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">DDOSvoid</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">647</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DDOSvoid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DDOSvoid" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/34531" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;34531" rel="noopener" target="_blank">Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://codeforces.com/profile/DDOSvoid" title="Codeforces → http:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;DDOSvoid" rel="noopener" target="_blank">Codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://acm.hdu.edu.cn/userstatus.php?user=DDOSvoid" title="Hdu → http:&#x2F;&#x2F;acm.hdu.edu.cn&#x2F;userstatus.php?user&#x3D;DDOSvoid" rel="noopener" target="_blank">Hdu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/manziqi/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;manziqi&#x2F;" rel="noopener" target="_blank">Title1</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jczhang.top/" title="https:&#x2F;&#x2F;jczhang.top&#x2F;" rel="noopener" target="_blank">JC Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/30/%E5%9F%BA%E7%A1%80%E6%95%B0%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基础数论
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-30 13:34:00" itemprop="dateCreated datePublished" datetime="2020-10-30T13:34:00+08:00">2020-10-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-01 19:02:44" itemprop="dateModified" datetime="2021-11-01T19:02:44+08:00">2021-11-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>终于要开始数学了吗？</p>
+<a id="more"></a>
+<h2 id="素数筛"><a href="#素数筛" class="headerlink" title="素数筛"></a>素数筛</h2><h3 id="欧拉筛"><a href="#欧拉筛" class="headerlink" title="欧拉筛"></a>欧拉筛</h3><h4 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h4><p>在欧拉筛中我们保证每个合数一定是被它最小的素因子给筛掉，所以时间复杂度为 $O(n)$</p>
+<p>证明好像很显然，大概就是我们在第二层循环所要筛的 $i\cdot pri[j]$，如果 $i\bmod pri[j]=0$ 则说明，对于以后的 $i\cdot pri[k]$ 来说，它至少有一个素因子 $pri[j]$，且 $pri[j]&lt;pri[k]$</p>
+<p>时间复杂度 $O(n)$</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> isp[maxn]; <span class="keyword">int</span> pri[maxn], c1; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_isp</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!isp[i]) pri[++c1] = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= c1 &amp;&amp; i * pri[j] &lt;= n; ++j) &#123;</span><br><span class="line">            isp[i * pri[j]] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % pri[j] == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Eratosthenes-筛"><a href="#Eratosthenes-筛" class="headerlink" title="Eratosthenes 筛"></a>Eratosthenes 筛</h3><h4 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h4><p>这东西也叫埃氏筛</p>
+<p>大概就是用所有小于 $\sqrt n$ 的素数的倍数去筛，时间复杂度为 $O(n\log \log n)$</p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><p>有一个小优化，对每个素数 $p$，我们从 $p^2$ 开始筛，因为对于 $2p,3p,…,(p-1)p$ 都已经被更小的 $p$ 筛过了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> isp[maxn]; <span class="keyword">int</span> pri[maxn], c1; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_isp</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) </span><br><span class="line">        <span class="keyword">if</span> (!isp[i]) &#123;</span><br><span class="line">            pri[++c1] = i;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; <span class="number">1l</span>l * i * j &lt;= n; j++)</span><br><span class="line">                isp[i * j] = <span class="number">1</span>; </span><br><span class="line">        &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="素数判断"><a href="#素数判断" class="headerlink" title="素数判断"></a>素数判断</h2><p>$O(\sqrt n)$ 判断</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isp</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i * i &lt;= n; ++i) </span><br><span class="line">        <span class="keyword">if</span> (n % i == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="最大公约数"><a href="#最大公约数" class="headerlink" title="最大公约数"></a>最大公约数</h2><h3 id="简介-3"><a href="#简介-3" class="headerlink" title="简介"></a>简介</h3><p>最大公约数，又称为 $gcd$，以下在不产生歧义的情况下可能会用使用 $()$ 表示最大公约数，$[]$ 表示最大公倍数</p>
+<h3 id="性质-或者应该说是定理一类的？"><a href="#性质-或者应该说是定理一类的？" class="headerlink" title="性质(或者应该说是定理一类的？"></a>性质(或者应该说是定理一类的？</h3><p>定理 1：$gcd(a,b)$ 是 $a$ 和 $b$ 的线性组合中最小的正整数</p>
+<p>证明：令 $g=gcd(a,b)$，$s$ 为 $a$ 和 $b$ 的线性组合中最小的正整数</p>
+<p>$g|a,g|b$，所以 $g|(ax+by)$，所以 $g|s$，又因为 $g&gt;0,s&gt;0$，所以 $g\le s$</p>
+<p>令 $q=\lfloor\frac{a}{s}\rfloor$，我们得到 $r=a\bmod s=a-qs=a-q(ax+by)=a(1-qx)+b(-qy)$</p>
+<p>也就是说 $r$ 也是 $a$ 和 $b$ 的一个线性组合，由于 $0\le r&lt;s$，所以 $r=0$，所以有 $s|a$，同理有 $s|b$</p>
+<p>所以 $s|g$，又因为 $s&gt;0,g&gt;0$，所以 $s\le g$</p>
+<p>综上可得 $s=g$</p>
+<p>定理 2：$gcd(ax, bx) = xgcd(a, b)$</p>
+<p>证明：显然 </p>
+<p>定理 3：$gcd(a, b) = gcd(a - b, b)$</p>
+<p>证明：</p>
+<p>令 $a = n_1gcd(a,b),b=n_2gcd(a,b)$，相减显然不影响结果</p>
+<p>同理，多个数的 $gcd$ 也可以进行类似操作</p>
+<p>定理 4：$gcd(a, b) = gcd(b,a \bmod b) $</p>
+<p>证明：</p>
+<p>定理 5：$gcd(a, b) \times lcm(a, b) = ab$</p>
+<p>证明：</p>
+<p>令 $g=gcd(a,b),l=lcm(a,b),a=x\cdot g,b=y\cdot g$</p>
+<p>$lcm(a,b)=lcm(x\cdot g,y\cdot g)=g\cdot lcm(x,y)=g\cdot x\cdot y\Rightarrow gcd(a,b)\cdot lcm(a,b)=g\cdot x\cdot g\cdot y=a\cdot b$</p>
+<p>定理 6：$gcd(a^n-1,a^m-1)=a^{gcd(n,m)}-1$</p>
+<p>证明：</p>
+<p>$(a^n-1,a^m-1)=(a^n-a^m,a^m-1)=(a^m(a^{n-m}-1),a^m-1)$</p>
+<p>显然 $a^m$ 和 $a^m-1$ 互质</p>
+<p>所以我们得到 $(a^{n-m}-1,a^m-1)$，也就是说我们可以对指数做辗转相除</p>
+<p>所以最后一定能得到 $a^{(n,m)}-1$</p>
+<p>定理 7：$lcm(a_1,a_2,…a_n)=\frac{1元gcd之积\times 3元gcd之积\cdots}{2元gcd之积\times 4元gcd之积\cdots }$</p>
+<p>首先 $lcm$ 肯定可以对于每个素因子单独考虑</p>
+<p>我们现在仅考虑素数 $p_i$，不妨设 $b_i$ 为 $a_i$ 素因子分解之后 $p_i$ 的指数</p>
+<p>注意到 $p$ 的贡献为 $max(b_1,b_2,\cdots,b_n)$</p>
+<p>这个 $max$ 可以看做是全集的 $max$，那么我们直接套 $max-min$ 容斥，就能得到上述式子</p>
+<h3 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h3><h4 id="简介-4"><a href="#简介-4" class="headerlink" title="简介"></a>简介</h4><p>大概就是利用 $gcd(a,b)=gcd(b,a\bmod b)$</p>
+<p>时间复杂度为 $O(\log n)$</p>
+<p>证明：</p>
+<p>用 $a_0$ 和 $a_1$ 表示初始的两个数。</p>
+<p>数列 $a_i = a_{i-2} \mod a_{i-1}$   直到 $a_k = 0$，最大公约数即为 $a_{k-1}$</p>
+<p>可以发现 $a_i\leq a_{i-2} / 2$，也就是说，每两个数减小至少一半，所以复杂度是 $O(\log n)$</p>
+<p>证明：</p>
+<p>分情况讨论： </p>
+<p>若 $a_{i-1}\leq a_{i-2}/2$ ，则 $a_{i}\leq a_{i-2} / 2$</p>
+<p>否则 $a_{i-1}&gt;a_{i-2} / 2$，则 $a_{i} = a_{i-2}-a_{i-1}$，则 $a_i\leq a_{i-2} / 2$</p>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123; <span class="keyword">return</span> b == <span class="number">0</span> ? a : gcd(b, a % b); &#125; </span><br></pre></td></tr></table></figure>
+<h3 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h3><h4 id="简介-5"><a href="#简介-5" class="headerlink" title="简介"></a>简介</h4><p>首先这东西是用来求解 $a\cdot x+b\cdot y=(a,b)$ 的一对整数解 $(x,y)$ </p>
+<p>另外关于我们求的是任意一堆整数解，有的时候我们需要是 $x$ 为最小正整数一类的限制，这时候我们需要考虑如何对 $x$ 或 $y$ 进行变换</p>
+<p>$a(x+k\alpha)+b(y-k\beta)=(a,b)$</p>
+<p>我们考虑如何使得 $\alpha$ 和 $\beta$ 最小，容易发现当 $\alpha = \frac{[a,b]}{a}$ 最小</p>
+<p>大概的思路就是利用欧几里得算法的递归过程，维护 $x$ 和 $y$ 的值，因为在欧几里得算法底层可以直接得到 $(1,0)$ 这组解</p>
+<p>我们思考下如何递归维护 $x$ 和 $y$</p>
+<p>首先我们有 $a\cdot x_1+b\cdot y_1=(a,b)$ 和 $b\cdot x_2+(a\bmod b)y_2=(b,a\bmod  b)$</p>
+<p>可以推出 $a\cdot x_1+b\cdot y_1=b\cdot x_2+(a\bmod b)y_2$</p>
+<p>右边或化简一下得到 $a\cdot x_1+b\cdot y_1=a\cdot y_2+b(x_2-\lfloor\frac{a}{b}\rfloor y_2)$</p>
+<p>这样就得到了两层之间 $x$ 和 $y$ 的关系</p>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span> </span>&#123; </span><br><span class="line">	<span class="keyword">if</span> (!b) <span class="keyword">return</span> x = <span class="number">1</span>, y = <span class="number">0</span>, <span class="keyword">void</span>();</span><br><span class="line">    exgcd(b, a % b, y, x);</span><br><span class="line">    y -= x * (a / b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="同余"><a href="#同余" class="headerlink" title="同余"></a>同余</h2><p>$ab\equiv ac(\bmod m)\Rightarrow b\equiv c(\bmod \frac{m}{(m,a)})$</p>
+<p>$a\equiv b(\bmod km)\Rightarrow a\equiv b(\bmod m)$</p>
+<h2 id="剩余系"><a href="#剩余系" class="headerlink" title="剩余系"></a>剩余系</h2><h3 id="剩余类"><a href="#剩余类" class="headerlink" title="剩余类"></a>剩余类</h3><p>我们将模 $m$ 相等的数划为一类，那么这一类就叫做模 $m$ 的一个剩余类</p>
+<h3 id="完全剩余系"><a href="#完全剩余系" class="headerlink" title="完全剩余系"></a>完全剩余系</h3><p>我们从模 $m$ 的 $m$ 个剩余类中分别抽出一个数，这 $m$ 个整数就叫做模 $m$ 的一个完全剩余系</p>
+<p>性质：</p>
+<ol>
+<li>令 $\lbrace a_i\rbrace$ 为模 $m$ 的一个完全剩余系，则 $\lbrace a_i+b\rbrace$ 同样为模 $m$ 的一个完全剩余系</li>
+<li>令 $\lbrace a_i\rbrace$ 为模 $m$ 的一个完全剩余系，$(k,m) = 1$，则 $\lbrace ka_i\rbrace$ 同样为模 $m$ 的一个完全剩余系</li>
+<li>令 $\lbrace a_i\rbrace$ 为模 $m$ 的一个完全剩余系，$(k,m) = 1$，则 $\lbrace ka_i+b\rbrace$ 同样为模 $m$ 的一个完全剩余系</li>
+</ol>
+<h3 id="简化剩余系"><a href="#简化剩余系" class="headerlink" title="简化剩余系"></a>简化剩余系</h3><p>模 $m$ 的缩系为 $\{a_i\}$，$0&lt;a_i&lt;m$，且 $gcd(m, a_i)=1$，这样的 $a_i$ 有 $\varphi(m)$ 个</p>
+<p>性质：</p>
+<ol>
+<li>令 $\lbrace a_i\rbrace$ 为模 $m$ 的一个简化剩余系，$(k,m) = 1$，则 $\lbrace ka_i\rbrace$ 同样为模 $m$ 的一个完全剩余系</li>
+</ol>
+<h2 id="阶和原根"><a href="#阶和原根" class="headerlink" title="阶和原根"></a>阶和原根</h2><h3 id="阶"><a href="#阶" class="headerlink" title="阶"></a>阶</h3><p>若 $a,m$ 为正整数，且 $(a,m)=1$，我们称满足 $a^r\equiv 1(\bmod m)$ 的最小正整数 $r$ 为 $a$ 模 $m$ 的阶，记作 $\delta_m(a)$</p>
+<ol>
+<li>$\delta_m(a)|\varphi(m)$</li>
+<li>令 $\delta_m(a)=k$，则 $a^0,a^1,\cdots,a^{k-1}$ 模 $p$ 两两不同余</li>
+<li>若 $ab\equiv 1(\bmod m)$，则 $\delta_m(a)=\delta_m(b)$</li>
+<li></li>
+</ol>
+<h3 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h3><p>若 $a,p$ 为正整数，且 $(a,p)=1$，称满足 $\delta_p(a)=\varphi(p)$ 的 $a$ 为模 $p$ 的一个原根</p>
+<ol>
+<li>$2,4,p^k,2\times p^k$，其中 $p$ 为奇素数，$k$ 为正整数，只有这样的数才有原根</li>
+<li>设 $m\ge 3$，$(g,m)=1$，$g$ 为模 $m$ 的原根的充要条件是，则对于任意 $\varphi(m)$ 的素因子，必有 $g^{\frac{\varphi(m)}{p}}\not\equiv1 $</li>
+<li>若 $n$ 存在原根，则其原根个数为 $\varphi(\varphi(p))$</li>
+<li>若 $n$ 存在原根，则其最小原根的大小为 $n^\frac{1}{4}$</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_g</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = p - <span class="number">1</span>, tn = n; <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line">    <span class="keyword">if</span> (p == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">2</span>; p * p &lt;= tn; ++p) &#123;</span><br><span class="line">        <span class="keyword">if</span> (tn % p) <span class="keyword">continue</span>; vec.push_back(p);</span><br><span class="line">        <span class="keyword">while</span> (tn % p == <span class="number">0</span>) tn /= p; </span><br><span class="line">    &#125; <span class="keyword">if</span> (tn &gt; <span class="number">1</span>) vec.push_back(tn);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; p; ++i) &#123;</span><br><span class="line">        <span class="keyword">bool</span> ok = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> t : vec)</span><br><span class="line">            <span class="keyword">if</span> (pow_mod(i, n / t) == <span class="number">1</span>) ok = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (ok) <span class="keyword">return</span> i; </span><br><span class="line">    &#125; <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="BSGS"><a href="#BSGS" class="headerlink" title="BSGS"></a>BSGS</h2><p>就是用来求解de同余方程 $a^x\equiv b(\bmod p)$ 的解，需要保证 $(a,p)=1$</p>
+<p>我们令 $q=\lceil\sqrt p\rceil$，则 $x$ 一定能够拆成 $A\times q-B$，其中 $A\in[1,q],B\in[0,q]$</p>
+<p>所以我们将 $b\times a^B$ 存到 $hash$ 表或 $map$ 中，然后枚举 $A$ 求解即可，时间复杂度 $O(\sqrt p)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bsgs</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (gcd(a, p) != <span class="number">1</span>) <span class="keyword">return</span> <span class="number">-1</span>; </span><br><span class="line">    <span class="keyword">int</span> q = <span class="built_in">ceil</span>(<span class="built_in">sqrt</span>(p)); ll mul = b;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= q; ++i) mp[mul] = i, mul = mul * a % p;</span><br><span class="line">    mul = <span class="number">1</span>; ll aq = pow_mod(a, q); </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= q; ++i) &#123;</span><br><span class="line">        mul = mul * aq % p;</span><br><span class="line">        <span class="keyword">if</span> (mp.find(mul) != mp.end()) <span class="keyword">return</span> i * q - mp[mul]; </span><br><span class="line">    &#125; <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="逆元"><a href="#逆元" class="headerlink" title="逆元"></a>逆元</h2><h3 id="简介-6"><a href="#简介-6" class="headerlink" title="简介"></a>简介</h3><p>定义：对于正整数 $a $ 和 $m$，如果有 $ax\equiv 1(\bmod m)$，并且 $(a,m)=1$，则把这个同余方程中 $x$ 的最小正整数解叫做 $ a \bmod m$ 的逆元</p>
+<p>逆元最经典的用法就是在求解除法取模 $\frac{a}{b}\bmod m$ 时，因为除法无法取模，所以我们只能让 $a$ 乘上 $b$ 的逆元</p>
+<p>当然该式在 $b|a$ 时有一个特殊求法，$\frac{a}{b}\bmod m=\frac{(a\bmod bm)}{b}$</p>
+<h3 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h3><p>定义：$p$ 为素数，$a$ 为任意自然数，我们都有 $a^p\equiv a(\bmod p)$</p>
+<p>化简一下得到 $a^{p-1}\equiv 1(\bmod p)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">pow_mod</span><span class="params">(ll x, ll n)</span> </span>&#123;</span><br><span class="line">    ll s = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (; n; n &gt;&gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n &amp; <span class="number">1</span>) s = s * x % p;</span><br><span class="line">        x = x * x % p;</span><br><span class="line">    &#125; <span class="keyword">return</span> s;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<h3 id="扩展欧几里得算法-1"><a href="#扩展欧几里得算法-1" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h3><p>对于 $a\cdot x\equiv 1(\bmod p)$，可以化为 $a\cdot x+p\cdot y=1$</p>
+<p>$x$ 可以直接拿扩欧求</p>
+<h3 id="线性求逆元"><a href="#线性求逆元" class="headerlink" title="线性求逆元"></a>线性求逆元</h3><p>$O(n)$ 求 $[1,n]$ 模 $p$ 的逆元</p>
+<p>我们令 $p=ki+r$，其中 $k=\lfloor \frac{p}{i}\rfloor,r=p\bmod i$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+p&=ki+r\\
+ki+r&\equiv0 (\bmod p)\\
+k+ri^{-1}&\equiv 0 (\bmod p)\\
+kr^{-1}+i^{-1}&\equiv 0(\bmod p)\\
+i^{-1}&\equiv-kr^{-1}(\bmod p)
+\end{aligned}</script><p>$r&lt;i$，所以可以递推</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ll inv[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_inv</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    inv[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i)</span><br><span class="line">        inv[i] = -(p / i) * inv[p % i] % p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><ol>
+<li><p>给定 $n(n\le 10^5)$，求 $[1,2,\cdots,n-1]$ 的最长子序列，使得这个子序列所有元素的乘积模 $n$ 等于 $1$</p>
+<p><a href="">CF 1514C Product 1 Modulo N</a></p>
+</li>
+</ol>
+<h2 id="拓展欧拉定理"><a href="#拓展欧拉定理" class="headerlink" title="拓展欧拉定理"></a>拓展欧拉定理</h2><p>$\begin{equation}~a^c~\equiv~\left\{<br>             \begin{array}\\<br>             a^{c \bmod \varphi(m)} &amp;\gcd(a,m)~=~1 \\<br>             a^c &amp;\gcd(a,m)~\neq~1~\and~c~&lt;~\phi(m) \\<br>             a^{c\bmod \varphi(m)~+~\varphi(m)} &amp; \gcd(a,m)~\neq~1~\and~c~\geq~\phi(m)<br>             \end{array}<br>\right.<br>\end{equation}$​</p>
+<p>证明：</p>
+<h2 id=""><a href="#" class="headerlink" title=" "></a> </h2><h2 id="一些性质"><a href="#一些性质" class="headerlink" title="一些性质"></a>一些性质</h2><ol>
+<li>$n$ 不是集合 $S$ 中任何一个数的倍数等价于 $n$ 对 $S$ 的 $lcm$ 取模后不是 $S$ 中任何一个数的倍数</li>
+</ol>
+<h2 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h2><ol>
+<li><p>简要题意：有 $T$ 组询问，每次给定 $n$ 和 $k$，求 $[1,n]$ 中有多少数不被前 $k$​ 个素数中任何一个素数整除</p>
+<p>$T\le 10^5,n\le 10^{18},k\le 16$</p>
+<p>简要题解：首先有一个经典的 $2^k$ 的容斥做法，答案即为 $(-1)^{|S|}\lfloor\frac{n}{S}\rfloor$，其中 $S$ 表示选中的集合的乘积</p>
+<p>我们考虑将 $16$​​ 素数分成两半，前 $8$​ 个素数的乘积为 $9699690$​，根据数论知识，我们知道 $n$​ 不是集合 $S$​ 中任何一个数的倍数等价于 $n$ 对 $S$ 的 $lcm$ 取模后不是任何一个数的倍数</p>
+<p>那么 $[1,n]$​ 的答案为 $f[9699690]\times \lfloor\frac{n}{9699690}\rfloor+f[n\bmod 9699690]$，其中 $f[i]$ 表示 $[1,i]$ 的答案，$i\in[1,9699690]$</p>
+<p>对于后半的素数，我们直接做容斥，对于一个集合 $S$，能够得到是 $S$ 的倍数的数为 $S,2S,\cdots,\lfloor\frac{n}{S}\rfloor S$，我们再将 $1$ 到 $\lfloor\frac{n}{S}\rfloor$ 是前 $8$​ 个素数的倍数数给剔除即可，时间复杂度 $O(\sum_{i=1}^8\frac{9699690}{p_i}+T2^8)$​</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/08/20/2021%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A110-D-Pty-hates-prime-numbers/">2021杭电多校10 D Pty hates prime numbers</a></p>
+</li>
+<li><p>简要题意：有 $T$ 组数据，给定一个长度为 $n$ 的序列 $a_i$，$m$ 次询问 $[a_l,a_{l+1},\cdots,a_r]$，答案对 $10^9+7$​ 取模</p>
+<p>$n,m,T\le 300,a_i\le 2^{60}$</p>
+<p>简要题解：我们令 $[a_1,a_2,\cdots,a_{n-1}]=\prod_{i=1}^{n-1}b_i$，那么我们现在只需要求 $([a_1,a_2,\cdots,a_{n-1}],a_n)$​</p>
+<p>这个东西就是 $(\prod_{i=1}^{n-1}b_i,a_n)$，这个东西显然可以在乘的时候对 $a_n$ 取模</p>
+<p>那么 $b_n$ 就等于 $\frac{a_n}{(\prod_{i=1}^{n-1}b_i,a_n)}$​，实际上就是把多余的给除掉，时间复杂度 $O(Tn^3)$，可以通过分治优化到 $O(Tn^2\log n)$</p>
+<p><a href="Luogu P5655 基础数论函数练习题">Luogu P5655 基础数论函数练习题</a></p>
+</li>
+<li><p>简要题意：给定一个素数 $p$ 以及一个长度为 $p-1$ 的序列 $a_i$，求是否能从序列 $a_i$ 中选出若干个数，使得它们的乘积模 $p$ 等于 $1$</p>
+<p>$p\le 10^5$</p>
+<p>简要题解：我们考虑求出 $p$ 的原根 $g$，然后我们将 $a_i$ 变成一个范围为 $[0,p-2]$ 的数，问题被转换成是否能选出若干个数出来使得它们的和是 $p-1$ 的倍数，我们可以直接上 $bitset$，时间复杂度 $O(\frac{p^2}{64})$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/31/National-Taiwan-University-NCPC-Preliminary-2021-E-Identity-Subset/">National Taiwan University NCPC Preliminary 2021 E Identity Subset</a></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-flag"></i>　感谢阅读　　　　-------------</div>
+    
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tech/" rel="tag"># Tech</a>
+              <a href="/tags/%E5%9F%BA%E7%A1%80%E6%95%B0%E8%AE%BA/" rel="tag"># 基础数论</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/10/29/CF-1437-Make-It-Increasing/" rel="prev" title="CF 1437 Make It Increasing">
+                  <i class="fa fa-chevron-left"></i> CF 1437 Make It Increasing
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/11/01/CF-1427C-The-Hard-Work-of-Paparazzi/" rel="next" title="CF 1427C The Hard Work of Paparazzi">
+                  CF 1427C The Hard Work of Paparazzi <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DDOSvoid</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.2m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">18:52</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-use    r"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

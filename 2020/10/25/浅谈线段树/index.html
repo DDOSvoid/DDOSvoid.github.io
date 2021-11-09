@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/D_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/D_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="简介线段树大概是 $Oier$ 中最常用的数据结构了（大概">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈线段树">
+<meta property="og:url" content="http://example.com/2020/10/25/%E6%B5%85%E8%B0%88%E7%BA%BF%E6%AE%B5%E6%A0%91/index.html">
+<meta property="og:site_name" content="DDOSvoid&#39;s Blog">
+<meta property="og:description" content="简介线段树大概是 $Oier$ 中最常用的数据结构了（大概">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-25T07:08:24.000Z">
+<meta property="article:modified_time" content="2021-11-09T12:39:16.422Z">
+<meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="Tech">
+<meta property="article:tag" content="线段树">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/10/25/%E6%B5%85%E8%B0%88%E7%BA%BF%E6%AE%B5%E6%A0%91/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>浅谈线段树 | DDOSvoid's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">DDOSvoid's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E4%B8%80%E9%81%93%E7%BA%BF%E6%AE%B5%E6%A0%91%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">如何解决一道线段树题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="nav-number">2.1.</span> <span class="nav-text">操作的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">标记的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%8F%A0%E5%8A%A0%E6%A0%87%E8%AE%B0%E5%92%8C%E5%BA%94%E7%94%A8%E6%A0%87%E8%AE%B0"><span class="nav-number">2.3.</span> <span class="nav-text">如何叠加标记和应用标记</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Segment-tree-Beats"><span class="nav-number">3.</span> <span class="nav-text">Segment tree Beats</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E6%9C%80%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="nav-number">3.1.</span> <span class="nav-text">区间最值操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E5%8E%86%E5%8F%B2%E6%9C%80%E5%80%BC"><span class="nav-number">3.2.</span> <span class="nav-text">区间历史最值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%83%BD%E7%BB%B4%E6%8A%A4%E7%9A%84%E7%A5%9E%E5%A5%87%E4%B8%9C%E8%A5%BF"><span class="nav-number">4.</span> <span class="nav-text">线段树能维护的神奇东西</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E7%BB%8F%E5%85%B8%E5%BA%94%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">线段树的经典应用</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DDOSvoid"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">DDOSvoid</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">647</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DDOSvoid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DDOSvoid" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/34531" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;34531" rel="noopener" target="_blank">Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://codeforces.com/profile/DDOSvoid" title="Codeforces → http:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;DDOSvoid" rel="noopener" target="_blank">Codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://acm.hdu.edu.cn/userstatus.php?user=DDOSvoid" title="Hdu → http:&#x2F;&#x2F;acm.hdu.edu.cn&#x2F;userstatus.php?user&#x3D;DDOSvoid" rel="noopener" target="_blank">Hdu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/manziqi/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;manziqi&#x2F;" rel="noopener" target="_blank">Title1</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jczhang.top/" title="https:&#x2F;&#x2F;jczhang.top&#x2F;" rel="noopener" target="_blank">JC Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/25/%E6%B5%85%E8%B0%88%E7%BA%BF%E6%AE%B5%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          浅谈线段树
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-25 15:08:24" itemprop="dateCreated datePublished" datetime="2020-10-25T15:08:24+08:00">2020-10-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-09 20:39:16" itemprop="dateModified" datetime="2021-11-09T20:39:16+08:00">2021-11-09</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>14k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>13 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>线段树大概是 $Oier$ 中最常用的数据结构了（大概</p>
+<a id="more"></a>
+<h2 id="如何解决一道线段树题"><a href="#如何解决一道线段树题" class="headerlink" title="如何解决一道线段树题"></a>如何解决一道线段树题</h2><h3 id="操作的种类"><a href="#操作的种类" class="headerlink" title="操作的种类"></a>操作的种类</h3><p>下面先贴两个线段树用的板子，主要的区别在于 $Update$</p>
+<p>一种是按照标记优先级的顺序，另一种是按照值和标记的顺序</p>
+<p>一般来讲，在有普通关系标记的时候，只能用后一种写法</p>
+<p>其它情况下一般使用前一种写法</p>
+<p>以 <a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/09/26/Luogu%20P3373%20%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91%202/">Luogu P3373 【模板】线段树 2</a> 为例</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lc i &lt;&lt; 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rc i &lt;&lt; 1 | 1</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">seg</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v, add, mul;</span><br><span class="line">&#125; T[maxn * <span class="number">4</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">maintain</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123; T[i].v = (T[lc].v + T[rc].v) % p; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    T[i].add = <span class="number">0</span>; T[i].mul = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (l == r) <span class="keyword">return</span> (<span class="keyword">void</span>) (T[i].v = a[l]);</span><br><span class="line">    <span class="keyword">int</span> m = l + r &gt;&gt; <span class="number">1</span>; </span><br><span class="line">    build(lc, l, m); build(rc, m + <span class="number">1</span>, r);</span><br><span class="line">    maintain(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update_add</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r, ll v)</span> </span>&#123;</span><br><span class="line">    T[i].v = ((r - l + <span class="number">1</span>) * v + T[i].v) % p;</span><br><span class="line">    T[i].add = (T[i].add + v) % p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update_mul</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r, ll v)</span> </span>&#123;</span><br><span class="line">    T[i].v = T[i].v * v % p;</span><br><span class="line">    T[i].mul = T[i].mul * v % p;</span><br><span class="line">    T[i].add = T[i].add * v % p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123; <span class="comment">// 除了普通关系标记之外应该都可以这么写</span></span><br><span class="line">    <span class="keyword">int</span> &amp;add = T[i].add, &amp;mul = T[i].mul, m = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    Update_mul(lc, l, m, mul); Update_mul(rc, m + <span class="number">1</span>, r, mul);</span><br><span class="line"></span><br><span class="line">    Update_add(lc, l, m, add); Update_add(rc, m + <span class="number">1</span>, r, add);</span><br><span class="line"></span><br><span class="line">    mul = <span class="number">1</span>; add = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update_add</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> L, <span class="keyword">int</span> R, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; R || r &lt; L) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span> (L &lt;= l &amp;&amp; r &lt;= R) <span class="keyword">return</span> Update_add(i, l, r, v);</span><br><span class="line">    <span class="keyword">int</span> m = l + r &gt;&gt; <span class="number">1</span>; pushdown(i, l, r);</span><br><span class="line">    update_add(lc, l, m, L, R, v); update_add(rc, m + <span class="number">1</span>, r, L, R, v);</span><br><span class="line">    maintain(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update_mul</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> L, <span class="keyword">int</span> R, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; R || r &lt; L) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span> (L &lt;= l &amp;&amp; r &lt;= R) <span class="keyword">return</span> Update_mul(i, l, r, v);</span><br><span class="line">    <span class="keyword">int</span> m = l + r &gt;&gt; <span class="number">1</span>; pushdown(i, l, r);</span><br><span class="line">    update_mul(lc, l, m, L, R, v); update_mul(rc, m + <span class="number">1</span>, r, L, R, v);</span><br><span class="line">    maintain(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; R || r &lt; L) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (L &lt;= l &amp;&amp; r &lt;= R) <span class="keyword">return</span> T[i].v;</span><br><span class="line">    <span class="keyword">int</span> m = l + r &gt;&gt; <span class="number">1</span>; pushdown(i, l, r);</span><br><span class="line">    <span class="keyword">return</span> (query(lc, l, m, L, R) + query(rc, m + <span class="number">1</span>, r, L, R)) % p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以 <a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/08/Luogu-U140092-线段树练习/">Luogu U140092 线段树练习</a> 为例</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lc i &lt;&lt; 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rc i &lt;&lt; 1 | 1</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Seg</span> &#123;</span></span><br><span class="line">    ll v, a, b, adda, addb;</span><br><span class="line">&#125; T[maxn * <span class="number">4</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">maintain</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    T[i].v = (T[lc].v + T[rc].v) % p; </span><br><span class="line">    T[i].a = (T[lc].a + T[rc].a) % p;</span><br><span class="line">    T[i].b = (T[lc].b + T[rc].b) % p; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">        T[i].v = <span class="number">1l</span>l * a[l] * b[l] % p;</span><br><span class="line">        T[i].a = a[l]; T[i].b = b[l]; <span class="keyword">return</span> ;</span><br><span class="line">    &#125; <span class="keyword">int</span> m = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    build(lc, l, m); build(rc, m + <span class="number">1</span>, r);</span><br><span class="line">    maintain(i);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update_v</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r, ll adda, ll addb)</span> </span>&#123;</span><br><span class="line">    T[i].v = (T[i].v + T[i].a * addb + T[i].b * adda + adda * addb % p * (r - l + <span class="number">1</span>)) % p;</span><br><span class="line">    T[i].a = (T[i].a + adda * (r - l + <span class="number">1</span>)) % p;</span><br><span class="line">    T[i].b = (T[i].b + addb * (r - l + <span class="number">1</span>)) % p; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update_tag</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r, ll adda, ll addb)</span> </span>&#123;</span><br><span class="line">    T[i].adda = (T[i].adda + adda) % p;</span><br><span class="line">    T[i].addb = (T[i].addb + addb) % p; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    ll &amp;adda = T[i].adda, &amp;addb = T[i].addb; <span class="keyword">int</span> m = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    Update_v(lc, l, m, adda, addb); Update_v(rc, m + <span class="number">1</span>, r, adda, addb);</span><br><span class="line"></span><br><span class="line">    Update_tag(lc, l, m, adda, addb); Update_tag(rc, m + <span class="number">1</span>, r, adda, addb);</span><br><span class="line"></span><br><span class="line">    adda = addb = <span class="number">0</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update_adda</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> L, <span class="keyword">int</span> R, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; R || r &lt; L) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span> (L &lt;= l &amp;&amp; r &lt;= R) <span class="keyword">return</span> Update_v(i, l, r, v, <span class="number">0</span>), Update_tag(i, l, r, v, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> m = l + r &gt;&gt; <span class="number">1</span>; pushdown(i, l, r); </span><br><span class="line">    update_adda(lc, l, m, L, R, v); update_adda(rc, m + <span class="number">1</span>, r, L, R, v);</span><br><span class="line">    maintain(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update_addb</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> L, <span class="keyword">int</span> R, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; R || r &lt; L) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span> (L &lt;= l &amp;&amp; r &lt;= R) <span class="keyword">return</span> Update_v(i, l, r, <span class="number">0</span>, v), Update_tag(i, l, r, <span class="number">0</span>, v);</span><br><span class="line">    <span class="keyword">int</span> m = l + r &gt;&gt; <span class="number">1</span>; pushdown(i, l, r); </span><br><span class="line">    update_addb(lc, l, m, L, R, v); update_addb(rc, m + <span class="number">1</span>, r, L, R, v);</span><br><span class="line">    maintain(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; R || r &lt; L) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (L &lt;= l &amp;&amp; r &lt;= R) <span class="keyword">return</span> T[i].v;</span><br><span class="line">    <span class="keyword">int</span> m = l + r &gt;&gt; <span class="number">1</span>; pushdown(i, l, r);</span><br><span class="line">    <span class="keyword">return</span> (query(lc, l, m, L, R) + query(rc, m + <span class="number">1</span>, r, L, R)) % p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了方便叙述，我们将对应操作用对应的函数进行替换</p>
+<p>区间合并：$maintain$</p>
+<p>下放标记：$pushdown$</p>
+<p>应用标记(标记对值的影响)、叠加标记(标记对标记的影响)：$Update$</p>
+<p>注意到我们把区间修改中的对完整区间修改也视为应用、叠加标记，因为这个东西本质上与父节点下放标记一样，当然普通关系标记除外</p>
+<p>一般对于普通关系标记，我们都是先更新值（应用标记），然后再更新标记（叠加标记）</p>
+<p>所以 $pushdown$ 一般这么写</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update_v</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update_tag</span><span class="params">()</span> </span>&#123;&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Update_v(lc); Update_v(rc);</span><br><span class="line">    </span><br><span class="line">    Update_tag(lc); Update_tag(rc);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>区间修改：$update$</p>
+<p>区间查询：$query$</p>
+<h3 id="标记的种类"><a href="#标记的种类" class="headerlink" title="标记的种类"></a>标记的种类</h3><ol>
+<li><p>覆盖标记：当区间打上这类标记时，会将该区间的所有数值和标记全部回归一个初始量，这个初始量与之前区间内的数值和标记无关</p>
+</li>
+<li><p>普通标记</p>
+</li>
+<li><p>关系标记：具有关系或者说会相互影响的标记，我们称之为关系标记</p>
+<p>但是我们依照增加标记的顺序是否会影响到对应值的更新来将关系标记再次分为两类</p>
+<p><strong>顺序关系标记</strong> 和 <strong>普通关系标记</strong></p>
+</li>
+</ol>
+<p>我们以 <a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/09/26/Luogu%20P3372%20%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91%201/">Luogu P3372 【模板】线段树 1</a> 为例，再此题中我们只需要维护一个区间加的标记，那么这个标记就是普通标记</p>
+<p>以 <a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/09/26/Luogu%20P3373%20%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91%202/">Luogu P3373 【模板】线段树 2</a> 为例，此题中我们维护了两个标记，区间乘和区间加，因为对一个区间先加再乘和先乘再加的结果不同，所以这两个标记为顺序关系标记</p>
+<p>以 <a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/08/Luogu-U140092-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%83%E4%B9%A0/">Luogu U140092 线段树练习</a> 为例，此题中我们要维护的值为区间 $a$ 乘 $b$ 的和，区间 $a$ 的和，区间 $b$ 的和，要维护的标记为区间加 $a$，区间加 $b$，注意到对于一个区间先加 $a$ 后加 $b$ 和先加 $b$ 后加 $a$ 的结果是一样的，所以这两个标记是普通关系标记</p>
+<p>以 <a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/10/25/Luogu-P2572-SCOI2010-%E5%BA%8F%E5%88%97%E6%93%8D%E4%BD%9C/">Luogu P2572 [SCOI2010]序列操作</a> 为例，此题中我们维护了三个标记，其中的区间赋 $0$ 和区间赋 $1$ 标记就是覆盖标记</p>
+<h3 id="如何叠加标记和应用标记"><a href="#如何叠加标记和应用标记" class="headerlink" title="如何叠加标记和应用标记"></a>如何叠加标记和应用标记</h3><p>首先叠加标记是在我们同时记录了多个标记时会发生的情况</p>
+<p>普通标记不会对其它标记造成影响</p>
+<p>对于覆盖标记而言，字如其名，将其他标记回归初始量即可，需要注意到不能同时存在两个覆盖标记</p>
+<p>对于关系标记，如果是顺序关系标记，我们必须注意下放的顺序</p>
+<p>因此，我们定义关系标记的优先级，高优先级的标记先下放，低优先级的标记后下放，另外需要注意的是覆盖标记的优先级为最高</p>
+<p>因为关系标记之间有相关关系，所以不能完全将关系标记分开来看，所以我们需要定义优先级，这个东西的本质是更改标记的定义，使得在存在优先级的情况下他们之间不再有相关关系</p>
+<p>如果是普通关系标记，因为没有下放顺序的要求，所以我们同时更新就行（暂时先这么写</p>
+<p>下面我们先看一下处理顺序关系标记的具体操作</p>
+<p>以 <a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/09/26/Luogu%20P3373%20%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91%202/">Luogu P3373 【模板】线段树 2</a> 为例，此题中的关系标记为区间乘和区间加标记</p>
+<p>对于关系标记，根据优先级的来确定如何更新答案的关键是确定答案的形式</p>
+<p>我们令 $v$ 表示区间和，$mul$ 表示区间乘，$add$ 表示区间加，为了方便表示，我们加下划线来表示子节点的标记和值</p>
+<p>我们对两种分优先级的情况分别讨论</p>
+<ol>
+<li><p>先乘后加</p>
+<p>首先我们从数学式子的角度去思考如何设计标记并更新答案</p>
+<p>$\underline{}v$ 的形式一定是 $x \cdot \underline{}v + y$</p>
+<p>显然 $x$ 是标记 $mul$，$y$ 是标记 $add$，或者从另一个角度思考，我们定义 $mul$ 为 $x$，$add$ 为 $y$</p>
+<p>那么我们先来思考 $Update\underline{}add$，因为 $add$ 的优先级低或者说通过 $\underline{} v$ 的形式能够发现 $add$ 对 $mul$ 标记没有影响</p>
+<p>能够得到 $Update\underline{}add$ 的实现如下</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underline{}v=\underline{}v+len\cdot add \\
+\underline{}add=\underline{}add+add
+\end{aligned}</script><p>现在我们考虑 $Update\underline{}mul$ 的实现，我们直接对照上面 $\underline{}v$ 的形式来乘一个 $mul$，得到 $mul\cdot x\cdot \underline{}v+mul\cdot y$ </p>
+<p>根据这个东西我们能够得到 $mul$ 对子节点的标记的作用，根据 $\underline{}v$ 的形式能够得到 $mul$ 对子节点的值的修改</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+   \underline{}v=\underline{}v\cdot  mul\\
+   \underline{}add=\underline{}add\cdot mul \\ 
+   \underline{}mul=\underline{}mul\cdot mul
+   \end{aligned}</script><p>另外我们换一个角度去思考如何设计标记并更新答案，不过本质上还是从答案的形式出发</p>
+<p>我们直接按照最常规的计算顺序来思考，不妨将答案的形式表示为 $(((v+add1)\cdot mul1+add2)\cdot mul2+add2)\cdots) \cdot muln$</p>
+<p>自然能够想到定义两个标记一个记录 $v$ 要乘多少，另一个记录要加多少，不妨令这两个标记为 $mul$ 和 $add$</p>
+<p>在 $update$ 的时候对于区间加 $add$ 能够得到</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underline{}v=\underline{}v+len\cdot add \\
+\underline{}add=\underline{}add+add
+\end{aligned}</script><p>区间乘 $mul$ 能够得到 </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+   \underline{}v=\underline{}v\cdot  mul\\
+   \underline{}add=\underline{}add\cdot mul \\ 
+   \underline{}mul=\underline{}mul\cdot mul
+   \end{aligned}</script><p>但是在 $pushdown$ 的时候似乎出现了问题，我们要同时区间加和区间乘，好像又出现顺序问题了 = =</p>
+<p>但其实并没有顺序问题，因为父节点传过来的标记已经按照 $update$ 的顺序操作过了，并且父节点传过来的标记一定比自己身上的标记的顺序要靠后，所以父节点的标记就相当于是把 $(((v+add1)\cdot mul1+add2)\cdot mul2+add2)\cdots) \cdot muln$ 整个东西的后面一部分压缩成了两个变量，而自己身上的标记就是前半段压缩成了一个标记，那么更新顺序自然和上面讨论过的一样了</p>
+<p>就我个人而言，后面这种思路更加好想，当然两个思路本质是一样的</p>
+</li>
+<li><p>先加后乘</p>
+<p>那么 $\underline{}v$ 的形式一定是 $(\underline{}v+x)\cdot y$</p>
+<p>$Update\underline{}mul$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underline{}v=\underline{}v\cdot mul \\
+\underline{}mul=\underline{}mul\cdot mul
+\end{aligned}</script><p>$Update\underline{}add$ 稍复杂一点，我们加 $add$ 之后变成 $(\underline{}v+x)\cdot y+add=(\underline{}v+x+\frac{add}{y})\cdot y$ </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underline{}v=\underline{}v+len \cdot add \\
+\underline{}add=\underline{}add+\frac{add}{\underline{}mul}\\
+\end{aligned}</script></li>
+</ol>
+<p>下面我们来看一下处理普通关系标记的操作</p>
+<p>以 <a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/08/Luogu-U140092-线段树练习/">Luogu U140092 线段树练习</a> 为例</p>
+<p>对于普通关系标记，我们需要直接思考所有普通关系标记对于需要维护的值的作用效果</p>
+<p>在此题中，首先我们肯定要维护 $\sum a\cdot b$，那么我们可以分别思考 $a$ 区间加 $adda$ 和 $b$ 区间加 $addb$ 对答案 $\sum a\cdot b$ 的影响</p>
+<p>通过这个影响来确定要维护的标记，然后我们发现需要维护 $\sum a$ 和 $\sum b$，然后再考虑 $adda$ 和 $addb$ 的应用和叠加</p>
+<p>下面我们再看一道比较复杂的处理顺序关系标记和普通关系标记的题目</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/08/Luogu-P5009-yLOI2018-%E4%B8%8D%E8%80%81%E6%A2%A6/">Luogu P5009 [yLOI2018] 不老梦</a> 标记啥的都写到题解里面了</p>
+<p>下面我们来讨论一下如何系统的求解顺序关系标记的顺序，我们以 <a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/09/26/Luogu%20P3373%20%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91%202/">Luogu P3373 【模板】线段树 2</a> 为例</p>
+<p>首先，我们有乘法和加法标记，我们考虑答案的形式，不妨假设是先乘后加</p>
+<p>那么先加后乘就是有影响的，那么我们就要思考乘法标记对加发标记的作用，换句话讲就是我们要先下放乘法标记</p>
+<p>所以我们对于顺序关系标记，首先要思考答案的形式，根据这个东西来确定下放顺序</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/23/2021%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A12-K-I-love-max-and-multiply/">2021杭电多校2 G I love data structure</a> 经典例子</p>
+<h2 id="Segment-tree-Beats"><a href="#Segment-tree-Beats" class="headerlink" title="Segment tree Beats"></a>Segment tree Beats</h2><h3 id="区间最值操作"><a href="#区间最值操作" class="headerlink" title="区间最值操作"></a>区间最值操作</h3><ol>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，现在有 $m$ 次操作，操作有三种，第一种操作给定 $l,r,v$，将区间 $[l,r]$ 中的所有数都变成 $min(a_i,v)$，第二种操作给定 $l,r$，求 $max(a_i),i\in[l,r]$，第三种操作给定 $l,r$，求 $[l,r]$ 的区间和</p>
+<p>$n,m\le 10^6$</p>
+<p>简要题解：我们考虑维护用线段树区间最大值 $mx$ 和区间严格次大值 $se$ 以及区间最大值的个数 $t$ 和区间和 $sum$，那么对于一次区间取 $min$ 操作，如果 $v&gt;= mx$，那么可以直接忽略；如果 $se&lt;v&lt; mx$，那么我们可以直接更新 $mx,sum$，然后我们将这个东西当成标记，具体实现中，我们直接将 $mx$ 当做标记即可，经过简单分类讨论，能够发现这个标记可以正常下传</p>
+<p>如果 $se \ge v$，那么我们直接暴力 $dfs$，直到满足 $se &lt;v&lt;mx$，这样看似是暴力，实际上我们可以证明它的复杂度为 $O(n\log n)$，这里我们不沿用吉老师在论文中使用的标记类方法，我们定义一个节点的势能为它所管辖的区间中不同数的个数，整颗线段树的势能定义为所有节点的势能的和，上界为 $O(n\log n)$，注意到每暴力 $dfs$ 到一个点，这个点的次大值和最大值会被合并，也就是说值域减少 $1$，即势能减少 $1$，总时间复杂度 $O((n+m)\log n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/11/03/hdu-5306-Gorgeous-Sequence/">hdu 5306 Gorgeous Sequence</a></p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的序列和 $m$ 次操作，操作有区间加，区间对 $v$ 取 $min$，区间对 $v$ 取 $max$，求区间和，求区间最大值，求区间最小值</p>
+<p>简要题解：我们维护最大值、最大值的数量、严格次大值，最小值、最小值的数量、严格次小值，对于区间加，我们采用对于每种值单独维护一个标记的做法，即最大值区间加标记、最小值区间加标记、其它值区间加标记，要不然需要大量分类讨论</p>
+<p><code>pushdown</code>的时候需要注意值域重复的情况，其它就不需要分类讨论了，时间复杂度 $O(n\log^2 n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/11/05/bzoj-4695-%E6%9C%80%E5%81%87%E5%A5%B3%E9%80%89%E6%89%8B/">bzoj 4695 最假女选手</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> add1, <span class="keyword">int</span> add2, <span class="keyword">int</span> add3)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// mn 最小值 smn 次小值 cmn 最小值个数 add1 最小值加法标记</span></span><br><span class="line">    <span class="comment">// mx 最大值 smx 次大值 cmx 最大值个数 add2 最大值加法标记</span></span><br><span class="line">    <span class="comment">// add3 其他值加法标记</span></span><br><span class="line">    <span class="keyword">if</span> (T[i].mn == T[i].mx) &#123;</span><br><span class="line">        <span class="keyword">if</span> (add1 == add3) add1 = add2;</span><br><span class="line">        <span class="keyword">else</span> add2 = add1;</span><br><span class="line">        T[i].v += <span class="number">1l</span>l * add1 * T[i].cmn;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> T[i].v += <span class="number">1l</span>l * add1 * T[i].cmn + <span class="number">1l</span>l * add2 * T[i].cmx +</span><br><span class="line">             <span class="number">1l</span>l * add3 * (r - l + <span class="number">1</span> - T[i].cmn - T[i].cmx);</span><br><span class="line">    <span class="keyword">if</span> (T[i].smn == T[i].mx) T[i].smn += add2;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (T[i].smn != INF) T[i].smn += add3;</span><br><span class="line">    <span class="keyword">if</span> (T[i].smx == T[i].mn) T[i].smx += add1;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (T[i].smx != -INF) T[i].smx += add3;</span><br><span class="line">    T[i].mn += add1; T[i].mx += add2;</span><br><span class="line">    T[i].add1 += add1; T[i].add2 += add2; T[i].add3 += add3;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> &amp;add1 = T[i].add1, &amp;add2 = T[i].add2, &amp;add3 = T[i].add3;</span><br><span class="line">    <span class="keyword">int</span> m = l + r &gt;&gt; <span class="number">1</span>, mn = min(T[lc].mn, T[rc].mn), mx = max(T[lc].mx, T[rc].mx);</span><br><span class="line">    Update(lc, l, m, T[lc].mn == mn ? add1 : add3,</span><br><span class="line">           T[lc].mx == mx ? add2 : add3, add3);</span><br><span class="line">    Update(rc, m + <span class="number">1</span>, r, T[rc].mn == mn ? add1 : add3,</span><br><span class="line">           T[rc].mx == mx ? add2 : add3, add3);</span><br><span class="line">    add1 = add2 = add3 = <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的序列，现在有 $m$ 次操作，操作有两种：单点修改、查询 $a_x,\cdots,a_n$ 的不同的后缀最小值的个数</p>
+<p>$n,m\le 10^6$</p>
+<p>简要题解：注意到查询不是区间而是一个后缀，这启示我们离线后扫描线，我们用线段树维护以时间为下标，值为后缀最小值的线段树，注意到每次查询的答案即为这个时间后缀最小值变化的次数</p>
+<p>我们考察最基本的<code>Segment tree Beats</code>的做法，容易发现我们可以在维护的时候顺便维护每个位置的值的变化次数，时间复杂度 $O(n\log n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/11/05/Uoj-515-%E3%80%90UR-19%E3%80%91%E5%89%8D%E8%BF%9B%E5%9B%9B/">Uoj 515 【UR-19】前进四</a></p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的排列 $p$，现在有 $m$ 次询问，每次询问区间 $[l,r]$ 中有多少子区间是连续的，一个区间是连续的，当且仅当这个区间中的数排列后形成一个公差为 $1$ 的等差数列</p>
+<p>$n,m\le 1.2\times 10^5$</p>
+<p>简要题解：对于连续区间这个定义，我们已经很熟悉了，如果一个区间是连续区间，那么一定满足 $max-min-(r-l)=0$，且我们注意到对于任何区间都有 $max-min-(r-l)\ge 0$</p>
+<p>然后对于询问的形式，容易想到离线后扫描线然后维护一个历史值，这里我们注意到我们要求的是 $0$ 的个数且 $0$ 一定是历史最小值，另外关于 $max-min-(r-l)$ 这个东西可以利用单调栈，那么我们现在就需要维护区间加，求区间历史最小值的个数，为了维护这些东西，我们需要在线段树上维护：区间最小值、区间最小值的个数、区间历史最小值、区间历史最小值的个数、区间加标记、区间历史最小值加标记、区间历史最小值加标记的个数，时间复杂度 $O(n\log n)$</p>
+<p><a href="">CF 997E Good Subsegments</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update</span><span class="params">(<span class="keyword">int</span> i, ll add, ll tadd, ll ctadd)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (T[i].tmn &gt; T[i].mn + tadd) &#123;</span><br><span class="line">        T[i].tmn = T[i].mn + tadd;</span><br><span class="line">        T[i].ctmn = T[i].cmn * ctadd;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (T[i].tmn == T[i].mn + tadd) </span><br><span class="line">        T[i].ctmn += T[i].cmn * ctadd;</span><br><span class="line">    T[i].mn += add;</span><br><span class="line">    <span class="keyword">if</span> (T[i].tadd &gt; T[i].add + tadd) &#123; </span><br><span class="line">        T[i].tadd = T[i].add + tadd;</span><br><span class="line">        T[i].ctadd = ctadd;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (T[i].tadd == T[i].add + tadd) </span><br><span class="line">        T[i].ctadd += ctadd;</span><br><span class="line">    T[i].add += add;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    ll &amp;add = T[i].add, &amp;tadd = T[i].tadd, &amp;ctadd = T[i].ctadd;</span><br><span class="line">    Update(lc, add, tadd, ctadd); Update(rc, add, tadd, ctadd);</span><br><span class="line">    add = tadd = ctadd = <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="区间历史最值"><a href="#区间历史最值" class="headerlink" title="区间历史最值"></a>区间历史最值</h3><ol>
+<li><p>简要题意：给定一个长度为 $n$ 的序列，现在有 $m$ 次操作，操作分别是区间加，区间赋值，求区间最大值，求区间历史最大值</p>
+<p>$n,m \le 10^5$</p>
+<p>简要题解：注意到在进行一次区间赋值后，区间加也相当于区间赋值，另外对于历史最大值，我们只需要记录区间加标记的最大前缀和区间赋值的最大值即可</p>
+<p>对于标记的维护，我们仍然沿用不同值标记分开维护的思路，所以我们需要维护：区间和、区间最大值、区间历史最大值、区间加标记、区间赋值标记、历史最大值区间加标记、历史最大值区间赋值标记，时间复杂度 $O(n\log n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/11/05/Luogu-P4314-CPU%E7%9B%91%E6%8E%A7/">Luogu P4314 CPU监控</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> add, <span class="keyword">int</span> tadd, <span class="keyword">int</span> cov, <span class="keyword">int</span> tcov)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// mx 区间最大值 add 区间加标记 cov 区间赋值标记</span></span><br><span class="line">    <span class="comment">// tmx 区间历史最大值 tadd 历史最大值区间加标记 tcov 历史最大值区间赋值标记</span></span><br><span class="line">    T[i].tmx = max(&#123; T[i].tmx, T[i].mx + tadd, tcov &#125;);</span><br><span class="line">    T[i].mx = cov == -INF ? T[i].mx + add : cov;</span><br><span class="line">    <span class="keyword">if</span> (T[i].cov == -INF) &#123;</span><br><span class="line">        T[i].tadd = max(T[i].tadd, T[i].add + tadd), T[i].add += add;</span><br><span class="line">        T[i].tcov = tcov; T[i].cov = cov;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        T[i].tcov = max(&#123; T[i].tcov, T[i].cov + tadd, tcov &#125;);</span><br><span class="line">        T[i].cov = cov == -INF ? T[i].cov + add : cov;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的序列，现在有 $m$ 次操作，操作有五种：区间加、区间对 $v$ 取 $min$，求区间和，求区间最大值，求区间历史最大值</p>
+<p>$n,m\le 5\times 10^5$</p>
+<p>简要题解：对于标记的处理，我们依然采用不同值维护不同标记的做法</p>
+<p>我们维护区间和、区间最大值、区间最大值的个数、区间次大值、区间历史最大值、最大值加法标记、非最大值加法标记、历史最大值加法标记、非历史最大值加法标记，时间复杂度 $O(n\log^2n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/11/05/Luogu-P6242-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91-3/">Luogu P6242 【模板】线段树 3</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> madd, <span class="keyword">int</span> tmadd, <span class="keyword">int</span> add, <span class="keyword">int</span> tadd)</span> </span>&#123; </span><br><span class="line">    <span class="comment">// mx 最大值 tmx 历史最大值 smx 次大值 cmx 最大值个数</span></span><br><span class="line">    <span class="comment">// madd 最大值加法标记 tmadd 历史最大值加法标记 add 非最大值加法标记 tadd 非历史最大值加法标记</span></span><br><span class="line">    T[i].v += <span class="number">1l</span>l * madd * T[i].cmx + <span class="number">1l</span>l * add * (r - l + <span class="number">1</span> - T[i].cmx);</span><br><span class="line">    T[i].tmx = max(T[i].tmx, T[i].mx + tmadd);</span><br><span class="line">    T[i].mx += madd;</span><br><span class="line">    <span class="keyword">if</span> (T[i].smx != -INF) T[i].smx += add;</span><br><span class="line">    T[i].tmadd = max(T[i].tmadd, T[i].madd + tmadd);</span><br><span class="line">    T[i].tadd = max(T[i].tadd, T[i].add + tadd); </span><br><span class="line">    T[i].madd += madd;</span><br><span class="line">    T[i].add += add; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> &amp;madd = T[i].madd, &amp;tmadd = T[i].tmadd, &amp;add = T[i].add, &amp;tadd = T[i].tadd;</span><br><span class="line">    <span class="keyword">int</span> mx = max(T[lc].mx, T[rc].mx), m = l + r &gt;&gt; <span class="number">1</span>; </span><br><span class="line">    <span class="keyword">if</span> (T[lc].mx == mx) Update(lc, l, m, madd, tmadd, add, tadd);</span><br><span class="line">    <span class="keyword">else</span> Update(lc, l, m, add, tadd, add, tadd);</span><br><span class="line">    <span class="keyword">if</span> (T[rc].mx == mx) Update(rc, m + <span class="number">1</span>, r, madd, tmadd, add, tadd);</span><br><span class="line">    <span class="keyword">else</span> Update(rc, m + <span class="number">1</span>, r, add, tadd, add, tadd);</span><br><span class="line">    madd = tmadd = add = tadd = <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的序列，现在有 $m$ 次询问，每次询问区间 $[l,r]$ 的最大子段和，但是需要注意这个最大子段和相同的数只算一次</p>
+<p>$n,m\le 10^5$</p>
+<p>简要题解：我们考虑离线之后扫描线，线段树上每个点维护这个点到当前右端点区间和和历史最大值，容易发现，我们只需要记录 $pre_i$，然后每次更新 $[pre_i+1,i]$ 即可</p>
+<p>时间复杂度 $O(n\log n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/11/05/Spoj-1557-GSS2-Can-you-answer-these-queries-II/">Spoj 1557 GSS2 - Can you answer these queries II</a></p>
+</li>
+</ol>
+<h2 id="线段树能维护的神奇东西"><a href="#线段树能维护的神奇东西" class="headerlink" title="线段树能维护的神奇东西"></a>线段树能维护的神奇东西</h2><ol>
+<li><p>区间加等差数列，区间求和</p>
+</li>
+<li><p>单点修改矩阵，区间查询矩阵乘积</p>
+</li>
+<li><p>$01$ 串区间排序</p>
+<p><a href=""></a></p>
+</li>
+<li><p>区间求 $\sum_{i=l}^ra_ik^{i-l+1}$，单点修改 $a_i$</p>
+<ol>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，现在有 $m$ 次询问，每次询问求区间 $[l,r]$ 中的所有数排序去重后得到的序列 $b_i$，这个区间的价值是 $\sum b_if_i$，其中 $f_i$ 表示斐波那契数列第 $i$ 项</p>
+<p>$n,m\le 3\times 10^4$</p>
+<p>简要题解：莫队之后用权值线段树维护，将斐波那契数写成矩阵形式可以看做 $k^i$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/14/%E7%AC%AC%E5%8D%81%E4%B8%83%E5%B1%8A%E6%B5%99%E5%A4%A7%E5%9F%8E%E5%B8%82%E5%AD%A6%E9%99%A2%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B-K-Sumo-and-Fibonacci/">第十七届浙大城市学院程序设计竞赛 K Sumo and Fibonacci</a></p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="线段树的经典应用"><a href="#线段树的经典应用" class="headerlink" title="线段树的经典应用"></a>线段树的经典应用</h2><ol>
+<li><p>对于区间 $[l,r]$，求最靠左的满足条件的 $i$，其中 $i\in[l,r]$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/06/CF-19D-Points/">CF 19D Points</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> L, <span class="keyword">int</span> R, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; R || r &lt; L || T[i] &lt;= v) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (l == r) <span class="keyword">return</span> T[i] &gt; v ? l : <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> m = l + r &gt;&gt; <span class="number">1</span>, t = query(lc, l, m, L, R, v);</span><br><span class="line">    <span class="keyword">if</span> (!t) <span class="keyword">return</span> query(rc, m + <span class="number">1</span>, r, L, R, v);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> t; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>动态 $dp$ <del>线段树分治处理询问</del></p>
+<p><del>好吧，我也不知道为什么以前会起这个鬼名字</del></p>
+<p>总之它大概的意思就是对于一类 $dp$ 或者贪心的问题，加上修改并且在修改之后询问答案</p>
+<p>有的时候这个东西可以拿线段树维护</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/05/CF-1420C2-Pokemon-Army-hard-version-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%B4%E6%8A%A4%E7%9F%A9%E9%98%B5/">CF 1420C2 Pokémon Army (hard version)</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/07/Luogu-P3569-POI2014-KAR-Cards/">Luogu P3569 [POI2014]KAR-Cards</a></p>
+<p><a href="">bzoj 3022 [Balkan2012]The Best Teams</a></p>
+</li>
+<li><p>求全部或部分点对 $(i,j)$ 的贡献，或者说动态维护 $(i,j)$ 的贡献</p>
+<p>一般这种题目的做法是直接分治，但部分题目线段树也可以做且更加方便</p>
+<p>比较一般的做法是枚举一个端点，用线段树维护另一个左端点</p>
+<p>本质就是扫描线</p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/07/Luogu-P4065-JXOI2017-%E9%A2%9C%E8%89%B2/">Luogu P4065 [JXOI2017]颜色</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/16/Luogu-P4137-Rmq-Problem-mex/">Luogu P4137 Rmq Problem / mex</a> 强制在线可以用主席树，大部分这类题目都可以这样处理</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/11/CF-1389F-Bicolored-Segments/">CF 1389F Bicolored Segments</a> 枚举右端点，然后用线段树维护一个只有左端点变化的数组</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/03/10/CF-1422F-Boring-Queries/">CF 1422F Boring Queries</a> 同上</p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$​ 的序列 $a$​，有 $m$​ 次询问，每次给定询问区间 $[l,r]$​，求 $\sum_{l\le x\le y\le r} \frac{\frac{max~a_{x\cdots y}+min~a_{l\cdots r}}{2}}{\frac{n(n+1)}{2}}$​</p>
+<p>$n,m\le 3\times 10^5$</p>
+<p>简要题解：将询问离线，按照线段树的最经典做法，右端点增大，用线段树维护左端点</p>
+<p>然后参考单调栈加入和删点的过程，用线段树维护</p>
+<p><a href="">2021杭电多校4 E Didn’t I Say to Make My Abilities Average in the Next Life?!</a></p>
+</li>
+</ol>
+</li>
+<li><p>类楼房修建线段树</p>
+<ol>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a$ 和 $m$ 次操作，初始时 $a_i$ 都等于 $0$，每次操作首先修改 $a_x$ 为 $y$，然后查询整个序列的前缀最大值的个数</p>
+<p>$n,m\le 10^5$</p>
+<p>简要题解：我们考虑使用线段树来维护这个东西，定义 $calc(i,l,r,p)$ 表示对于线段树上的节点 $i$，其所代表的区间为 $[l,r]$，在遍历这个区间之前的最大值为 $a[p]$，遍历这个区间后答案会增加多少</p>
+<p>我们考虑如何计算这个东西，如果 $[l,m]$ 中的最大值大于 $a[p]$，那么答案就是 $calc(lc,l,m,p)+calc(rc,m+1,r,p_{lc})$，否则答案就是 $calc(rc,m+1,r,p)$，我们对于线段树上每个节点存储最大值的位置 $p$ 和 $calc(rc,m+1,r,p_{lc})$​</p>
+<p>因为 $calc$ 的计算是 $O(\log n)$，所以单点修改和查询都是 $O(n\log^2 n)$​ 的</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/08/08/Luogu-P4198-%E6%A5%BC%E6%88%BF%E9%87%8D%E5%BB%BA/">Luogu P4198 楼房重建</a></p>
+</li>
+<li><p>简要题意：给定两个序列 $a,b$ 和 $m$ 次操作，其中 $b$ 是 $01$ 序列，操作有三种，单点修改 $a$，$b$ 区间异或 $1$，查询给定区间 $[l,r]$ 的前缀最大值组成的序列的相邻两个的 $b$​ 的异或和​</p>
+<p>$n,m\le 2\times 10^5$</p>
+<p>简要题解：首先如果我们不考虑 $b$ 的修改，那么这题完全就是楼房重建</p>
+<p>现在我们考虑 $b$ 的修改，首先我们把 $b$ 差分一下，用树状数组维护，这样我们区间修改的时候只需要改两个点即可</p>
+<p>然后我们继续套用楼房重建的做法，在需要查询 $b$ 的时候，我们直接用树状数组查询，这样看起来是 $O(n\log ^3n)$ 的</p>
+<p>但实际上对于每一次 $calc(i,l,r,p)$​，我们只会在 $l=r$ 的最底层查询一次 $b$，所以时间复杂度还是 $O(n\log ^2n)$ 的</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/08/08/2021%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A17-xay-loves-monotonicity/">2021牛客多校7 xay loves monotonicity</a></p>
+</li>
+</ol>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-flag"></i>　感谢阅读　　　　-------------</div>
+    
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Tech/" rel="tag"># Tech</a>
+              <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag"># 线段树</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/10/25/CF-1436D-Bandit-in-a-City/" rel="prev" title="CF 1436D Bandit in a City">
+                  <i class="fa fa-chevron-left"></i> CF 1436D Bandit in a City
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/10/25/Luogu-P2572-SCOI2010-%E5%BA%8F%E5%88%97%E6%93%8D%E4%BD%9C/" rel="next" title="Luogu P2572 [SCOI2010]序列操作">
+                  Luogu P2572 [SCOI2010]序列操作 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DDOSvoid</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.2m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">18:52</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-use    r"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
