@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介线段树大概是 $Oier$ 中最常用的数据结构了（大概">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-25T07:08:24.000Z">
-<meta property="article:modified_time" content="2021-11-09T12:39:16.422Z">
+<meta property="article:modified_time" content="2021-11-09T13:02:22.170Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="线段树">
@@ -309,7 +309,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-09 20:39:16" itemprop="dateModified" datetime="2021-11-09T20:39:16+08:00">2021-11-09</time>
+        <time title="修改时间：2021-11-09 21:02:22" itemprop="dateModified" datetime="2021-11-09T21:02:22+08:00">2021-11-09</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -485,7 +485,7 @@
 <p>$n,m\le 1.2\times 10^5$</p>
 <p>简要题解：对于连续区间这个定义，我们已经很熟悉了，如果一个区间是连续区间，那么一定满足 $max-min-(r-l)=0$，且我们注意到对于任何区间都有 $max-min-(r-l)\ge 0$</p>
 <p>然后对于询问的形式，容易想到离线后扫描线然后维护一个历史值，这里我们注意到我们要求的是 $0$ 的个数且 $0$ 一定是历史最小值，另外关于 $max-min-(r-l)$ 这个东西可以利用单调栈，那么我们现在就需要维护区间加，求区间历史最小值的个数，为了维护这些东西，我们需要在线段树上维护：区间最小值、区间最小值的个数、区间历史最小值、区间历史最小值的个数、区间加标记、区间历史最小值加标记、区间历史最小值加标记的个数，时间复杂度 $O(n\log n)$</p>
-<p><a href="">CF 997E Good Subsegments</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/11/06/CF-997E-Good-Subsegments/">CF 997E Good Subsegments</a></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update</span><span class="params">(<span class="keyword">int</span> i, ll add, ll tadd, ll ctadd)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (T[i].tmn &gt; T[i].mn + tadd) &#123;</span><br><span class="line">        T[i].tmn = T[i].mn + tadd;</span><br><span class="line">        T[i].ctmn = T[i].cmn * ctadd;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (T[i].tmn == T[i].mn + tadd) </span><br><span class="line">        T[i].ctmn += T[i].cmn * ctadd;</span><br><span class="line">    T[i].mn += add;</span><br><span class="line">    <span class="keyword">if</span> (T[i].tadd &gt; T[i].add + tadd) &#123; </span><br><span class="line">        T[i].tadd = T[i].add + tadd;</span><br><span class="line">        T[i].ctadd = ctadd;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (T[i].tadd == T[i].add + tadd) </span><br><span class="line">        T[i].ctadd += ctadd;</span><br><span class="line">    T[i].add += add;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    ll &amp;add = T[i].add, &amp;tadd = T[i].tadd, &amp;ctadd = T[i].ctadd;</span><br><span class="line">    Update(lc, add, tadd, ctadd); Update(rc, add, tadd, ctadd);</span><br><span class="line">    add = tadd = ctadd = <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
