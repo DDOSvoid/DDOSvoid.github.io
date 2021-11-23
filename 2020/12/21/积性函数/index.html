@@ -30,7 +30,7 @@
 <meta property="og:description" content="积性函数">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-21T10:24:19.000Z">
-<meta property="article:modified_time" content="2021-11-21T06:23:07.438Z">
+<meta property="article:modified_time" content="2021-11-21T14:20:03.129Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="积性函数">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">651</span>
+          <span class="site-state-item-count">653</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -309,7 +309,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-21 14:23:07" itemprop="dateModified" datetime="2021-11-21T14:23:07+08:00">2021-11-21</time>
+        <time title="修改时间：2021-11-21 22:20:03" itemprop="dateModified" datetime="2021-11-21T22:20:03+08:00">2021-11-21</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -633,7 +633,7 @@ g(n,m-1)-P_{m}^k(g(\lfloor\frac{n}{P_{m}}\rfloor,m-1)-g(P_{m-1},m-1)),\quad P^2_
 <p>简要题解：样我们再搞一个调和级数的枚举就能求出所有合法的 $g_{x,y}$</p>
 <p>对于 $g_k$，显然我们不太好直接操作，我们考虑求 $f_k=\sum_{d|k} g_d$，即求 $gcd$ 为 $1$，且 $lcm$ 是 $k$ 的约数的合法序列的价值的和，经过化简我们能够得到 $f_k=\sum_{d|k}\mu(d)d^n\sigma^n(\frac{k}{d})$</p>
 <p>显然这个东西我们可以用调和级数的做法算出 $f_1$ 到 $f_m$，然后用作经典的莫比乌斯反演，我们能算出 $g_k$，但是现在我们注意到我们只计算了 $lcm$ 小于等于 $m$ 的情况，但题目实际要求 $lcm$ 大于等于 $p$ 的情况，正难则反，我们求出只有 $gcd$ 的要求下的所有答案，简单 $lcm$ 小于 $p$ 的即可，所有东西的 $n$ 次方都可以预处理，时间复杂度 $O(n\log n)$</p>
-<p><a href="">The 2021 CCPC Guangzhou Onsite K Magus Night</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/11/18/The-2021-CCPC-Guangzhou-Onsite-K-Magus-Night/">The 2021 CCPC Guangzhou Onsite K Magus Night</a></p>
 </li>
 </ol>
 
@@ -730,7 +730,7 @@ g(n,m-1)-P_{m}^k(g(\lfloor\frac{n}{P_{m}}\rfloor,m-1)-g(P_{m-1},m-1)),\quad P^2_
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">19:10</span>
+    <span title="站点阅读时长">19:21</span>
   </span>
 </div>
 <div class="busuanzi-count">
