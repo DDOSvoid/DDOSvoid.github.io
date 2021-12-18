@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介线段树大概是 $Oier$ 中最常用的数据结构了（大概">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-25T07:08:24.000Z">
-<meta property="article:modified_time" content="2021-12-14T12:12:27.640Z">
+<meta property="article:modified_time" content="2021-12-14T12:37:17.991Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="线段树">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">663</span>
+          <span class="site-state-item-count">665</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -309,7 +309,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-14 20:12:27" itemprop="dateModified" datetime="2021-12-14T20:12:27+08:00">2021-12-14</time>
+        <time title="修改时间：2021-12-14 20:37:17" itemprop="dateModified" datetime="2021-12-14T20:37:17+08:00">2021-12-14</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -547,7 +547,7 @@
 <p>$|S|,m \le 10^5$</p>
 <p>简要题解：注意到信息满足可合并性，我们考虑线段树，用线段树维护 $a,b,c,ab,bc,abc$ 分别表示区间内不含有这些子序列的最小操作次数</p>
 <p>考虑合并，容易得到 $a,b,c$ 的合并是直接相加，但对于 $ab$ 的合并似乎找不到合适的方法，我们考虑分类讨论，如果要使得左右区间合并后不存在 $ab$，那么在保证左右区间内部不含有 $ab$ 的情况下，只有两种情况，一是左边不含 $a$，二是右边不含 $b$，然后我们能够注意到左边不含 $a$ 则一定满足左边不含 $ab$，所以左边不含 $a$ 的情况就是 $T[lc].a + T[rc].ab$，那么容易得到第二种情况就是 $T[lc].ab+T[rc].b$，其它的类似都可以用这种方法得到，单点修改用线段树操作即可，时间复杂度 $O(n\log n)$</p>
-<p><a href="">CF 1609E William The Oblivious</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/12/14/CF-1609E-William-The-Oblivious/">CF 1609E William The Oblivious</a></p>
 </li>
 </ol>
 </li>
@@ -686,7 +686,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">19:58</span>
+    <span title="站点阅读时长">20:07</span>
   </span>
 </div>
 <div class="busuanzi-count">
