@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介感觉是一个很有未来的东西">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-26T11:12:25.000Z">
-<meta property="article:modified_time" content="2021-12-18T12:19:02.367Z">
+<meta property="article:modified_time" content="2021-12-19T09:58:53.459Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="生成函数">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">665</span>
+          <span class="site-state-item-count">666</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -211,7 +211,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">132</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -309,7 +309,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-18 20:19:02" itemprop="dateModified" datetime="2021-12-18T20:19:02+08:00">2021-12-18</time>
+        <time title="修改时间：2021-12-19 17:58:53" itemprop="dateModified" datetime="2021-12-19T17:58:53+08:00">2021-12-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -336,7 +336,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>8.4k</span>
+      <span>9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -473,7 +473,14 @@ F_k(x)&=\sum_{i=0}^nf_{k,i}x^i\\
 <p>我们考虑求 $F(x)$，容易想到使用牛顿迭代，我们令 $H(F_k(x))=F_k(x)-x\times exp(\sum_{n=1}\frac{F_k(x^n)}{n})\equiv 0(\bmod x^{2^k})$，注意到 $exp$ 里的求和 有一个 $F_k(x^n)$，因为 $F_k(x)$ 的前 $2^{k-1}$ 项一定与 $F_{k-1}(x)$ 相同，所以当 $n\ge 2$ 时，$\frac{F_k(x^n)}{n}$ 只与 $F_{k-1}(x)$ 有关，换句话说这个东西是常数，那么我们现在能够得到 $H(F_k(x))=F_k(x)-x\times exp(\sum_{n=2}\frac{F_k(x^n)}{n})\times exp F_k(x),H’(F_k(x))=1-x\times exp(\sum_{n=2}\frac{F_k(x^n)}{n})\times exp F_k(x)$，根据牛顿迭代的公式，我们能够得到 $F_k(x)=F_{k-1}(x)-\frac{F_k(x)-x\times exp(\sum_{n=2}\frac{F_k(x^n)}{n})\times exp F_k(x)}{1-x\times exp(\sum_{n=2}\frac{F_k(x^n)}{n})\times exp F_k(x)}$</p>
 <p>时间复杂度为 $O(n\log n)$，常数较大</p>
 <p>然后我们考虑无标号无根树计数，相对于无标号有根树计数，我们只需要在根为重心的时候统计一次即可，如果 $n$ 是奇数，那么树的重心有且仅有一个，我们枚举根的一个大于 $\lceil \frac{n}{2}\rceil$ 的子树的大小即可，不合法的答案为 $\sum_{i=\lceil\frac{n}{2}\rceil}^{n-1}f_{i}f_{n-i}$，如果 $n$ 是偶数，那么有可能存在有两个重心的情况，如果将两个重心中间的边断开，形成两棵树，这两棵树如果完全相同，则这些方案我们只会统计一次，不会算重，否则我们恰好算了两次，那么我们把多算的减掉即可，即减掉 $\binom{f_{\frac{n}{2}}}{2}$ 次</p>
-<p><a href="">Luogu P5900 无标号无根树计数</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/12/18/Luogu-P5900-%E6%97%A0%E6%A0%87%E5%8F%B7%E6%97%A0%E6%A0%B9%E6%A0%91%E8%AE%A1%E6%95%B0/">Luogu P5900 无标号无根树计数</a></p>
+</li>
+<li><p>简要题意：假设现在有一个集合 $S$，$S$ 中只含若干个 $[1,n]$ 的正整数，我们令 $f(k)$ 为把 $k$ 表示成 $S$ 中的元素的和的方案数，每个数都能用无限次，每种方案都是无序的，现在给定 $f(1)$ 到 $f(n)$ 这 $n$ 个模 $p$ 的值，求构造一个字典序最小的集合 $S$，保证 $p$ 是素数，但不一定是 $998244353$</p>
+<p>$n\le 2^{18}$</p>
+<p>简要题解：我们不妨令 $f(x)$ 的生成函数为 $F(x)$，根据一些经典结论容易得到 $F(x)=\prod_{a_i\in S}\frac{1}{1-x^{a_i}}=\exp(\sum_{a_i\in S}\ln\frac{1}{1-x^{a_i}})=\exp(\sum_{a_i\in S}\sum_{n=1}\frac{x^{na_i}}{n})$</p>
+<p>两边取一下 $\ln$，能够得到 $\ln F(x)=\sum_{a_i\in S}\sum_{n=1}\frac{x^{na_i}}{n}$，我们令 $G(x)$ 表示 $S$ 的生成函数，含义为如果 $S$ 有 $a_i$ 这个元素，那么 $x^{a_i}$ 的系数为 $1$，否则为 $0$，那么能够得到 $f(k)=\frac{1}{k}\sum_{d|k}\frac{d}{k}g(d)$，容易发现这是一个莫比乌斯反演的形式，那么答案一定是唯一的</p>
+<p>唯一的难点在于任意模数多项式求逆，用三模NTT写确实慢，时间复杂度 $O(n\log n)$</p>
+<p><a href="">P3784 [SDOI2017] 遗忘的集合</a></p>
 </li>
 </ol>
 
@@ -570,7 +577,7 @@ F_k(x)&=\sum_{i=0}^nf_{k,i}x^i\\
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">20:07</span>
+    <span title="站点阅读时长">20:16</span>
   </span>
 </div>
 <div class="busuanzi-count">
