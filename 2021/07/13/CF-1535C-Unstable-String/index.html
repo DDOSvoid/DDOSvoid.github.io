@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="题目描述http:&#x2F;&#x2F;codeforces.com&#x2F;contest&#x2F;1535&#x2F;problem&#x2F;C">
+  <meta name="description" content="题目描述http:&#x2F;&#x2F;codeforces.com&#x2F;contest&#x2F;1535&#x2F;problem&#x2F;C 简要题意：给定一个含有 $0,1,?$ 的字符串，$?$ 可以变成 $0$ 或者 $1$，求有多少子串满足存在一种将 $?$ 替换成 $0$ 或者 $1$ 的方案，使得这个子串不存在有任何两个相邻位置的字符相同 $n\le 2\times 10^5$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CF 1535C Unstable String">
 <meta property="og:url" content="http://example.com/2021/07/13/CF-1535C-Unstable-String/index.html">
 <meta property="og:site_name" content="DDOSvoid&#39;s Blog">
-<meta property="og:description" content="题目描述http:&#x2F;&#x2F;codeforces.com&#x2F;contest&#x2F;1535&#x2F;problem&#x2F;C">
+<meta property="og:description" content="题目描述http:&#x2F;&#x2F;codeforces.com&#x2F;contest&#x2F;1535&#x2F;problem&#x2F;C 简要题意：给定一个含有 $0,1,?$ 的字符串，$?$ 可以变成 $0$ 或者 $1$，求有多少子串满足存在一种将 $?$ 替换成 $0$ 或者 $1$ 的方案，使得这个子串不存在有任何两个相邻位置的字符相同 $n\le 2\times 10^5$">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-13T09:59:43.000Z">
-<meta property="article:modified_time" content="2021-08-20T11:35:31.440Z">
+<meta property="article:modified_time" content="2022-04-13T11:33:42.755Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="XX智慧题">
 <meta name="twitter:card" content="summary">
@@ -308,7 +308,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-20 19:35:31" itemprop="dateModified" datetime="2021-08-20T19:35:31+08:00">2021-08-20</time>
+        <time title="修改时间：2022-04-13 19:33:42" itemprop="dateModified" datetime="2022-04-13T19:33:42+08:00">2022-04-13</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -335,7 +335,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>953</span>
+      <span>1.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -354,6 +354,8 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a target="_blank" rel="noopener" href="http://codeforces.com/contest/1535/problem/C">http://codeforces.com/contest/1535/problem/C</a></p>
+<p>简要题意：给定一个含有 $0,1,?$ 的字符串，$?$ 可以变成 $0$ 或者 $1$，求有多少子串满足存在一种将 $?$ 替换成 $0$ 或者 $1$ 的方案，使得这个子串不存在有任何两个相邻位置的字符相同</p>
+<p>$n\le 2\times 10^5$</p>
 <a id="more"></a>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>首先是一个非常弱智的想法，我们令 $f[0/1]$ 表示以 $0$ 或者以 $1$ 结尾的合法区间的个数，但是这样 $?$ 是不能转移的，然后就自闭了</p>
 <p>那么我们换一个方向来考虑，首先对于任意一个合法子串 $[l,r]$，它的子区间都是合法的，那么我们可以对于每个点记录以它结尾的最长合法区间</p>
@@ -453,7 +455,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:18</span>
+    <span title="站点阅读时长">21:21</span>
   </span>
 </div>
 <div class="busuanzi-count">
