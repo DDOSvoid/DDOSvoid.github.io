@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介大概就是用来求 $\sum_{T \in Tree}\prod_{e\in T}w_e$ 的值">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-30T06:03:19.000Z">
-<meta property="article:modified_time" content="2022-05-01T13:03:58.372Z">
+<meta property="article:modified_time" content="2022-05-01T13:13:37.370Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="矩阵树定理">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">705</span>
+          <span class="site-state-item-count">706</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -309,7 +309,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-05-01 21:03:58" itemprop="dateModified" datetime="2022-05-01T21:03:58+08:00">2022-05-01</time>
+        <time title="修改时间：2022-05-01 21:13:37" itemprop="dateModified" datetime="2022-05-01T21:13:37+08:00">2022-05-01</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -381,13 +381,13 @@ L_{i,j}=
 <p>$n\le 50$</p>
 <p>简要题解：首先容易得到答案为 $\sum_{T\in Tree}(\prod_{w\in T}p_e\prod_{w\notin T}(1-p_e))=\prod 1-p_e\sum_{T\in Tree}\sum_{e\in T}\frac{p_e}{1-p_e}$</p>
 <p>后面那个东西用矩阵树定理来求就行了，需要注意如果 $|1-p_e|&lt;\epsilon$，为了精度，我们需要将 $p_e$ 减掉 $\epsilon$</p>
-<p><a href="">Luogu P3317 [SDOI2014]重建</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/04/30/Luogu-P3317-SDOI2014-%E9%87%8D%E5%BB%BA/">Luogu P3317 [SDOI2014]重建</a></p>
 </li>
 <li><p>简要题意：现在有 $n$ 个城市，有 $n-1$ 个公司来修路，每个公司可以修某些路，现在要求恰好修 $n-1$ 条路使这 $n$ 个城市连通并且每个公司恰好其中一条路的方案数</p>
 <p>$n\le 17$</p>
 <p>简要题解：我们考虑枚举这次负责修路的公司 $S$，然后用矩阵树定理算出总的方案数 $f_{S}$，令 $g_{S}$ 表示 $S$ 中的每个公司都至少修了一条路的方案数，容易得到 $f_{S}=\sum_{T\subseteq S} g_T$，根据子集反演，可以得到 $g_S=\sum_{T\subseteq S}(-1)^{|S|-|T|}$</p>
 <p>因为恰好有 $n-1$ 个公司，所以答案就是 $g_U$，$U$ 表示这 $n-1$ 个公司的集合，时间复杂度 $O(2^nn^3)$</p>
-<p><a href="">Luogu P4336 [SHOI2016]黑暗前的幻想乡</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/05/01/Luogu-P4336-SHOI2016-%E9%BB%91%E6%9A%97%E5%89%8D%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/">Luogu P4336 [SHOI2016]黑暗前的幻想乡</a></p>
 </li>
 <li><p>简要题意：给定一个 $n$ 个点 $m$ 条边的无向图，定义一个生成树 $T$ 的价值为 $\sum_{i=1}^{n-1}w_{e_i}\times(w_{e_1},w_{e_2},\cdots,w_{e_{n-1}})$ ，求所有生成树的价值之和</p>
 <p>$n\le 30,m\le \frac{n(n-1)}{2}w_i\le 152501$</p>
@@ -399,7 +399,7 @@ ans&=\sum_{T\in Tree}\sum_{i=1}^{n-1}w_{e_i}\times(w_{e_1},w_{e_2},\cdots,w_{e_{
 &=\sum_{d}\varphi(d)\sum_{T\in Tree}\sum_{i=1}^{n-1}w_{e_i}[d|w_{e_i}]
 \end{aligned}</script><p>矩阵树定理将 $\prod$ 转换成 $\sum$ 是经典 $trick$，但现在的问题是如果枚举 $d$，那么时间复杂度 $O(n^3w_i)$，无法通过此题</p>
 <p>这个时候我们考虑只有枚举 $d$ 之后边数大于等于 $n-1$ 才跑矩阵树定理，那么这样的时间复杂度为 $O(\frac{\sum_{i}\tau(i)}{n-1}n^3)$，但是注意到边只有 $n^2$ 个，所以实际上的复杂度应该为 $O(\frac{n^2\times 144}{n-1}n^3)$，$144$ 是一条边的约数最大值，而且实际上也跑不满</p>
-<p><a href="">Luogu P6624 [省选联考 2020 A 卷] 作业题</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/05/01/Luogu-P6624-%E7%9C%81%E9%80%89%E8%81%94%E8%80%83-2020-A-%E5%8D%B7-%E4%BD%9C%E4%B8%9A%E9%A2%98/">Luogu P6624 [省选联考 2020 A 卷] 作业题</a></p>
 </li>
 </ol>
 
@@ -496,7 +496,7 @@ ans&=\sum_{T\in Tree}\sum_{i=1}^{n-1}w_{e_i}\times(w_{e_1},w_{e_2},\cdots,w_{e_{
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:47</span>
+    <span title="站点阅读时长">21:49</span>
   </span>
 </div>
 <div class="busuanzi-count">
