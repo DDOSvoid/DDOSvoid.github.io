@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介线段树大概是 $Oier$ 中最常用的数据结构了（大概">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-25T07:08:24.000Z">
-<meta property="article:modified_time" content="2022-03-26T12:55:22.414Z">
+<meta property="article:modified_time" content="2022-05-08T09:48:32.845Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="线段树">
@@ -182,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E4%B8%80%E9%81%93%E7%BA%BF%E6%AE%B5%E6%A0%91%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">如何解决一道线段树题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="nav-number">2.1.</span> <span class="nav-text">操作的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">标记的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%8F%A0%E5%8A%A0%E6%A0%87%E8%AE%B0%E5%92%8C%E5%BA%94%E7%94%A8%E6%A0%87%E8%AE%B0"><span class="nav-number">2.3.</span> <span class="nav-text">如何叠加标记和应用标记</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Segment-tree-Beats"><span class="nav-number">3.</span> <span class="nav-text">Segment tree Beats</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E6%9C%80%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="nav-number">3.1.</span> <span class="nav-text">区间最值操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E5%8E%86%E5%8F%B2%E6%9C%80%E5%80%BC"><span class="nav-number">3.2.</span> <span class="nav-text">区间历史最值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%83%BD%E7%BB%B4%E6%8A%A4%E7%9A%84%E7%A5%9E%E5%A5%87%E4%B8%9C%E8%A5%BF"><span class="nav-number">4.</span> <span class="nav-text">线段树能维护的神奇东西</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E7%BB%8F%E5%85%B8%E5%BA%94%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">线段树的经典应用</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E4%B8%80%E9%81%93%E7%BA%BF%E6%AE%B5%E6%A0%91%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">如何解决一道线段树题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="nav-number">2.1.</span> <span class="nav-text">操作的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">标记的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%8F%A0%E5%8A%A0%E6%A0%87%E8%AE%B0%E5%92%8C%E5%BA%94%E7%94%A8%E6%A0%87%E8%AE%B0"><span class="nav-number">2.3.</span> <span class="nav-text">如何叠加标记和应用标记</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Segment-tree-Beats"><span class="nav-number">3.</span> <span class="nav-text">Segment tree Beats</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E6%9C%80%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="nav-number">3.1.</span> <span class="nav-text">区间最值操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E5%8E%86%E5%8F%B2%E6%9C%80%E5%80%BC"><span class="nav-number">3.2.</span> <span class="nav-text">区间历史最值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E5%8E%86%E5%8F%B2%E5%92%8C"><span class="nav-number">3.3.</span> <span class="nav-text">区间历史和</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%83%BD%E7%BB%B4%E6%8A%A4%E7%9A%84%E7%A5%9E%E5%A5%87%E4%B8%9C%E8%A5%BF"><span class="nav-number">4.</span> <span class="nav-text">线段树能维护的神奇东西</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E7%BB%8F%E5%85%B8%E5%BA%94%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">线段树的经典应用</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">706</span>
+          <span class="site-state-item-count">708</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -309,7 +309,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-26 20:55:22" itemprop="dateModified" datetime="2022-03-26T20:55:22+08:00">2022-03-26</time>
+        <time title="修改时间：2022-05-08 17:48:32" itemprop="dateModified" datetime="2022-05-08T17:48:32+08:00">2022-05-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -336,14 +336,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>17k</span>
+      <span>18k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>15 分钟</span>
+      <span>16 分钟</span>
     </span>
 </div>
 
@@ -461,7 +461,7 @@
 <p>首先，我们有乘法和加法标记，我们考虑答案的形式，不妨假设是先乘后加</p>
 <p>那么先加后乘就是有影响的，那么我们就要思考乘法标记对加发标记的作用，换句话讲就是我们要先下放乘法标记</p>
 <p>所以我们对于顺序关系标记，首先要思考答案的形式，根据这个东西来确定下放顺序</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/23/2021%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A12-K-I-love-max-and-multiply/">2021杭电多校2 G I love data structure</a> 经典例子</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/24/2021%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A12-G-I-love-data-structure/">2021杭电多校2 G I love data structure</a> 经典例子</p>
 <h2 id="Segment-tree-Beats"><a href="#Segment-tree-Beats" class="headerlink" title="Segment tree Beats"></a>Segment tree Beats</h2><h3 id="区间最值操作"><a href="#区间最值操作" class="headerlink" title="区间最值操作"></a>区间最值操作</h3><ol>
 <li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，现在有 $m$ 次操作，操作有三种，第一种操作给定 $l,r,v$，将区间 $[l,r]$ 中的所有数都变成 $min(a_i,v)$，第二种操作给定 $l,r$，求 $max(a_i),i\in[l,r]$，第三种操作给定 $l,r$，求 $[l,r]$ 的区间和</p>
 <p>$n,m\le 10^6$</p>
@@ -509,6 +509,30 @@
 <p>简要题解：我们考虑离线之后扫描线，线段树上每个点维护这个点到当前右端点区间和和历史最大值，容易发现，我们只需要记录 $pre_i$，然后每次更新 $[pre_i+1,i]$ 即可</p>
 <p>时间复杂度 $O(n\log n)$</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/11/05/Spoj-1557-GSS2-Can-you-answer-these-queries-II/">Spoj 1557 GSS2 - Can you answer these queries II</a></p>
+</li>
+</ol>
+<h3 id="区间历史和"><a href="#区间历史和" class="headerlink" title="区间历史和"></a>区间历史和</h3><ol>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，现在有 $m$ 次询问，每次询问给定区间 $[l,r]$，求区间 $[l,r]$ 有多少对子区间 $[i,j]$， 满足 $[i,j]$ 内不同的 $a_i$ 有奇数个</p>
+<p>$n,m \le 5\times 10^5$</p>
+<p>简要题解：我们考虑扫描线扫右端点，然后用线段树维护左端点 $0/1$ 表示这个区间合法</p>
+<p>那么我们的一次询问相当于求一段区间的历史和，同时右端点移动时，我们需要将一段区间的 $0$ 和 $1$ 翻转</p>
+<p>我们考虑维护区间 $0$ 的个数 $v[0]$、区间 $1$ 的个数 $v[1]$、区间历史和 $tv$、区间翻转 $rev$，为了维护区间历史和，我们需要维护一个 $t[2]$，表示区间 $0$ 对区间历史和的贡献以及区间 $1$ 对区间历史和的贡献</p>
+<p>我们令区间翻转标记优先级最高，同时区间历史和的形式表示为 </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (rev) T[i].tv += t[<span class="number">0</span>] * T[i].v[<span class="number">1</span>] + t[<span class="number">1</span>] * T[i].v[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">else</span> T[i].tv += t[<span class="number">0</span>] * T[i].v[<span class="number">0</span>] + t[<span class="number">1</span>] * T[i].v[<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+<p>那么我们容易得到 $rev$ 对 $t[2]$ 的影响如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (rev) swap(T[i].t[<span class="number">0</span>], T[i].t[<span class="number">1</span>]), T[i].rev ^= <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p><a href="">2020 ICPC Asia East Continent Final G Prof. Pang’s sequence</a></p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，现在有 $m$ 次操作，操作有两种：给定区间 $[l,r]$ 和 $v$，将区间 $[l,r]$ 加上 $v$；给定区间 $[l,r]$，求区间 $[l,r]$ 的历史版本和</p>
+<p>$n,m\le 10^5,a_i,v\le 1000$</p>
+<p>简要题解：首先明确我们需要用线段树维护区间和 $v$、区间历史和 $tv$，但是我们这里不引入时间的概念，我们将历史和 $tv$ 看成是 $v$ 乘上另一个标记 $t$，而每段时间，我们手动更新 $t$</p>
+<p>即我们用线段树维护区间和 $v$、区间历史和 $tv$、标记 $t$、区间加标记 $add$、区间历史和加标记 $tadd$</p>
+<p>首先我们认为 $t$ 标记优先级高于加标记，然后我们明确答案的形式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T[i].tv += t * T[i].v + tadd * (r - l + <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>考虑 $t$ 对加法标记的影响，容易得到</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T[i].tadd += t * T[i].add + tadd;</span><br></pre></td></tr></table></figure>
+<p>剩下的转移较为简单，不再赘述</p>
+<p><a href="">Luogu U216697 线段树区间历史版本和</a></p>
 </li>
 </ol>
 <h2 id="线段树能维护的神奇东西"><a href="#线段树能维护的神奇东西" class="headerlink" title="线段树能维护的神奇东西"></a>线段树能维护的神奇东西</h2><ol>
@@ -594,7 +618,7 @@
 <li><p>求矩形并的面积和周长</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100010</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, xl[maxn], xr[maxn], yl[maxn], yr[maxn];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> b[maxn * <span class="number">2</span>], cnt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_hash</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) b[i] = yl[i], b[i + n] = yr[i];</span><br><span class="line">    sort(b + <span class="number">1</span>, b + <span class="number">2</span> * n + <span class="number">1</span>); cnt = unique(b + <span class="number">1</span>, b + <span class="number">2</span> * n + <span class="number">1</span>) - b - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        yl[i] = lower_bound(b + <span class="number">1</span>, b + cnt + <span class="number">1</span>, yl[i]) - b;</span><br><span class="line">        yr[i] = lower_bound(b + <span class="number">1</span>, b + cnt + <span class="number">1</span>, yr[i]) - b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> k, l, r, v;</span><br><span class="line">    <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> node &amp;u, <span class="keyword">const</span> node &amp;v) &#123; <span class="keyword">return</span> u.k &lt; v.k; &#125;</span><br><span class="line">&#125; a[maxn * <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lc i &lt;&lt; 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rc i &lt;&lt; 1 | 1</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Seg</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v, cnt;</span><br><span class="line">&#125; T[maxn * <span class="number">8</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">maintain</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123; T[i].v = T[i].cnt ? b[r + <span class="number">1</span>] - b[l] : T[lc].v + T[rc].v; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> L, <span class="keyword">int</span> R, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; R || r &lt; L) <span class="keyword">return</span> ; </span><br><span class="line">    <span class="keyword">if</span> (L &lt;= l &amp;&amp; r &lt;= R) &#123;</span><br><span class="line">        T[i].cnt += v;</span><br><span class="line">        T[i].v = T[i].cnt ? b[r + <span class="number">1</span>] - b[l] : (l == r ? <span class="number">0</span> : T[lc].v + T[rc].v);</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125; <span class="keyword">int</span> m = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    update(lc, l, m, L, R, v); update(rc, m + <span class="number">1</span>, r, L, R, v);</span><br><span class="line">    maintain(i, l, r); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">cin</span> &gt;&gt; xl[i] &gt;&gt; yl[i] &gt;&gt; xr[i] &gt;&gt; yr[i]; init_hash();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) a[i] = &#123; xl[i], yl[i], yr[i], <span class="number">1</span> &#125;, a[i + n] = &#123; xr[i], yl[i], yr[i], <span class="number">-1</span> &#125;;</span><br><span class="line">    sort(a + <span class="number">1</span>, a + <span class="number">2</span> * n + <span class="number">1</span>); ll ans = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">2</span> * n; ++i) &#123;</span><br><span class="line">        update(<span class="number">1</span>, <span class="number">1</span>, cnt - <span class="number">1</span>, a[i].l, a[i].r - <span class="number">1</span>, a[i].v);</span><br><span class="line">        ans += <span class="number">1l</span>l * T[<span class="number">1</span>].v * (a[i + <span class="number">1</span>].k - a[i].k); </span><br><span class="line">    &#125; <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>求与给定区间有所有区间</p>
+<li><p>求与给定区间有交的所有区间</p>
 <ol>
 <li><p>简要题意：现在有一个长度为 $n$ 的序列和 $m$ 个操作，操作有两种：第一种操作给定区间 $[l,r]$，表示添加一条覆盖 $[l,r]$ 的线段；第二种操作给定区间 $[l,r]$，求与给定区间有交点的最后一次添加的区间，并将其删除</p>
 <p>$n\le 10^6,m\le 2\times 10^5$ </p>
@@ -699,7 +723,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:49</span>
+    <span title="站点阅读时长">21:54</span>
   </span>
 </div>
 <div class="busuanzi-count">
