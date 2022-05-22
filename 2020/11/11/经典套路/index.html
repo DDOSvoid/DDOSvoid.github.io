@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介总结一些非常经典的套路">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-11T12:01:46.000Z">
-<meta property="article:modified_time" content="2022-05-11T12:17:11.148Z">
+<meta property="article:modified_time" content="2022-05-22T09:27:10.527Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="套路">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">710</span>
+          <span class="site-state-item-count">712</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -309,7 +309,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-05-11 20:17:11" itemprop="dateModified" datetime="2022-05-11T20:17:11+08:00">2022-05-11</time>
+        <time title="修改时间：2022-05-22 17:27:10" itemprop="dateModified" datetime="2022-05-22T17:27:10+08:00">2022-05-22</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -336,14 +336,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>15k</span>
+      <span>16k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>14 分钟</span>
+      <span>15 分钟</span>
     </span>
 </div>
 
@@ -479,7 +479,14 @@
 <p>$n\le 36666666,a_i\le 2^{64}-1$</p>
 <p>简要题解：首先容易得到 $O(n\log n)$ 的做法，即我们对于每一位统计 $0$ 和 $1$ 的数量 $s$ 和 $t$，这一位的贡献就是 $s\times t$</p>
 <p>类比这个做法，我们一次枚举 $w$ 位，然后记录这 $w$ 位的结果，最后 $O(\frac{64}{w}(2^w)^2)$ 统计答案即可，时间复杂度为 $O(\frac{64}{w}(n+2^{2w}))$，取 $w = 8$ 即可通过此题</p>
-<p><a href="">校内模拟赛 T1 美好的每一天~不连续的异或</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/05/11/%E6%A0%A1%E5%86%85%E6%A8%A1%E6%8B%9F%E8%B5%9B-T1-%E7%BE%8E%E5%A5%BD%E7%9A%84%E6%AF%8F%E4%B8%80%E5%A4%A9-%E4%B8%8D%E8%BF%9E%E7%BB%AD%E7%9A%84%E5%BC%82%E6%88%96/">校内模拟赛 T1 美好的每一天~不连续的异或</a></p>
+</li>
+<li><p>简要题意：现在有 $n$ 堆石子 $a_i$，$Alice$ 和 $Bob$ 准备玩最经典的取石子游戏，但是现在 $Bob$ 可以作弊，$Bob$ 在游戏开始前，可以选择移除 $k\in [0,n-1]$ 堆石子，现在再给定一个整数 $d$，求 $Bob$ 移除 $k$ 堆后先手必败的方案数，要求 $k$ 是 $d$ 的倍数</p>
+<p>$n\le 5\times 10^5,d\le 10, a_i\le 10^6,\sum_{i=1}^na_i\le 10^7$，空间限制 $64MB$</p>
+<p>简要题解：稍微转换一下题意能够得到我们需要求选了 $m\in [0,n-1]$ 堆，异或和为 $t$ 的方案数</p>
+<p>首先 $d$ 的倍数等价于模 $d$ 为 $0$，所以我们不需要维护具体选了几堆，直接维护模 $d$ 为多少</p>
+<p>另外注意到 $\sum_{i=1}^n a_i\le 10^7$，我们将 $a_i$ 排序，那么前面所有数的异或和是不会超过 $2^{hb+1}-1$ 的，$hb$ 为当前数二进制最高位的 $1$，那么我们直接做背包的复杂度就为复杂度为 $O(d\sum_{i=1}^na_i)$，注意需要特判所有数都选的情况</p>
+<p><a href="">校内模拟赛 T2 取石子游戏</a></p>
 </li>
 </ol>
 <h2 id="字典序"><a href="#字典序" class="headerlink" title="字典序"></a>字典序</h2><ol>
@@ -582,8 +589,6 @@
 </li>
 </ol>
 </li>
-</ol>
-<ol>
 <li><p>给你一串 <code>01</code> 或 <code>?</code> 组成的字符串，询问对于每个 $len$，若有连续 $len$ 个相同的字符组成的子字符串，那么就从中删去，问最多可以删多少次，<code>?</code> 表示这个可以认为是 <code>0</code>，也可以认为是 <code>1</code></p>
 <p>用并查集维护右边第一个合法的起点，随着 $len$ 的增加，并查集只会合并</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/07/CF-1398F-Controversial-Rounds/">CF 1398F Controversial Rounds</a></p>
@@ -731,6 +736,13 @@
 <p>我们考虑一个逆序对 $(x,y)$，它对 $F_k(l,r)$ 的贡献是相当与令 $a_y=1$，同时向后做 $k+1$ 次前缀和到 $r$ 的答案乘上令 $a_x=1$，同时向前做前缀和到 $l$ 的答案，那么就是 $\binom{r-x+k}{k}\times\binom{x-l}{k}$，这些东西用树状数组维护即可</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/05/01/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B98-E-Robotic-Girl/">牛客练习赛98 E Robotic Girl</a></p>
 </li>
+<li><p>简要题意：现在有 $n$ 堆石子 $a_i$，$Alice$ 和 $Bob$ 准备玩最经典的取石子游戏，但是现在 $Bob$ 可以作弊，$Bob$ 在游戏开始前，可以选择移除 $k\in [0,n-1]$ 堆石子，现在再给定一个整数 $d$，求 $Bob$ 移除 $k$ 堆后先手必败的方案数，要求 $k$ 是 $d$ 的倍数</p>
+<p>$n\le 5\times 10^5,d\le 10, a_i\le 10^6,\sum_{i=1}^na_i\le 10^7$，空间限制 $64MB$</p>
+<p>简要题解：稍微转换一下题意能够得到我们需要求选了 $m\in [0,n-1]$ 堆，异或和为 $t$ 的方案数</p>
+<p>首先 $d$ 的倍数等价于模 $d$ 为 $0$，所以我们不需要维护具体选了几堆，直接维护模 $d$ 为多少</p>
+<p>另外注意到 $\sum_{i=1}^n a_i\le 10^7$，我们将 $a_i$ 排序，那么前面所有数的异或和是不会超过 $2^{hb+1}-1$ 的，$hb$ 为当前数二进制最高位的 $1$，那么我们直接做背包的复杂度就为复杂度为 $O(d\sum_{i=1}^na_i)$，注意需要特判所有数都选的情况</p>
+<p><a href="">校内模拟赛 T2 取石子游戏</a></p>
+</li>
 </ol>
 
     </div>
@@ -826,7 +838,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:58</span>
+    <span title="站点阅读时长">22:05</span>
   </span>
 </div>
 <div class="busuanzi-count">

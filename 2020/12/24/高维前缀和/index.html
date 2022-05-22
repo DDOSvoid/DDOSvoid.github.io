@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介反正是个挺神奇的东西">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-24T12:17:23.000Z">
-<meta property="article:modified_time" content="2022-01-26T12:57:41.991Z">
+<meta property="article:modified_time" content="2022-05-15T08:00:47.835Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="高维前缀和">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">710</span>
+          <span class="site-state-item-count">712</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -309,7 +309,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-01-26 20:57:41" itemprop="dateModified" datetime="2022-01-26T20:57:41+08:00">2022-01-26</time>
+        <time title="修改时间：2022-05-15 16:00:47" itemprop="dateModified" datetime="2022-05-15T16:00:47+08:00">2022-05-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -366,7 +366,7 @@
 <p>那么高维前缀和的复杂度就是 $O(nk)$</p>
 <p>而我们一般使用的高维前缀和的每一维都是 $0$ 或 $1$，换句话讲就是二进制</p>
 <p>那么做法实现起来就是这样</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> o = <span class="number">0</span>; o &lt;= N; ++o)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> S = <span class="number">0</span>; S &lt;= M; ++S)</span><br><span class="line">        <span class="keyword">if</span> (S &gt;&gt; o &amp; <span class="number">1</span>) f[S] += f[S ^ <span class="number">1</span> &lt;&lt; o]; </span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> o = <span class="number">0</span>; o &lt; N; ++o)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> S = <span class="number">0</span>; S &lt;= M; ++S)</span><br><span class="line">        <span class="keyword">if</span> (S &gt;&gt; o &amp; <span class="number">1</span>) f[S] += f[S ^ <span class="number">1</span> &lt;&lt; o]; </span><br></pre></td></tr></table></figure>
 <p>从集合的意义上去理解，就是 $S$ 的值是其所有子集的和</p>
 <p>因为二进制只有 $0$ 和 $1$，所以我们稍微修改代码就能得到 $S$ 的值是其所有超集的和</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> o = <span class="number">0</span>; o &lt; N; ++o)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> S = M; ~S; --S)</span><br><span class="line">        <span class="keyword">if</span> (!(S &gt;&gt; o &amp; <span class="number">1</span>)) f[S] += f[S | <span class="number">1</span> &lt;&lt; o]; </span><br></pre></td></tr></table></figure>
@@ -482,7 +482,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:58</span>
+    <span title="站点阅读时长">22:05</span>
   </span>
 </div>
 <div class="busuanzi-count">
