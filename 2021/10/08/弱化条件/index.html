@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介这一类做法常用于最优化问题中，我们通过减弱题目的条件来多求得一些更差的状态但是我们仍然能求得最优的状态 最常见的就是拆绝对值的过程，例如我们要最大化 $\sum_{i&#x3D;1}^n|a_i-b_i|$，那么我们考虑 $O(2^n)$ 枚举 $a_i$ 和 $b_i$ 的符号即可，这样我们就将绝对值去掉了，如果符号不对的话答案一定是更差的，所以不会造成影响">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-08T03:33:39.000Z">
-<meta property="article:modified_time" content="2022-05-25T12:47:33.984Z">
+<meta property="article:modified_time" content="2022-05-25T13:00:41.335Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="弱化条件">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">714</span>
+          <span class="site-state-item-count">717</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -309,7 +309,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-05-25 20:47:33" itemprop="dateModified" datetime="2022-05-25T20:47:33+08:00">2022-05-25</time>
+        <time title="修改时间：2022-05-25 21:00:41" itemprop="dateModified" datetime="2022-05-25T21:00:41+08:00">2022-05-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -371,7 +371,7 @@
 <p>由于答案只需要求最大值，我们直接枚举每个数的符号，注意到只有满足正确符号的两个距离才有可能凑成最大值</p>
 <p>所以我们直接那线段树维护 $2^k$ 个状态的最大值即可</p>
 <p>时间复杂度 $O(2^kn\log n)$</p>
-<p><a href="">CF 1093G Multidimensional Queries</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/27/CF-1093G-Multidimensional-Queries/">CF 1093G Multidimensional Queries</a></p>
 </li>
 <li><p>简要题意：给定一个 $n\times m\times k$ 的六连通三维空间，在这个三维空间的整点上有一些点是居民的住房，另有一些点是邮局，其他点都是空地，现在要求选一块空地改造成邮局，定义一个居民到邮局的距离为到离他最近的邮局的距离他，求如何选择空地改造成邮局可以使所有居民到邮局的距离的最大值最小</p>
 <p>$n,m,k\le 100$</p>
@@ -379,7 +379,7 @@
 <p>然后我们考虑二分答案 $x$，那么问题等价于是否存在一个空地，他到某些住房的距离的最大值小于等于 $x$</p>
 <p>注意到三维曼哈顿距离没法转换成切比雪夫距离（至少我不会），但是我们同时注意到总点数小于等于 $1e6$，那么我们尝试枚举所有空地，一个点到一堆点的 $k$ 维曼哈顿距离的最大值是一个经典问题，我们只需要枚举符号即可</p>
 <p>时间复杂度为 $O(2^3nmk)$</p>
-<p><a href="">The 14th Chinese Northeast Collegiate Programming Contest L PepperLa’s Express</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/05/25/The-14th-Chinese-Northeast-Collegiate-Programming-Contest-L-PepperLa-s-Express/">The 14th Chinese Northeast Collegiate Programming Contest L PepperLa’s Express</a></p>
 </li>
 </ol>
 
@@ -476,7 +476,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">22:12</span>
+    <span title="站点阅读时长">22:17</span>
   </span>
 </div>
 <div class="busuanzi-count">
