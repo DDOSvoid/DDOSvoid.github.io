@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/D_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/D_16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="题目描述https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P4841 简要题意：现在有一个 $n$ 个点的无向图，每条边存在的概率都为 $p$，求图的连通块的期望个数 $n\le 5\times 10^5$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022杭电多校7 Connectivity of Erdős-Rényi Graph">
+<meta property="og:url" content="http://example.com/2022/08/10/2022%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A17-Connectivity-of-Erdos-Renyi-Graph/index.html">
+<meta property="og:site_name" content="DDOSvoid&#39;s Blog">
+<meta property="og:description" content="题目描述https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P4841 简要题意：现在有一个 $n$ 个点的无向图，每条边存在的概率都为 $p$，求图的连通块的期望个数 $n\le 5\times 10^5$">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-10T06:13:42.000Z">
+<meta property="article:modified_time" content="2022-08-10T09:17:04.668Z">
+<meta property="article:author" content="DDOSvoid">
+<meta property="article:tag" content="生成函数">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/08/10/2022%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A17-Connectivity-of-Erdos-Renyi-Graph/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>2022杭电多校7 Connectivity of Erdős-Rényi Graph | DDOSvoid's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">DDOSvoid's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="DDOSvoid"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">DDOSvoid</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">742</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">135</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DDOSvoid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DDOSvoid" rel="noopener" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/34531" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;34531" rel="noopener" target="_blank">Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://codeforces.com/profile/DDOSvoid" title="Codeforces → http:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;DDOSvoid" rel="noopener" target="_blank">Codeforces</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://acm.hdu.edu.cn/userstatus.php?user=DDOSvoid" title="Hdu → http:&#x2F;&#x2F;acm.hdu.edu.cn&#x2F;userstatus.php?user&#x3D;DDOSvoid" rel="noopener" target="_blank">Hdu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/manziqi/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;manziqi&#x2F;" rel="noopener" target="_blank">Title1</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jczhang.top/" title="https:&#x2F;&#x2F;jczhang.top&#x2F;" rel="noopener" target="_blank">JC Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/10/2022%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A17-Connectivity-of-Erdos-Renyi-Graph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2022杭电多校7 Connectivity of Erdős-Rényi Graph
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-08-10 14:13:42 / 修改时间：17:17:04" itemprop="dateCreated datePublished" datetime="2022-08-10T14:13:42+08:00">2022-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>8.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4841">https://www.luogu.com.cn/problem/P4841</a></p>
+<p>简要题意：现在有一个 $n$ 个点的无向图，每条边存在的概率都为 $p$，求图的连通块的期望个数</p>
+<p>$n\le 5\times 10^5$</p>
+<a id="more"></a>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>我们令 $f_n$ 表示 $n$ 个点联通的概率，$g_n$ 表示 $n$ 个点不连通的概率，那么我们知道最后的答案就是 $\sum_{i=1}^n\binom{n}{i}f_i(1-p)^{i(n-i)}$，我们首先考虑如何求 $f_n$</p>
+<p>对于一个不连通的图，我们枚举 $1$ 号点所在连通块的大小，可以得到 $g_n=\sum_{i=1}^{n-1}\binom{n-1}{i-1}f_i(1-p)^{i(n-i)}$，我们知道 $g_n=1-f_n$，那么这个东西很像是一个分治 $NTT$ 的式子，但 $(1-p)^{i(n-i)}$ 无法拆开，我们考虑其组合意义，容易得到 $i(n-i)=\binom{n}{2}-\binom{i}{2}-\binom{n-i}{2}$，那么就可以拆成 $\frac{(1-p)^{\binom{n}{2}}}{(1-p)^{\binom{i}{2}}(1-p)^{\binom{n-i}{2}}}$，这样我们就可以做分治 $NTT$ 了，时间复杂度 $O(n\log^2 n)$，我们考虑继续化简</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+g_n&=\sum_{i=1}^{n-1}\binom{n-1}{i-1}f_i(1-p)^{i(n-i)}\\
+\frac{1-f_n}{(n-1)!(1-p)^{\binom{n}{2}}}&=\sum_{i=1}^{n-1}\frac{f_i}{(i-1)!(1-p)^{\binom{i}{2}}}\frac{1}{(n-i)!(1-p)^{\binom{n-i}{2}}}
+\end{aligned}</script><p>我们令 $F(x)=\sum_{i=1}^n\frac{f_i}{(i-1)!(1-p)^{\binom{i}{2}}}x^i,G(x)=\sum_{i=1}^n\frac{1}{(i-1)!(1-p)^{\binom{i}{2}}}x^i,H(x)=\sum_{i=0}^n\frac{1}{i!(1-p)^{\binom{i}{2}}}x^i$，则可以得到 $\frac{G(x)}{H(x)+1}=F(x)$，需要注意 $H(x)=0$，那么这个式子可以用多项式求逆解决，时间复杂度 $O(n\log n)$</p>
+<p>我们考虑指数公式定理，令 $g_n$ 表示 $n$ 个点无向图的概率，$f_n$ 表示 $n$ 个点联通的概率，显然有 $g_n=1$，同时我们令 $G(x)$ 和 $F(x)$ 分别为 $g_n$ 和 $f_n$ 的 $EGF$，那么我们应该有 $exp(F(x))=G(x)$，但实际上这并不成立，因为 $f_n$ 和 $f_m$ 合并贡献到 $g_{n+m}$ 时还需要乘上 $(1-p)^{nm}$ 这个系数，所以我们需要把 $\frac{1}{(1-p)^{\binom{n}{2}}}$ 的系数乘到 $f_n$ 和 $g_n$ 上，所以 $G(x)$ 和 $F(x)$ 应该为 $\frac{f_n}{(1-p)^{\binom{n}{2}}}$ 和 $\frac{g_n}{(1-p)^{\binom{n}{2}}}$ 的 $EGF$，那么我们只需要做一个 $\ln$ 即可，时间复杂度 $O(n\log n)$</p>
+<p>下面给出求逆的代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 500010</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> p = <span class="number">998244353</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123; <span class="keyword">return</span> (x += y) &gt;= p ? x - p : x; &#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">mul</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123; <span class="keyword">return</span> <span class="number">1l</span>l * x * y % p; &#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="built_in">initializer_list</span>&lt;<span class="keyword">int</span>&gt; lst)</span> </span>&#123; <span class="keyword">int</span> s = <span class="number">0</span>; <span class="keyword">for</span> (<span class="keyword">auto</span> t : lst) s = add(s, t); <span class="keyword">return</span> s; &#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">mul</span><span class="params">(<span class="built_in">initializer_list</span>&lt;<span class="keyword">int</span>&gt; lst)</span> </span>&#123; <span class="keyword">int</span> s = <span class="number">1</span>; <span class="keyword">for</span> (<span class="keyword">auto</span> t : lst) s = mul(s, t); <span class="keyword">return</span> s; &#125;</span><br><span class="line"><span class="function">ll <span class="title">pow_mod</span><span class="params">(ll x, ll n)</span> </span>&#123;</span><br><span class="line">    ll s = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (; n; n &gt;&gt;= <span class="number">1</span>, x = x * x % p)</span><br><span class="line">        <span class="keyword">if</span> (n &amp; <span class="number">1</span>) s = s * x % p;</span><br><span class="line">    <span class="keyword">return</span> s; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Poly vector<span class="meta-string">&lt;int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> len(A) ((int) A.size())</span></span><br><span class="line"><span class="keyword">namespace</span> Pol &#123;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123; <span class="keyword">return</span> (a += b) &gt;= p ? a -= p : a; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">mul</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123; <span class="keyword">return</span> <span class="number">1l</span>l * a * b % p; &#125; </span><br><span class="line">    Poly <span class="keyword">operator</span> - (<span class="keyword">const</span> <span class="keyword">int</span> &amp;v, <span class="keyword">const</span> Poly &amp;a) &#123;</span><br><span class="line">        <span class="function">Poly <span class="title">res</span><span class="params">(a)</span></span>; </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len(res); ++i) res[i] = p - res[i]; </span><br><span class="line">        res[<span class="number">0</span>] = add(res[<span class="number">0</span>], v); <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    Poly <span class="keyword">operator</span> - (<span class="keyword">const</span> Poly &amp;a, <span class="keyword">const</span> <span class="keyword">int</span> &amp;v) &#123;</span><br><span class="line">        <span class="function">Poly <span class="title">res</span><span class="params">(a)</span></span>; res[<span class="number">0</span>] = add(res[<span class="number">0</span>], p - v); <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    Poly <span class="keyword">operator</span> * (<span class="keyword">const</span> Poly &amp;a, <span class="keyword">const</span> <span class="keyword">int</span> &amp;v) &#123;</span><br><span class="line">        <span class="function">Poly <span class="title">res</span><span class="params">(a)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len(res) ; ++i) res[i] = mul(res[i], v); </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">4200000</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> G = <span class="number">3</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> P[N], inv[N], fac[N];</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init_P</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>; <span class="keyword">while</span> ((<span class="number">1</span> &lt;&lt; l) &lt; n) ++l;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) P[i] = (P[i &gt;&gt; <span class="number">1</span>] &gt;&gt; <span class="number">1</span>) | ((i &amp; <span class="number">1</span>) &lt;&lt; l - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init_C</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (fac[<span class="number">0</span>]) <span class="keyword">return</span> ;</span><br><span class="line">        fac[<span class="number">0</span>] = <span class="number">1</span>; <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; ++i) fac[i] = mul(fac[i - <span class="number">1</span>], i);</span><br><span class="line">        inv[N - <span class="number">1</span>] = pow_mod(fac[N - <span class="number">1</span>], p - <span class="number">2</span>); <span class="keyword">for</span> (<span class="keyword">int</span> i = N - <span class="number">2</span>; ~i; --i) inv[i] = mul(inv[i + <span class="number">1</span>], i + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">init_W</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">w</span><span class="params">(n)</span></span>; w[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">auto</span> w0 = w.begin() + i / <span class="number">2</span>, w1 = w.begin() + i;</span><br><span class="line">            <span class="keyword">int</span> wn = pow_mod(G, (p - <span class="number">1</span>) / (i &lt;&lt; <span class="number">1</span>));</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j += <span class="number">2</span>)</span><br><span class="line">                w1[j] = w0[j &gt;&gt; <span class="number">1</span>], w1[j + <span class="number">1</span>] = mul(w1[j], wn);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> w; </span><br><span class="line">    &#125; <span class="keyword">auto</span> w = init_W(<span class="number">1</span> &lt;&lt; <span class="number">21</span>);</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DIT</span><span class="params">(Poly &amp;a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = len(a);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = n &gt;&gt; <span class="number">1</span>; k; k &gt;&gt;= <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += k &lt;&lt; <span class="number">1</span>)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; k; ++j) &#123;</span><br><span class="line">                    <span class="keyword">int</span> x = a[i + j], y = a[i + j + k];</span><br><span class="line">                    a[i + j + k] = mul(add(x, p - y), w[k + j]), a[i + j] = add(x, y);</span><br><span class="line">                &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DIF</span><span class="params">(Poly &amp;a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = len(a); </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt; n; k &lt;&lt;= <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i += k &lt;&lt; <span class="number">1</span>)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; k; ++j) &#123;</span><br><span class="line">                    <span class="keyword">int</span> x = a[i + j], y = mul(a[i + j + k], w[k + j]);</span><br><span class="line">                    a[i + j + k] = add(x, p - y), a[i + j] = add(x, y);</span><br><span class="line">                &#125;</span><br><span class="line">        <span class="keyword">int</span> inv = pow_mod(n, p - <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) a[i] = mul(a[i], inv);</span><br><span class="line">        reverse(a.begin() + <span class="number">1</span>, a.end());</span><br><span class="line">    &#125;</span><br><span class="line">    Poly <span class="keyword">operator</span> * (<span class="keyword">const</span> Poly &amp;A, <span class="keyword">const</span> Poly &amp;B) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = <span class="number">1</span>, n1 = len(A), n2 = len(B); <span class="keyword">while</span> (n &lt; n1 + n2 - <span class="number">1</span>) n &lt;&lt;= <span class="number">1</span>; init_P(n);</span><br><span class="line">        Poly a(n), b(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n1; ++i) a[i] = add(A[i], p);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n2; ++i) b[i] = add(B[i], p);</span><br><span class="line">        DIT(a); DIT(b);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) a[i] = mul(a[i], b[i]);</span><br><span class="line">        DIF(a); a.resize(n1 + n2 - <span class="number">1</span>); <span class="keyword">return</span> a; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">Poly <span class="title">MMul</span><span class="params">(<span class="keyword">const</span> Poly &amp;A, <span class="keyword">const</span> Poly &amp;B)</span> </span>&#123; <span class="comment">// 差卷积, 默认 A 和 B 的长度相同</span></span><br><span class="line">        <span class="keyword">int</span> n = <span class="number">1</span>, L = len(A); <span class="keyword">while</span> (n &lt; <span class="number">2</span> * L - <span class="number">1</span>) n &lt;&lt;= <span class="number">1</span>; init_P(n);</span><br><span class="line">        Poly a(n), b(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; L; ++i) a[i] = add(A[i], p);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; L; ++i) b[i] = add(B[i], p);</span><br><span class="line">        reverse(b.begin(), b.begin() + L);</span><br><span class="line">        DIT(a); DIT(b);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) a[i] = mul(a[i], b[i]);</span><br><span class="line">        DIF(a); a.resize(L); reverse(a.begin(), a.end()); <span class="keyword">return</span> a; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">Poly <span class="title">Der</span><span class="params">(<span class="keyword">const</span> Poly &amp;a)</span> </span>&#123;</span><br><span class="line">        <span class="function">Poly <span class="title">res</span><span class="params">(a)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len(a) - <span class="number">1</span>; ++i) res[i] = mul(i + <span class="number">1</span>, res[i + <span class="number">1</span>]);</span><br><span class="line">        res[len(a) - <span class="number">1</span>] = <span class="number">0</span>; <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">Poly <span class="title">Int</span><span class="params">(<span class="keyword">const</span> Poly &amp;a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">int</span> inv[N];</span><br><span class="line">        <span class="keyword">if</span> (!inv[<span class="number">1</span>]) &#123;</span><br><span class="line">            inv[<span class="number">1</span>] = <span class="number">1</span>; </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; N; ++i) inv[i] = mul(p - p / i, inv[p % i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">Poly <span class="title">res</span><span class="params">(a)</span></span>; res.resize(len(a) + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = len(a); i; --i) res[i] = mul(res[i - <span class="number">1</span>], inv[i]);</span><br><span class="line">        res[<span class="number">0</span>] = <span class="number">0</span>; <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">Poly <span class="title">Inv</span><span class="params">(<span class="keyword">const</span> Poly &amp;a)</span> </span>&#123;</span><br><span class="line">        <span class="function">Poly <span class="title">res</span><span class="params">(<span class="number">1</span>, pow_mod(a[<span class="number">0</span>], p - <span class="number">2</span>))</span></span>; </span><br><span class="line">        <span class="keyword">int</span> n = <span class="number">1</span>; <span class="keyword">while</span> (n &lt; len(a)) n &lt;&lt;= <span class="number">1</span>; </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">2</span>; k &lt;= n; k &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> L = <span class="number">2</span> * k; init_P(L); <span class="function">Poly <span class="title">t</span><span class="params">(L)</span></span>;</span><br><span class="line">            copy_n(a.begin(), min(k, len(a)), t.begin()); </span><br><span class="line">            t.resize(L); res.resize(L);</span><br><span class="line">            DIT(res); DIT(t);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; L; ++i) res[i] = mul(res[i], add(<span class="number">2</span>, p - mul(t[i], res[i])));</span><br><span class="line">            DIF(res); res.resize(k);</span><br><span class="line">        &#125; res.resize(len(a)); <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">Poly <span class="title">Offset</span><span class="params">(<span class="keyword">const</span> Poly &amp;a, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = len(a); init_C();</span><br><span class="line">        Poly t1(n), t2(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) t1[i] = mul(pow_mod(c, i), inv[i]);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) t2[i] = mul(a[i], fac[i]);</span><br><span class="line">        t1 = MMul(t1, t2);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) t1[i] = mul(t1[i], inv[i]);</span><br><span class="line">        <span class="keyword">return</span> t1; </span><br><span class="line">    &#125;</span><br><span class="line">    pair&lt;Poly, Poly&gt; Divide(const Poly &amp;a, const Poly &amp;b) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = len(a), m = len(b); </span><br><span class="line">        Poly t1(a.rbegin(), a.rbegin() + n - m + 1), t2(b.rbegin(), b.rend()); t2.resize(n - m + 1);</span><br><span class="line">        Poly Q = Inv(t2) * t1; Q.resize(n - m + <span class="number">1</span>); reverse(Q.begin(), Q.end());</span><br><span class="line">        Poly R = Q * b; R.resize(m - <span class="number">1</span>); <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len(R); ++i) R[i] = add(a[i], p - R[i]);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">make_pair</span>(Q, R); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">Poly <span class="title">Ln</span><span class="params">(<span class="keyword">const</span> Poly &amp;a)</span> </span>&#123;</span><br><span class="line">        Poly res = Int(Der(a) * Inv(a));</span><br><span class="line">        res.resize(len(a)); <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">Poly <span class="title">Exp</span><span class="params">(<span class="keyword">const</span> Poly &amp;a)</span> </span>&#123;</span><br><span class="line">        <span class="function">Poly <span class="title">res</span><span class="params">(<span class="number">1</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">int</span> n = <span class="number">1</span>; <span class="keyword">while</span> (n &lt; len(a)) n &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">2</span>; k &lt;= n; k &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="function">Poly <span class="title">t</span><span class="params">(res.begin(), res.end())</span></span>; t.resize(k); t = Ln(t);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; min(len(a), k); ++i) t[i] = add(a[i], p - t[i]); t[<span class="number">0</span>] = add(t[<span class="number">0</span>], <span class="number">1</span>);</span><br><span class="line">            res = res * t; res.resize(k);</span><br><span class="line">        &#125; res.resize(len(a)); <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">Poly <span class="title">Sqrt</span><span class="params">(<span class="keyword">const</span> Poly &amp;a)</span> </span>&#123; <span class="comment">// a[0] = 1</span></span><br><span class="line">        <span class="function">Poly <span class="title">res</span><span class="params">(<span class="number">1</span>, <span class="number">1</span>)</span></span>; ll inv2 = pow_mod(<span class="number">2</span>, p - <span class="number">2</span>); </span><br><span class="line">        <span class="keyword">int</span> n = <span class="number">1</span>; <span class="keyword">while</span> (n &lt; len(a)) n &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">2</span>; k &lt;= n; k &lt;&lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            Poly t(res.begin(), res.end()), ta(a.begin(), a.begin() + min(len(a), k));</span><br><span class="line">            t.resize(k); t = Inv(t) * ta; </span><br><span class="line">            res.resize(k); <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i) res[i] = mul(add(res[i], t[i]), inv2);</span><br><span class="line">        &#125; res.resize(len(a)); <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">Poly <span class="title">Pow</span><span class="params">(<span class="keyword">const</span> Poly &amp;a, <span class="keyword">int</span> k)</span> </span>&#123; <span class="comment">// a[0] = 1</span></span><br><span class="line">        <span class="keyword">return</span> Exp(Ln(a) * k);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">Poly <span class="title">Pow</span><span class="params">(<span class="keyword">const</span> Poly &amp;a, <span class="keyword">int</span> k, <span class="keyword">int</span> kk)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">int</span> n = len(a), t = n, m, v, inv, powv; <span class="function">Poly <span class="title">res</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; ~i; --i) <span class="keyword">if</span> (a[i]) t = i, v = a[i];</span><br><span class="line">        <span class="keyword">if</span> (k &amp;&amp; t &gt;= (n + k - <span class="number">1</span>) / k) <span class="keyword">return</span> res;</span><br><span class="line">        <span class="keyword">if</span> (t == n) &#123; <span class="keyword">if</span> (!k) res[<span class="number">0</span>] = <span class="number">1</span>; <span class="keyword">return</span> res; &#125;</span><br><span class="line">        m = n - t * k; res.resize(m);</span><br><span class="line">        inv = pow_mod(v, p - <span class="number">2</span>); powv = pow_mod(v, kk); </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) res[i] = mul(a[i + (k &gt; <span class="number">0</span>) * t], inv);</span><br><span class="line">        res = Exp(Ln(res) * k); res.resize(n); </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = m - <span class="number">1</span>; ~i; --i) &#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = mul(res[i], powv);</span><br><span class="line">            res[i] = <span class="number">0</span>, res[i + t * k] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;  <span class="comment">// namespace Pol</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> fac[maxn], inv[maxn];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_C</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    fac[<span class="number">0</span>] = <span class="number">1</span>; <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) fac[i] = mul(fac[i - <span class="number">1</span>], i);</span><br><span class="line">    inv[n] = pow_mod(fac[n], p - <span class="number">2</span>); <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; ~i; --i) inv[i] = mul(inv[i + <span class="number">1</span>], i + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a, b, n, m, q[maxn];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> pr, rp, pp[maxn], invpp[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; m &gt;&gt; a &gt;&gt; b; pr = a * pow_mod(b, p - <span class="number">2</span>) % p; rp = add(<span class="number">1</span>, p - pr);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) <span class="built_in">cin</span> &gt;&gt; q[i]; n = *max_element(q + <span class="number">1</span>, q + m + <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        pp[i] = pow_mod(rp, <span class="number">1l</span>l * i * (i - <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">        invpp[i] = pow_mod(pp[i], p - <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    Poly A(n), B(n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) A[i] = mul(invpp[i], inv[i]); A[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">//A[0] = add(A[0], 1);</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) B[i] = mul(invpp[i], inv[i - <span class="number">1</span>]);</span><br><span class="line">    A = Pol::<span class="keyword">operator</span>*(Pol::Inv(A), B);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) A[i] = mul(&#123; A[i], fac[i - <span class="number">1</span>], inv[i] &#125;);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) B[i] = mul(invpp[i], inv[i]);</span><br><span class="line">    Poly res = Pol::<span class="keyword">operator</span>*(A, B);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i) <span class="built_in">cout</span> &lt;&lt; mul(&#123; res[q[i]], fac[q[i]], pp[q[i]] &#125;) &lt;&lt; <span class="string">&quot; \n&quot;</span>[i == m];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>); <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> T; <span class="built_in">cin</span> &gt;&gt; T; init_C(<span class="number">500000</span>); </span><br><span class="line">    <span class="keyword">while</span> (T--) work(); </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------　　　　本文结束　<i class="fa fa-flag"></i>　感谢阅读　　　　-------------</div>
+    
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/" rel="tag"># 生成函数</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/09/CF-1065E-Side-Transmutations/" rel="prev" title="CF 1065E Side Transmutations">
+                  <i class="fa fa-chevron-left"></i> CF 1065E Side Transmutations
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/08/10/Luogu-P4841-%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A2013-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92/" rel="next" title="Luogu P4841 [集训队作业2013]城市规划">
+                  Luogu P4841 [集训队作业2013]城市规划 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DDOSvoid</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.6m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">23:40</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-use    r"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
