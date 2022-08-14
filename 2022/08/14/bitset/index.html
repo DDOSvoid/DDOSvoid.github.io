@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介$bitset$ 确实是一个很好用的东西">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-14T05:42:04.000Z">
-<meta property="article:modified_time" content="2022-08-14T08:54:59.390Z">
+<meta property="article:modified_time" content="2022-08-14T13:37:42.488Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="bitset">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">751</span>
+          <span class="site-state-item-count">753</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -303,7 +303,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-08-14 13:42:04 / 修改时间：16:54:59" itemprop="dateCreated datePublished" datetime="2022-08-14T13:42:04+08:00">2022-08-14</time>
+      <time title="创建时间：2022-08-14 13:42:04 / 修改时间：21:37:42" itemprop="dateCreated datePublished" datetime="2022-08-14T13:42:04+08:00">2022-08-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -330,7 +330,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.3k</span>
+      <span>4.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -361,13 +361,13 @@
 <li><p>简要题意：给定一个长度为 $n$ 的字符串 $S$，现在有 $m$ 次操作，操作有两种，第一种操作是给定一个整数 $x$ 和一个字符 $ch$，将 $S_x$ 改成 $ch$；第二种操作给定 $[l,r]$ 和字符串 $T$，求字符串 $T$ 在 $S[l..r]$ 中出现了多少次</p>
 <p>$|S|,m,\sum |T|\le 10^5$</p>
 <p>简要题解：注意到数据范围全部是 $10^5$，我们直接考虑 $bitset$，第一个操作显然可以做到 $O(1)$，第二个操作我们直接做字符串匹配然后通过左移和右移把区间 $[l,r]$ 外的变成 $0$ 即可，时间复杂度 $O(\frac{n^2}{w})$</p>
-<p><a href="">CF 914F Substrings in a String(bitset)</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/08/14/CF-914F-Substrings-in-a-String/">CF 914F Substrings in a String(bitset)</a></p>
 </li>
 <li><p>简要题意：给定一个长度为 $n$ 的字符串 $S$，现在有 $m$ 次询问，每次询问规定一个整数 $k_i$ 和一个字符串 $T_i$，对于每次询问要求找到一个字符串 $B$ 满足 $B$ 是 $S$ 的子串，且 $T_i$ 在 $B$ 中至少出现了 $k_i$ 次，保证每次询问的 $T_i$ 不同</p>
 <p>$|S|,n,\sum |T|\le 10^5$</p>
 <p>简要题解：首先我们有一个经典结论，对于一个长度为 $n$ 的字符串 $S$ 和 $m$ 个长度和为 $O(n)$ 的字符串 $T_i$，这 $m$ 个字符串在 $S$ 中出现的总次数为 $O(n\sqrt n)$</p>
 <p>那么我们只需要能快速求出，每个字符串在 $S$ 中所有出现位置，然后暴力枚举每个出现位置即可，求出现位置可以使用 $bitset$，同时 $bitset$ 有一个函数可以实现 $O(\frac{n}{w}+c)$ 找出所有的 $1$ ，时间复杂度 $O(\frac{n^2}{w}+n\sqrt n)$</p>
-<p><a href="">CF 963D Frequency of String</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/08/14/CF-963D-Frequency-of-String/">CF 963D Frequency of String</a></p>
 </li>
 </ol>
 <h2 id="偏序"><a href="#偏序" class="headerlink" title="偏序"></a>偏序</h2><p>我们对于每个点开一个 $bitset$ 存储有多少点小于它，然后每一维小于它的数与起来即可</p>
@@ -383,7 +383,14 @@
 <li><p>简要题意：给定 $n$ 个点 $m$ 条边的 $DAG$，求最多能删掉多少条边的同时不改变原图的连通性</p>
 <p>$n\le 3\times 10^4,m\le 10^5$</p>
 <p>简要题解：容易发现删边的操作没有后效性，所以我们能删就删，如果边 $(u,v)$ 可以被删掉，那么则意味着一定存在 $x$  使得 $u$ 可以到达 $x$ 且 $x$ 可以到 $v$，这个东西可以直接用 $bitset$ 维护，时间复杂度 $O(\frac{nm}{w})$</p>
-<p><a href="">Luogu P6134 [JSOI2015]最小表示</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/08/14/Luogu-P6134-JSOI2015-%E6%9C%80%E5%B0%8F%E8%A1%A8%E7%A4%BA/">Luogu P6134 [JSOI2015]最小表示</a></p>
+</li>
+<li><p>简要题意：给定一个 $n$ 个点 $m$ 条边的 $DAG$，现在有 $q$ 次询问，每次询问给定 $u,v,l,r$，问从 $u$ 出发，只经过编号在 $[l,r]$ 内的边能否到达 $v$</p>
+<p>$n,q\le 50000,m\le 100000$  </p>
+<p>简要题解：注意询问为 $DAG$ 可达性，显然只能使用 $bitset$，另外每个询问都固定了一个区间内的边，我们考虑离线</p>
+<p>令 $S_i$ 表示有第 $i$ 条边的询问集合，同时我们令 $f_{u,i}$ 从 $u$ 出发，只经过 $[l_i,r_i]$ 内的边能否到达 $v_i$，这个东西我们拿 $bitset$ 优化，然后拓扑排序后，我们按照逆序更新 $f$ 即可，具体的，对于第 $k$ 条边 $(u,v)$，$f_u=f_u~or~(f_v~and~S_k)$，至于如何求 $S_k$，我们将询问离线后扫描线即可，但是由于空间限制，所以我们 $S_k$ 需要使用分组 $bitset$ 来存储</p>
+<p>时间复杂度 $O(\frac{qm}{w}+Bm)$，空间复杂度 $O(\frac{nq}{Bw})$，$B$ 取 $5$ 即可满足空间限制</p>
+<p><a href="">2022杭电多校3 J Range Reachability Query</a></p>
 </li>
 </ol>
 
@@ -480,7 +487,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">24:05</span>
+    <span title="站点阅读时长">24:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
