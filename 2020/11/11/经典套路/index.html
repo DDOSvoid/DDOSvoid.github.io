@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介总结一些非常经典的套路">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-11T12:01:46.000Z">
-<meta property="article:modified_time" content="2022-08-18T15:02:00.992Z">
+<meta property="article:modified_time" content="2022-08-21T09:37:04.836Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="套路">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">759</span>
+          <span class="site-state-item-count">760</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -309,7 +309,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-08-18 23:02:00" itemprop="dateModified" datetime="2022-08-18T23:02:00+08:00">2022-08-18</time>
+        <time title="修改时间：2022-08-21 17:37:04" itemprop="dateModified" datetime="2022-08-21T17:37:04+08:00">2022-08-21</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -336,7 +336,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>18k</span>
+      <span>19k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -776,6 +776,12 @@
 <p>一开始我们令所有点都属于集合 $A$，我们从任意一个点开始 $dfs$，每当我们 $dfs$ 到一个点，我们将就其从 $A$ 中删除，加入到我们所选择的这条链中，当我们回溯到某一个点的时候，我们将其从链中删除，加入到集合 $B$，显然集合 $A$ 和集合 $B$ 中的点之间不会存在连边，同时每次我们会将集合 $A$ 的大小减一或者将集合 $B$ 的大小加一，那么一定有存在一个时刻，满足 $A$ 的大小等于 $B$ 的大小</p>
 <p>时间复杂度 $O(n)$</p>
 </li>
+<li><p>简要题意：给定一张 $n$ 个 $m$ 条边的简单无向连通图，现在有 $q$ 次询问，每次询问给定若干条边，求将这些边的删掉后原图是否连通，询问之间独立，强制在线</p>
+<p>$n\le 10^5,m\le 5\times 10^5$</p>
+<p>简要题解：注意到只有删边，我们考虑对原图建立一棵生成树，首先只有删掉这棵生成树上的边时才有可能导致原图不连通，那如果我们删掉树上的一条边 $(u,v)$ 使原图不连通，则说明所有能够连接 $u$ 和 $v$ 这两个连通块的非树边都被删掉了</p>
+<p>那么相当于是每次删掉一个树边后判断是否该树边对应的非树边集合是否已经全部被删到，我们可以为每条非树边随机一个 $ull$ 范围内的整数，同时树边的值为它所对应的非树边的值的异或和，那么每次删边我们需要把边加入线性基，之后只需要判断线性基中是否出现 $0$ 即可</p>
+<p><a href="">bzoj 3569 DZY Loves Chinese II</a></p>
+</li>
 </ol>
 
     </div>
@@ -871,7 +877,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">24:36</span>
+    <span title="站点阅读时长">24:45</span>
   </span>
 </div>
 <div class="busuanzi-count">
