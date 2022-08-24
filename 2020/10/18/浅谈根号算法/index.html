@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介大概是对根号算法的总结吧，大概">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-18T10:50:03.000Z">
-<meta property="article:modified_time" content="2022-08-12T06:19:07.271Z">
+<meta property="article:modified_time" content="2022-08-24T06:35:29.984Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="根号分治">
@@ -199,7 +199,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">763</span>
+          <span class="site-state-item-count">764</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -310,7 +310,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-08-12 14:19:07" itemprop="dateModified" datetime="2022-08-12T14:19:07+08:00">2022-08-12</time>
+        <time title="修改时间：2022-08-24 14:35:29" itemprop="dateModified" datetime="2022-08-24T14:35:29+08:00">2022-08-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -337,7 +337,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>8.6k</span>
+      <span>9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -491,6 +491,14 @@
 <p>枚举公差 $d$，如果公差小于 $\sqrt n$，那么我们直接暴力整个序列 $a_i$，将 $a_i$ 减掉 $i\times d$，相同大小的数的个数的最大值即为可以保留的数，时间复杂度 $O(n\sqrt n)$</p>
 <p>如果公差大于 $\sqrt n$，我们知道子区间的长度一定小于 $\sqrt n$，所以我们枚举所有长度为 $\sqrt n$ 的子区间，我们认为一定保留区间左端点 $a_l$，那么对于一个 $a_i$，如果 $a_i-a_l$ 能够被 $i - l$ 整除的话，那么对于公差 $\frac{a_i-a_l}{i-l}$，$a_i$ 才能被保留，我们把 $a_i$ 贡献到这个公差上即可，这里的时间复杂度就是 $O(n\sqrt n)$，总时间复杂度 $O(n\sqrt n)$，空间复杂度 $O(n\sqrt n)$ </p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/03/30/CF-1654E-Arithmetic-Operations/">CF 1654E Arithmetic Operations</a></p>
+</li>
+<li><p>简要题意：给定一个 $n$ 个点 $m$ 条边的无向图，每个点有点权 $a_i$，现在有 $q$ 个操作，操作有两种，第一种操作给定 $x$ 和 $y$，修改 $a_x=y$；第二种操作给定 $x$，求与 $x$ 有连边的所有点 $a_y$ 所形成的的集合 $S$ 的 $mex$ 是多少</p>
+<p>$n,m,q\le 10^5$</p>
+<p>简要题解：因为所有点的总点数为 $2n$，所以我们按照点的度数进行根号分治，以 $B$ 为分界线，度数小于等于 $B$ 的称为小点，度数大于 $B$ 的称为大点</p>
+<p>对于小点的查询，我们直接暴力即可，时间复杂度为 $O(B)$</p>
+<p>对于大点的查询，我们对每个大点维护一个树状数组，查询 $mex$ 可以在树状数组上二分，同时修改一个点的点权我们只需要修改这个点周围所有大点的树状数组即可，注意到一个点周围最多只有 $\frac{n}{B}$ 个大点，所有这一部分的时间复杂度为 $O(\frac{n}{B}\log n)$</p>
+<p>总时间复杂度为 $O(B+\frac{n}{B}\log n)$，树状数组常数很小，可以通过此题</p>
+<p><a href="">hdu 6756 Finding a MEX</a></p>
 </li>
 </ol>
 <h3 id="自然根号"><a href="#自然根号" class="headerlink" title="自然根号"></a>自然根号</h3><ol>
@@ -654,7 +662,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">24:55</span>
+    <span title="站点阅读时长">24:58</span>
   </span>
 </div>
 <div class="busuanzi-count">
