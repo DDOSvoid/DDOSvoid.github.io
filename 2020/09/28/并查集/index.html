@@ -182,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">2.1.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge"><span class="nav-number">2.2.</span> <span class="nav-text">merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undo"><span class="nav-number">2.3.</span> <span class="nav-text">undo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="nav-number">3.</span> <span class="nav-text">带权并查集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#find-1"><span class="nav-number">3.1.</span> <span class="nav-text">find</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">应用</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">2.1.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge"><span class="nav-number">2.2.</span> <span class="nav-text">merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undo"><span class="nav-number">2.3.</span> <span class="nav-text">undo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="nav-number">3.</span> <span class="nav-text">带权并查集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#find-1"><span class="nav-number">3.1.</span> <span class="nav-text">find</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">例题</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">781</span>
+          <span class="site-state-item-count">783</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -211,7 +211,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">135</span>
+        <span class="site-state-item-count">136</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -329,7 +329,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>776</span>
+      <span>1.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -371,6 +371,16 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (x == y) vis[x] = <span class="number">1</span>; <span class="comment">//整点特判</span></span><br><span class="line">x = find(x);</span><br><span class="line"><span class="keyword">while</span> (x &lt; y) x = fa[x] = find(x + <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 <p>如果是整点的区间（即 $[1,4]$ 和 $[5,10]$ 可以合并成 $[1, 10]$</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n + <span class="number">1</span>; ++i) fa[i] = i;</span><br><span class="line">x = find(x);</span><br><span class="line"><span class="keyword">while</span> (x &lt;= y) x = fa[x] = find(x + <span class="number">1</span>); <span class="comment">//[i, fa[i])</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><ol>
+<li><p>简要题意：给定一个包含 $0,1,?$ 的长度为 $n$ 的字符串 $S$，需要对 $k\in[1,n]$，求每次将 $S$ 中的 $?$ 变成 $0$ 或 $1$ 后的最多操作次数，对于某一个 $k$，字符串 $S$ 的一次操作为每次删掉连续 $k$ 个相同字符</p>
+<p>$|S|\le 10^6$</p>
+<p>简要题解：首先我们考虑暴力枚举答案，能够发现答案是一个调和级数，最多不超过 $O(n\log n)$</p>
+<p>我们考虑用并查集维护每个点右边第一个长度超过 $l$ 的连续段的起点</p>
+<p>随着 $l$ 的增加，我们只需要每次把向右连续段的长度刚好为 $l$ 的点的并查集向右合并即可</p>
+<p>时间复杂度 $O(n\alpha(n)\log n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/07/CF-1398F-Controversial-Rounds/">CF 1398F Controversial Rounds</a></p>
 </li>
 </ol>
 
@@ -467,7 +477,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">25:38</span>
+    <span title="站点阅读时长">25:49</span>
   </span>
 </div>
 <div class="busuanzi-count">
