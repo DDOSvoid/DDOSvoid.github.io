@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-02T07:11:06.000Z">
-<meta property="article:modified_time" content="2022-09-20T09:33:37.677Z">
+<meta property="article:modified_time" content="2022-10-01T05:33:41.849Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="组合数学">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">783</span>
+          <span class="site-state-item-count">784</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -241,7 +241,7 @@
           <a href="https://jczhang.top/" title="https:&#x2F;&#x2F;jczhang.top&#x2F;" rel="noopener" target="_blank">JC Blog</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://mrxyan6.github.io/" title="https:&#x2F;&#x2F;mrxyan6.github.io&#x2F;" rel="noopener" target="_blank">mrx's</a>
+          <a href="https://mrxyan6.github.io/" title="https:&#x2F;&#x2F;mrxyan6.github.io&#x2F;" rel="noopener" target="_blank">mrx's blog</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://www.cnblogs.com/hanruyun/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;hanruyun&#x2F;" rel="noopener" target="_blank">子谦。</a>
@@ -315,7 +315,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-09-20 17:33:37" itemprop="dateModified" datetime="2022-09-20T17:33:37+08:00">2022-09-20</time>
+        <time title="修改时间：2022-10-01 13:33:41" itemprop="dateModified" datetime="2022-10-01T13:33:41+08:00">2022-10-01</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -342,7 +342,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>13k</span>
+      <span>14k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -517,6 +517,13 @@ F_k(n)&=\sum_{i=0}^ni^k\\
 &=\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}j!\sum_{i=0}^n\binom{i}{j}\\
 &=\sum_{j=0}^k\begin{Bmatrix}k\\j\end{Bmatrix}j!\binom{n+1}{j+1}
 \end{aligned}</script><p>用卷积预处理第二类斯特林数即可</p>
+<p>固定 $n$，对于 $i\in[1,k]$，求 $F_i(n)$，我们考虑这个东西的生成函数</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sum_{i=0}^k\sum_{j=0}^nj^i\frac{x^i}{i!}&=\sum_{j=0}^n\sum_{i=0}^k\frac{(jx)^i}{i!}\\
+&=\sum_{j=0}^ne^{jx}\\
+&=\frac{e^{(n+1)x-1}}{e^x-1}
+\end{aligned}</script><p>这个东西的分母常数项为 $0$，看起来不能直接求逆，但同时分子的常数项也为 $0$，所以可以同除 $x$ 之后求逆，时间复杂度 $O(k\log k)$</p>
 <h3 id="求斯特林数"><a href="#求斯特林数" class="headerlink" title="求斯特林数"></a>求斯特林数</h3><h4 id="第一类斯特林数-列"><a href="#第一类斯特林数-列" class="headerlink" title="第一类斯特林数-列"></a>第一类斯特林数-列</h4><p>简要题意：给定 $n,k$，求所有 $i\in[0,n]$，$ \begin{bmatrix}i\\n\end{bmatrix}$，$n,k\le 2\times 10^5$</p>
 <p>简要题解：我们构造 $k=1$ 的生成函数 $F(x)=\sum_{i=1}^n(i-1)!\frac{x^i}{i!}=\ln\frac{1}{1-x}$，注意到答案就是 $\frac{F^k(x)}{k!}$，除以 $k!$ 是因为圆排列是没有顺序的，时间复杂度 $O(n\log n)$</p>
 <h4 id="第一类斯特林数-行"><a href="#第一类斯特林数-行" class="headerlink" title="第一类斯特林数-行"></a>第一类斯特林数-行</h4><p>简要题意：给定 $n$，求所有 $i\in[0,n]$，$\begin{bmatrix}n\\i\end{bmatrix}$，$n\le 2\times 10^5$</p>
@@ -663,7 +670,7 @@ x^n&=\sum_{k=0}^n\left\langle\begin{matrix}n\\k\end{matrix}\right\rangle\binom{x
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">25:49</span>
+    <span title="站点阅读时长">25:57</span>
   </span>
 </div>
 <div class="busuanzi-count">
