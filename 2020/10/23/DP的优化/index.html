@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介大概会介绍几种常见的优化 $dp$ 的方法 &#x3D; &#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-23T11:09:55.000Z">
-<meta property="article:modified_time" content="2021-11-01T12:10:34.609Z">
+<meta property="article:modified_time" content="2022-10-01T10:24:27.821Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="DP">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">784</span>
+          <span class="site-state-item-count">785</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -315,7 +315,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-01 20:10:34" itemprop="dateModified" datetime="2021-11-01T20:10:34+08:00">2021-11-01</time>
+        <time title="修改时间：2022-10-01 18:24:27" itemprop="dateModified" datetime="2022-10-01T18:24:27+08:00">2022-10-01</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -342,14 +342,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.3k</span>
+      <span>8.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
+      <span>7 分钟</span>
     </span>
 </div>
 
@@ -433,17 +433,63 @@
 <h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><h4 id="单调队列"><a href="#单调队列" class="headerlink" title="单调队列"></a>单调队列</h4><p>根据决策单调性，每一个 $x$ 能做的转移是一段区间，且随着 $x$ 的增大，区间逐渐靠右且不相交，大概是这个样子 $1122222333455566$</p>
 <p>我们拿一个单调队列来维护这个东西，考虑一个 $x$ 入栈，如果 $x$ 的转移在栈顶所能转移的区间的左端点更优，则显然可以直接扔掉队尾，否则直接二分</p>
 <p>但是这个东西复杂度正确当且仅当 $w_{x,y}$ 可以 $O(1)$ 计算</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">F</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 用 x 来更新 y</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Queue</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> l, r, k;</span><br><span class="line">&#125; Q[maxn]; <span class="keyword">int</span> h, t;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bs</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = Q[t].l, r = Q[t].r, mid, ans = Q[t].r + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">        mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (F(x, mid) &gt;= F(Q[t].k, mid)) ans = mid, r = mid - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>; </span><br><span class="line">    &#125; <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    Q[h = t = <span class="number">1</span>] = &#123; <span class="number">1</span>, n, <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">while</span> (h &lt; t &amp;&amp; Q[h].r &lt; i) ++h;</span><br><span class="line">        f[i] = F(Q[h].k, i);</span><br><span class="line">        <span class="keyword">while</span> (h &lt; t &amp;&amp; F(i, Q[t].l) &gt;= F(Q[t].k, Q[t].l)) --t;</span><br><span class="line">        <span class="keyword">int</span> p = bs(i); Q[t].r = p - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (p &lt;= n) Q[++t] = &#123; p, n, i &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">w</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 用 x 来更新 y</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> l, r, k;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="built_in">deque</span>&lt;node&gt; Q; Q.push_back(&#123; <span class="number">1</span>, n, <span class="number">0</span> &#125;);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">while</span> (!Q.empty() &amp;&amp; Q.front().r &lt; i) Q.pop_front();</span><br><span class="line">        f[i] = w(Q.front().k, i);</span><br><span class="line">        <span class="keyword">while</span> (!Q.empty() &amp;&amp; w(Q.back().k, Q.back().l) &gt;= w(i, Q.back().l)) Q.pop_back();</span><br><span class="line">        <span class="keyword">int</span> l = Q.back().l, r = Q.back().r, k = Q.back().k, mid, ans;</span><br><span class="line">        <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">            mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (w(k, mid) &lt; w(i, mid)) ans = mid, l = mid + <span class="number">1</span>; </span><br><span class="line">            <span class="keyword">else</span> r = mid - <span class="number">1</span>; </span><br><span class="line">        &#125; Q.back().r = ans; <span class="keyword">if</span> (ans &lt; n) Q.push_back(&#123; ans + <span class="number">1</span>, n, i &#125;);</span><br><span class="line">    &#125; <span class="built_in">cout</span> &lt;&lt; f[n] &lt;&lt; <span class="built_in">endl</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h4 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h4><p>分治的做法类似于整体二分，令 $solve(l, r, L, R)$ 表示 $[l,r]$ 的决策点在 $[L,R]$</p>
 <p>我们每次取 $[l,r]$ 的中点 $m$，然后扫 $[L,R]$ 找 $m$ 的决策点 $p$，然后递归处理</p>
 <p>一共 $\log n$ 层，每层的复杂度都是 $n$</p>
 <p>这样做的优势在于可以用类似莫队的方法累加来求 $w_{x,y}$</p>
-<p>缺点在于转移不按照顺序，必须保证 $f_i$ 和 $f_j$ 之间没有关系</p>
-<h3 id="例题-6"><a href="#例题-6" class="headerlink" title="例题"></a>例题</h3><p><a target="_blank" rel="noopener" href="https:ddosvoid.github.io/2020/10/23/Luogu-P3195-HNOI2008-玩具装箱/">Luogu P3195 [HNOI2008]玩具装箱TOY</a></p>
+<p>缺点在于转移不按照顺序，必须保证 $f_i$ 和 $g_j$ 之间没有关系</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> cnt[maxn], l, r; ll sum;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123; sum += cnt[x]++; &#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">del</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123; sum -= --cnt[x]; &#125; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (r &lt; R) add(a[++r]);</span><br><span class="line">    <span class="keyword">while</span> (l &gt; L) add(a[--l]);</span><br><span class="line">    <span class="keyword">while</span> (r &gt; R) del(a[r--]);</span><br><span class="line">    <span class="keyword">while</span> (l &lt; L) del(a[l++]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ll f[maxn], g[maxn]; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123; <span class="comment">// f_i in [l, r], g_j in [L, R] </span></span><br><span class="line">    <span class="keyword">if</span> (l &gt; r) <span class="keyword">return</span> ; <span class="keyword">int</span> m = l + r &gt;&gt; <span class="number">1</span>, p = L;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = L; i &lt;= min(R, m - <span class="number">1</span>); ++i) &#123;</span><br><span class="line">        move(i + <span class="number">1</span>, m);</span><br><span class="line">        <span class="keyword">if</span> (g[i] + sum &lt; f[m]) f[m] = g[i] + sum, p = i;</span><br><span class="line">    &#125;</span><br><span class="line">    solve(l, m - <span class="number">1</span>, L, p); solve(m + <span class="number">1</span>, r, p, R);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<h3 id="例题-6"><a href="#例题-6" class="headerlink" title="例题"></a>例题</h3><ol>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$ 和一个正整数 $L$，现在需要将这个序列划分成若干连续段，对于 $[l,r]$ 这一段，其长度定义为 $len=r-l+\sum_{i=l}^ra_i$，其代价为 $(len-L)^2$，求最小代价和</p>
+<p>$n\le 5\times 10^4$</p>
+<p>简要题解：容易得到朴素 $dp$ 为 $f_i = max\{f_j+(i-j+1-L+s_i-s_j)^2\}$</p>
+<p>由于某种神秘力量，我们得知 $f$ 的转移满足决策单调性</p>
+<p>且 $w_{x,y}$ 可以 $O(1)$ 计算，所以我们直接使用单调栈来进行决策单调性优化即可，时间复杂度 $O(n\log n)$</p>
+<p><a target="_blank" rel="noopener" href="https:ddosvoid.github.io/2020/10/23/Luogu-P3195-HNOI2008-玩具装箱/">Luogu P3195 [HNOI2008]玩具装箱TOY</a></p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，对于每个 $i\in[1,n]$，求一个最小的非负整数 $p$，满足对于所有 $j\in [1,n]$，$p\ge a_j+\sqrt {|i-j|}-a_i$</p>
+<p>$n\le 5\times 10^5$</p>
+<p>简要题解：容易得到 $dp$ 方程，$f_i=max\lbrace a_j+\sqrt{i-j}\rbrace -a_i$，这里仅考虑 $j<i$ 的情况，$j>i$ 的情况直接将数组翻转然后再做一遍即可，容易发现该转移满足决策单调性</p>
+<p>证明：</p>
+<p>我们只需要证明 $\forall a&lt;b,w(a,b)+w(a+1,b+1)\ge w(a,b+1)+w(a+1,b)$，此题中 $w(x,y)=\sqrt{y - x}$</p>
+<p>即只需要证明 $\sqrt{b-a}+\sqrt{b-a}\ge \sqrt{b+1-a}+\sqrt{b-1-a}$，令 $d=b-a$</p>
+<p>得 $2\sqrt d\ge \sqrt{d+1}+\sqrt{d-1}$，化简得 $\sqrt{d}-\sqrt{d-1}\ge \sqrt{d+1}-\sqrt{d}$ 得证</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/10/24/Luogu-P3515-POI2011-Lightning-Conductor/">P3515 [POI2011]Lightning Conductor</a></p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$ 和一个整数 $k$，现在需要将这个序列划分成 $k$ 个连续段，每个连续段的费用是其中相同元素的对数，求最小费用的和</p>
+<p>$n\le 10^5,k\le 20$</p>
+<p>简要题解：容易得到 $dp$ 方程，$f_{i,k}=min\{f_{j,k-1}+c_{j+1,i}\}$</p>
+<p>其中 $c_{j+1,i}$ 表示将 $[j+1,i]$ 分成一段的费用，能够发现转移方程满足决策单调性</p>
+<p>因为 $c_{x,y}$ 没法 $O(1)$ 求，这里我们只能使用分治法，$c_{j+1,i}$ 的维护使用类似莫队的方法</p>
+<p>时间复杂度 $O(kn\log n)$</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/10/24/CF-868F-Yet-Another-Minimization-Problem/">CF 868F Yet Another Minimization Problem</a></p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $h_i$，求最大的数对 $(i,j),i&lt;j$，其中 $(h_i+h_j)\times (j-i)$ 最大</p>
+<p>$n\le 10^6$</p>
+<p>简要题解：显然对于 $h_i$ 我们只会选择前缀最大值，对于 $h_j$ 我们只会选择后缀最大值，我们考虑对于每个 $h_j$ 求最大的 $h_i$，同时我们猜测这东西有决策单调性，所以我们用分治的做法即可解决问题</p>
+<p>时间复杂度 $O(n\log n)$</p>
+<p>不过为了严谨我们还是来证明一下</p>
+<p>不妨设 $i$ 的决策点为 $j$，那么 $\forall k&lt;j,(a_i+a_j)(i-j)\ge (a_i+a_k)(i-k)$</p>
+<p>我们考虑 $i+1$ 的决策点，如果满足决策单调性，那么一定有 $\forall k&lt;j,(a_{i+1}+a_j)(i-j)\ge (a_{i+1}+a_k)(i-k)$</p>
+<p>我们考虑这个式子相当于 $i$ 的式子有什么改变</p>
+<p>能够得到不等式两边的增量为 $(a_{i+1}-a_i)(i-j)+a_{i+1}$ 和 $(a_{i+1}-a_i)(i-k)+a_{i+1}$</p>
+<p>由于 $a_{i+1}&lt;a_i$，所以右边的增量小，所以该不等式依然满足</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/03/29/2020-2021-ACM-ICPC-Asia-Seoul-Regional-Contest-L-Two-Buildings/">2020-2021 ACM-ICPC, Asia Seoul Regional Contest L Two Buildings</a></p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/13/%E6%A0%A1%E5%86%85%E8%B5%9B-%E5%90%88%E5%B9%B6%E6%95%B0%E7%BB%84/">校内赛 合并数组</a> 并不是 $dp$ 的决策单调性优化</p>
+</li>
+<li><p>简要题意：给定两个长度为 $n$ 的序列 $a_i$ 和 $b_i$，令 $s_i$ 表示 $b$ 中前 $i$ 大的数字之和，要求 $c_i=\max(a_j+s_{i-j}),j&lt;i$</p>
+<p>$n\le 10^5$</p>
+<p>简要题解：我们不妨将求 $c_i$ 的过程看成一个 $dp$，同时用 $f_i$ 代替 $c_i$</p>
+<p>然后我们发现 $f$ 的决策点是具有单调性的，因为 $s$ 的增量是越来越小的</p>
+<p>然后我们选择单调队列二分还是直接分治都行</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/07/13/%E6%A0%A1%E5%86%85%E8%B5%9B-%E5%90%88%E5%B9%B6%E6%95%B0%E7%BB%84/">校内赛 合并数组</a></p>
+</li>
+<li><p>简要题意：现在有 $q$ 次询问，每次询问给定 $n$ 和 $k$，求将 $[1,n]$ 这个序列分成 $k$ 段的最小代价和，$[l,r]$ 的代价为 $c(l,r)=\sum_{i=l}^r\sum_{j=i}^r[(i,j)\ge l]$</p>
+<p>$k\le n\le 10^5,q\le 3\times 10^5$</p>
+<p>简要题解：容易发现当 $2^k&gt;n$ 时，答案一定为 $n$，那么我们的 $k$ 就缩小到了 $O(\log n)$ 的级别，我们考虑 $dp$，令 $f_{i,j}$ 表示前 $i$ 个数，分成了 $j$ 段，那么 $f_{i,j}=\min(f_{k,j-1}+c(k+1,i)),k&lt;i$，容易发现转移满足决策单调性，但是 $c(l,r)$ 看起来不是很好求，我们先化简一下 $c(l,r)$，可以得到 $c(l,r)=\sum_{i=l}^rS(\lfloor\frac{r}{i}\rfloor)$，其中 $S(n)=\sum_{i=1}^n\varphi(i)$，我们考虑还是用类似莫队的方法维护 $c(l,r)$，$l$ 移动的时候代价是 $O(1)$ 的，$r$ 移动的时候，所有 $i\ge l,\lfloor\frac{r}{i}\rfloor&lt;\lfloor\frac{r+1}{i}\rfloor$ 的 $i$ 的贡献要改变，容易发现这样的 $i$ 是 $r+1$ 的约数，那么右端点的总移动是 $O(n\log n\ln n)$，我们直接暴力维护这个东西，总的时间复杂度为 $O(n\log^2n\ln n)$，常数非常小，对于每个右端点预处理左端点的答案可以做到 $O(n\log^2 n+n\sqrt n)$</p>
+<p><a href="">CF 1603D Artistic Partition</a></p>
+</li>
+</ol>
 <h2 id="斜率优化"><a href="#斜率优化" class="headerlink" title="斜率优化"></a>斜率优化</h2><p>斜率优化适用于 $1D/1D$​ 动态规划</p>
 <p>考虑这样一种转移：$f_i=min(f_j+a_i\times c_j+b_i)$，其中 $j&lt;i$ </p>
 <p>我们将原式展开：$f_i+b_i-a_i\times c_i=f_j$</p>
@@ -571,7 +617,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">25:57</span>
+    <span title="站点阅读时长">26:05</span>
   </span>
 </div>
 <div class="busuanzi-count">
