@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介大概会介绍几种常见的优化 $dp$ 的方法 &#x3D; &#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-23T11:09:55.000Z">
-<meta property="article:modified_time" content="2022-10-01T10:24:27.821Z">
+<meta property="article:modified_time" content="2022-10-01T10:28:02.006Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="DP">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">785</span>
+          <span class="site-state-item-count">786</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -315,7 +315,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-10-01 18:24:27" itemprop="dateModified" datetime="2022-10-01T18:24:27+08:00">2022-10-01</time>
+        <time title="修改时间：2022-10-01 18:28:02" itemprop="dateModified" datetime="2022-10-01T18:28:02+08:00">2022-10-01</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -487,7 +487,7 @@
 <li><p>简要题意：现在有 $q$ 次询问，每次询问给定 $n$ 和 $k$，求将 $[1,n]$ 这个序列分成 $k$ 段的最小代价和，$[l,r]$ 的代价为 $c(l,r)=\sum_{i=l}^r\sum_{j=i}^r[(i,j)\ge l]$</p>
 <p>$k\le n\le 10^5,q\le 3\times 10^5$</p>
 <p>简要题解：容易发现当 $2^k&gt;n$ 时，答案一定为 $n$，那么我们的 $k$ 就缩小到了 $O(\log n)$ 的级别，我们考虑 $dp$，令 $f_{i,j}$ 表示前 $i$ 个数，分成了 $j$ 段，那么 $f_{i,j}=\min(f_{k,j-1}+c(k+1,i)),k&lt;i$，容易发现转移满足决策单调性，但是 $c(l,r)$ 看起来不是很好求，我们先化简一下 $c(l,r)$，可以得到 $c(l,r)=\sum_{i=l}^rS(\lfloor\frac{r}{i}\rfloor)$，其中 $S(n)=\sum_{i=1}^n\varphi(i)$，我们考虑还是用类似莫队的方法维护 $c(l,r)$，$l$ 移动的时候代价是 $O(1)$ 的，$r$ 移动的时候，所有 $i\ge l,\lfloor\frac{r}{i}\rfloor&lt;\lfloor\frac{r+1}{i}\rfloor$ 的 $i$ 的贡献要改变，容易发现这样的 $i$ 是 $r+1$ 的约数，那么右端点的总移动是 $O(n\log n\ln n)$，我们直接暴力维护这个东西，总的时间复杂度为 $O(n\log^2n\ln n)$，常数非常小，对于每个右端点预处理左端点的答案可以做到 $O(n\log^2 n+n\sqrt n)$</p>
-<p><a href="">CF 1603D Artistic Partition</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/10/01/CF-1603D-Artistic-Partition/">CF 1603D Artistic Partition</a></p>
 </li>
 </ol>
 <h2 id="斜率优化"><a href="#斜率优化" class="headerlink" title="斜率优化"></a>斜率优化</h2><p>斜率优化适用于 $1D/1D$​ 动态规划</p>
@@ -617,7 +617,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">26:05</span>
+    <span title="站点阅读时长">26:10</span>
   </span>
 </div>
 <div class="busuanzi-count">
