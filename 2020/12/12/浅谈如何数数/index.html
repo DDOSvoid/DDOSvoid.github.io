@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-12T09:23:46.000Z">
-<meta property="article:modified_time" content="2022-10-04T11:41:32.691Z">
+<meta property="article:modified_time" content="2022-10-05T12:08:21.695Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="计数">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">787</span>
+          <span class="site-state-item-count">788</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -315,7 +315,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-10-04 19:41:32" itemprop="dateModified" datetime="2022-10-04T19:41:32+08:00">2022-10-04</time>
+        <time title="修改时间：2022-10-05 20:08:21" itemprop="dateModified" datetime="2022-10-05T20:08:21+08:00">2022-10-05</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -419,7 +419,7 @@ ans&=\sum_{i\in[1,k],d_i\in[1,k-1],\sum_{i=1}^k(d_i-1)=k-2}\binom{k-2}{d_1-1,d_2
 <p>我们考虑用 $DP$ 计算所有序列的概率和，令 $f_{i,S}$ 表示现在过了 $i$ 秒，$S$ 中的 $a_k$ 都已经变成 $0$ 的概率和，注意我们记录后面某个 $a_k$ 会变成 $0$ 的状态，所以我们的序列中有一个特殊元素 $x$ 表示这个位置填的东西待定，那么我们 $f_{i,S}$ 的向后转移有两种选择，第一种是选择一个新的 $a_k$，它变成了 $0$，也就意味着第 $i+1$ 填 $k$，前 $i$ 秒中有 $a_k-1$ 个 $x$ 会变成 $k$，那么贡献为 $\binom{i-sum_{S}}{a_k-1}\frac{1}{n-cnt_{S}}f_{i,S}$，如果填一个 $x$，那么贡献为 $\frac{1}{n-cnt_S}f_{i,S}$</p>
 <p>但是这个东西并不是答案，我们还需要将剩下的 $x$ 变成 $U-S$ 中的数字，显然每种序列都是不同的，所以我们需要在乘上一个 $g_{m-cnt_S,U-S}$ 表示在 $U-S$ 中选择 $m-cnt_S$ 个数字组成的序列个数</p>
 <p>时间复杂度 $O(2^nm^2)$ </p>
-<p><a href="">2020 China Collegiate Programming Contest, Weihai Site E So Many Possibilities…</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/10/04/2020-China-Collegiate-Programming-Contest-Weihai-Site-E-So-Many-Possibilities/">2020 China Collegiate Programming Contest, Weihai Site E So Many Possibilities…</a></p>
 </li>
 </ol>
 <h2 id="容斥DP计数"><a href="#容斥DP计数" class="headerlink" title="容斥DP计数"></a>容斥DP计数</h2><p>这里的容斥不是利用反演来计数，一般情况下都是利用最简单的减法原理来计数，在这种 $dp$ 中，我们通常定义 $f$ 为没有重复计数的方案，而在转移过程中的需要容斥的东西，我们通过 $f$ 之间的关系来将其容斥，一般情况下，我们还需要保证在容斥的过程中，每一种不合法的情况只会被减掉一次</p>
@@ -548,7 +548,7 @@ ans&=\sum_{i\in[1,k],d_i\in[1,k-1],\sum_{i=1}^k(d_i-1)=k-2}\binom{k-2}{d_1-1,d_2
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">26:12</span>
+    <span title="站点阅读时长">26:16</span>
   </span>
 </div>
 <div class="busuanzi-count">
