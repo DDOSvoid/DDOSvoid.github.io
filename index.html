@@ -191,7 +191,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">790</span>
+          <span class="site-state-item-count">791</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -269,6 +269,104 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/06/Luogu-P3547-POI2013-CEN-Price-List/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/06/Luogu-P3547-POI2013-CEN-Price-List/" class="post-title-link" itemprop="url">Luogu P3547 [POI2013]CEN-Price List</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-10-06 19:46:35 / 修改时间：19:55:17" itemprop="dateCreated datePublished" datetime="2022-10-06T19:46:35+08:00">2022-10-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3547">https://www.luogu.com.cn/problem/P3547</a></p>
+<p>简要题意：给定一个 $n$ 个点 $m$ 条边的无向图，边权均为 $a$，现在将原图中所有最短路为 $2a$ 的点对 $(i,j)$ 之间加一条长度为 $b$ 的无向边，求新图的以 $S$ 为起点的单源最短路径</p>
+<p>$n,m\le 10^5$</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/10/06/Luogu-P3547-POI2013-CEN-Price-List/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -400,7 +498,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-10-06 18:36:37 / 修改时间：19:29:54" itemprop="dateCreated datePublished" datetime="2022-10-06T18:36:37+08:00">2022-10-06</time>
+      <time title="创建时间：2022-10-06 18:36:37 / 修改时间：19:46:19" itemprop="dateCreated datePublished" datetime="2022-10-06T18:36:37+08:00">2022-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -438,199 +536,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><ol>
-<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，现在需要对于所有 $k\in[1,n]$，最少能将 $a_i$ 分成多少个连续段满足每个连续段内的不同数字的种数不超过 $k$</p>
-<p>$n\le 10^5$</p>
-<p>简要题解：注意到总答案小于 $O(n\log n)$</p>
-<p>所以我们考虑对于每一段的左端点暴力去找右端点，这一步我们用主席树可以做到单次 $O(\log n)$</p>
-<p>所以总的时间复杂度为 $O(n\log^2 n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/03/03/CF-786C-Till-I-Collapse/">CF 786C Till I Collapse</a></p>
-</li>
-<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，现在有 $m$ 次操作，操作分两种，第一种是给定一个整数 $h$，求如果将所有 $a_i$ 变成 $[a_i\ge h]$ 后有多少段连续的 $1$；第二种操作是给定 $x,y$，将 $a_x$ 变成 $y$</p>
-<p>$n\le 2\times 10^5$</p>
-<p>简要题解：题目要求连通块，在这题中连通块的个数等于点的个数减掉边的个数</p>
-<p>我们只需要维护出所有高度的点的个数和边的个数即可，离散化之后用树状数组实现即可，时间复杂度 $O(n\log n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/16/Luogu-P3616-%E5%AF%8C%E9%87%91%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD/">Luogu P3616 富金森林公园</a></p>
-</li>
-<li><p>简要题意：给定 $n$ 个矩形 $(x_a,x_b,y_a,y_b)$ 以及 $m$ 次询问，每次询问给定 $[l,r]$，求如果不考虑编号在 $[l,r]$ 的矩形，其它矩形的并的面积</p>
-<p>$n,q\le 10^5,0\le x,y\le 2000$</p>
-<p>简要题解：非常具有欺诈性的题目</p>
-<p>首先注意到整个矩形一共只有 $4e6$ 个点</p>
-<p>也就是说我们完全可以记录每个点被编号最小和编号最大的矩形覆盖，记作 $mn[i][j]$ 和 $mx[i][j]$</p>
-<p>然后我们考虑如何求这个东西，参考扫描线求矩形覆盖的模型</p>
-<p>我们同样考虑扫描线，我们用扫描线扫描一个矩阵的行，也就是说我们将一个从 $x_1$ 到 $x_2$ 的矩形在 $x_1$ 加入，在 $x_2+1$ 退出</p>
-<p>同时我们考虑在线段树上维护列，每个点开两个可删除堆，维护最大和最小值</p>
-<p>但这个时候我们要出叶子节点的历史最值，注意到线段树只有 $2000$ 所以我们在每一次扫描线移动前 $dfs$ 整棵树去维护最大和最小值即可，由于堆求堆顶的复杂度是 $O(1)$ 的，所以这一块的复杂度为 $O(C^2+n\log C)$</p>
-<p>接下来我们对于每个询问要求这个东西 $\sum_{(i,j)} [mn[i][j]<l\vee mx[i][j]>r]$ 这个东西稍微变换一下就可以用树状数组 $O(n\log c)$ 解决</p>
-<p>总的时间复杂度为 $O(C^2+n\log C)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/21/The-18th-Zhejiang-Provincial-Collegiate-Programming-Contest-B-Restore-Atlantis/">The 18th Zhejiang Provincial Collegiate Programming Contest B Restore Atlantis</a></p>
-</li>
-<li><p>简要题意：在某公司有 $n$ 个员工，第 $0$ 天时员工之间没有任何关系，接下来 $m$ 天，每天可能会发生三种事情，第一种事情是 $y$ 成了 $x$ 的上司，保证 $x$ 在这之前没有上司；第二种事情是员工 $x$ 得到了一份文件，$x$ 会将其传递给他的上司，他的上司会将文件继续传递给他的上司，直到没有上司；第三种事情是询问员工 $x$ 在第 $y$ 天有没有看过文件</p>
-<p>$n,m\le 10^5$</p>
-<p>简要题解：注意到操作只有连边且保证是一棵树，我们可以考虑逆向进行并查集的撤销</p>
-<p>注意到在逆序的时候一次询问相当于问在之前的某个时间，$x$ 是否是 $y$ 的父亲</p>
-<p>然后问题就解决了，时间复杂度 $O(n\alpha(n))$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/05/16/CF-466E-Information-Graph/">CF 466E Information Graph</a></p>
-</li>
-<li><p>简要题意：给定两个长度为 $n$ 的序列 $a_i,b_i$，现在至多可以交换一次 $b$ 中两个位置的值，最小化 $\sum_{i=1}^n|a_i-b_i|$</p>
-<p>$n\le 2\times 10^5$</p>
-<p>简要题解：我们考虑交换 $b_i$ 和 $b_j$，令 $sum=\sum_{i=1}^n |a_i-b_i|，t_i=|a_i-b_i|$</p>
-<p>那么交换之后的值就是 $sum-t_i-t_j+|a_i-b_j|+|a_j-b_i|$</p>
-<p>我们把后面那个东西看成 $(a_i,b_i)$ 与 $(b_j,a_j)$ 的曼哈顿距离</p>
-<p>然后就发现这个东西我们可以对于每个 $i$ 求一个最小的 $j$</p>
-<p>只需要将绝对值拆开即可，偏序经典题，可以直接上树状数组，时间复杂度 $O(n\log n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/06/01/CF-1513F-Swapping-Problem/">CF 1513F Swapping Problem</a></p>
-</li>
-<li><p>简要题意：现在有 $n$ 个怪兽，第 $i$ 个怪兽有一个等级限制 $h_i$，只有等级大于等于 $h_i$ 才能杀死第 $i$ 个怪兽。现在还有一个限制，就是每一回合只能杀死一个怪兽，同时每个怪兽还有两个属性 $a_i$ 和 $b_i$，杀死怪兽 $i$ 之后其它怪兽的 $h$ 会增加 $a_i$，而你的等级会增加 $b_i$。现在还有 $q$ 个询问，每次增加一个怪兽，求目前为止你所需要的最低的初始等级杀死所有怪兽</p>
-<p>$n\le 10^5,q\le 1000$</p>
-<p>简要题解：首先我们将 $a$ 转换为你的等级降低 $a$，为了方便，下文我们令 $c_i$ 表示杀死第 $i$ 个怪兽后增加的等级</p>
-<p>我们先不考虑动态添加怪兽，对于现在的这些怪兽，贪心的打这些怪兽，对于 $c\ge 0$ 的怪兽，我们肯定是按照 $h$ 递增来打，对于 $c&lt;0$，这就是一个经典的贪心，我们按照 $h+c$ 递减来打</p>
-<p>排好序之后，答案就是 $max_{i=1}^n\lbrace h-pre_{i-1}\rbrace $，其中 $pre_{i}$ 表示前 $i$ 个怪兽的 $c$ 的和</p>
-<p>对于动态添加，我们考虑离线添加怪物确定每个怪兽添加进来的位置，然后用线段树动态维护即可</p>
-<p>时间复杂度 $O(n\log q)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/06/02/The-16th-Heilongjiang-Provincial-Collegiate-Programming-Contest-L-Labi-Ribi/">The 16th Heilongjiang Provincial Collegiate Programming Contest L Labi-Ribi</a></p>
-</li>
-<li><p>简要题意：给定两棵大小均为 $n$ 的树，求一个最大的点集满足，这些点在第一棵树上构成一条深度递增的链，即满足所有点之间都存在祖宗关系，在第二棵树上任意两点不存在祖宗关系</p>
-<p>$n\le 3\times 10^5$</p>
-<p>简要题解：我们考虑对于每个点求其作为链的最底端的答案，我们令 $h[u]$ 表示 $u$ 作为最底端时，深度最深的点满足在第二颗树上与 $u$ 存在祖先关系的点的深度</p>
-<p>那么答案显然是 $max\lbrace dep[u]-h[u]\rbrace$</p>
-<p>我们考虑如何求 $h$，注意到两个点 $u$ 和 $v$ 如果存在祖先关系，当且仅当 $u$ 的子树和 $v$ 的子树有交，那么我们在第一棵树上 $dfs$，然后每到一个点 $u$，我们就将线段树上 $in[u]$ 到 $out[u]$ 都与 $dep[u]$ 取 $max$，但是取 $max$ 并不能撤回，所以我们考虑直接用主席树，时间复杂度 $O(n\log n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/08/08/2021%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A17-F-xay-loves-trees/">2021牛客多校7 F xay loves trees</a></p>
-</li>
-<li><p>简要题意：给定一个长度为 $n$ 的排列 $p$，还有 $m$ 次询问，每次询问给定 $l,r$，求 $f(l,r)$，其中 $f(l,r)=(r-l+1)+f(l,m_{l,r}-1)+f(m_{l,r}+1,r)$，$m_{l,r}$ 表示 $[l,r]$ 中的最大值的位置，对于 $l&gt;r$ 的情况，$f(l,r)=0$</p>
-<p>$n,m\le 10^6$</p>
-<p>简要题解：令 $L_i$ 表示第一个左边大于 $p_i$ 的位置，$R_i$ 表示右边第一个大于 $p_i$ 位置，容易得到答案就是 $\sum_{i=l}^r min(R_i-1,r)-max(L_i+1,l)+1$</p>
-<p>有一种非常 $trivial$ 的做法，我们建一棵主席树，然后 $min(R_i-1,r)$ 相当于查询小于 $r$ 的 $R_i-1$ 的和，以及大于 $r$ 的 $R_i-1$ 的个数，$L_i+1$ 同理，这样常数比较大</p>
-<p>注意到我们一次询问相当于只需要 $[l,r]$ 中的数的贡献，我们将这个东西差分一下，尝试维护前缀的贡献</p>
-<p>那么相当于我们每次区间 $[L_i+1,R_i-1]$ 区间加 $1$，然后查询只需要查询 $[l,r]$ 的和即可</p>
-<p>区间加区间查询可以用树状数组实现，时间复杂度 $O(n\log n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/15/CF-1117G-Recursive-Queries/">CF 1117G Recursive Queries</a></p>
-</li>
-<li><p>简要题意：给定一个长度为 $n$ 的数列 $a_i$ 以及一个长度为 $n-1$ 的数列 $b_{i}$，现在有两种操作，第一种操作是给定 $x$ 和 $y$，首先将 $a_x$ 加上 $y$，如果 $a_{x+1}&lt;a_x+b_x$，那么将 $a_{x+1}$ 变成 $a_x+b_x$，接着如果 $a_{x+2}&lt;a_{x+1}+b_{x+1}$，将 $a_{x+2}$ 变成 $a_{x+1}+b_{x+1}$，以此类推，直至不满足条件；第二种操作是求 $\sum_{i=l}^ra_i$</p>
-<p>$n,m\le 10^5$</p>
-<p>简要题解：注意到第一个不满足条件的右端点是可以二分的，另外我们注意如果修改区间是 $[l,r]$，我们可以将整个修改看成是区间覆盖，因为每个位置的数都是已知的，所以用线段树维护即可</p>
-<p>时间复杂度为 $O(n\log^2 n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/22/CF-1136E-Nastya-Hasn-t-Written-a-Legend/">CF 1136E Nastya Hasn’t Written a Legend</a></p>
-</li>
-<li><p>简要题意：给定一个长度为 $n$ 的排列 $p$，如果区间 $[l,r]$ 内的数排序之后是连续正整数，则称 $[l,r]$ 为一个合法区间，现在有 $m$ 次询问，每次询问给定一个区间 $[x,y]$，求最小的一个合法区间 $[l,r]$ 满足 $l\le x\le y\le r$</p>
-<p>$n,m \le 10^5$</p>
-<p>简要题解：首先我们分析一下合法区间的性质：</p>
-<ol>
-<li>对于两个有交的合法区间，它们的交一定也是一个合法区间</li>
-<li>根据 1，容易得到对于一个区间 $[x,y]$，包含的它的最小合法区间一定是所有包含的合法区间中左端点最大以及右端点最小的那个合法区间</li>
-</ol>
-<p>然后注意到操作并无修改，我们考虑扫描线，我们考虑在固定右端点的时候如何判断一个区间是否合法以及如何在右端点增加的时候维护这个东西</p>
-<p>我们将合法区间的条件转换一下，考虑数对 $(i,j)$，且 $p_i-p_j=1$，注意到一个区间 $[l,r]$ 合法，当且仅当这个区间内恰有 $r-l$ 个这样的数对，另外这样的数对一共只有 $n$ 个</p>
-<p>那么做法就呼之欲出了，我们在右端点递增的时候通过合法数对来做区间加即可，另外在右端点递增到 $i$ 的时候，将 $i$ 的值置为 $i$，那么合法区间的值就应该是刚好是 $r$</p>
-<p>现在的问题是如何对于每个区间求答案，方法是将每个询问区间挂到 $r$ 上，然后在扫到这里时候，将其加入按照区间左端点排序的大根堆中，每次右端点递增完之后依次求答案即可，求答案可以用线段树实现</p>
-<p>时间复杂度 $O(n\log n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/22/Luogu-P4747-CERC2017-Intrinsic-Interval/">Luogu P4747 [CERC2017]Intrinsic Interval</a></p>
-</li>
-<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，现在有 $m$ 次询问，每次询问给定两个区间 $[l_1,r_1],[l_2,r_2]$，求满足 $i\in[l_1,r_1],j\in[l_2,r_2],\lfloor\frac{a_i}{2}\rfloor&lt;a_j&lt;a_i$ 的最大的 $a_i+a_j$</p>
-<p>$n,m\le 2\times 10^5$</p>
-<p>简要题解：看到有一个下取整的东西，我们暴力处理，应该肯定会出现一个 $\log$</p>
-<p>另外我们注意到答案一定是最大满足条件的 $a_i$，那么我们现在考虑按照从大到小的顺序寻找合法的 $a_i$</p>
-<p>首先对于 $[l_1,r_1]$ 的最大值 $v$，我们去查找 $[l_2,r_2]$ 是否有 $[\lfloor\frac v 2\rfloor,v-1]$ 中的数，如果没有，我们去求 $[l_2,r_2]$ 中 $[1,\lfloor\frac{v}{2}\rfloor-1]$  的最大的数 $w$，然后去查找 $[l_1,r_1]$ 中是否存在 $[w+1,2*w+1]$ 的数字，如果没有那么 $[l_1,r_1]$ 的范围就变成了 $[1,w]$，成功缩小了一半，容易发现只需要进行 $O(\log n)$ 次这样的过程，而我们所需要的操作仅仅是查询区间 $[l,r]$ 中属于区间 $[x,y]$ 的最大的数，这个可以用主席树实现</p>
-<p>时间复杂度 $O(n\log ^2n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/22/%E7%89%9B%E5%AE%A2IOI%E5%91%A8%E8%B5%9B28-%E6%8F%90%E9%AB%98%E7%BB%84-C-%E4%B8%8B%E5%85%8B%E4%B8%8A%E3%81%AE%E5%A4%A9%E9%82%AA%E9%AC%BC/">牛客IOI周赛28-提高组 C 下克上の天邪鬼</a></p>
-</li>
-<li><p>简要题意：给定一个长度为 $n$ 的序列，每个位置有两个参数 $(c,v)$，$c$ 是这个位置的颜色，$v$ 是这个位置的价值，现在有 $m$ 次操作，每次操作要么更改一个位置的颜色和价值，要么查询从 $s$ 开始最多跳过 $k$ 次所能获得的最大价值，其中从 $s$ 开始跳过 $k$ 次表示，从 $s$ 开始向右走，每到一个点，我们可以选择跳过或者不跳过，如果不跳过则该点的颜色必须之前没有到过，然后我们获得该点的价值</p>
-<p>$n,m\le 2\times 10^5,k\le 10$</p>
-<p>简要题解：注意到最多跳过 $10$ 次，所以我们可以考虑每次暴力找下一个需要跳过的点，注意到一个如果需要被跳过，那么它的 $pre$ 一定大于等于 $l$，那么现在就相当于用线段树找 $[x,y]$ 中位置最靠左的满足 $pre \ge l$ 的点，这个显然是线段树的经典做法，另外修改都是单点修改</p>
-<p>时间复杂度 $O(kn\log n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/22/The-2020-ICPC-Asia-Macau-Regional-Contest-J-Jewel-Grab/">The 2020 ICPC Asia Macau Regional Contest J Jewel Grab</a></p>
-</li>
-<li><p>简要题意：给定一个长度为 $n$ 的排列，现在从第二位开始进行操作，如果当前数大于前一个数，那么就什么都不做，否则需要选择删掉当前这个数或者前一个数，需要注意如果删掉前一个数需要保证删掉之后依然保证递增，另外对于每一位这个操作只能进行一次，求最多能保留多少数字</p>
-<p>$n\le 5\times 10^5$</p>
-<p>简要题解：我们考虑 $dp$，令 $f_i$ 表示保留第 $i$ 的 $dp$ 值，然后我们注意下一个能接在 $i$ 之后的可以是哪些数</p>
-<p>我们模拟一下这个过程，令 $nxt(i)$ 表示右边第一个大于 $a_i$ 的数的位置，注意到在 $[i+1,nxt(i)-1]$ 之间的所有数我们都要删掉，然后对于 $nxt(i)$ 我们必须保留，我们考虑继续向右走，对于一个大于 $a_i$ 的数，我们可以选择删掉 $nxt(i)$，留下这个数，直到我们走到 $nxt(nxt(i))$，这个数必须保留，综上所述，我们能够发现可以放在 $i$ 后面一个的数是 $[nxt(i),nxt(nxt(i))-1]$ 中大于 $a_i$ 的数，也就是说满足条件的 $j$ 是 $j\in[nxt(i),nxt(nxt(i))-1],a_j&gt;a_i$</p>
-<p>注意到后面那个条件是连续的，所以我们按照权值来做扫描线即可，时间复杂度 $O(n\log n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/24/2019-2020-Winter-Petrozavodsk-Camp-Day-8-Almost-Algorithmic-Contest-C-StalinSort-Algorithm/">2019-2020 Winter Petrozavodsk Camp, Day 8: Almost Algorithmic Contest C StalinSort Algorithm</a></p>
-</li>
-<li><p>简要题意：现在一个空栈和 $n$ 次操作，操作有三种：在时间 $t$ 入栈 $v$；在时间 $t$ 出栈；求时间 $t$ 的栈顶元素，需要注意的是每次查询操作，是相当于将之前操作按照给出的时间排序依次执行的结果，输入保证出入栈合法，且时间 $t$ 互不相同</p>
-<p>$n\le 2\times 10^5$</p>
-<p>简要题解：我们以时间为下标建线段树，入栈看做 $+1$，出栈看做 $-1$，这样在查询时可以知道现在栈内有多少元素</p>
-<p>仔细观察栈内元素的个数变化，不妨设查询时栈内元素个数为 $t$，能够发现栈顶元素的插入时间是最后一次栈内元素为 $t-1$ 的时间加一，这个东西可以用线段树维护，具体详见代码</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/11/07/%E2%80%9C%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%E6%9D%AF%E2%80%9D%E7%AC%AC%E5%8D%81%E4%B8%83%E5%B1%8A%E5%90%8C%E6%B5%8E%E5%A4%A7%E5%AD%A6%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E9%A2%84%E9%80%89%E8%B5%9B%E6%9A%A8%E9%AB%98%E6%A0%A1%E7%BD%91%E7%BB%9C%E5%8F%8B%E8%B0%8A%E8%B5%9B-H-%E6%97%B6%E7%A9%BA%E6%A0%88/">“科大讯飞杯”第十七届同济大学程序设计预选赛暨高校网络友谊赛 H 时空栈</a></p>
-</li>
-<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，定义合法区间 $[l,r]$ 为区间 $[l,r]$ 的所有前缀和都大于等于 $0$，现在再给一个数 $x$，求选择恰好一个位置将其加上 $x$ 后序列 $a_i$ 的合法区间的数量的最大值</p>
-<p>$n\le 5\times 10^5$</p>
-<p>简要题解：我们首先考虑不加 $x$ 的情况，令 $s_i$ 表示前缀和，我们枚举区间左端点 $l$，求极长的右端点 $r$，容易得到 $r$ 为第一个满足 $s_r&lt;s_{l-1}$ 的点，左端点 $l$ 的贡献为 $r-l$，给定 $l$ 找对应的 $r$ 可以用线段树来实现</p>
-<p>我们考虑加上 $x$，不妨先考虑 $x$ 大于等于 $0$ 的情况。$x$ 大于等于 $0$ 意味着每个区间都是向右拓展的。同时我们发现因为是前缀和所以 $x$ 的作用是向右延伸的，如果想要影响区间 $[l,r]$，那么 $x$ 一定要作用在 $[l,r]$，且 $x$ 作用在 $[l,r]$ 内的任何一个位置都是一样的，那么我们的做法也就呼之欲出了，我们直接枚举所有的区间 $[l,r]$，求 $x$ 作用在区间内的答案的增量，这里相当于是一个区间加，我们差分之后求最大值即可</p>
-<p>$x$ 小于 $0$ 则会麻烦一些，首先我们发现 $x$ 作用在 $[l,r]$ 内的不同位置的影响是不一样的，不过其无论如何 $r$ 都是减少的，我们考虑从右向左做扫描线，对于每个区间我们在 $r$ 加入，在 $l$ 删除，然后用权值线段树维护右端点 $r$ 的变化即可，另外还有一些细节</p>
-<p>时间复杂度 $O(n\log n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/07/06/2021-2022-ACM-ICPC-Latin-American-Regional-Programming-Contest-D-Daily-Turnovers/">2021-2022 ACM-ICPC Latin American Regional Programming Contest D Daily Turnovers</a></p>
-</li>
-<li><p>简要题意：给定一个 $n$ 个点 $m$ 条边的无向带权图，每个点有一个颜色 $c_i$ 和一个权值 $a_i$，现在有 $q$ 次操作，操作有两种，第一种是给定一个点 $x$ 和 $y$，将 $a_x$ 加上 $y$；第二种操作是给定一个点 $x$ 和 $y$，问从 $x$ 出发，每次只能走权值小于等于 $y$ 的边，能够到达的所有点中，对于每个颜色只取权值最大的点的权值的权值和是多少，题目保证每种颜色的点的个数不超过  $10$</p>
-<p>$n,m,q\le 10^5$</p>
-<p>简要题解：首先我们考虑建出 $kruskal$ 重构树，那么每次询问相当于子树查询，但是对于每种颜色，我们只取权值最大的那个</p>
-<p>因为每种颜色的点的数量很少，我们考虑对于每种颜色的点建一个虚树，维护子树内最大值的和，做一些链加，保证每个点的子树查询都只会查询到的最大值即可，这里的修改可以用树状数组实现</p>
-<p>时间复杂度 $O(10n\log n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/07/24/2022%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A11-G-Treasure/">2022杭电多校1 G Treasure</a></p>
-</li>
-<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，以及 $m$ 次操作，操作有两种，第一种是给定一个区间 $[l,r]$，将 $[l,r]$ 中的数复制一份放到 $[l,r]$ 的后面，并将其他数后移；第二种操作是给定一个 $x$，查询 $a_x$，最后输出所有查询的异或和</p>
-<p>$n,m\le 10^5$，保证第一种操作的个数小于等于 $20000$</p>
-<p>简要题解：我们考虑将操作离线，注意到对于一次一操作 $[l,r]$ 之后的查询 $x$，如果 $x&gt;r$，那么我们相当于将 $x$ 变成 $x-(r-l+1)$，对于 $x\le r$，则无影响，同时我们注意到只需要输出所有查询的异或和，那么我们可以用 $bitset$ 维护每个位置是否出现，同时 $bitset$ 可以通过左移和右移简单完成一操作</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/07/24/2022%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A12-C-Copy/">2022杭电多校2 C Copy</a></p>
-</li>
-<li><p>简要题意：给定 $n$ 三元组 $(x_i,y_i,z_i)$，每个三元组有一个颜色 $c_i$，现在有 $q$ 次询问，每次询问给定一个三元组 $(x_i,y_i,z_i)$，求有多少种颜色的三元组 $(x_j,y_j,z_j)$ 满足 $x_j\le x_i,y_j\le y_i,z_j\le z_i$，强制在线</p>
-<p>$n,q\le 2\times 10^6,1\le x_i,y_i,z_i\le 400$</p>
-<p>简要题解：注意到三元组的权值范围很小，我们考虑对于每个位置预处理答案</p>
-<p>从二维入手，对于同一种颜色的二元组，我们按照 $x_i$ 排序，容易发现 $x_i\le x_j,y_i\le y_j$ 的 $(x_j,y_j)$ 是没有用的，我们直接将其删除即可，那么剩下的二元组一定满足第一位递减，第二维递增，那么我们可以做一个这样的容斥</p>
-<p><img src="https://s1.ax1x.com/2022/08/03/vZPEPx.png" alt="vZPEPx.png"></p>
-<p> 考虑三维如何处理，我们按照第三维排序，然后用 $set$ 维护前两维的情况动态加入和删除即可</p>
-<p>时间复杂度 $O(n\log n +400^3+q)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/08/03/2022%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A14-E-Jobs-Hard-Version/">2022牛客多校4 E Jobs (Hard Version)</a></p>
-</li>
-<li><p>简要题意：给定一棵 $n$ 个点的无根树，现在有 $m$ 个操作，操作有三种，第一种操作加入一条树上的路径 $(a,b)$ 这个路径有一个权值 $c$；第二种操作给定 $x$，删除第 $x$ 个操作所加入的路径；第三种操作给定一个点 $x$，求现在存在的路径中不考虑经过 $x$ 的路径中权值最大的路径的权值</p>
-<p>$n\le 10^5,m\le 2\times 10^5$</p>
-<p>简要题解：注意到如果查询操作所得答案为 $t$，则表示当前存在路径中所有权值大于 $t$ 的路径都经过 $x$，换言之就是这些路径的交经过    $x$，我们考虑将操作离线，将路径按照权值排序后作为在线段树中的键值，那么我们可以用线段树维护区间路径的交，每次查询相当于在线段树上二分，时间复杂度 $O(n\log n)$，细节较多</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/08/11/Luogu-P3250-HNOI2016-%E7%BD%91%E7%BB%9C/">Luogu P3250 [HNOI2016] 网络</a></p>
-</li>
-<li><p>简要题意：给定一棵 $n$ 个点的无根树，每个点有一个颜色 $c_i$，现在有 $m$ 次询问，每次询问给定 $[l,r]$ 和 $x$，问仅保留编号在 $[l,r]$ 内的点和它们之间的边的话，$x$ 所在的连通块有多少种不同的颜色</p>
-<p>$n,m\le 10^5,l\le x\le r$</p>
-<p>简要题解：根据点分树的性质，对于每一个连通块都存在一个点分树上深度最小的点，满足点分过程中该点作为根，且该点的子树内包含该连通块中的所有点</p>
-<p>那么我们可以将询问挂到对应的点分树上，具体来说，我们先把询问挂到 $x$ 上，在点分的过程中，我们每次点分到 $x$ 都一路跳父亲到根，判断 $x$ 到根的路径上是否包含的点都属于 $[l,r]$，如果都属于就说明当前的根就是这个连通块在点分树上深度最小的那个点</p>
-<p>然后我们考虑如何回答询问，对于一个点分树中的点，每个点都应视为一个区间 $[l,r]$，$l$ 和 $r$ 分别是该点到根的路径上的点的编号的最小值和最大值，我们考虑将询问和点都按照右端点离线，那么现在相当于每次加入一个颜色线段，然后查询以 $l$ 为左端点包含多少种颜色线段，这个东西的维护方式就是对于每种颜色线段我们只记录左端点最大的那个，可以使用树状数组实现</p>
-<p>时间复杂度 $O(n\log^2 n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/08/16/Luogu-P5311-Ynoi2011-%E6%88%90%E9%83%BD%E4%B8%83%E4%B8%AD/">Luogu P5311 [Ynoi2011] 成都七中</a></p>
-</li>
-<li><p>简要题意：给定一棵以 $1$ 为根的 $n$ 个点的有根树，边有边权，现在有 $m$ 个询问，每次询问给出 $[l,r]$，求对于 $l\le i\le j\le r$，有多少不同的 $dep(lca(i,j))$，其中 $dep(x)$ 表示 $x$ 到根的路径权值和</p>
-<p>$n\le 10^5,m\le 5\times 10^5$</p>
-<p>简要题解：首先对于询问我们肯定要离线下来，那么我们可以将问题转换为我们有 $\frac{n(n-1)}{2}$ 个有色区间，每次给定一个大区间求包含的子区间有多少种颜色</p>
-<p>这是一个经典的问题，但是区间的数量太大，我们考虑减少区间的数量，对于一个点 $u$，我们考虑以它为 $lca$ 的区间中，如果存在 $[x,y],[y,z],[x,z],x&lt;y&lt;z$，那么 $[x,z]$ 一定是没用的，也就是说对于点 $u$ 的儿子 $v$ 的子树内的点 $w$，我们只需要找 $w$ 在 $u$ 的其它儿子的子树内的前驱和后继即可，这个东西和 $dsu$ 一样，总量是 $O(n\log n)$ 的</p>
-<p>找到这些区间后直接离线处理即可，时间复杂度 $O(n\log^2 n+q\log n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/08/20/Luogu-P7880-Ynoi2006-rldcot/">Luogu P7880 [Ynoi2006] rldcot</a></p>
-</li>
-<li><p>简要题意：给定 $m$ 个区间 $[l_i,r_i]$ 和一个整数 $n$，保证 $1\le l_i\le r_i\le n$，求对于 $x\in [1,n]$，如果只保留 $x\le r_i-l_i+1$ 的区间，按照区间的编号依次放置区间，放置区间 $[l_i,r_i]$ 的条件是 $[l_i,r_i]$ 与之前放置的任何区间无交点，求被放置的区间的总长度</p>
-<p>$n\le 5\times 10^4,m\le 10^5$</p>
-<p>简要题解：注意到对于某一个 $x$，被放置的区间总数是小于等于 $\lfloor\frac{n}{x}\rfloor$，所以我们可以考虑求出所有放置区间，我们考虑倒叙处理 $x$，那么我们现在只有插入区间，那么我们需要支持的操作是插入一个区间 $[l,r]$，查询被区间 $[l,r]$ 完全包含的编号最小的区间，具体实现我们发现插入是一个类似后缀加的操作，所以我们使用树状数组套动态开点线段树，内部的线段树只需要维护单点修改，区间查询最小值</p>
-<p>时间复杂度 $O(n\log^3 n)$，但常数非常小</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/08/23/CF-1523G-Try-Booking/">CF 1523G Try Booking</a></p>
-</li>
-<li><p>简要题意：给定一个 $n$ 个点 $m$ 条边的无向图，现在有 $q$ 次询问，每次询问给定一个区间 $[l,r]$，求只包含编号在 $[l,r]$ 内的边的连通块的数量，强制在线</p>
-<p>$n,q\le 10^5,m\le 2\times 10^5$</p>
-<p>简要题解：不妨先考虑不强制在线的情况，我们使用扫描线同时用线段树维护左端点的答案，那么如果我们加入编号为 $r$ 的$(u,v)$ 这条边，它会使 左端点在 $[l,r]$ 的答案减一，这个 $l$ 是从 $r-1$ 向前扫不断加边直至 $u$ 和 $v$ 连通</p>
-<p>我们发现这个东西是可以用 $LCT$ 维护的，我们只需要用 $LCT$ 维护最大生成树即可求这个东西，每次不断替换环上编号最小的边</p>
-<p>强制在线的话，我们只需要将扫描线的过程可持久化一下即可，时间复杂度 $O(n\log n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/08/24/Luogu-P5385-Cnoi2019-%E9%A1%BB%E8%87%BE%E5%B9%BB%E5%A2%83/">Luogu P5385 [Cnoi2019]须臾幻境</a></p>
-</li>
-<li><p>简要题意：给定一个长度为 $n$ 的非升序列 $a_i$，现在有 $m$ 次操作，操作有两种，第一种操作给定 $x,y$，对于所有 $i\in[1,x]$，修改 $a_i=\max(a_i,y)$；第二种操作给定 $x,y$，从左往右访问序列 $a_i$，如果 $a_i\le y$，则 $ans++,y = y-a_i$，求 $ans$</p>
-<p>$n,m\le 2\times 10^5$</p>
-<p>简要题解：注意到修改操作不影响 $a_i$ 序列非升的性质，所以对于修改操作，我们只需要在线段树上二分找到第一个小于 $y$ 的位置，然后相当于做区间覆盖</p>
-<p>对于查询操作，注意到 $y$ 每次做一段连续减之后大小至少除以 $2$，所以最多有 $O(\log a_i)$ 段，那么我们每次直接在线段树上二分这个东西即可，但是我们每次二分并不是从 $1$ 开始，可以通过将 $y$ 加上 $\sum_{i=1}^{l-1}a_i$ 然后从 $1$，这样会好写很多</p>
-<p>时间复杂度 $O(n\log n\log a_i)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/09/06/CF-1439C-Greedy-Shopping/">CF 1439C Greedy Shopping</a></p>
-</li>
-<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$ 和一个整数 $s$，满足 $a_i$ 互不相同，$s\in[1,n]$，现在有 $m$ 次操作，操作有两种，第一种操作给定 $i,e$，将 $a_i$ 变成第 $e$ 大，保证之前 $i$ 的排名大于 $e$；第二种操作给定 $x$，问从 $s$ 开始向两边拓展到 $x$ 最少需要拓展多少次，拓展规则如下，假设现在已经拓展了 $[l,r]$，那么下一次会从 $l-1$ 和 $r+1$ 中选择一个较小的进行拓展</p>
-<p>$n\le 2.5\times 10^5,q\le 5\times 10^5,e\le 10$</p>
-<p>简要题解：我们考虑如果没有修改，那么每次查询相当找一段区间的最短的满足条件的后缀或者最短的满足条件的前缀，这个可以直接在线段树上二分</p>
-<p>但问题是我们不能在以编号为下标的线段树上动态维护排名的修改，但注意到每次提升排名到前 $10$ 名，那么我们考虑不维护排名而是维护具体的数值，这样我们每次只需要修改排名在 $[1,e]$ 的数值即可</p>
-<p>时间复杂度 $O(10n\log n+q\log n)$</p>
-<p><a href="">Luogu P6544 [CEOI2014] Cake</a></p>
-</li>
-</ol>
-
+          <h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/10/06/XX%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1332,108 +1246,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/20/CF-660E-Different-Subsets-For-All-Tuples/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="DDOSvoid">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DDOSvoid's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/20/CF-660E-Different-Subsets-For-All-Tuples/" class="post-title-link" itemprop="url">CF 660E Different Subsets For All Tuples</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2022-09-20 18:56:44 / 修改时间：19:51:31" itemprop="dateCreated datePublished" datetime="2022-09-20T18:56:44+08:00">2022-09-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
-        </span>
-    </span>
-
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/660/E">https://codeforces.com/problemset/problem/660/E</a></p>
-<p>简要题意：给定 $n,m$，现在要求所有长度为 $n$ 的序列，序列中每个位置只能填 $[1,m]$，的本质不同的子序列的个数的和</p>
-<p>$n,m\le 10^6$</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/09/20/CF-660E-Different-Subsets-For-All-Tuples/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/79/">79</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/80/">80</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1485,13 +1301,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">1.7m</span>
+    <span title="站点总字数">1.8m</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">26:29</span>
+    <span title="站点阅读时长">26:32</span>
   </span>
 </div>
 <div class="busuanzi-count">
