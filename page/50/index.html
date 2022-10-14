@@ -191,7 +191,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">794</span>
+          <span class="site-state-item-count">795</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -269,6 +269,125 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/31/%E6%9E%84%E9%80%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="DDOSvoid">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DDOSvoid's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/31/%E6%9E%84%E9%80%A0/" class="post-title-link" itemprop="url">构造</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-31 19:18:32" itemprop="dateCreated datePublished" datetime="2020-12-31T19:18:32+08:00">2020-12-31</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-24 15:18:21" itemprop="dateModified" datetime="2021-08-24T15:18:21+08:00">2021-08-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>677</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <a id="more"></a>
+<h2 id="利用多种操作进行构造为指定状态"><a href="#利用多种操作进行构造为指定状态" class="headerlink" title="利用多种操作进行构造为指定状态"></a>利用多种操作进行构造为指定状态</h2><ol>
+<li><p>操作可以交换顺序的情况下，考虑先进行某种操作，再进行其它操作</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/03/CF-1443D-Extreme-Subtraction/">CF 1443D Extreme Subtraction</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/05/CF-1400E-Clear-the-Multiset/">CF 1400E Clear the Multiset</a></p>
+</li>
+</ol>
+<h2 id="利用一种或多种操作将两个状态变成一个状态"><a href="#利用一种或多种操作将两个状态变成一个状态" class="headerlink" title="利用一种或多种操作将两个状态变成一个状态"></a>利用一种或多种操作将两个状态变成一个状态</h2><ol>
+<li><p>利用中间状态 $t$，构造 $a\rightarrow t\rightarrow b$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/01/17/CF-1382C2-Prefix-Flip-Hard-Version/">CF 1382C2 Prefix Flip (Hard Version)</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/05/2018-2019-ACM-ICPC-Asia-Nanjing-Regional-Contest-E-Eva-and-Euro-coins/">2018-2019 ACM-ICPC, Asia Nanjing Regional Contest E Eva and Euro coins</a></p>
+</li>
+</ol>
+<h2 id="二分图构造"><a href="#二分图构造" class="headerlink" title="二分图构造"></a>二分图构造</h2><ol>
+<li><p>简要题意：给定一张 $n$ 个点 $m$ 条边的无向连通图，每个点有一个权值 $a_i$，每次操作可以使一条边相连的两个点同时增加任意一个整数值，求是否能使所有点的权值都为 $0$​</p>
+<p>$n,m\le 2\times 10^5$</p>
+<p>简要题解：首先注意到我们的操作不能改变权值总和的奇偶性，所以如果和为奇数则一定不行</p>
+<p>然后我们注意到我们可以将距离为奇数的两个点同时增加相同的数值，距离为偶数的点一个增加另一个减少相同的数值</p>
+<p>这启示我们考虑二分图的性质，首先我们将这张图分成两种情况考虑，二分图和不是二分图</p>
+<p>如果该图是二分图，那么我们只需要看一下两边点的总和是否相等，相等则一定有解，不相等则一定无解</p>
+<p><strong>如果该图不是二分图，那么就一定存在奇环，对于一个存在奇环的图，任意两个点都存在一条长度为奇数的路径，所以一定有解</strong></p>
+<p><a href="">CF 1537F Figure Fixing</a></p>
+</li>
+</ol>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/31/2020-China-Collegiate-Programming-Contest-Changchun-Onsite-L-Coordinate-Paper/">2020 China Collegiate Programming Contest Changchun Onsite L. Coordinate Paper</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1148,102 +1267,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/28/CF-gym-102562B-Bitwise-Party/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="DDOSvoid">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DDOSvoid's Blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/28/CF-gym-102562B-Bitwise-Party/" class="post-title-link" itemprop="url">CF gym 102562B Bitwise Party</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2020-12-28 21:04:06 / 修改时间：21:04:39" itemprop="dateCreated datePublished" datetime="2020-12-28T21:04:06+08:00">2020-12-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OI-ACM/" itemprop="url" rel="index"><span itemprop="name">OI & ACM</span></a>
-        </span>
-    </span>
-
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a target="_blank" rel="noopener" href="http://codeforces.com/gym/102562/problem/B">http://codeforces.com/gym/102562/problem/B</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/28/CF-gym-102562B-Bitwise-Party/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1305,7 +1328,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">26:48</span>
+    <span title="站点阅读时长">26:56</span>
   </span>
 </div>
 <div class="busuanzi-count">
