@@ -31,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s1.ax1x.com/2022/08/03/vZPEPx.png">
 <meta property="article:published_time" content="2022-10-06T10:36:37.000Z">
-<meta property="article:modified_time" content="2022-10-06T11:46:19.431Z">
+<meta property="article:modified_time" content="2022-10-25T12:41:17.127Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="XX数据结构题">
 <meta name="twitter:card" content="summary">
@@ -199,7 +199,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">796</span>
+          <span class="site-state-item-count">799</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -308,10 +308,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-10-06 18:36:37 / 修改时间：19:46:19" itemprop="dateCreated datePublished" datetime="2022-10-06T18:36:37+08:00">2022-10-06</time>
+      <time title="创建时间：2022-10-06 18:36:37" itemprop="dateCreated datePublished" datetime="2022-10-06T18:36:37+08:00">2022-10-06</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-10-25 20:41:17" itemprop="dateModified" datetime="2022-10-25T20:41:17+08:00">2022-10-25</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -337,14 +343,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>11k</span>
+      <span>12k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>10 分钟</span>
+      <span>11 分钟</span>
     </span>
 </div>
 
@@ -547,6 +553,14 @@
 <p>时间复杂度 $O(10n\log n+q\log n)$</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/10/06/Luogu-P6544-CEOI2014-Cake/">Luogu P6544 [CEOI2014] Cake</a></p>
 </li>
+<li><p>简要题意：给定一棵 $n$ 个点的无根树，现在有 $m$ 次操作，操作有两种，第一种操作给定 $x$，求 $x$ 的权值；第二种操作给定 $u,v,k,d$，将距离 $u$ 到 $v$ 的简单路径的距离小于等于 $d$ 的点的点权加上 $k$</p>
+<p>$n,m\le 2\times 10^5,d\le 20$</p>
+<p>简要题解：我们首先考虑第二种操作改成将距离点 $u$ 小于等于 $d$ 的点权加上 $k$，由于 $d$ 很小，我们考虑将贡献按照子树的方式记录，即我们对于每个点记录 $f_{u,i}$ 表示 $u$ 的子树内距离 $u$ 为 $i$ 的点要加上 $f_{u,i}$，这样我们在查询的时候可以直接暴力前 $d$ 级祖先，然后我们修改时的做法大概是这样</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> v)</span> </span>&#123; </span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = d, t = x; ~i; t = fa[t], --i) &#123;</span><br><span class="line">        f[t][i] += v;</span><br><span class="line">        <span class="keyword">if</span> (i) f[t][i - <span class="number">1</span>] += v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于路径，我们令 $lca$ 为 $u$ 和 $v$ 的 $lca$，我们只需要修改路径上所有点的 $f_{u,d}$ 以及 $f_{lca,d-1}$，然后我们将其看做 $fa_{lca}$ 的 $d-1$ 然后按照第一种做法即可，注意如果提前跳到根节点需要特判</p>
+<p>时间复杂度 $O(n\log ^2n+dn\log n)$</p>
+<p><a href="">CF 1749F Distance to the Path</a></p>
+</li>
 </ol>
 
     </div>
@@ -641,7 +655,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">26:59</span>
+    <span title="站点阅读时长">27:07</span>
   </span>
 </div>
 <div class="busuanzi-count">
