@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/02/27/5c75dbb8ef8e9.gif">
 <meta property="og:image" content="https://i.loli.net/2019/02/27/5c75dbcc1b92a.gif">
 <meta property="article:published_time" content="2021-01-03T12:47:10.000Z">
-<meta property="article:modified_time" content="2022-10-29T12:19:50.512Z">
+<meta property="article:modified_time" content="2022-10-29T12:29:45.556Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="后缀自动机">
@@ -201,7 +201,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">804</span>
+          <span class="site-state-item-count">805</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -318,7 +318,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-10-29 20:19:50" itemprop="dateModified" datetime="2022-10-29T20:19:50+08:00">2022-10-29</time>
+        <time title="修改时间：2022-10-29 20:29:45" itemprop="dateModified" datetime="2022-10-29T20:29:45+08:00">2022-10-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -531,13 +531,13 @@
 <p>简要题解：我们首先将周期转换为 $border$，容易得到串 $S$ 的价值为 $\frac{len(S)}{len(S)-border(S)}$，我们考虑固定 $border(S)=T$，然后我们找最大的 $S$  满足 $T$ 是 $S$ 的 $border$</p>
 <p>考虑后缀自动机，容易发现我们固定 $T$ 后，$S$ 一定是在 $T$ 的子树里，那么我们枚举 $T$ 的任意两个结束位置 $s$ 和 $t$，不妨设 $t&lt;s$，一定可以找到一个 $S$ 满足其结束位置为 $s$，且 $s-t=len(S)-len(T)$，这里我们就成功将 $len(S)-len(T)$ 转换为了结束位置的差，需要注意对于同一对结束位置 $s$ 和 $t$，我们的 $len(T)$ 越大越好，这也就意味着我们只需要在 $s$ 和 $t$ 所代表的节点的 $lca$ 处统计 $s$ 和 $t$ 的贡献即可，那么我们可以直接启发式合并维护 $right$ 集合，在合并的时候顺便统计答案</p>
 <p>时间复杂度 $O(n\log ^2 n)$</p>
-<p><a href="">ICPC 2019-2020 North-Western Russia Regional Contest L Lengths and Periods</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/10/29/ICPC-2019-2020-North-Western-Russia-Regional-Contest-L-Lengths-and-Periods/">ICPC 2019-2020 North-Western Russia Regional Contest L Lengths and Periods</a></p>
 </li>
 <li><p>简要题意：给定一个字符串 $S$，令字符串 $T_i$ 为 $S[1\cdots i-1]+<em>+S[i+1\cdots n]$，其中 $</em>$ 为一个不同于 $[a,z]$ 的字符，求 $\lbrace S,T_1,\cdots,T_n\rbrace$ 的本质不同的子串个数</p>
 <p>$|S|\le 10^5$</p>
 <p>简要题解：容易发现我们需要统计五种字符串的数量，$S,S<em>,</em>S,<em>,S</em>T$，前四种较为容易，最后一种比较麻烦，我们首先考虑对于正反串各建一个 $SAM$，容易发现将结束位置为 $i-1$ 和 $i+1$ 的乘起来会算重，我们换一个做法，对于正串的每个节点统计有多少本质不同的 $T$，容易发现是一些树链的并，同时 $i-1$ 和 $i+1$ 是一一对应的，我们在正串的树上做启发式合并维护 $right$ 集合，同时维护 $right$ 集合所表示的树链的并</p>
 <p>时间复杂度 $O(n\log^ 2n)$</p>
-<p><a href=""></a></p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/10/29/CF-1276F-Asterisk-Substrings/">CF 1276F Asterisk Substrings</a></p>
 </li>
 </ol>
 
@@ -634,7 +634,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27:23</span>
+    <span title="站点阅读时长">27:26</span>
   </span>
 </div>
 <div class="busuanzi-count">
