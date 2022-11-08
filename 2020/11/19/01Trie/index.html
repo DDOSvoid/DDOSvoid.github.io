@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介其实就是只有两个分治的 $Trie$">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-19T11:44:27.000Z">
-<meta property="article:modified_time" content="2022-02-13T13:46:03.031Z">
+<meta property="article:modified_time" content="2022-11-08T04:56:23.816Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="01Trie">
 <meta property="article:tag" content="Tech">
@@ -182,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">应用</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">例题</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">806</span>
+          <span class="site-state-item-count">807</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -315,7 +315,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-02-13 21:46:03" itemprop="dateModified" datetime="2022-02-13T21:46:03+08:00">2022-02-13</time>
+        <time title="修改时间：2022-11-08 12:56:23" itemprop="dateModified" datetime="2022-11-08T12:56:23+08:00">2022-11-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -342,14 +342,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.6k</span>
+      <span>3.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -383,11 +383,37 @@
 <p>这样我们在加 $1$ 时所进行的操作就是不断进入右子树，然后交换左右子树，然后还要维护异或值</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lc T[i].ch[0]</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rc T[i].ch[1]</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">20</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Trie</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v, sum, ch[<span class="number">2</span>];</span><br><span class="line">&#125; T[Maxn * <span class="number">21</span>]; <span class="keyword">int</span> rt = <span class="number">1</span>, top = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">maintain</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    T[i].v = T[lc].v + T[rc].v;</span><br><span class="line">    T[i].sum = T[lc].sum &lt;&lt; <span class="number">1</span>; </span><br><span class="line">    T[i].sum ^= T[rc].sum &lt;&lt; <span class="number">1</span> | T[rc].v &amp; <span class="number">1</span>; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ins</span><span class="params">(<span class="keyword">int</span> &amp;i, <span class="keyword">int</span> k, <span class="keyword">int</span> o, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!i) i = ++top;</span><br><span class="line">    <span class="keyword">if</span> (o == N + <span class="number">1</span>) <span class="keyword">return</span> (<span class="keyword">void</span>) (T[i].v += v);</span><br><span class="line">    <span class="keyword">int</span> d = k &gt;&gt; o &amp; <span class="number">1</span>; ins(T[i].ch[d], k, o + <span class="number">1</span>);</span><br><span class="line">    maintain(i); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!i) <span class="keyword">return</span> ;</span><br><span class="line">    add(rc); swap(lc, rc);</span><br><span class="line">    maintain(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>给定 $n$ 个数和 $k$，求一个最大的子集，满足这个集合中任意两个数的异或和都大于等于 $k$</p>
+</ol>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><ol>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，求所有区间和的异或和</p>
+<p><strong>$n\le 10^5,\sum a_i\le 10^6$</strong></p>
+<p>简要题解：我们要求这个东西 $\bigoplus_{1\le j\le i\le n}s_i-s_{j-1}$</p>
+<p>考虑这样一个做法，我们枚举右端点，维护左端点的异或值</p>
+<p>那么每次相当于全局加 $1$，求全局异或和，这个东西可以拿 $01Trie$ 来做</p>
+<p>时间复杂度为 $O((n+\sum a_i)\log \sum a_i)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/24/Luogu-P3760-TJOI2017-%E5%BC%82%E6%88%96%E5%92%8C-01Trie/">Luogu P3760 [TJOI2017]异或和(01Trie)</a></p>
+</li>
+<li><p>简要题解：给定一棵 $n$ 个点有点权的无根树，求第 $k$ 小的路径异或和</p>
+<p>$n\le 10^6$</p>
+<p>简要题解：找两两异或值的前 $k$ 小类似于在权值线段树上二分</p>
+<p>由于爆空间，所以这题只能滚动</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/04/CF-1055F-Tree-and-XOR/">CF 1055F Tree and XOR</a></p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的序列 $a_i$，现在要将每个数划分到两个集合，一个几何的权值为集合内的所有数，两两之间的异或和的最小值，现在要求一种分法，使得两个点集的权值的最小值最大</p>
+<p>$n\le 10^5$</p>
+<p>简要题解：首先考虑一个比较套路的做法，根据 <a href="">Luogu P1525 [NOIP2010 提高组] 关押罪犯(最小生成树)</a>，容易得到我们只需要求一个最小生成树，然后用 $01Trie$ 求一个最小值即可，求异或最小生成树是一个经典的做法，时间复杂度 $O(n\log^2 n)$</p>
+<p>另外还有一个做法，现在我们仿照求异或最小生成树的做法，按位分治</p>
+<p>我们考虑现在在考虑第 $k$ 位，令第 $k$ 位为 $1$ 的个数为 $a$，第 $k$ 位为 $0$ 的个数为 $b$</p>
+<p>注意到如果 $a$ 和 $b$ 都小于等于 $2$，那么我们可以通过分组来避免最小值小于 $2^k$</p>
+<p>否则，最小值一定不含第 $k$ 位，且一定由左边和右边组成，所以可以直接递归</p>
+<p>时间复杂度 $O(n\log n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/19/The-2020-ICPC-Asia-Macau-Regional-Contest-C-Club-Assignment/">The 2020 ICPC Asia Macau Regional Contest C Club Assignment</a></p>
+</li>
+<li><p>简要题意：给定一个长度为 $n$ 的数列和一个数字 $k$，求从这 $n$ 歌数中找出一个大小最大的子集，满足这个集合中任意两个数的异或和都大于等于 $k$</p>
+<p>$n\le 3\times 10^5$</p>
 <p>简要题解：首先得到 $k$ 的最高二进制一的位置，令其为 $t$，那么我们容易发现如果如果两个数字 $t$ 之前的位置有所不同，那么这两个数字的异或和一定大于 $k$，注意到这是一个前缀的比较，那么我们可以联想到 $01Trie$</p>
 <p>我们将这些点拉出来，发现他们内部选出来的点与外面的点是没有影响的，然后容易发现，这些点内部最多选两个点，左儿子一个，右儿子一个，因为左右儿子内部选出来的点异或最大不会超过 $2^{t}-1$，那么这里我们只需要枚举左儿子的点，然后对于每个点从右儿子中选一个最大的，在 $01Trie$ 上实现这点是非常容易的，最后选择异或和最大的一对点即可</p>
-<p>时间复杂度 $O(n\log n)$</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/02/13/CF-1625D-Binary-Spiders/">CF 1625D Binary Spiders</a></p>
+<p>时间复杂度 $O(n\log n)$<br><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/02/13/CF-1625D-Binary-Spiders/">CF 1625D Binary Spiders</a></p>
 </li>
 </ol>
 
@@ -484,7 +510,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27:27</span>
+    <span title="站点阅读时长">27:32</span>
   </span>
 </div>
 <div class="busuanzi-count">
