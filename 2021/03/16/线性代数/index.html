@@ -30,7 +30,7 @@
 <meta property="og:description" content="线性代数">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-16T12:43:42.000Z">
-<meta property="article:modified_time" content="2022-10-05T12:07:10.386Z">
+<meta property="article:modified_time" content="2022-11-09T09:13:57.976Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="线性代数">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">810</span>
+          <span class="site-state-item-count">812</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -315,7 +315,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-10-05 20:07:10" itemprop="dateModified" datetime="2022-10-05T20:07:10+08:00">2022-10-05</time>
+        <time title="修改时间：2022-11-09 17:13:57" itemprop="dateModified" datetime="2022-11-09T17:13:57+08:00">2022-11-09</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -342,14 +342,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>6.1k</span>
+      <span>7.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
+      <span>7 分钟</span>
     </span>
 </div>
 
@@ -398,7 +398,7 @@ a_{m,1}x_1+a_{m,2}x_2+\cdots+a_{m,n}x_n=b_m
 <li>秩为 $n-1$ 的 $n$ 阶方阵 $A$ 的伴随矩阵 $A^<em>$ 的秩为 $1$，因为 $A$ 的秩为 $n-1$，所以一定存在不全为 $0$ 的实数 $x_1,\cdots,x_n$ 使得 $\sum_{i=1}^nx_ia_i=0$，其中 $a_i$ 表示 $A$ 的第 $i$ 行的行向量，同理可以得出关于列向量的 $y_i$，可以证明 $A^</em>$ 的第 $i$ 行和第 $j$ 行的比例为 $\frac{x_i}{x_j}$，列同理，那么有 $A_{a,b}=A_{i,j}\frac{x_ay_b}{x_iy_j}$</li>
 </ol>
 <h1 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h1><h2 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h2><p>矩阵乘法就是矩阵乘法吧</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Matrix</span> &#123;</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> n = <span class="number">3</span>; </span><br><span class="line">    <span class="keyword">int</span> a[n + <span class="number">1</span>][n + <span class="number">1</span>];</span><br><span class="line">    </span><br><span class="line">    Matrix() &#123; clear(); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">setone</span><span class="params">()</span> </span>&#123; clear(); <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) a[i][i] = <span class="number">1</span>; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123; fill(a[<span class="number">0</span>], a[<span class="number">0</span>] + (n + <span class="number">1</span>) * (n + <span class="number">1</span>), <span class="number">0</span>); &#125;</span><br><span class="line">    <span class="keyword">friend</span> Matrix <span class="keyword">operator</span> * (<span class="keyword">const</span> Matrix &amp;u, <span class="keyword">const</span> Matrix &amp;v) &#123;</span><br><span class="line">        Matrix w; </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= n; ++k)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j)</span><br><span class="line">                    w.a[i][j] = add(w.a[i][j], <span class="number">1l</span>l * u.a[i][k] * v.a[k][j] % p);</span><br><span class="line">        <span class="comment">/*for (int i = 1; i &lt;= n; ++i)</span></span><br><span class="line"><span class="comment">            for (int k = 1; k &lt;= n; ++k) &#123; </span></span><br><span class="line"><span class="comment">            	if (!u.a[i][k]) continue;</span></span><br><span class="line"><span class="comment">                for (int j = 1; j &lt;= n; ++j) </span></span><br><span class="line"><span class="comment">                    w.a[i][j] = add(w.a[i][j], 1ll * u.a[i][k] * v.a[k][j] % p);</span></span><br><span class="line"><span class="comment">            &#125;*/</span></span><br><span class="line">        <span class="keyword">return</span> w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; ;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Matrix</span> &#123;</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> n = <span class="number">3</span>; </span><br><span class="line">    <span class="keyword">int</span> a[n + <span class="number">1</span>][n + <span class="number">1</span>];</span><br><span class="line">    </span><br><span class="line">    Matrix() &#123; clear(); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">setone</span><span class="params">()</span> </span>&#123; clear(); <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) a[i][i] = <span class="number">1</span>; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123; fill(a[<span class="number">0</span>], a[<span class="number">0</span>] + (n + <span class="number">1</span>) * (n + <span class="number">1</span>), <span class="number">0</span>); &#125;</span><br><span class="line">    <span class="keyword">friend</span> Matrix <span class="keyword">operator</span> * (<span class="keyword">const</span> Matrix &amp;u, <span class="keyword">const</span> Matrix &amp;v) &#123;</span><br><span class="line">        Matrix w; </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= n; ++k)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j)</span><br><span class="line">                    w.a[i][j] = add(w.a[i][j], <span class="number">1l</span>l * u.a[i][k] * v.a[k][j] % p);</span><br><span class="line">        <span class="comment">/*for (int i = 1; i &lt;= n; ++i)</span></span><br><span class="line"><span class="comment">            for (int k = 1; k &lt;= n; ++k) &#123; </span></span><br><span class="line"><span class="comment">            	if (!u.a[i][k]) continue;</span></span><br><span class="line"><span class="comment">                for (int j = 1; j &lt;= n; ++j) </span></span><br><span class="line"><span class="comment">                    w.a[i][j] = add(w.a[i][j], 1ll * u.a[i][k] * v.a[k][j] % p);</span></span><br><span class="line"><span class="comment">            &#125;*/</span></span><br><span class="line">        <span class="comment">/*for (int i = 1; i &lt;= n; ++i)</span></span><br><span class="line"><span class="comment">            for (int j = 1; j &lt;= n; ++j) &#123;</span></span><br><span class="line"><span class="comment">                ll res = 0; const ll pq = 1ll * p * p;</span></span><br><span class="line"><span class="comment">                for (int k = 1; k &lt;= n; ++k) &#123;</span></span><br><span class="line"><span class="comment">                    res += 1ll * u.a[i][k] * v.a[k][j];</span></span><br><span class="line"><span class="comment">                    if (res &gt;= pq) res -= pq;</span></span><br><span class="line"><span class="comment">                &#125; w.a[i][j] = res % p;</span></span><br><span class="line"><span class="comment">            &#125;*/</span></span><br><span class="line">        <span class="keyword">return</span> w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; ;</span><br></pre></td></tr></table></figure>
 <h3 id="矩阵乘法的变种"><a href="#矩阵乘法的变种" class="headerlink" title="矩阵乘法的变种"></a>矩阵乘法的变种</h3><p>矩阵乘法除了能使用乘法和加法意外，我们还可以将乘法换成加法，加法变成取最大值，可以证明这样仍然满足结合律</p>
 <p>这样的单位矩阵是对角线为 $0$，其它位置是 $-\infty$</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Matrix</span> &#123;</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> n = <span class="number">2</span>; </span><br><span class="line">    <span class="keyword">int</span> a[n + <span class="number">1</span>][n + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    Matrix() &#123; clear(); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123; fill(a[<span class="number">0</span>], a[<span class="number">0</span>] + (n + <span class="number">1</span>) * (n + <span class="number">1</span>), -INF); &#125; </span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">setone</span><span class="params">()</span> </span>&#123; clear(); <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) a[i][i] = <span class="number">0</span>; &#125;</span><br><span class="line">    <span class="keyword">friend</span> Matrix <span class="keyword">operator</span> * (<span class="keyword">const</span> Matrix &amp;u, <span class="keyword">const</span> Matrix &amp;v) &#123;</span><br><span class="line">        Matrix w; </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= n; ++k) </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j)</span><br><span class="line">                    w.a[i][j] = max(w.a[i][j], u.a[i][k] + v.a[k][j]);</span><br><span class="line">        <span class="keyword">return</span> w; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -421,6 +421,29 @@ a_{m,1}x_1+a_{m,2}x_2+\cdots+a_{m,n}x_n=b_m
 <p>简要题解：</p>
 <p>构造矩阵 $A$，满足 $A_{i,j}=p_{i,j},A_{i,i}=0$，那么 $A^1+A^2+\cdots A^{\infty}=B$，$B_{i,j}$ 即为 $i$ 走了若干步到 $j$ 且中间没有停下来的概率，那么我们要求的答案就是 $B_{i,j}\times p_{i,i}$，容易得到 $B=\frac{I}{I-A}$</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/08/04/2021%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A15-E-Random-Walk-2/">2021杭电多校5 E Random Walk 2</a></p>
+</li>
+<li><p>简要题意：现在有一块长为 $L$ 的巧克力，我们可以将其切成若干段，不妨假设切成了 $m$ 段，每段的长度为 $a_i$，那么这种切法的价值就是 $\sum_{i=1}^ma_i^2$，现在给定 $n$ 个位置，这些位置不能切，求所有切法的价值和，答案对 $1e9+7$ 取模</p>
+<p>$L\le 10^9,n\le 10^5$</p>
+<p>简要题解：我们考虑 $dp$，令 $f_i$ 表示切的位置在 $i$ 的价值和，容易得到 $f_i=\sum_{j=0}^{i-1}f_j(i-j)^2$</p>
+<p>这个东西咋一看没法优化，但其实这个东西可以写成矩阵的形式，我们考虑用矩阵维护 $\sum_{i=0}^nf_i,\sum_{i=0}^n(n+1-i)f_i,\sum_{i=0}^n{(n+1-i)^2f_i}$，然后发现三个东西可以转移的，转移矩阵为</p>
+<script type="math/tex; mode=display">
+\begin{vmatrix}
+1 & 0 & 1\\
+1 & 1 & 1\\
+1 & 2 & 2\\
+\end{vmatrix}</script><p>注意这个转移矩阵是左乘的，然后没法切的转移就是将第三列都减掉一个 $1$，时间复杂度 $O(n\log n)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/11/01/%E3%80%90%E4%B8%AA%E4%BA%BA%E8%B5%9B%E7%BB%84%E3%80%912021-2022%E5%B9%B4%E5%BA%A6%E7%AC%AC%E4%B8%89%E5%B1%8A%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%BC%96%E7%A8%8B%E6%8C%91%E6%88%98%E8%B5%9B%EF%BC%88%E7%A7%8B%E5%AD%A3%E8%B5%9B%EF%BC%89-G-%E5%B7%A7%E5%85%8B%E5%8A%9B/">【个人赛组】2021-2022年度第三届全国大学生算法设计与编程挑战赛（秋季赛） G 巧克力</a></p>
+</li>
+<li><p>简要题意：给定一个有向图有自环无重边，边有两种类型 $0$ 和 $1$，求最长路径，如果最长路径大于 $1e18$ 则视为 $-1$，同时走到路径的边的类型有如下限制，$0$，$01$，$0110$，$01101001$，即长度为 $2^n$ 的路径是由长度为 $2^{n-1}$ 的路径和长度为 $2^{n-1}$ 取反拼接得到</p>
+<p>$n\le 500,m\le 2n^2$</p>
+<p>简要题解：我们对于 $0$ 和 $1$ 各建一个矩阵 $f,g$，显然我们有 $f_n=f_{n-1}g_{n-1},g_n=g_{n-1}f_{n-1}$，其中 $f_{n}$ 表示长度为 $2^n$ 的路径的矩阵，对于最长路，我们预处理好 $f$ 和 $g$ 之后枚举二进制枚举答案即可，要从高到低枚举，且每次枚举出 $1$ 后要交换 $f$ 和 $g$</p>
+<p>另外由于我们的 $f$ 和 $g$ 只需要存储是否能到达，可以使用 $bitset$ 优化，时间复杂度 $O(\frac{n^3\log v}{w})$</p>
+<p><a href="">CF 780F Axel and Marston in Bitland</a></p>
+</li>
+<li><p>简要题意：给定一个 $n\times m$ 的矩阵 $X$ 和一个 $m\times n$ 的矩阵 $Y$，现在有 $q$ 次询问，每次询问给定 $u,v,d$，求 $\sum_{i=0}^d(XY)^i_{u,v}$ </p>
+<p>$n\le 1000,m\le 20, q\le 50$</p>
+<p>简要题解：我们注意到 $XY$ 是一个 $n\times n$ 的矩阵，而 $YX$ 是一个 $m\times m$ 的矩阵，所以我们将 $(XY)^k$ 拆成 $X(YX)^{k-1}Y$，对于 $\sum_{i=0}^{d-1}(YX)^i_{u,v}$ 可以 $O(m^3\log d)$ 求，那么总复杂度就是 $O(qm^3\log d)$</p>
+<p><a href="">bzoj 3583 杰杰的女性朋友</a></p>
 </li>
 </ol>
 <h1 id="线性基"><a href="#线性基" class="headerlink" title="线性基"></a>线性基</h1><p>不同于异或中常说的线性基，这里的线性基是用来维护线性最大无关组的</p>
@@ -522,7 +545,7 @@ a_{m,1}x_1+a_{m,2}x_2+\cdots+a_{m,n}x_n=b_m
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27:46</span>
+    <span title="站点阅读时长">27:52</span>
   </span>
 </div>
 <div class="busuanzi-count">

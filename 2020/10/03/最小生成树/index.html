@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介&#x3D; &#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-03T05:48:33.000Z">
-<meta property="article:modified_time" content="2022-05-25T13:53:16.596Z">
+<meta property="article:modified_time" content="2022-11-09T08:24:27.956Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="最小生成树">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">810</span>
+          <span class="site-state-item-count">812</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -315,7 +315,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-05-25 21:53:16" itemprop="dateModified" datetime="2022-05-25T21:53:16+08:00">2022-05-25</time>
+        <time title="修改时间：2022-11-09 16:24:27" itemprop="dateModified" datetime="2022-11-09T16:24:27+08:00">2022-11-09</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -342,14 +342,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.7k</span>
+      <span>5.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -395,24 +395,36 @@
 <li>不同的最小生成树中，某一种权值的边连接完成后，形成的连通块状态是一样的</li>
 </ol>
 <h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><ol>
-<li><p>求图中两点 $u$ 和 $v$ 之间所有路径上的最长边的最小值</p>
-<p>简单理解：考虑 $kruskal$ 的过程</p>
-</li>
-<li><p>每次操作加入 $O(n)$ 条边，共有 $m$ 此操作，每次求最小生成树</p>
-<p>考虑 $kruskal$ 的过程，每次有用的只有上次被加入的边，所以只需要保留上次有用的边即可</p>
+<li><p>简要题意：给定一个长度无限大，宽度为 $m$ 的平面，现在我们依次在平面上加入 $n$ 个点，每加入一个点都需要求一个最小的半径 $r$，使得平面上这些点变成半径为 $r$ 的圆后，这些圆的并将平面封住，即无法从平面最左侧走到最右侧</p>
+<p>$n\le 2000$ </p>
+<p>简要题解：我们考虑如果机器人的半径是 $r$ 会发生什么</p>
+<p>以每个家具为圆心画半径为 $r$ 的圆，机器人的圆心不能在这个园内</p>
+<p>那么我们考虑如果家具的圆将上下封住机器人就没法走了</p>
+<p>所以我们以家具之间的距离为边的长度建图，然后跑最小生成树即可</p>
+<p>注意到要求 $n$ 次最小生成树，且每次需要加 $O(n)$ 条边</p>
+<p>但实际上我们每次只需要保留上一棵树的树边，与新加的边一起跑 $kruskal$ 即可</p>
+<p>时间复杂度 $O(n^2\log n)$</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/11/14/%E6%A0%A1%E5%86%85%E8%B5%9B-T4-%E6%89%AB%E5%9C%B0%E6%9C%BA%E5%99%A8%E4%BA%BA/">校内赛 T4 扫地机器人</a></p>
 </li>
-<li><p>有黑白两条边，求含有 $k$ 条白边的最长边最短的生成树</p>
-<p>考虑二分答案后求最多有多少白边和最少有多少白边，$k$ 在这个范围内就行</p>
+<li><p>简要题意：给定一个有 $n$ 个点 $m$ 条边的无向图，边有黑白两种颜色，要求一棵有 $k$ 条白边的生成树，且该树的最长边的权值最小</p>
+<p>$n\le 10^5,m\le 2\times 10^5$</p>
+<p>简要题解：我们考虑二分答案</p>
+<p>然后我们先加白边，这样可以求出最多有 $R$ 条白边</p>
+<p>然后先加黑边，这样可以求出最少有 $L$ 条白边</p>
+<p>如果 $L\le k\le R$，则一定有一颗只含有 $k$ 条白边的生成树</p>
+<p>简单证明：我们考虑有 $R$ 条白边的生成树可以通过换边操作换成有 $L$ 条白边的生成树</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/07/2020%E5%B9%B4%E5%B9%BF%E8%A5%BF%E7%9C%81CCPC%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B-B-Longest-Road/">2020年广西省CCPC大学生程序设计竞赛 B Longest Road</a></p>
 </li>
 <li><p>每次查询删除一条边之后的最小生成树</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/08/bzoj-2238-Mst/">bzoj 2238 Mst</a> 维护每条非树边能替换哪些树边</p>
 </li>
-<li><p>求最小删多少边，可以使的给定边 $(u,v,w)$ 出现在某一棵最小生成树上</p>
-<p>我们考虑对于一条边 $(u,v,w)$，它怎样才可能出现在最小生成树上</p>
+<li><p>简要题意：给定一个 $n$ 个点 $m$ 条正权边的无向连通图，同时再给定一条边 $(u,v,w)$，求最少删除多少条边才能使这条边既有可能出现在最小生成树上，也有可能出现在最大生成树上</p>
+<p>$n\le 20000,m\le 2\times 10^5$</p>
+<p>简要题解：我们考虑对于一条边 $(u,v,w)$，它怎样才可能出现在最小生成树上</p>
 <p>显然是当添加完边权小于 $w$ 的边之后，$u$ 和 $v$ 仍然不连通</p>
 <p>也就是说我们只需要求一个以 $u$ 为源点，$v$ 为汇点的最小割即可</p>
+<p>对于最大生成树，我们只需要把边权大于 $w$ 的边拿出来做一遍即可</p>
+<p>两次答案相加就是最终答案</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/04/16/Luogu-P5934-%E6%B8%85%E5%8D%8E%E9%9B%86%E8%AE%AD2012-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/">Luogu P5934 [清华集训2012]最小生成树</a> </p>
 </li>
 <li><p>边有黑白两种颜色，求恰好有 $k$ 条白边的最小生成树</p>
@@ -544,7 +556,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27:46</span>
+    <span title="站点阅读时长">27:52</span>
   </span>
 </div>
 <div class="busuanzi-count">

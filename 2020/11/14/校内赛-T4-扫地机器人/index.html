@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="题目描述">
+  <meta name="description" content="题目描述简要题意：给定一个长度无限大，宽度为 $m$ 的平面，现在我们依次在平面上加入 $n$ 个点，每加入一个点都需要求一个最小的半径 $r$，使得平面上这些点变成半径为 $r$ 的圆后，这些圆的并将平面封住，即无法从平面最左侧走到最右侧 $n\le 2000$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="校内赛 T4 扫地机器人">
 <meta property="og:url" content="http://example.com/2020/11/14/%E6%A0%A1%E5%86%85%E8%B5%9B-T4-%E6%89%AB%E5%9C%B0%E6%9C%BA%E5%99%A8%E4%BA%BA/index.html">
 <meta property="og:site_name" content="DDOSvoid&#39;s Blog">
-<meta property="og:description" content="题目描述">
+<meta property="og:description" content="题目描述简要题意：给定一个长度无限大，宽度为 $m$ 的平面，现在我们依次在平面上加入 $n$ 个点，每加入一个点都需要求一个最小的半径 $r$，使得平面上这些点变成半径为 $r$ 的圆后，这些圆的并将平面封住，即无法从平面最左侧走到最右侧 $n\le 2000$">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-14T05:58:48.000Z">
-<meta property="article:modified_time" content="2020-11-14T06:04:08.889Z">
+<meta property="article:modified_time" content="2022-11-09T08:16:52.721Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="最小生成树">
 <meta name="twitter:card" content="summary">
@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">810</span>
+          <span class="site-state-item-count">812</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -306,10 +306,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-11-14 13:58:48 / 修改时间：14:04:08" itemprop="dateCreated datePublished" datetime="2020-11-14T13:58:48+08:00">2020-11-14</time>
+      <time title="创建时间：2020-11-14 13:58:48" itemprop="dateCreated datePublished" datetime="2020-11-14T13:58:48+08:00">2020-11-14</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-11-09 16:16:52" itemprop="dateModified" datetime="2022-11-09T16:16:52+08:00">2022-11-09</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -335,14 +341,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.1k</span>
+      <span>1.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
@@ -353,21 +359,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><a id="more"></a>
-<blockquote>
-<p>描述</p>
-<p>扫地机器人，又称自动打扫机、智能吸尘、机器人吸尘器等，是智能家用电器的一种，能凭借一定的人工智能，自动在房间内完成地板清理工作。一般采用刷扫和真空方式，将地面杂物先吸纳进入自身的垃圾收纳盒，从而完成地面清理的功能。一般来说，将完成清扫、吸尘、擦地工作的机器人，也统一归为扫地机器人。</p>
-<p>小Q计划在自己的新家中购置一台圆形的扫地机器人。小Q的家中有一个宽度为 m 的走廊，走廊很长，如果将这个走廊的俯视图画在平面直角坐标系上的话，那么走廊的两堵墙可以分别看作直线 y=0 和直线 y=m，两堵墙之间的部分代表走廊。</p>
-<p>小Q会按照顺序依次在走廊中安置 n 个家具。第iii个家具的位置为 (x_i,y_i) ，宽度可以忽略不计，同一个位置可能会有多个家具。</p>
-<p>在商店中，扫地机器人的半径只能是整数。请找到最大可能的整数半径 R，使得以 R 为半径的扫地机器人可以从走廊的最左侧到达最右侧，扫地机器人不可以穿过家具或者墙壁，但是允许接触它们。</p>
-<p>请写一个程序，帮助小Q在每次安置下新的家具后，都能计算出这个条件下允许通过的扫地机器人的最大可能半径。</p>
-<p>输入</p>
-<p>第一行包含两个正整数n,mn,mn,m，分别表示家具的数量和走廊的宽度。</p>
-<p>接下来nnn行，每行两个正整数xi,yix_i,y_ixi,yi，表示第iii个被安置下的家具的位置。</p>
-<p>输出</p>
-<p>输出nnn行，每行输出一个整数，第iii行输出在安置下前iii</p>
-<p>$1\le n\le 2500,1\le x_i\le 10^9,1\le y_i&lt;m\le 10^9$</p>
-</blockquote>
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>简要题意：给定一个长度无限大，宽度为 $m$ 的平面，现在我们依次在平面上加入 $n$ 个点，每加入一个点都需要求一个最小的半径 $r$，使得平面上这些点变成半径为 $r$ 的圆后，这些圆的并将平面封住，即无法从平面最左侧走到最右侧</p>
+<p>$n\le 2000$ </p>
+<a id="more"></a>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>我们考虑如果机器人的半径是 $r$ 会发生什么</p>
 <p>以每个家具为圆心画半径为 $r$ 的圆，机器人的圆心不能在这个园内</p>
 <p>那么我们考虑如果家具的圆将上下封住机器人就没法走了</p>
@@ -469,7 +463,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27:46</span>
+    <span title="站点阅读时长">27:52</span>
   </span>
 </div>
 <div class="busuanzi-count">

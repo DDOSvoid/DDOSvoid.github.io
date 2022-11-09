@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="题目描述https:&#x2F;&#x2F;codeforces.com&#x2F;problemset&#x2F;problem&#x2F;1511&#x2F;E">
+  <meta name="description" content="题目描述https:&#x2F;&#x2F;codeforces.com&#x2F;problemset&#x2F;problem&#x2F;1511&#x2F;E 简要题意：给定一个 $n\times m$ 的网格图，格子有黑色和白色两种，现在你要将每个白色格子染成红色或蓝色，对于每一种染色方案，你需要尽可能的铺上 $1\times 2$ 的骨牌，横着的骨牌必须在两个红色格子上，竖着的骨牌必须在两个蓝色格子上，现在要求所有方案的骨牌数量之和 $n\tim">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CF 1511E Colorings and Dominoes">
 <meta property="og:url" content="http://example.com/2021/06/05/CF-1511E-Colorings-and-Dominoes/index.html">
 <meta property="og:site_name" content="DDOSvoid&#39;s Blog">
-<meta property="og:description" content="题目描述https:&#x2F;&#x2F;codeforces.com&#x2F;problemset&#x2F;problem&#x2F;1511&#x2F;E">
+<meta property="og:description" content="题目描述https:&#x2F;&#x2F;codeforces.com&#x2F;problemset&#x2F;problem&#x2F;1511&#x2F;E 简要题意：给定一个 $n\times m$ 的网格图，格子有黑色和白色两种，现在你要将每个白色格子染成红色或蓝色，对于每一种染色方案，你需要尽可能的铺上 $1\times 2$ 的骨牌，横着的骨牌必须在两个红色格子上，竖着的骨牌必须在两个蓝色格子上，现在要求所有方案的骨牌数量之和 $n\tim">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-05T12:50:12.000Z">
-<meta property="article:modified_time" content="2021-06-05T12:55:41.907Z">
+<meta property="article:modified_time" content="2022-11-09T08:41:56.667Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="概率与期望">
 <meta name="twitter:card" content="summary">
@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">810</span>
+          <span class="site-state-item-count">812</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -306,10 +306,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-06-05 20:50:12 / 修改时间：20:55:41" itemprop="dateCreated datePublished" datetime="2021-06-05T20:50:12+08:00">2021-06-05</time>
+      <time title="创建时间：2021-06-05 20:50:12" itemprop="dateCreated datePublished" datetime="2021-06-05T20:50:12+08:00">2021-06-05</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-11-09 16:41:56" itemprop="dateModified" datetime="2022-11-09T16:41:56+08:00">2022-11-09</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -335,7 +341,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>1.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -354,6 +360,8 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1511/E">https://codeforces.com/problemset/problem/1511/E</a></p>
+<p>简要题意：给定一个 $n\times m$ 的网格图，格子有黑色和白色两种，现在你要将每个白色格子染成红色或蓝色，对于每一种染色方案，你需要尽可能的铺上 $1\times 2$ 的骨牌，横着的骨牌必须在两个红色格子上，竖着的骨牌必须在两个蓝色格子上，现在要求所有方案的骨牌数量之和</p>
+<p>$n\times m\le 3\times 10^5$</p>
 <a id="more"></a>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>首先原题相当于求期望，最后再乘上 $2$ 的若干次方即可</p>
 <p>首先根据期望，我们可以将横着的和竖着的拆开了计算</p>
@@ -455,7 +463,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27:46</span>
+    <span title="站点阅读时长">27:52</span>
   </span>
 </div>
 <div class="busuanzi-count">
