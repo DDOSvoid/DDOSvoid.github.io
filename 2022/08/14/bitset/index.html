@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介$bitset$ 确实是一个很好用的东西">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-14T05:42:04.000Z">
-<meta property="article:modified_time" content="2022-08-14T15:27:34.466Z">
+<meta property="article:modified_time" content="2022-11-08T10:19:51.286Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="bitset">
@@ -182,7 +182,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%BB%84-bitset"><span class="nav-number">2.</span> <span class="nav-text">分组 bitset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E5%8C%85"><span class="nav-number">3.</span> <span class="nav-text">背包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%88%96%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">4.</span> <span class="nav-text">异或方程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D"><span class="nav-number">5.</span> <span class="nav-text">字符串匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">5.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%8F%E5%BA%8F"><span class="nav-number">6.</span> <span class="nav-text">偏序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-number">6.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%90%91%E5%9B%BE%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="nav-number">7.</span> <span class="nav-text">有向图连通性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-2"><span class="nav-number">7.1.</span> <span class="nav-text">例题</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%BB%84-bitset"><span class="nav-number">2.</span> <span class="nav-text">分组 bitset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#01%E8%83%8C%E5%8C%85"><span class="nav-number">3.</span> <span class="nav-text">01背包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%88%96%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">4.</span> <span class="nav-text">异或方程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D"><span class="nav-number">5.</span> <span class="nav-text">字符串匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">5.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%8F%E5%BA%8F"><span class="nav-number">6.</span> <span class="nav-text">偏序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-number">6.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%90%91%E5%9B%BE%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="nav-number">7.</span> <span class="nav-text">有向图连通性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-2"><span class="nav-number">7.1.</span> <span class="nav-text">例题</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">807</span>
+          <span class="site-state-item-count">810</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -307,10 +307,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-08-14 13:42:04 / 修改时间：23:27:34" itemprop="dateCreated datePublished" datetime="2022-08-14T13:42:04+08:00">2022-08-14</time>
+      <time title="创建时间：2022-08-14 13:42:04" itemprop="dateCreated datePublished" datetime="2022-08-14T13:42:04+08:00">2022-08-14</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-11-08 18:19:51" itemprop="dateModified" datetime="2022-11-08T18:19:51+08:00">2022-11-08</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -336,7 +342,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.7k</span>
+      <span>4.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -357,7 +363,7 @@
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>$bitset$ 确实是一个很好用的东西</p>
 <a id="more"></a>
 <h2 id="分组-bitset"><a href="#分组-bitset" class="headerlink" title="分组 bitset"></a>分组 bitset</h2><p>大概就是因为空间不够，所以连续 $B$ 个开一个 $bitset$</p>
-<h2 id="背包"><a href="#背包" class="headerlink" title="背包"></a>背包</h2><ol>
+<h2 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h2><ol>
 <li>一般的背包的时间复杂度大概是 $O(\frac{nm}{w})$</li>
 <li>如果 $n$ 个物体的体积和为 $O(n)$ 级别的数字，那么我们可以做到 $O(\frac{n\sqrt n}{w})$，具体做法：不同的体积只有 $O(\sqrt n)$ 种，对每种体积做二进制优化的多重背包，时间复杂度看似是 $O(\frac{n\sqrt n\log n}{w})$，但其实是 $O(\frac{n\sqrt n}{w})$</li>
 </ol>
@@ -368,13 +374,16 @@
 <p>$|S|,m,\sum |T|\le 10^5$</p>
 <p>简要题解：注意到数据范围全部是 $10^5$，我们直接考虑 $bitset$，第一个操作显然可以做到 $O(1)$，第二个操作我们直接做字符串匹配然后通过左移和右移把区间 $[l,r]$ 外的变成 $0$ 即可，时间复杂度 $O(\frac{n^2}{w})$</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/08/14/CF-914F-Substrings-in-a-String/">CF 914F Substrings in a String(bitset)</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bitset</span>&lt;N + 1&gt; ans;</span><br><span class="line">ans = ans &gt;&gt; x &lt;&lt; N + x - y; <span class="comment">// 将 [x,y] 外的区间都变成 0 </span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>简要题意：给定一个长度为 $n$ 的字符串 $S$，现在有 $m$ 次询问，每次询问规定一个整数 $k_i$ 和一个字符串 $T_i$，对于每次询问要求找到一个字符串 $B$ 满足 $B$ 是 $S$ 的子串，且 $T_i$ 在 $B$ 中至少出现了 $k_i$ 次，保证每次询问的 $T_i$ 不同</p>
 <p>$|S|,n,\sum |T|\le 10^5$</p>
 <p>简要题解：首先我们有一个经典结论，对于一个长度为 $n$ 的字符串 $S$ 和 $m$ 个长度和为 $O(n)$ 的字符串 $T_i$，这 $m$ 个字符串在 $S$ 中出现的总次数为 $O(n\sqrt n)$</p>
 <p>那么我们只需要能快速求出，每个字符串在 $S$ 中所有出现位置，然后暴力枚举每个出现位置即可，求出现位置可以使用 $bitset$，同时 $bitset$ 有一个函数可以实现 $O(\frac{n}{w}+c)$ 找出所有的 $1$ ，时间复杂度 $O(\frac{n^2}{w}+n\sqrt n)$</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/08/14/CF-963D-Frequency-of-String/">CF 963D Frequency of String</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bitset</span>&lt;N + 1&gt; ans;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> p = ans._Find_first(); p &lt;= N; p = ans._Find_next(p)) vec.push_back(p); <span class="comment">// 找所有的 1</span></span><br></pre></td></tr></table></figure>
 </li>
+<li></li>
 </ol>
 <h2 id="偏序"><a href="#偏序" class="headerlink" title="偏序"></a>偏序</h2><p>我们对于每个点开一个 $bitset$ 存储有多少点小于它，然后每一维小于它的数与起来即可</p>
 <h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><ol>
@@ -493,7 +502,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27:32</span>
+    <span title="站点阅读时长">27:46</span>
   </span>
 </div>
 <div class="busuanzi-count">

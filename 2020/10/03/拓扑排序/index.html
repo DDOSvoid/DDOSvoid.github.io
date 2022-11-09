@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介拓扑排序就是…">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-03T07:28:06.000Z">
-<meta property="article:modified_time" content="2021-05-04T12:51:15.307Z">
+<meta property="article:modified_time" content="2022-11-08T13:04:24.245Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="拓扑排序">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">807</span>
+          <span class="site-state-item-count">810</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -315,7 +315,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-04 20:51:15" itemprop="dateModified" datetime="2021-05-04T20:51:15+08:00">2021-05-04</time>
+        <time title="修改时间：2022-11-08 21:04:24" itemprop="dateModified" datetime="2022-11-08T21:04:24+08:00">2022-11-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -342,7 +342,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>583</span>
+      <span>1.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -376,8 +376,30 @@
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/13/Luogu-P3243-HNOI2015-%E8%8F%9C%E8%82%B4%E5%88%B6%E4%BD%9C/">Luogu P3243 [HNOI2015]菜肴制作</a></p>
 </li>
 </ol>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/05/04/CF-1100E-Andrew-and-Taxi/">CF 1100E Andrew and Taxi</a> 给定一个有向图，现在求一个改变边方向的方案，使得所选边边权的最大值最小，且改之后为有向无环图</p>
-<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/05/04/CF-915D-Almost-Acyclic-Graph/">CF 915D Almost Acyclic Graph</a> 给定一个有向图，问是否能去掉一条边使其无环，$n\le 500,m\le 10^5$</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><ol>
+<li><p>简要题意：给定一个 $n$ 个点 $m$ 条边的有向图，现在需要改变某些边的方向，使得原图变成有向无环图，求一个改变边的方案，使得被改变的边的边权最大值最小</p>
+<p>$n,m\le 10^5$</p>
+<p>简要题解：首先我们考虑二分，然后就是判断在只改变 $[1,mid]$ 的边的方向时能否将原图变成一个有向无环图</p>
+<p>注意到我们只需要保证 $[mid+1,r]$ 的边无环，即能够拓扑排序即可，因为 $[1,mid]$ 的方向只需要按照 $[mid+1,r]$ 的边拓扑排序得到的拓扑序由小向大连接即可</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/05/04/CF-1100E-Andrew-and-Taxi/">CF 1100E Andrew and Taxi</a> </p>
+</li>
+<li><p>简要题意：给定一个 $n$ 个点 $m$ 条边的有向图，问是否可以删除至多一条边，使得原图变成有向无环图</p>
+<p>$n\le 500,m\le 10^5$</p>
+<p>简要题解：第一想法肯定是枚举删那条边，然后拓扑排序，然而这样复杂度就炸了</p>
+<p>注意到拓扑排序中一条边只有它的终点有用，所以我们只需要枚举那个点的入度减 $1$ 即可</p>
+<p>时间复杂度 $O(nm)$</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/05/04/CF-915D-Almost-Acyclic-Graph/">CF 915D Almost Acyclic Graph</a> </p>
+</li>
+<li><p>简要题意：给定一个 $n$ 个点 $m$ 条边的有向无环图，求一个特殊的拓扑序，满足 $1$ 出现的位置尽量靠前，在满足这个条件的情况下，$2$ 出现的位置尽量靠前，然后是 $3$，依次类推</p>
+<p>$n,m\le 10^5$</p>
+<p>简要题解：我们考虑原图中 $1$ 尽早出现等价于反图中 $1$ 最晚出现</p>
+<p>所以我们考虑将图反向，然后我们一直进行拓扑排序的操作直到将除了 $1$ 以外的其它能弹出的点都弹出</p>
+<p>这是 $1$ 的最晚出现位置，也是原图中 $1$ 的最早出现位置</p>
+<p>我们对于之前出队的元素和现在在队中元素分别进行对应操作</p>
+<p>能够发现我们每次让反图中最大的元素出队可以完成上述操作</p>
+<p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2020/12/13/Luogu-P3243-HNOI2015-%E8%8F%9C%E8%82%B4%E5%88%B6%E4%BD%9C/">Luogu P3243 [HNOI2015]菜肴制作</a></p>
+</li>
+</ol>
 
     </div>
 
@@ -472,7 +494,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27:32</span>
+    <span title="站点阅读时长">27:46</span>
   </span>
 </div>
 <div class="busuanzi-count">
