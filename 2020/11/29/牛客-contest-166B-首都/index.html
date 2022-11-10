@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="题目描述https:&#x2F;&#x2F;ac.nowcoder.com&#x2F;acm&#x2F;contest&#x2F;166&#x2F;B">
+  <meta name="description" content="题目描述https:&#x2F;&#x2F;ac.nowcoder.com&#x2F;acm&#x2F;contest&#x2F;166&#x2F;B 简要题意：给定 $n$ 八连通二维平面上的点 $(x_i,y_i)$，求选择一个整点 $(x,y)$（可以不是给定点），使得所有给定点到它的距离和最小，求选择的方案数和最小的距离和 $n\le 10^5$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="牛客 contest 166B 首都">
 <meta property="og:url" content="http://example.com/2020/11/29/%E7%89%9B%E5%AE%A2-contest-166B-%E9%A6%96%E9%83%BD/index.html">
 <meta property="og:site_name" content="DDOSvoid&#39;s Blog">
-<meta property="og:description" content="题目描述https:&#x2F;&#x2F;ac.nowcoder.com&#x2F;acm&#x2F;contest&#x2F;166&#x2F;B">
+<meta property="og:description" content="题目描述https:&#x2F;&#x2F;ac.nowcoder.com&#x2F;acm&#x2F;contest&#x2F;166&#x2F;B 简要题意：给定 $n$ 八连通二维平面上的点 $(x_i,y_i)$，求选择一个整点 $(x,y)$（可以不是给定点），使得所有给定点到它的距离和最小，求选择的方案数和最小的距离和 $n\le 10^5$">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-29T11:13:58.000Z">
-<meta property="article:modified_time" content="2021-03-29T13:00:48.045Z">
+<meta property="article:modified_time" content="2022-11-10T04:25:58.549Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="距离">
 <meta name="twitter:card" content="summary">
@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">812</span>
+          <span class="site-state-item-count">813</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -314,7 +314,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-29 21:00:48" itemprop="dateModified" datetime="2021-03-29T21:00:48+08:00">2021-03-29</time>
+        <time title="修改时间：2022-11-10 12:25:58" itemprop="dateModified" datetime="2022-11-10T12:25:58+08:00">2022-11-10</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -341,14 +341,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.6k</span>
+      <span>1.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -360,12 +360,14 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/166/B">https://ac.nowcoder.com/acm/contest/166/B</a></p>
+<p>简要题意：给定 $n$ 八连通二维平面上的点 $(x_i,y_i)$，求选择一个整点 $(x,y)$（可以不是给定点），使得所有给定点到它的距离和最小，求选择的方案数和最小的距离和</p>
+<p>$n\le 10^5$</p>
 <a id="more"></a>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>首先现将切比雪夫距离转成曼哈顿距离</p>
 <p>然后我们取中位数，如果 $n$ 是奇数，那么中位数唯一</p>
 <p>由于整数坐标的限制，我们不能直接除 $2$</p>
 <p>这个时候我们要抖动一下防止变回去的时候出现小数</p>
-<p>如果 $n$ 是偶数，那么我们就统计一下矩形中有多少点奇偶性相同</p>
+<p>如果 $n$ 是偶数，那么我们就统计一下矩形中有多少点两维坐标的奇偶性相同</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100010</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 100000000000000000ll</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dx[] = &#123; <span class="number">0</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> dy[] = &#123; <span class="number">1</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">0</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">ll x[maxn], y[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">D</span><span class="params">(ll x0, ll y0)</span> </span>&#123;</span><br><span class="line">    ll s = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        s += <span class="built_in">abs</span>(x0 - x[i]) + <span class="built_in">abs</span>(y0 - y[i]);</span><br><span class="line">    <span class="keyword">return</span> s / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">calc_even</span><span class="params">(ll l, ll r)</span> </span>&#123;</span><br><span class="line">    ll x = r - l + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (l &amp; <span class="number">1</span> &amp;&amp; r &amp; <span class="number">1</span>) <span class="keyword">return</span> x / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> x + <span class="number">1</span> &gt;&gt; <span class="number">1</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">calc_odd</span><span class="params">(ll l, ll r)</span> </span>&#123;</span><br><span class="line">    ll x = r - l + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (l &amp; <span class="number">1</span> &amp;&amp; r &amp; <span class="number">1</span>) <span class="keyword">return</span> x + <span class="number">1</span> &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> x / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>); <span class="built_in">cout</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> x0, y0; <span class="built_in">cin</span> &gt;&gt; x0 &gt;&gt; y0;</span><br><span class="line">        x[i] = x0 + y0; y[i] = x0 - y0;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(x + <span class="number">1</span>, x + n + <span class="number">1</span>); sort(y + <span class="number">1</span>, y + n + <span class="number">1</span>);</span><br><span class="line">    ll xl = x[n / <span class="number">2</span>], xr = x[n / <span class="number">2</span> + <span class="number">1</span>], yl = y[n / <span class="number">2</span>], yr = y[n / <span class="number">2</span> + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span> (n &amp; <span class="number">1</span> || xl == xr &amp;&amp; yl == yr) &#123;</span><br><span class="line">        ll sx = x[n + <span class="number">1</span> &gt;&gt; <span class="number">1</span>], sy = y[n + <span class="number">1</span> &gt;&gt; <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> ((sx + sy) % <span class="number">2</span> == <span class="number">0</span>) <span class="keyword">return</span> <span class="built_in">cout</span> &lt;&lt; D(sx, sy) &lt;&lt; <span class="string">&quot;\n1\n&quot;</span>, <span class="number">0</span>;</span><br><span class="line">        ll ans = INF, Ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> tx = sx + dx[i], ty = sy + dy[i];</span><br><span class="line">            <span class="keyword">if</span> (D(tx, ty) &lt; ans) ans = D(tx, ty), Ans = <span class="number">1</span>; </span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (D(tx, ty) == ans) ++Ans;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="string">&quot;\n&quot;</span> &lt;&lt; Ans &lt;&lt; <span class="string">&quot;\n&quot;</span>, <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; D(xl, yl) &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; calc_even(xl, xr) * calc_even(yl, yr) + calc_odd(xl, xr) * calc_odd(yl, yr) &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </div>
@@ -389,8 +391,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/11/29/LLuogu-P3964-TJOI2013-%E6%9D%BE%E9%BC%A0%E8%81%9A%E4%BC%9A/" rel="prev" title="LLuogu P3964 [TJOI2013]松鼠聚会">
-                  <i class="fa fa-chevron-left"></i> LLuogu P3964 [TJOI2013]松鼠聚会
+                <a href="/2020/11/29/Luogu-P3964-TJOI2013-%E6%9D%BE%E9%BC%A0%E8%81%9A%E4%BC%9A/" rel="prev" title="Luogu P3964 [TJOI2013]松鼠聚会">
+                  <i class="fa fa-chevron-left"></i> Luogu P3964 [TJOI2013]松鼠聚会
                 </a>
             </div>
             <div class="post-nav-item">
@@ -460,7 +462,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">27:52</span>
+    <span title="站点阅读时长">27:57</span>
   </span>
 </div>
 <div class="busuanzi-count">
