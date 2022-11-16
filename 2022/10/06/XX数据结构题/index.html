@@ -31,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s1.ax1x.com/2022/08/03/vZPEPx.png">
 <meta property="article:published_time" content="2022-10-06T10:36:37.000Z">
-<meta property="article:modified_time" content="2022-11-10T12:00:34.741Z">
+<meta property="article:modified_time" content="2022-11-16T05:16:28.615Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="XX数据结构题">
 <meta name="twitter:card" content="summary">
@@ -199,7 +199,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">814</span>
+          <span class="site-state-item-count">817</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -316,7 +316,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-11-10 20:00:34" itemprop="dateModified" datetime="2022-11-10T20:00:34+08:00">2022-11-10</time>
+        <time title="修改时间：2022-11-16 13:16:28" itemprop="dateModified" datetime="2022-11-16T13:16:28+08:00">2022-11-16</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -568,6 +568,11 @@
 <p>我们用 $set$ 维护每种权值对应的下标，每次修改暴力查询这五个位置的后继即可</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2022/11/10/Luogu-P6617-%E6%9F%A5%E6%89%BE-Search/">Luogu P6617 查找 Search</a></p>
 </li>
+<li><p>简要题意：给定一个 $n$ 个节点的有根树，现在有 $m$ 次询问，每次询问给定 $[l,r]$ 和 $u$，求 $\sum_{i=l}^rdep_{lca{i,u}}$</p>
+<p>$n,m\le 5\times 10^4$</p>
+<p>简要题解：注意到答案满足可减性，所以我们考虑离线后差分每次加入一个点 $u$ 相当于直接将其所在树链都加 $1$，每次查询相当于查询树链和，可以用树剖加树状数组，时间复杂度 $O(n\log^2 n)$</p>
+<p><a href="">Luogu P4211 [LNOI2014]LCA</a></p>
+</li>
 </ol>
 
     </div>
@@ -656,13 +661,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">1.8m</span>
+    <span title="站点总字数">1.9m</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">28:01</span>
+    <span title="站点阅读时长">28:09</span>
   </span>
 </div>
 <div class="busuanzi-count">
