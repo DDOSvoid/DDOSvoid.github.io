@@ -30,7 +30,7 @@
 <meta property="og:description" content="简介终于要开始数学了吗？">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-30T05:34:00.000Z">
-<meta property="article:modified_time" content="2022-11-03T11:33:06.309Z">
+<meta property="article:modified_time" content="2022-11-29T05:50:57.212Z">
 <meta property="article:author" content="DDOSvoid">
 <meta property="article:tag" content="Tech">
 <meta property="article:tag" content="基础数论">
@@ -198,7 +198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">819</span>
+          <span class="site-state-item-count">822</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -315,7 +315,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-11-03 19:33:06" itemprop="dateModified" datetime="2022-11-03T19:33:06+08:00">2022-11-03</time>
+        <time title="修改时间：2022-11-29 13:50:57" itemprop="dateModified" datetime="2022-11-29T13:50:57+08:00">2022-11-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -342,14 +342,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>13k</span>
+      <span>14k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>12 分钟</span>
+      <span>13 分钟</span>
     </span>
 </div>
 
@@ -471,6 +471,7 @@
 <li>$\delta_m(a)|\varphi(m)$</li>
 <li>令 $\delta_m(a)=k$，则 $a^0,a^1,\cdots,a^{k-1}$ 模 $p$ 两两不同余</li>
 <li>若 $ab\equiv 1(\bmod m)$，则 $\delta_m(a)=\delta_m(b)$</li>
+<li>$\delta_m(a^k)=\frac{\delta_m(a)}{gcd(\delta_m(a),k)}$</li>
 </ol>
 <h3 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h3><p>若 $a,p$ 为正整数，且 $(a,p)=1$，称满足 $\delta_p(a)=\varphi(p)$ 的 $a$ 为模 $p$ 的一个原根</p>
 <ol>
@@ -544,6 +545,13 @@ i^{-1}&\equiv-kr^{-1}(\bmod p)
 <p>$p\le 10^5$</p>
 <p>简要题解：我们考虑求出 $p$ 的原根 $g$，然后我们将 $a_i$ 变成一个范围为 $[0,p-2]$ 的数，问题被转换成是否能选出若干个数出来使得它们的和是 $p-1$ 的倍数，我们可以直接上 $bitset$，时间复杂度 $O(\frac{p^2}{64})$</p>
 <p><a target="_blank" rel="noopener" href="https://ddosvoid.github.io/2021/10/31/National-Taiwan-University-NCPC-Preliminary-2021-E-Identity-Subset/">National Taiwan University NCPC Preliminary 2021 E Identity Subset</a></p>
+</li>
+<li><p>简要题意：给定一个整数 $n$，保证 $n$ 是奇质数 $p$ 的正整数次方，现在有 $m$ 次询问，每次询问给定两个正整数 $x,y$，保证 $(x,n)=1,(y,n)=1$，问是否存在非负整数 $a$，使得 $x^a\equiv y(\bmod n)$</p>
+<p>$x,y&lt;n\le 10^{18},m\le 2\times 10^4$</p>
+<p>简要题解：因为保证 $n$ 是奇质数的正整数次方，所以 $n$ 一定存在原根 $g$ 和非负整数 $s,t$，使得 $x\equiv g^s(\bmod n),y\equiv g^t(\bmod n)$，那么询问变为是否存在非负整数 $a$，使得 $sa\equiv t(\bmod \varphi(n))$，该式有解当且仅当 $(s,\varphi(n))|t$，即 $(s,\varphi(n))|(t,\varphi(n))$</p>
+<p>根据阶的性质，我们有 $\delta_n(g^k)=\frac{\delta_n(g)}{(\delta_n(g),k)}$，所以如果存在非负整数 $a$，则一定有 $\delta_n(y)|\delta_n(x)$，至于如何验证这个东西，我们一定有 $\delta_n(y)|\varphi(n)$，所以我们考虑对于首先对于 $\varphi(n)$ 分解质因数，然后通过不断试除来得到 $\delta_n(x)$，然后通过验证 $y^{\delta_n(x)}$ 是否同余 $1$ 即可</p>
+<p>时间复杂度 $O(nm^{\frac{1}{4}})$</p>
+<p><a href="">Luogu P5605 小A与两位神仙</a></p>
 </li>
 </ol>
 
@@ -640,7 +648,7 @@ i^{-1}&\equiv-kr^{-1}(\bmod p)
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">28:17</span>
+    <span title="站点阅读时长">28:25</span>
   </span>
 </div>
 <div class="busuanzi-count">
